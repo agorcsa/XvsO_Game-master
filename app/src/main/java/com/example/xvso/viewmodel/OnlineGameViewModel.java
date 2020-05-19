@@ -51,24 +51,17 @@ public class OnlineGameViewModel extends BaseViewModel {
         game = gameLiveData.getValue();
         if (auth.getCurrentUser().getUid().equals(game.getHost().getUID())) {
             game.getBoard().getCells().get(position).setTag(1);
-
-
         } else {
             game.getBoard().getCells().get(position).setTag(2);
-
         }
-
-        if (game.getCurrentPlayer().equals(game.getHost().getUID())) {
-            game.setCurrentPlayer(game.getGuest().getUID());
+        if (game.getCurrentPlayer().equals(game.getHost().getName())) {
+            game.setCurrentPlayer(game.getGuest().getName());
         } else {
-            game.setCurrentPlayer(game.getHost().getUID());
+            game.setCurrentPlayer(game.getHost().getName());
         }
-
         query
                 .setValue(game)
-
         ;
-
         checkForWin();
     }
 

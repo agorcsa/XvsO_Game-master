@@ -45,10 +45,12 @@ public class XvsOBindingAdapter {
 
     @BindingAdapter({"currentPlayer", "currentUser"})
     public static void showCurrentPlayerTurn(TextView textView, String currentPlayer, String currentUser) {
-        if (currentPlayer.equals(currentUser)) {
-            textView.setText("My turn");
-        } else {
-            textView.setText(currentPlayer + " has the turn");
+        if (currentPlayer != null && currentUser != null) {
+            if (currentPlayer.equals(currentUser)) {
+                textView.setText("My turn");
+            } else {
+                textView.setText(currentPlayer + " has the turn");
+            }
         }
     }
 
