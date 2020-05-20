@@ -1,4 +1,4 @@
-package com.example.xvso.firebase;
+package com.example.xvso.uifirebase;
 
 import android.os.Bundle;
 

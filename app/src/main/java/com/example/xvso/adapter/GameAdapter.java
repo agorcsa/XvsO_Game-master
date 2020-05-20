@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.xvso.Objects.Game;
-import com.example.xvso.Objects.User;
+import com.example.xvso.object.Game;
+import com.example.xvso.object.User;
 import com.example.xvso.R;
 import com.squareup.picasso.Picasso;
 

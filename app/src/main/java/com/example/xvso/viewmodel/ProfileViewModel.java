@@ -8,9 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.xvso.Objects.User;
-import com.example.xvso.ProfileEditState;
-import com.example.xvso.ResourceProvider;
+import com.example.xvso.object.User;
+import com.example.xvso.progressdialog.ProfileEditState;
 import com.example.xvso.eventobserver.Event;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,8 +44,6 @@ public class ProfileViewModel extends ViewModel {
     }
 
     public MutableLiveData<ProfileEditState> stateLiveData = new MutableLiveData<>();
-
-    private ResourceProvider resourceProvider;
 
     private User user = new User();
     private MutableLiveData<User> userLiveData = new MutableLiveData<>();

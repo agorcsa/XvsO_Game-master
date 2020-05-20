@@ -1,9 +1,11 @@
-package com.example.xvso;
+package com.example.xvso.uiactivities;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.xvso.R;
 
 public class AboutActivity extends AppCompatActivity {
 

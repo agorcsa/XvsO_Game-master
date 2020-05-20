@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.bindingadapters;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -8,10 +8,9 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.xvso.Objects.Cell;
-import com.example.xvso.Objects.Game;
-import com.example.xvso.Objects.Team;
-import com.example.xvso.viewmodel.OnlineGameViewModel;
+import com.example.xvso.object.Cell;
+import com.example.xvso.object.Team;
+import com.example.xvso.R;
 import com.example.xvso.viewmodel.OnlineUsersViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 

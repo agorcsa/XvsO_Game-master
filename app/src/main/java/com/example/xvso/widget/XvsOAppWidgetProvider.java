@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.example.xvso.HomeActivity;
+import com.example.xvso.uiactivities.HomeActivity;
 import com.example.xvso.R;
 
 public class XvsOAppWidgetProvider extends AppWidgetProvider {

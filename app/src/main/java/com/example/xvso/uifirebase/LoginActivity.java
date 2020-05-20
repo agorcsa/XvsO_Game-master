@@ -1,4 +1,4 @@
-package com.example.xvso.firebase;
+package com.example.xvso.uifirebase;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.xvso.MainActivity;
+import com.example.xvso.uiactivities.MainActivity;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityLoginBinding;
 import com.example.xvso.viewmodel.LoginViewModel;

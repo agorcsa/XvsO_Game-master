@@ -1,4 +1,4 @@
-package com.example.xvso.Objects;
+package com.example.xvso.object;
 
 public class UserInfo {
 

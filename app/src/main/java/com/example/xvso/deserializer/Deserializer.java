@@ -1,11 +1,11 @@
-package com.example.xvso;
+package com.example.xvso.deserializer;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.arch.core.util.Function;
 
-import com.example.xvso.Objects.User;
+import com.example.xvso.object.User;
 import com.google.firebase.database.DataSnapshot;
 
 @RequiresApi(api = Build.VERSION_CODES.N)

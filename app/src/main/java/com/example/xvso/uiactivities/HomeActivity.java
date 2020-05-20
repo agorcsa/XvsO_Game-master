@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.uiactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityWelcomeBinding;
-import com.example.xvso.firebase.LoginActivity;
+import com.example.xvso.uifirebase.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity{
 

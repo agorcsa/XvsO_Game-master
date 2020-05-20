@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.uiactivities;
 
 import android.content.Intent;
 import android.os.Build;
@@ -14,11 +14,12 @@ import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.xvso.Objects.Team;
+import com.example.xvso.R;
+import com.example.xvso.object.Team;
 import com.example.xvso.databinding.ActivityMainBinding;
-import com.example.xvso.firebase.BaseActivity;
-import com.example.xvso.firebase.LoginActivity;
-import com.example.xvso.firebase.ProfileActivity;
+import com.example.xvso.uifirebase.BaseActivity;
+import com.example.xvso.uifirebase.LoginActivity;
+import com.example.xvso.uifirebase.ProfileActivity;
 import com.example.xvso.viewmodel.ScoreViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 

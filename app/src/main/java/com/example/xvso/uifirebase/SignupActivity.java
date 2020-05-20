@@ -1,4 +1,4 @@
-package com.example.xvso.firebase;
+package com.example.xvso.uifirebase;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.xvso.HomeActivity;
-import com.example.xvso.Objects.User;
+import com.example.xvso.uiactivities.HomeActivity;
+import com.example.xvso.object.User;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivitySignupBinding;
 import com.google.android.gms.common.ConnectionResult;

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".OnlineUsersActivity">
+        tools:context=".uiactivities.OnlineUsersActivity">
 
     <TextView
         android:id="@+id/user_login_textview"

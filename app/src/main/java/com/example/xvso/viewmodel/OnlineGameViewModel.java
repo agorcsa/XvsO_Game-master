@@ -8,10 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.example.xvso.GameDeserializer;
-import com.example.xvso.Objects.Board;
-import com.example.xvso.Objects.Game;
-import com.example.xvso.eventobserver.Event;
+import com.example.xvso.deserializer.GameDeserializer;
+import com.example.xvso.object.Board;
+import com.example.xvso.object.Game;
 import com.example.xvso.firebaseutils.FirebaseQueryLiveData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;

@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.uiactivities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -19,12 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.example.xvso.Objects.Board;
-import com.example.xvso.Objects.Game;
-import com.example.xvso.Objects.User;
+import com.example.xvso.R;
+import com.example.xvso.object.Board;
+import com.example.xvso.object.Game;
+import com.example.xvso.object.User;
 import com.example.xvso.adapter.GameAdapter;
 import com.example.xvso.databinding.ActivityOnlineUsersBinding;
-import com.example.xvso.firebase.BaseActivity;
+import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.OnlineUsersViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;

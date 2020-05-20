@@ -1,4 +1,4 @@
-package com.example.xvso.firebase;
+package com.example.xvso.uifirebase;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.xvso.ProfileEditState;
+import com.example.xvso.progressdialog.ProfileEditState;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityProfileBinding;
 import com.example.xvso.eventobserver.EventObserver;

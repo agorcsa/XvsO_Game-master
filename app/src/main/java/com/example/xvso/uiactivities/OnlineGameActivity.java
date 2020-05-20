@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.uiactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.xvso.Objects.Game;
-import com.example.xvso.Objects.User;
+import com.example.xvso.R;
+import com.example.xvso.object.Game;
+import com.example.xvso.object.User;
 import com.example.xvso.databinding.ActivityOnlineGameBinding;
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;

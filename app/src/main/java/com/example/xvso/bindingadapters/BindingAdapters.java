@@ -1,4 +1,4 @@
-package com.example.xvso;
+package com.example.xvso.bindingadapters;
 
 import android.view.View;
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchParent"
     android:fitsSystemWindows="@bool/value_true"
-    tools:context="com.example.xvso.firebase.LoginActivity">
+    tools:context="com.example.xvso.uifirebase.LoginActivity">
 
     <LinearLayout
         style="@style/MatchParent"
