@@ -45,12 +45,7 @@
     <string name="uploading_image">Uploading image...</string>
     <string name="please_wait">Please wait...</string>
 
-    <!-- activity_login.xml -->
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="btn_login">LOGIN</string>
-    <string name="btn_forgot_password">Forgot your password?</string>
-    <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+
 
     <!-- activity_signup.xml -->
     <string name="single_player">Single Player</string>
@@ -93,5 +88,17 @@
     <string name="alert_dialog_content"> %1$s has joined your game, do you want to accept the challenge?</string>
     <string name="alert_dialog_yes">YES</string>
     <string name="alert_dialog_no">NO</string>
+
+    <string name="about_the_app">about the app and creators</string>
+
+    <!-- activity_login.xml -->
+    <string name="login_logo">"logo image for the log in screen"</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+
+    <!-- activity_main.xml -->
 
 </resources>

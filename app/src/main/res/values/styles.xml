@@ -16,4 +16,86 @@
         <!-- background -->
         <item name="android:background">#fff</item>
     </style>
+
+
+    <!-- layout styles-->
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MatchWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- progressbar style-->
+    <style name="ProgressBar">
+        <item name="android:layout_width">@dimen/width_30dp</item>
+        <item name="android:layout_height">@dimen/height_30dp</item>
+        <item name="android:layout_gravity">center|bottom</item>
+        <item name="layout_goneMarginBottom">@dimen/margin_20</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!-- cell board size -->
+    <style name="BoardCell">
+        <item name="android:layout_width">@dimen/cell_width</item>
+        <item name="android:layout_height">@dimen/cell_height</item>
+    </style>
+
+    <!-- WinningLines -->
+    <!-- vertical -->
+    <style name="WinningLinesVertical">
+        <item name="android:layout_width">@dimen/line_width_v</item>
+        <item name="android:layout_height">@dimen/line_height_v</item>
+    </style>
+
+    <!-- horizontal -->
+    <style name="WinningLinesHorizontal">
+        <item name="android:layout_width">@dimen/line_width_h</item>
+        <item name="android:layout_height">@dimen/line_height_h</item>
+    </style>
+
+    <!-- diagonal -->
+    <style name="WinningLinesDiagonal">
+        <item name="android:layout_width">@dimen/line_width_d</item>
+        <item name="android:layout_height">@dimen/line_height_d</item>
+    </style>
+
+    <style name="PlayerTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_10</item>
+        <item name="android:textColor">@color/color_blue</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="Player1TextStyle" parent="PlayerTextStyle">
+        <item name="layout_goneMarginTop">@dimen/margin_20</item>
+        <item name="android:hint">@string/player_x</item>
+    </style>
+
+    <style name="Player2TextStyle" parent="PlayerTextStyle">
+        <item name="android:hint">@string/player_y</item>
+    </style>
+
+    <!-- players' score style -->
+    <style name="PlayerScoreStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_10</item>
+        <item name="android:color">@color/color_red</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="Player1ScoreStyle" parent="PlayerScoreStyle">
+        <item name="android:layout_marginTop">@dimen/margin_20</item>
+    </style>
+
 </resources>
