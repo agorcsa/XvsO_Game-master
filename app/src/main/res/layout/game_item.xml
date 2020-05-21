@@ -4,57 +4,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        app:cardCornerRadius="4dp">
+        style="@style/MatchWrap"
+        android:layout_margin="@dimen/margin"
+        app:cardCornerRadius="@dimen/margin">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp">
+            style="@style/MatchParent"
+            android:layout_margin="@dimen/margin">
 
             <ImageView
                 android:id="@+id/profile_image_view"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="2dp"
+                android:layout_width="@dimen/user_image_width"
+                android:layout_height="@dimen/user_image_height"
+                android:padding="@dimen/padding_2"
                 android:src="@drawable/ic_cross" />
 
             <TextView
                 android:id="@+id/first_line_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                style="@style/WrapContent"
+                android:layout_alignParentTop="@bool/value_true"
                 android:layout_toEndOf="@+id/profile_image_view"
-                android:hint="Game Number"
+                android:hint="@string/game_number"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/second_line_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/WrapContent"
                 android:layout_below="@+id/first_line_text_view"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/margin_8"
                 android:layout_toEndOf="@+id/profile_image_view"
-                android:hint="user name"
+                android:hint="@string/user_name"
                 android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/join_game_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="JOIN GAME"
-                android:clickable="true"
-                android:textStyle="bold"
+                style="@style/WrapContent"
+                android:layout_alignParentRight="@bool/value_true"
+                android:layout_centerVertical="@bool/value_true"
+                android:clickable="@bool/value_true"
+                android:text="@string/join_game"
+                android:textAllCaps="@bool/value_true"
                 android:textColor="@android:color/holo_orange_dark"
-                android:textSize="26sp" />
+                android:textSize="@dimen/text_size_xlarge"
+                android:textStyle="bold" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

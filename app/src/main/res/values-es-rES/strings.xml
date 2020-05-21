@@ -72,4 +72,5 @@
     <string name="alert_dialog_content"> %1$s se ha unido a tu juego, ¿quieres aceptar el desafío?</string>
     <string name="about_the_app">sobre la aplicación y los creadores</string>
     <string name="login_logo">imagen del logotipo para la pantalla de inicio de sesión</string>
+    <string name="game_number">" Numero de juego"</string>
 </resources>

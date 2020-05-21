@@ -45,8 +45,6 @@
     <string name="uploading_image">Uploading image...</string>
     <string name="please_wait">Please wait...</string>
 
-
-
     <!-- activity_signup.xml -->
     <string name="single_player">Single Player</string>
     <string name="multi_player">Multi Player</string>
@@ -99,6 +97,12 @@
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
 
-    <!-- activity_main.xml -->
+    <!-- game_item.xml -->
+    <!-- textview hints -->
+    <string name="game_number">Game Number</string>
+    <string name="user_name">User Name</string>
+
+    <!-- join game button -->
+    <string name="join_game">Join Game</string>
 
 </resources>
