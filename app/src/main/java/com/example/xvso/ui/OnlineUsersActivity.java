@@ -1,4 +1,4 @@
-package com.example.xvso.uiactivities;
+package com.example.xvso.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;

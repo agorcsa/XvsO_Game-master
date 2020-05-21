@@ -29,7 +29,7 @@
                 android:value=".uifirebase.LoginActivity" />
         </activity>
         <activity
-            android:name=".uiactivities.HomeActivity"
+            android:name=".ui.HomeActivity"
             android:label="@string/home_menu"
             android:launchMode="singleTop"
             android:parentActivityName=".uifirebase.SignupActivity">
@@ -38,32 +38,32 @@
                 android:value=".uifirebase.SignupActivity" />
         </activity>
         <activity
-            android:name=".uiactivities.AboutActivity"
+            android:name=".ui.AboutActivity"
             android:label="@string/about"
             android:launchMode="singleTop"
-            android:parentActivityName=".uiactivities.HomeActivity">
+            android:parentActivityName=".ui.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".uiactivities.HomeActivity" />
+                android:value=".ui.HomeActivity" />
         </activity>
         <activity
-            android:name=".uiactivities.OnlineUsersActivity"
+            android:name=".ui.OnlineUsersActivity"
             android:label="@string/online_users_activity"
             android:launchMode="singleTop"
-            android:parentActivityName=".uiactivities.HomeActivity">
+            android:parentActivityName=".ui.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".uiactivities.HomeActivity" />
+                android:value=".ui.HomeActivity" />
         </activity>
 
         <activity
-            android:name=".uiactivities.OnlineGameActivity"
+            android:name=".ui.OnlineGameActivity"
             android:label="Online Game"
             android:launchMode="singleTop"
-            android:parentActivityName=".uiactivities.OnlineUsersActivity">
+            android:parentActivityName=".ui.OnlineUsersActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".uiactivities.OnlineUsersActivity" />
+                android:value=".ui.OnlineUsersActivity" />
         </activity>
 
         <activity
@@ -76,22 +76,13 @@
                 android:value=".uifirebase.SignupActivity" />
         </activity>
         <activity
-            android:name=".uiactivities.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:parentActivityName=".uifirebase.SignupActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".uifirebase.SignupActivity" />
-        </activity>
-        <activity
-            android:name=".uiactivities.VideoActivity"
+            android:name=".ui.VideoActivity"
             android:label="Learn to play"
             android:launchMode="singleTop"
-            android:parentActivityName=".uiactivities.MainActivity">
+            android:parentActivityName=".ui.OnlineGameActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".uiactivities.MainActivity" />
+                android:value=".ui.OnlineGameActivity" />
         </activity>
         <activity
             android:name=".uifirebase.ResetPasswordActivity"

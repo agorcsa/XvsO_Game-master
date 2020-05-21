@@ -1,5 +1,8 @@
 package com.example.xvso.viewmodel;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -50,13 +53,16 @@ public class BaseViewModel extends ViewModel {
     private int tag;
     private String displayName;
     private ArrayList<Integer> board = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0));
+
     private MutableLiveData<ArrayList<Integer>> boardLiveData = new MutableLiveData<>();
+
     private boolean gameOver;
     private DatabaseReference query;
     private LiveData<User> userLiveData;
     private FirebaseAuth auth;
     // constructor
     // will be called when MainActivity starts
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public BaseViewModel() {
 
         teamX.setValue(new Team(Team.TEAM_X));

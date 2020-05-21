@@ -1,4 +1,4 @@
-package com.example.xvso.uiactivities;
+package com.example.xvso.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

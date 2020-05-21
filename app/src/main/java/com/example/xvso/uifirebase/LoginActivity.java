@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.xvso.uiactivities.MainActivity;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityLoginBinding;
+import com.example.xvso.ui.HomeActivity;
 import com.example.xvso.viewmodel.LoginViewModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -34,7 +34,7 @@ public class LoginActivity extends BaseActivity {
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
         if (getFirebaseUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
             finish();
         }
@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }

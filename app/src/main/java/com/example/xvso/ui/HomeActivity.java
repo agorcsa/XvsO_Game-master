@@ -1,4 +1,4 @@
-package com.example.xvso.uiactivities;
+package com.example.xvso.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,14 +22,6 @@ public class HomeActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
-
-        welcomeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(loginIntent);
-            }
-        });
 
         welcomeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
