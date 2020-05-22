@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.xvso.viewmodel.OnlineGameViewModel" />
@@ -31,9 +32,10 @@
                 android:layout_column="0"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(0)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(0)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="0" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -48,9 +50,10 @@
                 android:layout_marginRight="@dimen/margin"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(1)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(1)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="1" />
             ​
 
@@ -62,9 +65,10 @@
                 android:layout_column="2"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(2)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(2)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="2" />
             ​
 
@@ -75,9 +79,10 @@
                 android:layout_row="1"
                 android:layout_column="0"
                 android:background="@color/app_background"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(3)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(3)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="3" />
             ​
 
@@ -92,14 +97,17 @@
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
                 android:background="@color/app_background"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(4)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(4)}"
 
                 android:tag="4" />
             ​
 
             <androidx.appcompat.widget.AppCompatImageView
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_6"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -113,6 +121,8 @@
             ​
 
             <androidx.appcompat.widget.AppCompatImageView
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_7"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -122,11 +132,12 @@
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(6)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(6)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="6" />
             ​
 
             <androidx.appcompat.widget.AppCompatImageView
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_8"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -140,11 +151,12 @@
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(7)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(7)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="7" />
             ​
 
             <androidx.appcompat.widget.AppCompatImageView
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_9"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -154,7 +166,6 @@
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(8)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(8)}"
-                android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="8" />
         </GridLayout>
 
@@ -168,7 +179,7 @@
             android:contentDescription="Your turn"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="100dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -235,7 +246,6 @@
         </LinearLayout>
 
 
-
         <!-- Winning lines -->
         <View
             android:id="@+id/center_vertical"
@@ -294,7 +304,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="70dp"
             android:background="@color/grid_background"
-            app:visibility="@{viewModel.topHorizontalLine}"/>
+            app:visibility="@{viewModel.topHorizontalLine}" />
 
 
         <View
@@ -352,5 +362,6 @@
                 app:civ_border_width="4dp"
                 app:civ_mode="2" />
         </RelativeLayout>
+
     </FrameLayout>
 </layout>

@@ -412,34 +412,35 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         });
 
 
-        new MaterialDialog.Builder(this)
-                .icon(getResources().getDrawable(R.drawable.ic_cross, null))
-                .limitIconToDefaultSize()
-                .title(R.string.alert_dialog_title)
-                .content(getString(R.string.alert_dialog_content, getGuestName(guest)))
-                .positiveText(R.string.alert_dialog_yes)
-                .negativeText(R.string.alert_dialog_no)
-                .theme(Theme.DARK)
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        Toast.makeText(OnlineUsersActivity.this, R.string.alert_dialog_yes, Toast.LENGTH_LONG).show();
-                        // updates the acceptedRequest variable in the Firebase database
-                        database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
-                        startGame(key);
-                        /// --> here is the problem
-                        dialog.dismiss();
-                    }
-                })
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        Toast.makeText(getApplicationContext(), "You have refused playing with " + getGuestName(guest), Toast.LENGTH_SHORT).show();
-                        game.setStatus(Game.STATUS_WAITING);
-                        database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);
-                    }
-                })
-                .show();
+        if (!isFinishing()) {
+            new MaterialDialog.Builder(this)
+                    .icon(getResources().getDrawable(R.drawable.ic_cross, null))
+                    .limitIconToDefaultSize()
+                    .title(R.string.alert_dialog_title)
+                    .content(getString(R.string.alert_dialog_content, getGuestName(guest)))
+                    .positiveText(R.string.alert_dialog_yes)
+                    .negativeText(R.string.alert_dialog_no)
+                    .theme(Theme.DARK)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog dialog, DialogAction which) {
+                            Toast.makeText(OnlineUsersActivity.this, R.string.alert_dialog_yes, Toast.LENGTH_LONG).show();
+                            // updates the acceptedRequest variable in the Firebase database
+                            database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
+                            startGame(key);
+                            /// --> here is the problem
+                            dialog.dismiss();
+                        }
+                    })
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog dialog, DialogAction which) {
+                            Toast.makeText(getApplicationContext(), "You have refused playing with " + getGuestName(guest), Toast.LENGTH_SHORT).show();
+                            game.setStatus(Game.STATUS_WAITING);
+                            database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);
+                        }
+                    })
+                    .show();
+        }
     }
-
 }

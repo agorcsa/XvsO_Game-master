@@ -3,6 +3,9 @@ package com.example.xvso.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -18,6 +21,8 @@ import com.example.xvso.R;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.databinding.ActivityOnlineGameBinding;
+import com.example.xvso.uifirebase.LoginActivity;
+import com.example.xvso.uifirebase.ProfileActivity;
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -474,5 +479,59 @@ public class OnlineGameActivity extends AppCompatActivity {
                 onlineGameBinding.player2Result.setVisibility(View.VISIBLE);
             }
         }, 3000);
+    }
+
+    /**
+     * creates a menu in the right-up corner of the screen
+     * @param menu
+     * @return the menu itself
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * menu options: newRound, resetGame, watchVideo, logOut, settings
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_home) {
+            Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.action_new_round) {
+            onlineGameViewModel.newRound();
+            onlineGameViewModel.togglePlayer();
+        } else if (item.getItemId() == R.id.action_new_game) {
+            onlineGameViewModel.resetGame();
+            onlineGameViewModel.togglePlayer();
+            // no need to reset the score, as boardLiveData.setValue is being called on an empty board
+        } else if (item.getItemId() == R.id.action_watch_video) {
+            Intent intent = new Intent(OnlineGameActivity.this, VideoActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.action_log_out) {
+            showToast(getString(R.string.log_out_menu));
+            FirebaseAuth.getInstance().signOut();
+            Intent loginIntent = new Intent(OnlineGameActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+        } else if (item.getItemId() == R.id.action_settings) {
+            Intent settingsIntent = new Intent(OnlineGameActivity.this, ProfileActivity.class);
+            startActivity(settingsIntent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     *
+     * auxiliary method which displays a toast message only by giving the message as String parameter
+     * @param message
+     */
+    public void showToast(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Team;
 import com.example.xvso.R;
+import com.example.xvso.ui.OnlineGameActivity;
 import com.example.xvso.viewmodel.OnlineUsersViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -19,7 +20,7 @@ public class XvsOBindingAdapter {
     public static final String PLEASE_WAIT = "Please wait...";
     public static final String CONNECTED = "Connected";
 
-    @BindingAdapter("state")
+    /*@BindingAdapter("state")
     public static void setCellState(ImageView imageView, Cell cell) {
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
@@ -39,8 +40,7 @@ public class XvsOBindingAdapter {
                 imageView.setClickable(true);
             }
         }
-
-    }
+    }*/
 
     @BindingAdapter({"currentPlayer", "currentUser"})
     public static void showCurrentPlayerTurn(TextView textView, String currentPlayer, String currentUser) {
@@ -109,7 +109,7 @@ public class XvsOBindingAdapter {
         if (isValid) {
             // hide the error
             view.setError(null);
-        } else if (view.getText().toString().isEmpty()){
+        } else if (view.getText().toString().isEmpty()) {
             // show the error
             view.setError(view.getContext().getString(R.string.invalid_field));
         }
@@ -125,7 +125,7 @@ public class XvsOBindingAdapter {
                         .load(imageUrl)
                         .into(view);
             }
-            
+
         } else {
             Glide.with(view.getContext())
                     .load(R.drawable.tictactoe)
@@ -136,7 +136,7 @@ public class XvsOBindingAdapter {
 
     @BindingAdapter("visible")
     public static void setVisibility(View view, Boolean value) {
-          view.setVisibility(value? View.VISIBLE :View.GONE );
+        view.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 
 
@@ -145,8 +145,28 @@ public class XvsOBindingAdapter {
 
         if (status == OnlineUsersViewModel.AlertDialogStatus.CONNECTING) {
             textView.setText(PLEASE_WAIT);
-        } else if (status == OnlineUsersViewModel.AlertDialogStatus.CONNECTED ) {
+        } else if (status == OnlineUsersViewModel.AlertDialogStatus.CONNECTED) {
             textView.setText(CONNECTED);
+        }
+    }
+
+    @BindingAdapter({"currentP", "currentU", "state"})
+    public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell) {
+        if (cell != null) {
+            if (cell.getTag() == Team.TEAM_O) {
+                imageView.setImageResource(R.drawable.ic_zero);
+            } else if (cell.getTag() == Team.TEAM_X) {
+                imageView.setImageResource(R.drawable.ic_cross);
+            } else {
+                imageView.setImageResource(0);
+            }
+        }
+        if (currentPlayer != null && currentUser != null) {
+            if (currentPlayer.equals(currentUser) && cell.getTag() == 0) {
+                imageView.setClickable(true);
+            } else {
+                imageView.setClickable(false);
+            }
         }
     }
 }
