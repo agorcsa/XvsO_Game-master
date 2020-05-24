@@ -57,7 +57,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             User guest = currentGame.getGuest();
 
             if (!TextUtils.isEmpty(host.getImageUrl())) {
-                Picasso.get().load(host.getImageUrl()).into(holder.profilePicture);
+                Picasso.get().
+                        load(host.getImageUrl()).
+                        into(holder.profilePicture);
             }
 
             holder.gameNumber.setText(String.valueOf(position + 1));

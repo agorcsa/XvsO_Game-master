@@ -20,27 +20,6 @@ public class XvsOBindingAdapter {
     public static final String PLEASE_WAIT = "Please wait...";
     public static final String CONNECTED = "Connected";
 
-    /*@BindingAdapter("state")
-    public static void setCellState(ImageView imageView, Cell cell) {
-        if (cell != null) {
-            if (cell.getTag() == Team.TEAM_O) {
-                // set image O
-                imageView.setImageResource(R.drawable.ic_zero);
-                // set clickable false
-                imageView.setClickable(false);
-            } else if (cell.getTag() == Team.TEAM_X) {
-                // set image X
-                imageView.setImageResource(R.drawable.ic_cross);
-                // set clickable false
-                imageView.setClickable(false);
-            } else {
-                // set no image
-                imageView.setImageResource(0);
-                // set clickable true
-                imageView.setClickable(true);
-            }
-        }
-    }*/
 
     @BindingAdapter({"currentPlayer", "currentUser"})
     public static void showCurrentPlayerTurn(TextView textView, String currentPlayer, String currentUser) {

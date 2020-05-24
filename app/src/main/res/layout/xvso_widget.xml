@@ -5,10 +5,20 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/message_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_2"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:text="Current score of the last game is: " />
+
+    <TextView
         android:id="@+id/player1_text_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:layout_marginTop="@dimen/margin_20"
         android:textSize="20sp"
         android:text="@string/player_x" />
 
@@ -16,24 +26,19 @@
         android:id="@+id/player1_result_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
         android:layout_marginStart="10dp"
         android:text="0"
         android:textSize="30dp"
         android:textStyle="bold"
         android:layout_below="@+id/player1_text_widget"/>
 
-    <ImageView
-        android:id="@+id/rocket"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/tictactoe" />
-
     <TextView
         android:id="@+id/player2_text_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/margin_20"
         android:padding="10dp"
         android:textSize="20sp"
         android:text="@string/player_y" />
@@ -44,8 +49,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/player2_text_widget"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_20"
         android:layout_marginEnd="10dp"
         android:textStyle="bold"
         android:textSize="30sp"
         android:text="0"/>
+
+
+    <ImageView
+        android:id="@+id/no_score_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

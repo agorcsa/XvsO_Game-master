@@ -23,7 +23,7 @@ public class XvsOAppWidgetProvider extends AppWidgetProvider {
             // displays the layout in another process (widget)
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.xvso_widget);
 
-            views.setOnClickPendingIntent(R.id.rocket, pendingIntent);
+            views.setTextViewText(R.id.message_text_view, "No score to show yet. Go and play and have some fun!");
 
             // tells the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);

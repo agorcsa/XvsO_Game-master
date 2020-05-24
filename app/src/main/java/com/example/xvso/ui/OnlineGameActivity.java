@@ -152,31 +152,10 @@ public class OnlineGameActivity extends AppCompatActivity {
 
         gameState = 1;
 
-       /* if (requestType.equals("From")) {
-
-            // the player who sends the request plays with X
-            myGameSignIn = "O";
-
-            onlineGameBinding.player1Text.setText("Your turn");
-            onlineGameBinding.player2Text.setText("Your turn");
-
-            reference.child("playing").child(playerSession).child("turn").setValue(opponentFirstName);
-
-        } else {
-
-            myGameSignIn = "X";
-
-            onlineGameBinding.player1Text.setText(opponentFirstName + "\'s turn");
-            onlineGameBinding.player1Text.setText(opponentFirstName + "\'s turn");
-
-            reference.child("playing").child(playerSession).child("turn").setValue(opponentFirstName);
-        }*/
-
         reference.child("playing").child(gameId).child("turn").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
-
                     String value = (String) dataSnapshot.getValue();
                     if (value.equals(userName)) {
 
@@ -239,156 +218,6 @@ public class OnlineGameActivity extends AppCompatActivity {
         });
     }
 
-    public void gameBoardClick(View view) {
-
-        ImageView selectedImage = (ImageView) view;
-
-        if (gameId.length() <= 0) {
-            Intent intent = new Intent(getApplicationContext(), OnlineGameActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            int selectedBlock = 0;
-            switch (selectedImage.getId()) {
-                case R.id.block_1:
-                    selectedBlock = 1;
-                    break;
-                case R.id.block_2:
-                    selectedBlock = 2;
-                    break;
-                case R.id.block_3:
-                    selectedBlock = 3;
-                    break;
-
-                case R.id.block_4:
-                    selectedBlock = 4;
-                    break;
-                case R.id.block_5:
-                    selectedBlock = 5;
-                    break;
-                case R.id.block_6:
-                    selectedBlock = 6;
-                    break;
-
-                case R.id.block_7:
-                    selectedBlock = 7;
-                    break;
-                case R.id.block_8:
-                    selectedBlock = 8;
-                    break;
-                case R.id.block_9:
-                    selectedBlock = 9;
-                    break;
-            }
-            reference.child("playing").child(gameId).child("game").child("block" + selectedBlock).setValue(userName);
-            reference.child("playing").child(gameId).child(gameId).child("turn").setValue(opponentFirstName);
-            setEnableClick(false);
-            activePlayer = 2;
-
-            playGame(selectedBlock, selectedImage);
-        }
-    }
-
-    public void playGame(int selectedBlock, ImageView selectedImage) {
-
-        if (gameState == 1) {
-            if (activePlayer == 1) {
-                selectedImage.setImageResource(R.drawable.ic_cross);
-                player1.add(selectedBlock);
-            } else if (activePlayer == 2) {
-                selectedImage.setImageResource(R.drawable.ic_zero);
-                player2.add(selectedBlock);
-            }
-            selectedImage.setEnabled(false);
-            checkWinner();
-        }
-    }
-
-    void checkWinner() {
-        int winner = 0;
-
-        /********* for Player 1 *********/
-        if (player1.contains(1) && player1.contains(2) && player1.contains(3)) {
-            winner = 1;
-        }
-        if (player1.contains(4) && player1.contains(5) && player1.contains(6)) {
-            winner = 1;
-        }
-        if (player1.contains(7) && player1.contains(8) && player1.contains(9)) {
-            winner = 1;
-        }
-
-        if (player1.contains(1) && player1.contains(4) && player1.contains(7)) {
-            winner = 1;
-        }
-        if (player1.contains(2) && player1.contains(5) && player1.contains(8)) {
-            winner = 1;
-        }
-        if (player1.contains(3) && player1.contains(6) && player1.contains(9)) {
-            winner = 1;
-        }
-
-        if (player1.contains(1) && player1.contains(5) && player1.contains(9)) {
-            winner = 1;
-        }
-        if (player1.contains(3) && player1.contains(5) && player1.contains(7)) {
-            winner = 1;
-        }
-
-
-        /********* for Player 2 *********/
-        if (player2.contains(1) && player2.contains(2) && player2.contains(3)) {
-            winner = 2;
-        }
-        if (player2.contains(4) && player2.contains(5) && player2.contains(6)) {
-            winner = 2;
-        }
-        if (player2.contains(7) && player2.contains(8) && player2.contains(9)) {
-            winner = 2;
-        }
-
-        if (player2.contains(1) && player2.contains(4) && player2.contains(7)) {
-            winner = 2;
-        }
-        if (player2.contains(2) && player2.contains(5) && player2.contains(8)) {
-            winner = 2;
-        }
-        if (player2.contains(3) && player2.contains(6) && player2.contains(9)) {
-            winner = 2;
-        }
-
-        if (player2.contains(1) && player2.contains(5) && player2.contains(9)) {
-            winner = 2;
-        }
-        if (player2.contains(3) && player2.contains(5) && player2.contains(7)) {
-            winner = 2;
-        }
-
-
-        if (winner != 0 && gameState == 1) {
-            if (winner == 1) {
-                ShowAlert(opponentFirstName + " is winner");
-            } else if (winner == 2) {
-                ShowAlert("You won the game");
-            }
-            gameState = 2;
-        }
-
-        ArrayList<Integer> emptyBlocks = new ArrayList<Integer>();
-        for (int i = 1; i <= 9; i++) {
-            if (!(player1.contains(i) || player2.contains(i))) {
-                emptyBlocks.add(i);
-            }
-        }
-        if (emptyBlocks.size() == 0) {
-            if (gameState == 1) {
-                AlertDialog.Builder b = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-                ShowAlert("Draw");
-            }
-            gameState = 3;
-        }
-    }
-
     public void setEnableClick(boolean b) {
 
         onlineGameBinding.block1.setClickable(b);
@@ -404,21 +233,6 @@ public class OnlineGameActivity extends AppCompatActivity {
         onlineGameBinding.block9.setClickable(b);
     }
 
-    public void ShowAlert(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
-
-    private void hideView(View view) {
-        GridLayout gridLayout = (GridLayout) view.getParent();
-        for (int i = 0; i < gridLayout.getChildCount(); i++) {
-            if (view == gridLayout.getChildAt(i)) {
-                gridLayout.removeViewAt(i);
-                break;
-            }
-        }
-    }
 
     public void setInitialVisibility() {
         onlineGameBinding.block1.setVisibility(View.INVISIBLE);
