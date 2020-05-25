@@ -8,6 +8,6 @@ public class BindingAdapters {
 
     @BindingAdapter("visibility")
     public static void setVisibility(View view, Boolean value) {
-        view.setVisibility(value ? View.VISIBLE : View.GONE);
+        view.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
     }
 }

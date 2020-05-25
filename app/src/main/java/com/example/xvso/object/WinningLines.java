@@ -14,6 +14,9 @@ public class WinningLines {
     private int leftRightDiagonal;
     private int rightLeftDiagonal;
 
+    // empty constructor required for Firebase
+    public WinningLines() {}
+
     public WinningLines(int leftVertical, int centerVertical, int rightVertical,
                         int topHorizontalLine, int centerHorizontal, int bottomHorizontal,
                         int leftRightDiagonal, int rightLeftDiagonal) {

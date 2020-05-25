@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.xvso.viewmodel.OnlineGameViewModel" />
-
     </data>
 
     <FrameLayout
         style="@style/MatchParent"
         android:background="@color/app_background">
 
+        <!-- Board (3x3 cells) -->
         <GridLayout
             android:id="@+id/grid_layout"
             style="@style/WrapContent"
@@ -22,6 +22,7 @@
             android:columnCount="3"
             android:rowCount="3">
 
+            <!-- Cell 0 (left-up) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_1"
                 android:layout_width="@dimen/cell_width"
@@ -36,6 +37,7 @@
                 app:state="@{viewModel.gameLiveData.board.cells.get(0)}"
                 android:tag="0" />
 
+            <!-- Cell 1 (center-up) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_2"
                 android:layout_width="@dimen/cell_width"
@@ -53,8 +55,8 @@
                 android:onClick="@{() -> viewModel.saveCellToFirebase(1)}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(1)}"
                 android:tag="1" />
-            ​
 
+            <!-- Cell 2 (right-up) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_3"
                 android:layout_width="@dimen/cell_width"
@@ -69,7 +71,7 @@
                 app:state="@{viewModel.gameLiveData.board.cells.get(2)}"
                 android:tag="2" />
             ​
-
+            <!-- Cell 3 (left-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_4"
                 android:layout_width="@dimen/cell_width"
@@ -83,7 +85,7 @@
                 app:state="@{viewModel.gameLiveData.board.cells.get(3)}"
                 android:tag="3" />
             ​
-
+            <!-- Cell 4 (center) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_5"
                 android:layout_width="@dimen/cell_width"
@@ -101,7 +103,7 @@
                 android:onClick="@{() -> viewModel.saveCellToFirebase(4)}"
                 android:tag="4" />
             ​
-
+            <!-- Cell 5 (right-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
@@ -116,7 +118,7 @@
                 android:clickable="@{viewModel.isGameInProgress}"
                 android:tag="5" />
             ​
-
+            <!-- Cell 6 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
@@ -131,7 +133,7 @@
                 app:state="@{viewModel.gameLiveData.board.cells.get(6)}"
                 android:tag="6" />
             ​
-
+            <!-- Cell 7 (center-down) -->
             <androidx.appcompat.widget.AppCompatImageView
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
@@ -150,7 +152,7 @@
                 app:state="@{viewModel.gameLiveData.board.cells.get(7)}"
                 android:tag="7" />
             ​
-
+            <!-- Cell 8 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
@@ -166,7 +168,7 @@
                 android:tag="8" />
         </GridLayout>
 
-
+        <!-- switches the player's turn-->
         <TextView
             android:id="@+id/turn_switcher_text_view"
             style="@style/WrapContent"
@@ -182,11 +184,11 @@
             android:orientation="vertical">
 
             <!-- Player1 -->
-            <!-- name and score result-->
             <LinearLayout
                 style="@style/MatchWrap"
                 android:orientation="horizontal">
 
+                <!-- player1 name -->
                 <TextView
                     android:id="@+id/player1_text"
                     style="@style/WrapContent"
@@ -198,6 +200,7 @@
                     android:textColor="@color/color_blue"
                     android:textSize="@dimen/text_size_large" />
 
+                <!-- player1 score -->
                 <TextView
                     android:id="@+id/player1_result"
                     style="@style/WrapContent"
@@ -209,12 +212,12 @@
             </LinearLayout>
 
             <!-- Player2 -->
-            <!-- name and score result-->
             <LinearLayout
                 android:id="@+id/score_layout"
                 style="@style/MatchWrap"
                 android:orientation="horizontal">
 
+                <!-- player2 name -->
                 <TextView
                     android:id="@+id/player2_text"
                     style="@style/WrapContent"
@@ -223,6 +226,7 @@
                     android:textColor="@color/color_blue"
                     android:textSize="@dimen/text_size_large" />
 
+                <!-- player2 score -->
                 <TextView
                     android:id="@+id/player2_result"
                     style="@style/WrapContent"
@@ -231,20 +235,12 @@
                     android:text="@{String.valueOf(viewModel.teamO.teamScore)}"
                     android:textSize="@dimen/text_size_large" />
             </LinearLayout>
-
         </LinearLayout>
 
-
         <!-- Winning lines -->
-        <View
-            android:id="@+id/center_vertical"
-            android:layout_width="@dimen/line_thickness"
-            android:layout_height="@dimen/line_height"
-            android:layout_gravity="center"
-            android:background="@color/grid_background"
-            app:visibility="@{viewModel.centerVertical}" />
-        ​
 
+        <!-- vertical lines -->
+        <!-- left-vertical line -->
         <View
             android:id="@+id/left_vertical"
             android:layout_width="@dimen/line_thickness"
@@ -253,9 +249,18 @@
             android:layout_marginEnd="70dp"
             android:layout_marginRight="70dp"
             android:background="@color/grid_background"
-            app:visibility="@{viewModel.leftVertical}" />
-        ​
+            app:visibility="@{viewModel.gameLiveData.winningLines.leftVertical}" />
 
+        <!-- center-vertical line -->
+        <View
+            android:id="@+id/center_vertical"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="@dimen/line_height"
+            android:layout_gravity="center"
+            android:background="@color/grid_background"
+            app:visibility="@{viewModel.gameLiveData.winningLines.centerVertical}" />
+        ​
+        <!-- right-vertical line -->
         <View
             android:id="@+id/right_vertical"
             android:layout_width="@dimen/line_thickness"
@@ -264,28 +269,10 @@
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
             android:background="@color/grid_background"
-            app:visibility="@{viewModel.rightVertical}" />
+            app:visibility="@{viewModel.gameLiveData.winningLines.rightVertical}" />
         ​
-
-        <View
-            android:id="@+id/center_horizontal"
-            android:layout_width="@dimen/line_height"
-            android:layout_height="@dimen/line_thickness"
-            android:layout_gravity="center"
-            android:background="@color/grid_background"
-            app:visibility="@{viewModel.centerHorizontal}" />
-        ​
-
-        <View
-            android:id="@+id/bottom_horizontal"
-            android:layout_width="@dimen/line_height"
-            android:layout_height="@dimen/line_thickness"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@color/grid_background"
-            app:visibility="@{viewModel.bottomHorizontal}" />
-        ​
-
+        <!-- horizontal lines -->
+        <!-- top-horizontal line -->
         <View
             android:id="@+id/top_horizontal"
             android:layout_width="@dimen/line_height"
@@ -293,19 +280,29 @@
             android:layout_gravity="center"
             android:layout_marginBottom="70dp"
             android:background="@color/grid_background"
-            app:visibility="@{viewModel.topHorizontalLine}" />
+            app:visibility="@{viewModel.gameLiveData.winningLines.topHorizontalLine}" />
 
-
+        <!-- center-horizontal line -->
         <View
-            android:id="@+id/right_left_diagonal"
-            android:layout_width="@dimen/line_thickness"
-            android:layout_height="350dp"
+            android:id="@+id/center_horizontal"
+            android:layout_width="@dimen/line_height"
+            android:layout_height="@dimen/line_thickness"
             android:layout_gravity="center"
             android:background="@color/grid_background"
-            android:rotation="45"
-            app:visibility="@{viewModel.rightLeftDiagonal}" />
-        ​
+            app:visibility="@{viewModel.gameLiveData.winningLines.centerHorizontal}" />
 
+        <!-- bottom-horizontal line -->
+        <View
+            android:id="@+id/bottom_horizontal"
+            android:layout_width="@dimen/line_height"
+            android:layout_height="@dimen/line_thickness"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:background="@color/grid_background"
+            app:visibility="@{viewModel.gameLiveData.winningLines.bottomHorizontal}" />
+
+        <!-- diagonals -->
+        <!-- left-right line -->
         <View
             android:id="@+id/left_right_diagonal"
             android:layout_width="@dimen/line_thickness"
@@ -313,18 +310,30 @@
             android:layout_gravity="center"
             android:background="@color/grid_background"
             android:rotation="135"
-            app:visibility="@{viewModel.leftRightDiagonal}" />
+            app:visibility="@{viewModel.gameLiveData.winningLines.leftRightDiagonal}" />
 
+        <!-- right-left line -->
+        <View
+            android:id="@+id/right_left_diagonal"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:background="@color/grid_background"
+            android:rotation="45"
+            app:visibility="@{viewModel.gameLiveData.winningLines.rightLeftDiagonal}" />
 
         <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             style="@style/MatchParent">
 
+            <!-- animated image which shows before the board is visible -->
             <ImageView
                 android:id="@+id/vs_image_view"
                 style="@style/WrapContent"
                 android:layout_centerInParent="true"
-                android:background="@drawable/vs_image" />
+                android:background="@drawable/vs_image"
+                android:contentDescription="@string/animated_image" />
 
+            <!-- X image -->
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture_host"
                 android:layout_width="@dimen/animation_imagine_width"
@@ -337,6 +346,7 @@
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2" />
 
+            <!-- O image -->
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture_guest"
                 android:layout_width="@dimen/animation_imagine_width"
@@ -349,6 +359,5 @@
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2" />
         </RelativeLayout>
-
     </FrameLayout>
 </layout>

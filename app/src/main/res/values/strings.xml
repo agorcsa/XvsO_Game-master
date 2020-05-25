@@ -104,5 +104,6 @@
 
     <!-- join game button -->
     <string name="join_game">Join Game</string>
+    <string name="animated_image">Animmated XvsO image</string>
 
 </resources>

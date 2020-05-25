@@ -6,13 +6,16 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 
 import com.example.xvso.deserializer.GameDeserializer;
+import com.example.xvso.eventobserver.EventObserver;
 import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
 import com.example.xvso.firebaseutils.FirebaseQueryLiveData;
+import com.example.xvso.object.WinningLines;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,10 +31,9 @@ public class OnlineGameViewModel extends BaseViewModel {
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseDatabase database =  FirebaseDatabase.getInstance();
     private DatabaseReference query;
-
     private MutableLiveData<ArrayList<Cell>> boardLiveData = new MutableLiveData<>();
-    public LiveData<Game> gameLiveData;
     private Game game = new Game();
+    public LiveData<Game> gameLiveData;
 
     private String gameID = "";
 
@@ -82,18 +84,18 @@ public class OnlineGameViewModel extends BaseViewModel {
         Board board = game.getBoard();
 
         if (board.getCells().get(0).getTag() == team && board.getCells().get(1).getTag() == team && board.getCells().get(2).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("topHorizontal");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("topHorizontal").setValue(1);
             topHorizontalLine.setValue(true);
             return true;
         } else if (board.getCells().get(3).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(5).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("centerHorizontal");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("centerHorizontal").setValue(1);
             centerHorizontal.setValue(true);
             return true;
         } else if (board.getCells().get(6).getTag() == team && board.getCells().get(7).getTag() == team && board.getCells().get(8).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("bottomHorizontal");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("bottomHorizontal").setValue(1);
             bottomHorizontal.setValue(true);
             return true;
         } else {
@@ -113,18 +115,18 @@ public class OnlineGameViewModel extends BaseViewModel {
 
         Board board = game.getBoard();
         if (board.getCells().get(0).getTag() == team && board.getCells().get(3).getTag() == team && board.getCells().get(6).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("leftVertical");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("leftVertical").setValue(1);
             leftVertical.setValue(true);
             return true;
         } else if (board.getCells().get(1).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(7).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("centerVertical");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("centerVertical").setValue(1);
             centerVertical.setValue(true);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(5).getTag() == team && board.getCells().get(8).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("rightVertical");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("rightVertical").setValue(1);
             rightVertical.setValue(true);
             return true;
         } else {
@@ -145,13 +147,13 @@ public class OnlineGameViewModel extends BaseViewModel {
 
 
         if (board.getCells().get(0).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(8).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("leftRightDiagonal");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("leftRightDiagonal").setValue(1);
             leftRightDiagonal.setValue(true);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(6).getTag() == team) {
-            query =  database.getReference().child("multiplayer").child(gameID).child("rightLeftDiagonal");
-            query.setValue(1);
+            query =  database.getReference().child("multiplayer").child(gameID).child("winningLines");
+            query.child("rightLeftDiagonal").setValue(1);
             rightLeftDiagonal.setValue(true);
             return true;
         } else {
@@ -173,9 +175,13 @@ public class OnlineGameViewModel extends BaseViewModel {
 
         clearBoard();
 
-        //board = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0));
+        game.setBoard(new Board());
+        // and then push the Game to Firebase
 
-        //boardLiveData.setValue(board);
+        //reset the winning lines/scores/currentPlayer.
+        game.setWinningLines(new WinningLines());
+
+        game.setCurrentPlayer(game.getHost().toString());
 
         isGameInProgress.setValue(true);
     }
