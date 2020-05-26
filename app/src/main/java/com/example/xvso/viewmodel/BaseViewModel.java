@@ -251,11 +251,16 @@ public class BaseViewModel extends ViewModel {
 
     public void updateScore() {
         // the score for the winning team would be increased after one round
+
+        // TO DO
+        // game.setHostScore()
+        // game.setGuestScore()
         currentTeam.incrementScore();
 
         if (currentTeam.getTeamType() == Team.TEAM_X) {
             // the winning team (team X) takes the current team instance
             teamX.setValue(currentTeam);
+
         } else {
             // the winning team (team O) takes the current team instance
             teamO.setValue(currentTeam);

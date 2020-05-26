@@ -31,11 +31,12 @@
                 android:layout_column="0"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                android:onClick="@{() -> viewModel.saveCellToFirebase(0)}"
+                android:tag="0"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(0)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(0)}"
-                android:tag="0" />
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(0)}" />
 
             <!-- Cell 1 (center-up) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -50,11 +51,12 @@
                 android:layout_marginRight="@dimen/margin"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                android:onClick="@{() -> viewModel.saveCellToFirebase(1)}"
+                android:tag="1"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(1)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(1)}"
-                android:tag="1" />
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(1)}" />
 
             <!-- Cell 2 (right-up) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -65,11 +67,12 @@
                 android:layout_column="2"
                 android:layout_marginBottom="@dimen/margin"
                 android:background="@color/app_background"
+                android:onClick="@{() -> viewModel.saveCellToFirebase(2)}"
+                android:tag="2"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(2)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(2)}"
-                android:tag="2" />
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(2)}" />
             ​
             <!-- Cell 3 (left-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -79,11 +82,12 @@
                 android:layout_row="1"
                 android:layout_column="0"
                 android:background="@color/app_background"
+                android:onClick="@{() -> viewModel.saveCellToFirebase(3)}"
+                android:tag="3"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(3)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(3)}"
-                android:tag="3" />
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(3)}" />
             ​
             <!-- Cell 4 (center) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -97,31 +101,31 @@
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
                 android:background="@color/app_background"
+                android:onClick="@{() -> viewModel.saveCellToFirebase(4)}"
+                android:tag="4"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(4)}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(4)}"
-                android:tag="4" />
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(4)}" />
             ​
             <!-- Cell 5 (right-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_6"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
                 android:layout_row="1"
                 android:layout_column="2"
                 android:background="@color/app_background"
-                app:state="@{viewModel.gameLiveData.board.cells.get(5)}"
-                android:onClick="@{() -> viewModel.saveCellToFirebase(5)}"
                 android:clickable="@{viewModel.isGameInProgress}"
-                android:tag="5" />
+                android:onClick="@{() -> viewModel.saveCellToFirebase(5)}"
+                android:tag="5"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(5)}" />
             ​
             <!-- Cell 6 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_7"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
@@ -130,13 +134,14 @@
                 android:layout_marginTop="@dimen/margin"
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(6)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(6)}"
-                android:tag="6" />
+                android:tag="6"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(6)}" />
             ​
             <!-- Cell 7 (center-down) -->
             <androidx.appcompat.widget.AppCompatImageView
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_8"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
@@ -149,13 +154,14 @@
                 android:layout_marginRight="@dimen/margin"
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(7)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(7)}"
-                android:tag="7" />
+                android:tag="7"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(7)}" />
             ​
             <!-- Cell 8 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 android:id="@+id/block_9"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
@@ -164,8 +170,11 @@
                 android:layout_marginTop="@dimen/margin"
                 android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(8)}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(8)}"
-                android:tag="8" />
+                android:tag="8"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(8)}" />
         </GridLayout>
 
         <!-- switches the player's turn-->

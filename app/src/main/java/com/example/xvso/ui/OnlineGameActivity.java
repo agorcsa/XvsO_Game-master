@@ -92,6 +92,17 @@ public class OnlineGameActivity extends AppCompatActivity {
 
                     if (game != null) {
 
+                        assert game != null;
+                        int gameResult = game.getGameResult();
+                        if (gameResult == 1) {
+                            showToast("Host has won!");
+                        }
+                        else if (gameResult == 2){
+                            showToast("Guest has won!");
+                        } else {
+                            showToast("It's a draw!");
+                        }
+
                         host = game.getHost();
                         guest = game.getGuest();
 
@@ -338,11 +349,7 @@ public class OnlineGameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     *
-     * auxiliary method which displays a toast message only by giving the message as String parameter
-     * @param message
-     */
+
     public void showToast(String message) {
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);

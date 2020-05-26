@@ -7,7 +7,11 @@ import androidx.databinding.BindingAdapter;
 public class BindingAdapters {
 
     @BindingAdapter("visibility")
-    public static void setVisibility(View view, Boolean value) {
-        view.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
+    public static void setVisibility(View view, int value) {
+        if (value == 0) {
+            view.setVisibility(View.INVISIBLE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 }
