@@ -152,4 +152,15 @@ public class XvsOBindingAdapter {
                     }
         }
     }
+
+    @BindingAdapter({"currentPlayer", "currentUser", "hostScore", "guestScore"})
+    public static void updateScore(TextView textView, String currentPlayer, String currentUser, int hostScore, int guestScore) {
+        if (currentPlayer.equals(currentUser)) {
+            int newScore = hostScore + 1;
+            textView.setText(String.valueOf(newScore));
+        } else {
+            int newScore = guestScore + 1;
+            textView.setText(String.valueOf(newScore));
+        }
+    }
 }

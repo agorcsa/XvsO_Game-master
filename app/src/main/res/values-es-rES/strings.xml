@@ -73,4 +73,5 @@
     <string name="about_the_app">sobre la aplicación y los creadores</string>
     <string name="login_logo">imagen del logotipo para la pantalla de inicio de sesión</string>
     <string name="game_number">" Numero de juego"</string>
+    <string name="has_won">%1$s ha ganado!</string>
 </resources>

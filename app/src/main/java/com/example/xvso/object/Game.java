@@ -25,8 +25,16 @@ public class Game {
     private String currentPlayer; // host or guest uid
     private int gameResult; // 0 = initial state - 1 = host win - 2 = guest win - 3 = draw
 
-    private int hostScore = 0;
-    private int guestScore = 0;
+    public int getHostScore() {
+        return hostScore;
+    }
+
+    public void setHostScore(int hostScore) {
+        this.hostScore = hostScore;
+    }
+
+    private int hostScore;
+    private int guestScore;
 
     // empty constructor
     public Game() {
@@ -169,14 +177,6 @@ public class Game {
 
     public void setAcceptedRequest(int acceptedRequest) {
         this.acceptedRequest = acceptedRequest;
-    }
-
-    public int getHostScore() {
-        return hostScore;
-    }
-
-    public void setHostScore(int hostScore) {
-        this.hostScore = hostScore;
     }
 
     public int getGuestScore() {

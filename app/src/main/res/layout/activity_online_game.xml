@@ -186,7 +186,18 @@
             android:contentDescription="Your turn"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
+            app:gameFinished="@{viewModel.gameLiveData.gameResult}"
             android:layout_marginTop="100dp" />
+
+        <RelativeLayout
+            style="@style/WrapContent">
+
+            <TextView
+                android:id="@+id/timer_text_view"
+                style="@style/WrapContent"
+                android:padding="@dimen/padding_10"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
         <LinearLayout
             style="@style/WrapContent"
@@ -216,8 +227,13 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/color_red"
-                    android:text="@{String.valueOf(viewModel.teamX.teamScore)}"
                     android:textSize="@dimen/text_size_large" />
+                    <!--
+                    app:hostScore="@{viewModel.gameLiveData.hostScore}"
+                    app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                    app:currentUser="@{viewModel.userLiveData.name}"
+                    android:text="@{String.valueOf(viewModel.teamX.teamScore)}" -->
+
             </LinearLayout>
 
             <!-- Player2 -->
@@ -243,6 +259,10 @@
                     android:textColor="@color/color_red"
                     android:text="@{String.valueOf(viewModel.teamO.teamScore)}"
                     android:textSize="@dimen/text_size_large" />
+
+                <!-- app:guestScore="@{viewModel.gameLiveData.guestScore}"
+                    app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                    app:currentUser="@{viewModel.userLiveData.name}" -->
             </LinearLayout>
         </LinearLayout>
 

@@ -14,4 +14,13 @@ public class BindingAdapters {
             view.setVisibility(View.VISIBLE);
         }
     }
+
+    @BindingAdapter("gameFinished")
+    public static void setTextSwitcher(View view, int gameFinished) {
+        if (gameFinished == 0) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
 }

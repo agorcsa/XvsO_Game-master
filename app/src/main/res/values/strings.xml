@@ -106,4 +106,7 @@
     <string name="join_game">Join Game</string>
     <string name="animated_image">Animmated XvsO image</string>
 
+    <string name="has_won">%1$s has won</string>
+    <string name="timer_message">Seconds remaining: %2$s</string>
+
 </resources>

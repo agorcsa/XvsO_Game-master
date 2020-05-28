@@ -3,6 +3,7 @@ package com.example.xvso.viewmodel;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,10 +15,15 @@ import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
 import com.example.xvso.firebaseutils.FirebaseQueryLiveData;
+import com.example.xvso.object.Team;
 import com.example.xvso.object.WinningLines;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,20 +118,21 @@ public class OnlineGameViewModel extends BaseViewModel {
         Board board = game.getBoard();
         if (board.getCells().get(0).getTag() == team && board.getCells().get(3).getTag() == team && board.getCells().get(6).getTag() == team) {
             game.getWinningLines().setLeftVertical(1);
-            query.setValue(1);
+            query.setValue(game);
             return true;
         } else if (board.getCells().get(1).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(7).getTag() == team) {
             game.getWinningLines().setCenterVertical(1);
-            query.setValue(1);
+            query.setValue(game);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(5).getTag() == team && board.getCells().get(8).getTag() == team) {
             game.getWinningLines().setRightVertical(1);
-            query.setValue(1);
+            query.setValue(game);
             return true;
         } else {
             return false;
         }
     }
+
 
     public boolean checkDiagonals() {
 
@@ -137,16 +144,14 @@ public class OnlineGameViewModel extends BaseViewModel {
             team = 2;
         }
         Board board = game.getBoard();
-
-
+        
         if (board.getCells().get(0).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(8).getTag() == team) {
             game.getWinningLines().setLeftRightDiagonal(1);
-            query.setValue(1);
-            game.setGameResult(1);
+            query.setValue(game);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(6).getTag() == team) {
-            game.getWinningLines().setRightVertical(1);
-            query.setValue(1);
+            game.getWinningLines().setRightLeftDiagonal(1);
+            query.setValue(game);
             return true;
         } else {
             return false;
@@ -158,29 +163,59 @@ public class OnlineGameViewModel extends BaseViewModel {
         if (checkRows() || checkColumns() || checkDiagonals()) {
             if (auth.getCurrentUser().getUid().equals(game.getHost().getUID())) {
                 game.setGameResult(1);
+                //game.hostScore++;
+                query.setValue(game);
             } else {
                 game.setGameResult(2);
+                //game.guestScore++;
+                query.setValue(game);
             }
-            query.setValue(game);
             return true;
         } else {
+            for (Cell cell: game.getBoard().getCells()) {
+                if (cell.getTag() == 0) {
+                    return false; // code exits if it finds an empty cell
+                }
+            }
+            game.setGameResult(3); // draw
             query.setValue(game);
             return false;
         }
+    }
+
+
+    public void gameEnded(){
+        isGameInProgress.postValue(false);
+        updateScore();
     }
 
     public void newRound() {
 
         clearBoard();
 
+        // board will be re-initialized
         game.setBoard(new Board());
-        // and then push the Game to Firebase
 
-        //reset the winning lines/scores/currentPlayer.
+        // winning lines will be hidden
         game.setWinningLines(new WinningLines());
+        // push the Game to Firebase
+        query.setValue(game);
 
-        game.setCurrentPlayer(game.getHost().toString());
-
+        // TODO 1
+        // fix new round also for the other user
+        // toggle players
         isGameInProgress.setValue(true);
+    }
+
+    public void resetGame(){
+
+       newRound();
+
+       // reset score of both players
+       game.setHostScore(0);
+       game.setGuestScore(0);
+
+       // push the updated game on Firebase
+       query.setValue(game);
     }
 }

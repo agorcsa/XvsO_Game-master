@@ -2,6 +2,8 @@ package com.example.xvso.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
@@ -36,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Timer;
 
 public class OnlineGameActivity extends AppCompatActivity {
 
@@ -68,9 +71,16 @@ public class OnlineGameActivity extends AppCompatActivity {
     private String guestName = "";
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+    // used for the timer
+    // 1 Second = 1000 milli-seconds
+    private final int interval = 1000;
+    private final int minute = 60000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        startTimer();
 
         if (getIntent().getExtras() != null) {
 
@@ -94,13 +104,16 @@ public class OnlineGameActivity extends AppCompatActivity {
 
                         assert game != null;
                         int gameResult = game.getGameResult();
-                        if (gameResult == 1) {
-                            showToast("Host has won!");
-                        }
-                        else if (gameResult == 2){
-                            showToast("Guest has won!");
-                        } else {
-                            showToast("It's a draw!");
+                        switch (gameResult) {
+                            case 1:
+                                showToast(getString(R.string.has_won,game.getHost().getName()));
+                                break;
+                            case 2:
+                                showToast(getString(R.string.has_won,game.getGuest().getName()));
+                                break;
+                            case 3:
+                                showToast("It's a draw!");
+                                break;
                         }
 
                         host = game.getHost();
@@ -355,4 +368,18 @@ public class OnlineGameActivity extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
+    public void startTimer() {
+        new CountDownTimer(minute, interval) {
+
+            public void onTick(long millisUntilFinished) {
+                onlineGameBinding.timerTextView.setText("Seconds remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                onlineGameBinding.timerTextView.setText("Game is over!");
+            }
+        }.start();
+    }
+
 }

@@ -9,9 +9,12 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.example.xvso.deserializer.Deserializer;
+import com.example.xvso.object.Board;
+import com.example.xvso.object.Game;
 import com.example.xvso.object.Team;
 import com.example.xvso.object.User;
 import com.example.xvso.firebaseutils.FirebaseQueryLiveData;
+import com.example.xvso.object.WinningLines;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -60,6 +63,8 @@ public class BaseViewModel extends ViewModel {
     private DatabaseReference query;
     private LiveData<User> userLiveData;
     private FirebaseAuth auth;
+
+    private Game game = new Game();
     // constructor
     // will be called when MainActivity starts
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -288,31 +293,6 @@ public class BaseViewModel extends ViewModel {
         boardLiveData.setValue(board);
     }
 
-    public void resetGame(){
-
-        clearBoard();
-
-        // creates new instances of teamX and teamO
-        teamX.setValue(new Team(Team.TEAM_X));
-        teamO.setValue(new Team(Team.TEAM_O));
-
-        board = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0));
-
-        boardLiveData.setValue(board);
-
-        isGameInProgress.setValue(true);
-    }
-
-    public void newRound() {
-
-        clearBoard();
-
-        board = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0));
-
-        boardLiveData.setValue(board);
-
-        isGameInProgress.setValue(true);
-    }
 
     // hide winning lines
     public void clearBoard() {
