@@ -2,12 +2,12 @@ package com.example.xvso.viewmodel;
 
 
 import android.os.Build;
+import android.os.CountDownTimer;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
+
 import androidx.lifecycle.Transformations;
 
 import com.example.xvso.deserializer.GameDeserializer;
@@ -15,15 +15,11 @@ import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
 import com.example.xvso.firebaseutils.FirebaseQueryLiveData;
-import com.example.xvso.object.Team;
 import com.example.xvso.object.WinningLines;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,13 +158,17 @@ public class OnlineGameViewModel extends BaseViewModel {
         game = gameLiveData.getValue();
         if (checkRows() || checkColumns() || checkDiagonals()) {
             if (auth.getCurrentUser().getUid().equals(game.getHost().getUID())) {
+
                 game.setGameResult(1);
-                //game.hostScore++;
+                game.setHostScore(game.getHostScore() + 1);
                 query.setValue(game);
+
             } else {
+
                 game.setGameResult(2);
-                //game.guestScore++;
+                game.setGuestScore(game.getGuestScore() + 1);
                 query.setValue(game);
+
             }
             return true;
         } else {
@@ -191,31 +191,24 @@ public class OnlineGameViewModel extends BaseViewModel {
 
     public void newRound() {
 
-        clearBoard();
-
-        // board will be re-initialized
+        game = gameLiveData.getValue();
         game.setBoard(new Board());
-
-        // winning lines will be hidden
         game.setWinningLines(new WinningLines());
-        // push the Game to Firebase
-        query.setValue(game);
+        game.setGameResult(0);
 
-        // TODO 1
-        // fix new round also for the other user
-        // toggle players
-        isGameInProgress.setValue(true);
+        query.setValue(game);
     }
 
     public void resetGame(){
 
        newRound();
+       resetScore();
 
-       // reset score of both players
-       game.setHostScore(0);
-       game.setGuestScore(0);
-
-       // push the updated game on Firebase
        query.setValue(game);
+    }
+
+    public void resetScore() {
+        game.setHostScore(0);
+        game.setGuestScore(0);
     }
 }

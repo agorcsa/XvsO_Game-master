@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Single Player</string>
+    <string name="app_name">X vs. O in Space</string>
     <string name="app_label">X vs. O in Space</string>
     <string name="profile_label">Your Profile</string>
     <string name="log_in_activity">Log In</string>
@@ -109,4 +109,5 @@
     <string name="has_won">%1$s has won</string>
     <string name="timer_message">Seconds remaining: %2$s</string>
 
+    <string name="player_name_score">%1$s: %2$d</string>
 </resources>

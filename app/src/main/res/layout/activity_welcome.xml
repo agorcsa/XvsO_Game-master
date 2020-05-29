@@ -2,28 +2,48 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e8edeb">
+
     <RelativeLayout
         style="@style/MatchParent"
-        android:layout_margin="@dimen/margin_40">
+        android:layout_margin="40dp"
+        android:background="#ffffff">
 
-        <Button
-            android:id="@+id/multi_player_button"
-            style="@style/HomeButton"
-            android:layout_centerInParent="true"
-            android:text="START MULTIPLAYER" />
-
-        <Button
-            android:id="@+id/about_button"
-            style="@style/HomeButton"
-            android:layout_below="@+id/multi_player_button"
-            android:text="@string/about"/>
+        <ImageView
+            android:id="@+id/rocket_image_view"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rocket"/>
 
         <TextView
             android:id="@+id/app_title"
             style="@style/WrapContent"
             android:layout_centerHorizontal="@bool/value_true"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
             android:text="@string/app_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_xlarge" />
+
+        <Button
+            android:id="@+id/multi_player_button"
+            style="@style/HomeButton"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:text="START MULTIPLAYER" />
+
+        <Button
+            android:id="@+id/about_button"
+            style="@style/HomeButton"
+            android:textColor="@color/white"
+            android:layout_below="@+id/multi_player_button"
+            android:text="@string/about"/>
     </RelativeLayout>
+</FrameLayout>
+
 </layout>

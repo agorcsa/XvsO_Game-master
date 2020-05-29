@@ -294,24 +294,6 @@ public class BaseViewModel extends ViewModel {
     }
 
 
-    // hide winning lines
-    public void clearBoard() {
-
-        // hides horizontal lines
-        topHorizontalLine.setValue(false);
-        centerHorizontal.setValue(false);
-        bottomHorizontal.setValue(false);
-
-        // hides vertical lines
-        leftVertical.setValue(false);
-        centerVertical.setValue(false);
-        rightVertical.setValue(false);
-
-        // hides diagonals
-        leftRightDiagonal.setValue(false);
-        rightLeftDiagonal.setValue(false);
-    }
-
     public void gameEnded(){
         isGameInProgress.postValue(false);
         updateScore();

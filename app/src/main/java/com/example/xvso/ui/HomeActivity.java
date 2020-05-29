@@ -2,6 +2,7 @@ package com.example.xvso.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
+
+        hideHomeViews();
+
+        animateRocket();
+
+        showHomeViews();
 
         welcomeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +77,28 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void hideHomeViews() {
+        welcomeBinding.appTitle.setVisibility(View.INVISIBLE);
+        welcomeBinding.multiPlayerButton.setVisibility(View.INVISIBLE);
+        welcomeBinding.aboutButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void showHomeViews() {
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                welcomeBinding.appTitle.setVisibility(View.VISIBLE);
+                welcomeBinding.multiPlayerButton.setVisibility(View.VISIBLE);
+                welcomeBinding.aboutButton.setVisibility(View.VISIBLE);
+            }
+        }, 3000);
+    }
+
+    public void animateRocket() {
+        welcomeBinding.rocketImageView.animate().translationYBy(-1000).setDuration(3000);
+    }
 
     public void showToast(String message) {
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);

@@ -219,21 +219,6 @@
                     app:firstName="@{viewModel.userLiveData.firstName}"
                     android:textColor="@color/color_blue"
                     android:textSize="@dimen/text_size_large" />
-
-                <!-- player1 score -->
-                <TextView
-                    android:id="@+id/player1_result"
-                    style="@style/WrapContent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/color_red"
-                    android:textSize="@dimen/text_size_large" />
-                    <!--
-                    app:hostScore="@{viewModel.gameLiveData.hostScore}"
-                    app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
-                    app:currentUser="@{viewModel.userLiveData.name}"
-                    android:text="@{String.valueOf(viewModel.teamX.teamScore)}" -->
-
             </LinearLayout>
 
             <!-- Player2 -->
@@ -250,19 +235,6 @@
                     android:text="@string/player_y"
                     android:textColor="@color/color_blue"
                     android:textSize="@dimen/text_size_large" />
-
-                <!-- player2 score -->
-                <TextView
-                    android:id="@+id/player2_result"
-                    style="@style/WrapContent"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/color_red"
-                    android:text="@{String.valueOf(viewModel.teamO.teamScore)}"
-                    android:textSize="@dimen/text_size_large" />
-
-                <!-- app:guestScore="@{viewModel.gameLiveData.guestScore}"
-                    app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
-                    app:currentUser="@{viewModel.userLiveData.name}" -->
             </LinearLayout>
         </LinearLayout>
 
