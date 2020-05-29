@@ -133,11 +133,13 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         onlineUsersViewModel.getUserLiveData().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                myUser = user;
-                buildRecyclerView(myUser);
-                readFromDatabase();
-                LoginUserID = myUser.getEmailAddress();
-                usersBinding.userLoginTextview.setText(LoginUserID);
+                if (myUser != null) {
+                    myUser = user;
+                    buildRecyclerView(myUser);
+                    readFromDatabase();
+                    LoginUserID = myUser.getEmailAddress();
+                    usersBinding.userLoginTextview.setText(LoginUserID);
+                }
             }
         });
 

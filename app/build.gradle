@@ -26,6 +26,15 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/andreeagorcsa/Desktop/XvsO_Game-master/keystore/XvsO-keystore.jks')
+            storePassword "XvsOKeystore"
+            keyAlias "NewXvsOKey"
+            keyPassword "XvsOKey"
+        }
+    }
 }
 
 dependencies {
