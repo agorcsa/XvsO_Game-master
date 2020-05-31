@@ -130,26 +130,26 @@ public class XvsOBindingAdapter {
     }
 
     @BindingAdapter({"currentP", "currentU", "state", "gameResult"})
-            public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell, int gameResult) {
-                if (gameResult != 0) {
-                    imageView.setClickable(false);
+    public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell, int gameResult) {
+        if (gameResult == 0) {
+            if (cell != null) {
+                if (cell.getTag() == Team.TEAM_O) {
+                    imageView.setImageResource(R.drawable.ic_zero);
+                } else if (cell.getTag() == Team.TEAM_X) {
+                    imageView.setImageResource(R.drawable.ic_cross);
                 } else {
-                    if (cell != null) {
-                        if (cell.getTag() == Team.TEAM_O) {
-                            imageView.setImageResource(R.drawable.ic_zero);
-                        } else if (cell.getTag() == Team.TEAM_X) {
-                            imageView.setImageResource(R.drawable.ic_cross);
-                        } else {
-                            imageView.setImageResource(0);
-                        }
-                    }
-                    if (currentPlayer != null && currentUser != null) {
-                        if (currentPlayer.equals(currentUser) && cell.getTag() == 0) {
-                            imageView.setClickable(true);
-                        } else {
-                            imageView.setClickable(false);
-                        }
-                    }
+                    imageView.setImageResource(0);
+                }
+            }
+            if (currentPlayer != null && currentUser != null) {
+                if (currentPlayer.equals(currentUser) && cell.getTag() == 0) {
+                    imageView.setClickable(true);
+                } else {
+                    imageView.setClickable(false);
+                }
+            }
+        } else {
+            imageView.setClickable(false);
         }
     }
 

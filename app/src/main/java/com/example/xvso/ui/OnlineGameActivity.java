@@ -101,12 +101,15 @@ public class OnlineGameActivity extends AppCompatActivity {
                         switch (gameResult) {
                             case 1:
                                 showToast(getString(R.string.has_won, game.getHost().getName()));
+                                timer.cancel();
                                 break;
                             case 2:
                                 showToast(getString(R.string.has_won, game.getGuest().getName()));
+                                timer.cancel();
                                 break;
                             case 3:
                                 showToast("It's a draw!");
+                                timer.cancel();
                                 break;
                         }
                         host = game.getHost();

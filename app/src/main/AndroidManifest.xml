@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xvso">
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/rocket"
+        android:icon="@drawable/vs_image"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
             android:name=".uifirebase.LoginActivity"
-            android:label="@string/log_in_activity"
+            android:label="@string/app_name"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,12 +59,7 @@
         <activity
             android:name=".ui.OnlineGameActivity"
             android:label="Online Game"
-            android:launchMode="singleTop"
-            android:parentActivityName=".ui.OnlineUsersActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.OnlineUsersActivity" />
-        </activity>
+            android:launchMode="singleTop"/>
 
         <activity
             android:name=".uifirebase.ProfileActivity"

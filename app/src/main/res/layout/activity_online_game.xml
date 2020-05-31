@@ -11,14 +11,14 @@
 
     <FrameLayout
         style="@style/MatchParent"
-        android:background="@color/app_background">
+        android:background="@drawable/nightsky">
 
         <!-- Board (3x3 cells) -->
         <GridLayout
             android:id="@+id/grid_layout"
             style="@style/WrapContent"
+            android:background="@color/white"
             android:layout_gravity="center"
-            android:background="@color/grid_background"
             android:columnCount="3"
             android:rowCount="3">
 
@@ -29,8 +29,8 @@
                 android:layout_height="@dimen/cell_height"
                 android:layout_row="0"
                 android:layout_column="0"
+                android:background="@drawable/nightsky"
                 android:layout_marginBottom="@dimen/margin"
-                android:background="@color/app_background"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(0)}"
                 android:tag="0"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
                 android:layout_marginBottom="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(1)}"
                 android:tag="1"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -66,7 +66,7 @@
                 android:layout_row="0"
                 android:layout_column="2"
                 android:layout_marginBottom="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(2)}"
                 android:tag="2"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -81,7 +81,7 @@
                 android:layout_height="@dimen/cell_height"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(3)}"
                 android:tag="3"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -100,7 +100,7 @@
                 android:layout_marginLeft="@dimen/margin"
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(4)}"
                 android:tag="4"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -115,7 +115,7 @@
                 android:layout_height="@dimen/cell_height"
                 android:layout_row="1"
                 android:layout_column="2"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:clickable="@{viewModel.isGameInProgress}"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(5)}"
                 android:tag="5"
@@ -132,7 +132,7 @@
                 android:layout_row="2"
                 android:layout_column="0"
                 android:layout_marginTop="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(6)}"
                 android:tag="6"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -152,7 +152,7 @@
                 android:layout_marginTop="@dimen/margin"
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(7)}"
                 android:tag="7"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -168,7 +168,7 @@
                 android:layout_row="2"
                 android:layout_column="2"
                 android:layout_marginTop="@dimen/margin"
-                android:background="@color/app_background"
+                android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCellToFirebase(8)}"
                 android:tag="8"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
@@ -249,7 +249,7 @@
             android:layout_gravity="center"
             android:layout_marginEnd="70dp"
             android:layout_marginRight="70dp"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.leftVertical}" />
 
         <!-- center-vertical line -->
@@ -258,7 +258,7 @@
             android:layout_width="@dimen/line_thickness"
             android:layout_height="@dimen/line_height"
             android:layout_gravity="center"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.centerVertical}" />
         ​
         <!-- right-vertical line -->
@@ -269,7 +269,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.rightVertical}" />
         ​
         <!-- horizontal lines -->
@@ -280,7 +280,7 @@
             android:layout_height="@dimen/line_thickness"
             android:layout_gravity="center"
             android:layout_marginBottom="70dp"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.topHorizontalLine}" />
 
         <!-- center-horizontal line -->
@@ -289,7 +289,7 @@
             android:layout_width="@dimen/line_height"
             android:layout_height="@dimen/line_thickness"
             android:layout_gravity="center"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.centerHorizontal}" />
 
         <!-- bottom-horizontal line -->
@@ -299,7 +299,7 @@
             android:layout_height="@dimen/line_thickness"
             android:layout_gravity="center"
             android:layout_marginTop="70dp"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             app:visibility="@{viewModel.gameLiveData.winningLines.bottomHorizontal}" />
 
         <!-- diagonals -->
@@ -309,7 +309,7 @@
             android:layout_width="@dimen/line_thickness"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             android:rotation="135"
             app:visibility="@{viewModel.gameLiveData.winningLines.leftRightDiagonal}" />
 
@@ -319,7 +319,7 @@
             android:layout_width="@dimen/line_thickness"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:background="@color/grid_background"
+            android:background="@color/white"
             android:rotation="45"
             app:visibility="@{viewModel.gameLiveData.winningLines.rightLeftDiagonal}" />
 
