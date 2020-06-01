@@ -15,14 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.example.xvso.R;
-import com.example.xvso.object.Board;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.databinding.ActivityOnlineGameBinding;
-import com.example.xvso.object.WinningLines;
 import com.example.xvso.uifirebase.LoginActivity;
-import com.example.xvso.uifirebase.ProfileActivity;
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,14 +102,17 @@ public class OnlineGameActivity extends AppCompatActivity {
                             case 1:
                                 showToast(getString(R.string.has_won, game.getHost().getName()));
                                 timer.cancel();
+                                gameFinishedAlert();
                                 break;
                             case 2:
                                 showToast(getString(R.string.has_won, game.getGuest().getName()));
                                 timer.cancel();
+                                gameFinishedAlert();
                                 break;
                             case 3:
                                 showToast("It's a draw!");
                                 timer.cancel();
+                                gameFinishedAlert();
                                 break;
                         }
                         host = game.getHost();
@@ -363,6 +366,40 @@ public class OnlineGameActivity extends AppCompatActivity {
         if (timer != null) {
             timer.cancel();
             startTimer();
+        }
+    }
+
+    public void gameFinishedAlert() {
+
+        if (onlineGameViewModel.checkForWin()) {
+            new MaterialDialog.Builder(this)
+                    .icon(getResources().getDrawable(R.drawable.ic_cross, null))
+                    .limitIconToDefaultSize()
+                    .title(R.string.alert_dialog_title)
+                    .content(getString(R.string.alert_dialog_content, gameId))
+                    .positiveText(R.string.alert_dialog_yes)
+                    .negativeText(R.string.alert_dialog_no)
+                    .theme(Theme.DARK)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog dialog, DialogAction which) {
+                           /* Toast.makeText(OnlineUsersActivity.this, R.string.alert_dialog_yes, Toast.LENGTH_LONG).show();
+                            // updates the acceptedRequest variable in the Firebase database
+                            database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
+                            startGame(key);
+                            /// --> here is the problem
+                            dialog.dismiss();*/
+                        }
+                    })
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog dialog, DialogAction which) {
+                           /* Toast.makeText(getApplicationContext(), "You have refused playing with " + getGuestName(guest), Toast.LENGTH_SHORT).show();
+                            game.setStatus(Game.STATUS_WAITING);
+                            database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);*/
+                        }
+                    })
+                    .show();
         }
     }
 }

@@ -107,7 +107,7 @@ public class XvsOBindingAdapter {
 
         } else {
             Glide.with(view.getContext())
-                    .load(R.drawable.tictactoe)
+                    .load(R.drawable.cosmonaut)
                     .into(view);
         }
     }

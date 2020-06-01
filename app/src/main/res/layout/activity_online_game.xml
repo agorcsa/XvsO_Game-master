@@ -13,6 +13,7 @@
         style="@style/MatchParent"
         android:background="@drawable/nightsky">
 
+
         <!-- Board (3x3 cells) -->
         <GridLayout
             android:id="@+id/grid_layout"
@@ -181,62 +182,55 @@
         <TextView
             android:id="@+id/turn_switcher_text_view"
             style="@style/WrapContent"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_large"
             android:contentDescription="Your turn"
+            android:textColor="@color/white"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="@dimen/margin_40"
+            android:layout_gravity="center_horizontal"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
-            app:gameFinished="@{viewModel.gameLiveData.gameResult}"
-            android:layout_marginTop="100dp" />
+            app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
 
         <RelativeLayout
-            style="@style/WrapContent">
+            style="@style/MatchWrap">
 
             <TextView
                 android:id="@+id/timer_text_view"
                 style="@style/WrapContent"
-                android:padding="@dimen/padding_10"
-                android:layout_alignParentRight="true" />
+                android:layout_marginTop="@dimen/margin_20"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_small"
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 
-        <LinearLayout
-            style="@style/WrapContent"
-            android:orientation="vertical">
+        <RelativeLayout
+            style="@style/WrapContent">
 
             <!-- Player1 -->
-            <LinearLayout
-                style="@style/MatchWrap"
-                android:orientation="horizontal">
-
-                <!-- player1 name -->
                 <TextView
                     android:id="@+id/player1_text"
                     style="@style/WrapContent"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/margin_40"
                     android:hint="@string/player_x"
                     app:name="@{viewModel.userLiveData.name}"
                     app:firstName="@{viewModel.userLiveData.firstName}"
-                    android:textColor="@color/color_blue"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_large" />
-            </LinearLayout>
 
             <!-- Player2 -->
-            <LinearLayout
-                android:id="@+id/score_layout"
-                style="@style/MatchWrap"
-                android:orientation="horizontal">
-
-                <!-- player2 name -->
                 <TextView
                     android:id="@+id/player2_text"
                     style="@style/WrapContent"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/player_y"
-                    android:textColor="@color/color_blue"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_40"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_large" />
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
         <!-- Winning lines -->
 
@@ -331,7 +325,7 @@
                 android:id="@+id/vs_image_view"
                 style="@style/WrapContent"
                 android:layout_centerInParent="true"
-                android:background="@drawable/vs_image"
+                android:background="@drawable/nightsky"
                 android:contentDescription="@string/animated_image" />
 
             <!-- X image -->

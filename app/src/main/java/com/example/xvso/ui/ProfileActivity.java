@@ -1,4 +1,4 @@
-package com.example.xvso.uifirebase;
+package com.example.xvso.ui;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -17,6 +17,7 @@ import com.example.xvso.progressdialog.ProfileEditState;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityProfileBinding;
 import com.example.xvso.eventobserver.EventObserver;
+import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.ProfileViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

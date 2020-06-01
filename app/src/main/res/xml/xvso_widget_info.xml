@@ -6,7 +6,7 @@
     android:minHeight="80dp"
     android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
-    android:previewImage="@drawable/tictactoe"
+    android:previewImage="@drawable/vs_image"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="3600000"
     android:widgetCategory="home_screen">

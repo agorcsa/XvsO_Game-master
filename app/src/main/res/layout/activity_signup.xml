@@ -22,10 +22,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_30"
                 app:civ_border_color="@color/colorPrimaryDark"
-                app:civ_border_width="2dp"
+                app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
                 android:contentDescription="@string/login_logo"
-                android:src="@drawable/vs_image" />
+                android:src="@drawable/spaceship" />
 
 
             <com.google.android.material.textfield.TextInputLayout

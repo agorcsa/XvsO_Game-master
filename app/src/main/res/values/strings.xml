@@ -87,7 +87,12 @@
     <string name="alert_dialog_yes">YES</string>
     <string name="alert_dialog_no">NO</string>
 
-    <string name="about_the_app">about the app and creators</string>
+    <string name="welcome_earthling">Greetings Earthling,</string>
+    <string name="about_the_app">One of the best versions of the classical and most popular paper-and-pencil game in the world, also known as Tic Tac Toe or Noughts and Crosses, but played “in space”.
+        If you loved playing XvsO, but also like to set your imagination free, this is the perfect game for you!</string>
+    <string name="app_rules">- the board consists of 3x3 cells; - two players play alternatively, marking one empty cell at a time; - the objective (equal to 3) is the number of markings to achieve in line (horizontally, vertically or diagonally).
+</string>
+
 
     <!-- activity_login.xml -->
     <string name="login_logo">"logo image for the log in screen"</string>
