@@ -18,7 +18,21 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         aboutBinding = DataBindingUtil.setContentView(this, R.layout.activity_about);
 
-        String aboutText = getResources().getString(R.string.welcome_earthling) + System.getProperty("line.separator") +  System.getProperty("line.separator") + getResources().getString(R.string.about_the_app);
+        String aboutText = getResources().getString(R.string.welcome)
+                            + System.getProperty("line.separator")
+                            +  System.getProperty("line.separator")
+                            + getResources().getString(R.string.about_the_app)
+                            + System.getProperty("line.separator")
+                            + System.getProperty("line.separator")
+                            + getResources().getString(R.string.rule_1)
+                            + System.getProperty("line.separator")
+                            + getResources().getString(R.string.rule_2)
+                            + System.getProperty("line.separator")
+                            + getResources().getString(R.string.rule_3)
+                            + System.getProperty("line.separator")
+                            + System.getProperty("line.separator")
+                            + getResources().getString(R.string.spanish_support);
+
         aboutBinding.aboutTextView.setText(aboutText);
     }
 }
