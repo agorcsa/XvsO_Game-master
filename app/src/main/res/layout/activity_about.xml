@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
         style="@style/MatchParent"
-        android:background="@color/about_screen_background"
-        android:orientation="vertical">
+        android:background="@color/about_screen_background">
 
         <ImageView
             android:id="@+id/astronaut_image_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/astronaut_image_width"
+            android:layout_height="@dimen/astronaut_image_height"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/margin_20"
-            android:contentDescription="@string/cosmonaut_image"
-            android:background="@drawable/astronaut" />
+            android:background="@drawable/astronaut"
+            android:contentDescription="@string/cosmonaut_image" />
 
-        <TextView
+        <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/about_text_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="right"
+            android:layout_width="@dimen/about_text_width"
+            android:layout_height="@dimen/about_text_height"
+            android:layout_gravity="end"
             android:layout_margin="@dimen/margin_20"
-            android:gravity="right"
-            android:textColor="@color/white" />
+            android:fontFamily="monospace"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
     </FrameLayout>
 </layout>
