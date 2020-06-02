@@ -9,7 +9,7 @@
 
     <LinearLayout
         style="@style/MatchParent"
-        android:background="@color/colorPrimary"
+        android:background="@color/home_background"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -37,8 +37,8 @@
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 app:counterEnabled="@bool/value_true"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password EditText -->
@@ -51,8 +51,8 @@
                 android:layout_marginBottom="@dimen/margin_10"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Login Button -->
@@ -73,7 +73,7 @@
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="@bool/value_false"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@android:color/black" />
 
         <!-- Link to Login Screen -->
         <Button
@@ -83,7 +83,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="@bool/value_false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_medium" />
     </LinearLayout>
 
@@ -92,4 +92,4 @@
         android:id="@+id/progressBar"
         style="@style/ProgressBar" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    </layout>
+</layout>

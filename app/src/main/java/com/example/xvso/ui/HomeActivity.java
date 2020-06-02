@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class HomeActivity extends AppCompatActivity {
     private static final String LOG_TAG = "Welcome Screen";
 
     private ActivityWelcomeBinding welcomeBinding;
+
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void animateRocket() {
-        welcomeBinding.rocketImageView.animate().translationYBy(-1000).setDuration(3000);
+        welcomeBinding.rocketImageView.animate().translationYBy(-2000).setDuration(3000);
     }
 
     public void showToast(String message) {

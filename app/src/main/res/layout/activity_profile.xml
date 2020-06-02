@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary">
+            android:background="@color/home_background">
 
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture"
@@ -191,7 +191,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:text="@string/submit_button"
+            android:background="@color/colorPrimary"
             android:layout_marginTop="@dimen/margin_10"
+            android:textColor="@android:color/white"
             android:layout_alignParentBottom="true"
             android:onClick="@{()-> viewModelProfile.submitForm()}"/>
     </RelativeLayout>

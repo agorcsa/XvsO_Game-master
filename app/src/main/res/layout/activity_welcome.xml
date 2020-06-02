@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e8edeb">
-
-    <RelativeLayout
         style="@style/MatchParent"
-        android:layout_margin="40dp"
-        android:background="#ffffff">
+        android:background="@color/home_background">
 
-        <ImageView
-            android:id="@+id/rocket_image_view"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rocket"/>
+        <RelativeLayout
+            style="@style/MatchParent"
+            android:layout_margin="@dimen/margin_40"
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/app_title"
-            style="@style/WrapContent"
-            android:layout_centerHorizontal="@bool/value_true"
-            android:layout_weight="1"
-            android:layout_marginTop="10dp"
-            android:text="@string/app_label"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_size_xlarge" />
+            <Button
+                android:id="@+id/multi_player_button"
+                style="@style/HomeButton"
+                android:layout_centerInParent="true"
+                android:text="@string/btn_multiplayer"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/multi_player_button"
-            style="@style/HomeButton"
-            android:layout_centerInParent="true"
-            android:textColor="@color/white"
-            android:text="START MULTIPLAYER" />
+            <Button
+                android:id="@+id/about_button"
+                style="@style/HomeButton"
+                android:layout_below="@+id/multi_player_button"
+                android:text="@string/btn_about"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/about_button"
-            style="@style/HomeButton"
-            android:textColor="@color/white"
-            android:layout_below="@+id/multi_player_button"
-            android:text="@string/about"/>
-    </RelativeLayout>
-</FrameLayout>
+            <ImageView
+                android:id="@+id/rocket_image_view"
+                android:layout_width="@dimen/rocket_width"
+                android:layout_height="@dimen/rocket_height"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rocket"
+                android:contentDescription="@string/rocket_image" />
 
+            <TextView
+                android:id="@+id/app_title"
+                style="@style/WrapContent"
+                android:layout_centerHorizontal="@bool/value_true"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/app_label"
+                android:fontFamily="monospace"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_size_xlarge"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </FrameLayout>
 </layout>

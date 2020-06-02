@@ -70,4 +70,19 @@
     <dimen name="line_thickness">5dp</dimen>
     <dimen name="line_height">250dp</dimen>
     <dimen name="diagonal_height">350dp</dimen>
+
+    <!-- about_activity.xml -->
+    <dimen name="astronaut_image_width">200dp</dimen>
+    <dimen name="astronaut_image_height">200dp</dimen>
+
+    <dimen name="about_text_width">200dp</dimen>
+    <dimen name="about_text_height">500dp</dimen>
+
+    <!-- activity_home.xml -->
+    <dimen name="rocket_width">150dp</dimen>
+    <dimen name="rocket_height">200dp</dimen>
+
+    <!-- Progress Bar -->
+    <dimen name="progress_bar_width">30dp</dimen>
+    <dimen name="progress_bar_height">30dp</dimen>
 </resources>

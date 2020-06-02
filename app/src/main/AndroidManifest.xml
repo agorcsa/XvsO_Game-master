@@ -12,7 +12,7 @@
 
         <activity
             android:name=".uifirebase.LoginActivity"
-            android:label="@string/app_name"
+            android:label="@string/log_in_activity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
