@@ -215,8 +215,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="@dimen/margin_40"
                     android:hint="@string/player_x"
-                    app:name="@{viewModel.userLiveData.name}"
-                    app:firstName="@{viewModel.userLiveData.firstName}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_large" />
 

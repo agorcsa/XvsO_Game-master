@@ -3,7 +3,7 @@
 
     <FrameLayout
         style="@style/MatchParent"
-        android:background="#141522"
+        android:background="@color/about_screen_background"
         android:orientation="vertical">
 
         <ImageView
@@ -12,6 +12,7 @@
             android:layout_height="200dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/margin_20"
+            android:contentDescription="@string/cosmonaut_image"
             android:background="@drawable/astronaut" />
 
         <TextView

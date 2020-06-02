@@ -44,7 +44,6 @@ public class Xvs0WidgetPreferences {
             String message = "No score to show yet. Go and play and have some fun!";
             editor.putString(NO_SCORE_MESSAGE, message);
         }
-
         editor.apply();
     }
 

@@ -10,6 +10,7 @@
     <color name="app_background">#FFFFFF</color>
     <color name="grid_background">#000000</color>
     <color name="board_background">#D3D3D3</color>
+    <color name="about_screen_background">#141522</color>
 
     <!-- Firebase colors -->
     <color name="bg_login">#26ae90</color>

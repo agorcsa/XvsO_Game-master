@@ -25,6 +25,7 @@ import com.example.xvso.databinding.ActivityOnlineGameBinding;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;
+import com.example.xvso.widget.Xvs0WidgetPreferences;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +43,8 @@ public class OnlineGameActivity extends AppCompatActivity {
     private static final String LOG_TAG = "OnlineGameActivity";
     private static final String GAME_ID = "gameId";
     private static final String GUEST = "guest";
+
+    public static final String ACTION_DATA_UPDATED ="com.example.xvso.ACTION_DATA_UPDATED";
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference = database.getReference();
@@ -73,11 +76,11 @@ public class OnlineGameActivity extends AppCompatActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
+    private Xvs0WidgetPreferences widgetPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        startTimer();
 
         if (getIntent().getExtras() != null) {
 
@@ -98,21 +101,24 @@ public class OnlineGameActivity extends AppCompatActivity {
                     if (game != null) {
                         assert game != null;
                         int gameResult = game.getGameResult();
+                        widgetPreferences.saveData();
                         switch (gameResult) {
+                            case 0:
+                                restartTimer();
+                                break;
                             case 1:
                                 showToast(getString(R.string.has_won, game.getHost().getName()));
                                 timer.cancel();
-                                gameFinishedAlert();
+
                                 break;
                             case 2:
                                 showToast(getString(R.string.has_won, game.getGuest().getName()));
                                 timer.cancel();
-                                gameFinishedAlert();
+
                                 break;
                             case 3:
                                 showToast("It's a draw!");
                                 timer.cancel();
-                                gameFinishedAlert();
                                 break;
                         }
                         host = game.getHost();
@@ -357,6 +363,7 @@ public class OnlineGameActivity extends AppCompatActivity {
 
             public void onFinish() {
                 onlineGameBinding.timerTextView.setText("Game is over!");
+                onlineGameViewModel.timeUp();
             }
         };
         timer.start();
@@ -365,41 +372,7 @@ public class OnlineGameActivity extends AppCompatActivity {
     public void restartTimer(){
         if (timer != null) {
             timer.cancel();
-            startTimer();
         }
-    }
-
-    public void gameFinishedAlert() {
-
-        if (onlineGameViewModel.checkForWin()) {
-            new MaterialDialog.Builder(this)
-                    .icon(getResources().getDrawable(R.drawable.ic_cross, null))
-                    .limitIconToDefaultSize()
-                    .title(R.string.alert_dialog_title)
-                    .content(getString(R.string.alert_dialog_content, gameId))
-                    .positiveText(R.string.alert_dialog_yes)
-                    .negativeText(R.string.alert_dialog_no)
-                    .theme(Theme.DARK)
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(MaterialDialog dialog, DialogAction which) {
-                           /* Toast.makeText(OnlineUsersActivity.this, R.string.alert_dialog_yes, Toast.LENGTH_LONG).show();
-                            // updates the acceptedRequest variable in the Firebase database
-                            database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
-                            startGame(key);
-                            /// --> here is the problem
-                            dialog.dismiss();*/
-                        }
-                    })
-                    .onNegative(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(MaterialDialog dialog, DialogAction which) {
-                           /* Toast.makeText(getApplicationContext(), "You have refused playing with " + getGuestName(guest), Toast.LENGTH_SHORT).show();
-                            game.setStatus(Game.STATUS_WAITING);
-                            database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);*/
-                        }
-                    })
-                    .show();
-        }
+        startTimer();
     }
 }

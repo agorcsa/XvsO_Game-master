@@ -1,32 +1,31 @@
 package com.example.xvso.widget;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.RemoteViews;
+import android.os.Bundle;
 
-import com.example.xvso.ui.HomeActivity;
-import com.example.xvso.R;
+import androidx.annotation.NonNull;
+
+import com.example.xvso.ui.OnlineGameActivity;
 
 public class XvsOAppWidgetProvider extends AppWidgetProvider {
 
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-
-        // loops through all the widget ids
-        for (int appWidgetId : appWidgetIds) {
-
-            Intent intent = new Intent(context, HomeActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-            // displays the layout in another process (widget)
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.xvso_widget);
-
-            views.setTextViewText(R.id.message_text_view, "No score to show yet. Go and play and have some fun!");
-
-            // tells the AppWidgetManager to perform an update on the current app widget
-            appWidgetManager.updateAppWidget(appWidgetId, views);
+        context.startService(new Intent(context, XvsOIntentService.class));
+    }
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
+                                          int appWidgetId, Bundle newOptions) {
+        context.startService(new Intent(context, XvsOIntentService.class));
+    }
+    @Override
+    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
+        super.onReceive(context, intent);
+        if (OnlineGameActivity.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+            context.startService(new Intent(context, XvsOIntentService.class));
         }
     }
 }

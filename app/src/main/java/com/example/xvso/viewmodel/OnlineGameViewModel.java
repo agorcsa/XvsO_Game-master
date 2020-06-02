@@ -3,6 +3,7 @@ package com.example.xvso.viewmodel;
 
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
@@ -203,12 +204,16 @@ public class OnlineGameViewModel extends BaseViewModel {
 
        newRound();
        resetScore();
-
-       query.setValue(game);
     }
 
     public void resetScore() {
         game.setHostScore(0);
         game.setGuestScore(0);
+    }
+
+    public void timeUp() {
+        game = gameLiveData.getValue();
+        game.setGameResult(3);
+        query.setValue(game);
     }
 }
