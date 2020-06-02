@@ -76,6 +76,9 @@ dependencies {
 
     // Alert Dialog library
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+
+    // Justified Text
+    implementation 'me.biubiubiu.justifytext:library:1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
