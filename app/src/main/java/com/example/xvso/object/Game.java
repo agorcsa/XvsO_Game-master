@@ -28,6 +28,8 @@ public class Game {
     private int hostScore;
     private int guestScore;
 
+    private int roundCount;
+
     // empty constructor
     public Game() {
 
@@ -39,6 +41,7 @@ public class Game {
                 String key, int acceptedRequest,
                 String currentPlayer, int gameResult,
                 int guestScore, int hostScore,
+                int roundCount,
                 WinningLines winningLines) {
 
         this.board = board;
@@ -54,6 +57,7 @@ public class Game {
         this.gameResult = gameResult;
         this.guestScore = guestScore;
         this.hostScore = hostScore;
+        this.roundCount = roundCount;
         this.winningLines = winningLines;
     }
 
@@ -73,11 +77,12 @@ public class Game {
         this.gameResult = gameResult;
     }
 
-    public Game(int picture, String gameNumber, String userName, int acceptedRequest, WinningLines winningLines) {
+    public Game(int picture, String gameNumber, String userName, int acceptedRequest, int roundCount, WinningLines winningLines) {
         this.picture = picture;
         this.gameNumber = gameNumber;
         this.userName = userName;
         this.acceptedRequest = acceptedRequest;
+        this.roundCount = roundCount;
         this.winningLines = winningLines;
     }
 
@@ -86,7 +91,9 @@ public class Game {
                 User host, User guest,
                 int status, int picture,
                 String gameNumber, String userName,
-                String key, int acceptedRequest, WinningLines winningLines) {
+                String key, int acceptedRequest,
+                int roundCount,
+                WinningLines winningLines) {
         this.board = board;
         this.host = host;
         this.guest = guest;
@@ -96,6 +103,7 @@ public class Game {
         this.userName = userName;
         this.key = key;
         this.acceptedRequest = acceptedRequest;
+        this.roundCount = roundCount;
         this.winningLines = winningLines;
     }
 
@@ -193,6 +201,14 @@ public class Game {
 
     public void setHostScore(int hostScore) {
         this.hostScore = hostScore;
+    }
+
+    public int getRoundCount() {
+        return roundCount;
+    }
+
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
     }
 }
 

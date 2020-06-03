@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
@@ -126,7 +127,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     // auxiliary method for displaying a Toast message, by just giving the message we want to display
     public void showMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     private void setupProgressDialog() {
@@ -136,18 +137,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
         progressDialog.setMax(100);
-    }
-
-    private void observeState() {
-        profileViewModel.stateLiveData.observe(this, profileEditState -> {
-            int progress = (int) Math.round(profileEditState.getProgressDialogPercentage());
-            if (profileEditState.isProgressDialogShown()) {
-                progressDialog.setProgress(progress);
-                progressDialog.show();
-            } else {
-                progressDialog.hide();
-            }
-        });
     }
 
     private void observeStatus() {

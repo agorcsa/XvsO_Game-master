@@ -325,32 +325,6 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/nightsky"
                 android:contentDescription="@string/animated_image" />
-
-            <!-- X image -->
-            <com.kienht.csiv.CircleSliceImageView
-                android:id="@+id/profile_picture_host"
-                android:layout_width="@dimen/animation_imagine_width"
-                android:layout_height="@dimen/animation_imagine_height"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/ic_cross"
-                app:civ_border_color="@color/colorPrimaryDark"
-                app:civ_border_width="@dimen/border_width"
-                app:civ_mode="2" />
-
-            <!-- O image -->
-            <com.kienht.csiv.CircleSliceImageView
-                android:id="@+id/profile_picture_guest"
-                android:layout_width="@dimen/animation_imagine_width"
-                android:layout_height="@dimen/animation_imagine_height"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:background="@drawable/ic_zero"
-                app:civ_border_color="@color/colorPrimaryDark"
-                app:civ_border_width="@dimen/border_width"
-                app:civ_mode="2" />
         </RelativeLayout>
     </FrameLayout>
 </layout>

@@ -22,6 +22,7 @@
     <!-- paddings -->
     <dimen name="padding_2">2dp</dimen>
     <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
 
     <!-- text sizes -->
     <dimen name="text_size_small">14sp</dimen>
@@ -85,4 +86,10 @@
     <!-- Progress Bar -->
     <dimen name="progress_bar_width">30dp</dimen>
     <dimen name="progress_bar_height">30dp</dimen>
+
+    <!-- widget dimens -->
+    <dimen name="min_width">300dp</dimen>
+    <dimen name="min_height">100dp</dimen>
+    <dimen name="min_resize_width">100dp</dimen>
+    <dimen name="min_resize_height">100dp</dimen>
 </resources>

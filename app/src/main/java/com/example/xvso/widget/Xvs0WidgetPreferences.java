@@ -10,11 +10,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.xvso.R;
+import com.example.xvso.object.Game;
 import com.squareup.picasso.Picasso;
+
+import static com.example.xvso.ui.OnlineGameActivity.ACTION_DATA_UPDATED;
 
 public class Xvs0WidgetPreferences {
 
     public static final String LOG_TAG = "Xvs0WidgetPreferences";
+
+    public static final String HOST_NAME = "HostName";
+    public static final String GUEST_NAME = "GuestName";
 
     public static final String HOST_SCORE = "HostScore";
     public static final String GUEST_SCORE = "GuestScore";
@@ -31,15 +37,15 @@ public class Xvs0WidgetPreferences {
      * saves the default score of both players into shared preferences
      * the default score for each player is "0"
      */
-    public void saveData() {
+    public void saveData(Context context, Game game) {
         Log.e(LOG_TAG, "saveData()");
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("general_settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        if (hostScoreWidget != 0 && guestScoreWidget != 0) {
-            editor.putInt(HOST_SCORE, hostScoreWidget);
-            editor.putInt(GUEST_SCORE, guestScoreWidget);
+        if (game.getHostScore() != 0 || game.getGuestScore() != 0) {
+            editor.putInt(HOST_SCORE, game.getHostScore());
+            editor.putInt(GUEST_SCORE, game.getGuestScore());
+            editor.putString(HOST_NAME, game.getHost().getName());
+            editor.putString(GUEST_NAME, game.getGuest().getName());
         } else {
             String message = "No score to show yet. Go and play and have some fun!";
             editor.putString(NO_SCORE_MESSAGE, message);
@@ -47,21 +53,22 @@ public class Xvs0WidgetPreferences {
         editor.apply();
     }
 
-
     /**
      * sends broadcast to the app's widget
      *
      * @param context
      */
     public void updateWidgets(Context context) {
-        Intent intent = new Intent(context.getApplicationContext(), XvsOAppWidgetProvider.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-
-        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, XvsOAppWidgetProvider.class));
-
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-
+        Intent intent = new Intent(ACTION_DATA_UPDATED)
+                .setPackage(context.getPackageName());
         context.sendBroadcast(intent);
+    }
+
+    public void resetData(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("general_settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(HOST_SCORE, 0);
+        editor.putInt(GUEST_SCORE, 0);
+        editor.apply();
     }
 }

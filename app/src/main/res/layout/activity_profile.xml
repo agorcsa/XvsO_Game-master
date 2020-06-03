@@ -33,6 +33,7 @@
                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginTop="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_10"
+                android:contentDescription="@string/profile_image"
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"

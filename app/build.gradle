@@ -80,6 +80,9 @@ dependencies {
 
     // Justified Text
     implementation 'me.biubiubiu.justifytext:library:1.1'
+
+    // Styleable Toast
+    implementation 'com.muddzdev:styleabletoast:2.2.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

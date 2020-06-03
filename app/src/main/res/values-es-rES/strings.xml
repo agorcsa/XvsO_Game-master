@@ -39,7 +39,6 @@
     <string name="btn_back"><![CDATA[<< Atras]]></string>
     <string name="forgot_password_msg">" Solo necesitamos su ID de correo electrónico registrada para enviarle instrucciones para restablecer la contraseña."</string>
     <string name="app_label">X vs. O en el Espacio</string>
-    <string name="single_player">Jugador Solo</string>
     <string name="multi_player">Multijugador</string>
     <string name="first_name">El primer nombre</string>
     <string name="last_name">El nombre de familia</string>
@@ -74,4 +73,24 @@
     <string name="login_logo">imagen del logotipo para la pantalla de inicio de sesión</string>
     <string name="game_number">" Numero de juego"</string>
     <string name="has_won">%1$s ha ganado!</string>
+    <string name="cosmonaut_image">" Imagen de cosmonauta"</string>
+    <string name="welcome">Saludos terrícolas,</string>
+    <string name="rule_1">" - el tablero consta de 3x3"</string>
+    <string name="rule_2">" - dos jugadores juegan alternativamente, marcando una celda vacía a la vez"</string>
+    <string name="rule_3">" - el objetivo (igual a 3) es el número de marcas a lograr en línea (horizontal, vertical o diagonal)"</string>
+    <string name="spanish_support">" La aplicación también es compatible con inglés, español."</string>
+    <string name="user_name">" Nombre de usuario"</string>
+    <string name="join_game">Unete al juego</string>
+    <string name="animated_image">Imagen animada de XvsO</string>
+    <string name="timer_message">Segundos restantes:% 2$s</string>
+    <string name="btn_multiplayer">" Iniciar multijugador"</string>
+    <string name="btn_about">Acerca de la aplicación</string>
+    <string name="rocket_image">imagen animada de cohete</string>
+    <string name="turn_order">Tu turno</string>
+    <string name="players_turn">Turno de% 1$s</string>
+    <string name="game_over">¡El juego ha terminado!</string>
+    <string name="time_left">Tiempo restante: %$d</string>
+    <string name="profile_menu">Profil</string>
+    <string name="message_text_widget">" La puntuación actual del último juego es:"</string>
+    <string name="profile_image">imagen de perfil del usuario</string>
 </resources>

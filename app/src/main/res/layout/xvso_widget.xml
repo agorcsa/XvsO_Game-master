@@ -1,64 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp">
-
-    <TextView
-        android:id="@+id/message_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_2"
-        android:gravity="center"
-        android:layout_marginBottom="@dimen/padding_10"
-        android:text="Current score of the last game is: " />
-
-    <TextView
-        android:id="@+id/player1_text_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginTop="@dimen/margin_20"
-        android:textSize="20sp"
-        android:text="@string/player_x" />
-
-    <TextView
-        android:id="@+id/player1_result_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_20"
-        android:layout_marginStart="10dp"
-        android:text="0"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@+id/player1_text_widget"/>
-
-    <TextView
-        android:id="@+id/player2_text_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/margin_20"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:text="@string/player_y" />
-
-    <TextView
-        android:id="@+id/player2_result_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/player2_text_widget"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/margin_20"
-        android:layout_marginEnd="10dp"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:text="0"/>
-
+    style="@style/MatchParent"
+    android:padding="@dimen/padding_20">
 
     <ImageView
         android:id="@+id/no_score_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        style="@style/WrapContent"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/player1_text_widget"
+        style="@style/WrapContent"
+        android:layout_marginTop="@dimen/margin_20"
+        android:padding="@dimen/padding_10"
+        android:text="@string/player_x"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/player1_result_widget"
+        style="@style/WrapContent"
+        android:layout_below="@+id/player1_text_widget"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/initial_score"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/player2_text_widget"
+        style="@style/WrapContent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_20"
+        android:padding="@dimen/padding_10"
+        android:text="@string/player_y"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/player2_result_widget"
+        style="@style/WrapContent"
+        android:layout_below="@+id/player2_text_widget"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:text="@string/initial_score"
+        android:textSize="@dimen/text_size_xlarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/message_text_view"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:gravity="center"
+        android:padding="@dimen/padding_2"
+        android:text="@string/message_text_widget" />
 </RelativeLayout>

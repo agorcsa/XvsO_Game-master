@@ -1,6 +1,8 @@
 package com.example.xvso.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -15,9 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.example.xvso.R;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
@@ -33,10 +32,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+
+import static com.example.xvso.widget.Xvs0WidgetPreferences.GUEST_SCORE;
+import static com.example.xvso.widget.Xvs0WidgetPreferences.HOST_SCORE;
 
 public class OnlineGameActivity extends AppCompatActivity {
 
@@ -76,11 +79,16 @@ public class OnlineGameActivity extends AppCompatActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
-    private Xvs0WidgetPreferences widgetPreferences;
+    private Xvs0WidgetPreferences widgetPreferences = new Xvs0WidgetPreferences();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        startTimer();
+
+        widgetPreferences.resetData(this);
+        widgetPreferences.updateWidgets(getApplicationContext());
 
         if (getIntent().getExtras() != null) {
 
@@ -101,20 +109,23 @@ public class OnlineGameActivity extends AppCompatActivity {
                     if (game != null) {
                         assert game != null;
                         int gameResult = game.getGameResult();
-                        widgetPreferences.saveData();
                         switch (gameResult) {
                             case 0:
-                                restartTimer();
+                                //restartTimer();
+                                // widgetPreferences.saveData(OnlineGameActivity.this, game);
+                                // widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 1:
                                 showToast(getString(R.string.has_won, game.getHost().getName()));
                                 timer.cancel();
-
+                                widgetPreferences.saveData(OnlineGameActivity.this, game);
+                                widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 2:
                                 showToast(getString(R.string.has_won, game.getGuest().getName()));
                                 timer.cancel();
-
+                                widgetPreferences.saveData(OnlineGameActivity.this, game);
+                                widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 3:
                                 showToast("It's a draw!");
@@ -126,44 +137,23 @@ public class OnlineGameActivity extends AppCompatActivity {
                         hostUID = host.getUID();
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
                         String firebaseUID = firebaseUser.getUid();
-                        if (hostUID.equals(firebaseUID)) {
-                            hostFirstName = host.getFirstName();
-                            hostName = host.getName();
-                            guestFirstName = guest.getFirstName();
-                            guestName = guest.getName();
-                            if (TextUtils.isEmpty(hostFirstName)) {
-                                onlineGameBinding.player2Text.setText(
-                                        getString(R.string.player_name_score, hostName, game.getHostScore()));
-                            } else {
-                                onlineGameBinding.player2Text.setText(
-                                        getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
-                            }
-                            if (TextUtils.isEmpty(guestFirstName)) {
-                                onlineGameBinding.player1Text.setText(
-                                        getString(R.string.player_name_score, guestName, game.getGuestScore()));
-                            } else {
-                                onlineGameBinding.player1Text.setText(
-                                        getString(R.string.player_name_score, guestFirstName, game.getGuestScore()));
-                            }
+                        hostFirstName = host.getFirstName();
+                        hostName = host.getName();
+                        guestFirstName = guest.getFirstName();
+                        guestName = guest.getName();
+                        if (TextUtils.isEmpty(hostFirstName)) {
+                            onlineGameBinding.player1Text.setText(
+                                    getString(R.string.player_name_score, hostName, game.getHostScore()));
                         } else {
-                            hostFirstName = host.getFirstName();
-                            hostName = host.getName();
-                            guestFirstName = guest.getFirstName();
-                            guestName = guest.getName();
-                            if (TextUtils.isEmpty(guestFirstName)) {
-                                onlineGameBinding.player1Text.setText(
-                                        getString(R.string.player_name_score, guestName, game.getGuestScore()));
-                            } else {
-                                onlineGameBinding.player1Text.setText(
-                                        getString(R.string.player_name_score, guestFirstName, game.getGuestScore()));
-                            }
-                            if (TextUtils.isEmpty(hostFirstName)) {
-                                onlineGameBinding.player2Text.setText(
-                                        getString(R.string.player_name_score, hostName, game.getHostScore()));
-                            } else {
-                                onlineGameBinding.player2Text.setText(
-                                        getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
-                            }
+                            onlineGameBinding.player1Text.setText(
+                                    getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
+                        }
+                        if (TextUtils.isEmpty(guestFirstName)) {
+                            onlineGameBinding.player2Text.setText(
+                                    getString(R.string.player_name_score, guestName, game.getGuestScore()));
+                        } else {
+                            onlineGameBinding.player2Text.setText(
+                                    getString(R.string.player_name_score, guestFirstName, game.getGuestScore()));
                         }
                     }
                 }
@@ -174,6 +164,19 @@ public class OnlineGameActivity extends AppCompatActivity {
             });
         }
 
+        reference.child("multiplayer").child(gameId).child("roundCount").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              restartTimer();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         gameState = 1;
 
         reference.child("playing").child(gameId).child("turn").addValueEventListener(new ValueEventListener() {
@@ -183,14 +186,14 @@ public class OnlineGameActivity extends AppCompatActivity {
                     String value = (String) dataSnapshot.getValue();
                     if (value.equals(userName)) {
 
-                        onlineGameBinding.player1Text.setText("Your turn");
-                        onlineGameBinding.player2Text.setText("Your turn");
+                        onlineGameBinding.player1Text.setText(getResources().getString(R.string.turn_order));
+                        onlineGameBinding.player2Text.setText(getResources().getString(R.string.turn_order));
                         setEnableClick(true);
                         activePlayer = 1;
                     } else if (value.equals(opponentFirstName)) {
 
-                        onlineGameBinding.player1Text.setText(opponentFirstName + "\'s turn");
-                        onlineGameBinding.player1Text.setText(opponentFirstName + "\'s turn");
+                        onlineGameBinding.player1Text.setText(getString(R.string.players_turn, opponentFirstName));
+                        onlineGameBinding.player2Text.setText(getString(R.string.players_turn, opponentFirstName));
                         setEnableClick(false);
                         activePlayer = 2;
                     }
@@ -267,8 +270,6 @@ public class OnlineGameActivity extends AppCompatActivity {
         onlineGameBinding.block9.setVisibility(View.INVISIBLE);
 
         onlineGameBinding.vsImageView.setVisibility(View.VISIBLE);
-        onlineGameBinding.profilePictureHost.setVisibility(View.VISIBLE);
-        onlineGameBinding.profilePictureGuest.setVisibility(View.VISIBLE);
 
         onlineGameBinding.player1Text.setVisibility(View.INVISIBLE);
         onlineGameBinding.player2Text.setVisibility(View.INVISIBLE);
@@ -276,8 +277,6 @@ public class OnlineGameActivity extends AppCompatActivity {
 
     public void animateViews() {
         onlineGameBinding.vsImageView.animate().alpha(0f).setDuration(3000);
-        onlineGameBinding.profilePictureHost.animate().alpha(0f).setDuration(3000);
-        onlineGameBinding.profilePictureGuest.animate().alpha(0f).setDuration(3000);
 
         onlineGameBinding.block1.setVisibility(View.VISIBLE);
         onlineGameBinding.block2.setVisibility(View.VISIBLE);
@@ -322,17 +321,16 @@ public class OnlineGameActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (item.getItemId() == R.id.action_home) {
             Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.action_new_round) {
             onlineGameViewModel.newRound();
-            onlineGameViewModel.togglePlayer();
-           restartTimer();
         } else if (item.getItemId() == R.id.action_new_game) {
             onlineGameViewModel.resetGame();
-            onlineGameViewModel.togglePlayer();
-            restartTimer();
+            widgetPreferences.resetData(OnlineGameActivity.this);
+            widgetPreferences.updateWidgets(OnlineGameActivity.this);
         } else if (item.getItemId() == R.id.action_watch_video) {
             Intent intent = new Intent(OnlineGameActivity.this, VideoActivity.class);
             startActivity(intent);
@@ -350,19 +348,18 @@ public class OnlineGameActivity extends AppCompatActivity {
 
 
     public void showToast(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+
+        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
     }
 
     public void startTimer() {
         timer = new CountDownTimer(minute, interval) {
             public void onTick(long millisUntilFinished) {
-                onlineGameBinding.timerTextView.setText("Left time : " + millisUntilFinished / 1000);
+                onlineGameBinding.timerTextView.setText(getString(R.string.time_left, millisUntilFinished / 1000));
             }
 
             public void onFinish() {
-                onlineGameBinding.timerTextView.setText("Game is over!");
+                onlineGameBinding.timerTextView.setText(getResources().getString(R.string.game_over));
                 onlineGameViewModel.timeUp();
             }
         };

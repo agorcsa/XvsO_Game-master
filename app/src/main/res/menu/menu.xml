@@ -31,7 +31,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="4"
-        android:title="@string/settings_menu"
+        android:title="@string/profile_menu"
         app:showAsAction="collapseActionView" />
 
     <item

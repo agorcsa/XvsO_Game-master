@@ -196,14 +196,19 @@ public class OnlineGameViewModel extends BaseViewModel {
         game.setBoard(new Board());
         game.setWinningLines(new WinningLines());
         game.setGameResult(0);
-
+        game.setRoundCount(game.getRoundCount() + 1);
         query.setValue(game);
     }
 
     public void resetGame(){
 
-       newRound();
-       resetScore();
+        game = gameLiveData.getValue();
+        game.setBoard(new Board());
+        game.setWinningLines(new WinningLines());
+        game.setGameResult(0);
+        game.setRoundCount(0);
+        query.setValue(game);
+        resetScore();
     }
 
     public void resetScore() {
