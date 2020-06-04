@@ -82,6 +82,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void hideHomeViews() {
         welcomeBinding.appTitle.setVisibility(View.INVISIBLE);
+        welcomeBinding.singlePlayerButton.setVisibility(View.INVISIBLE);
+        welcomeBinding.computerPlayerButton.setVisibility(View.INVISIBLE);
         welcomeBinding.multiPlayerButton.setVisibility(View.INVISIBLE);
         welcomeBinding.aboutButton.setVisibility(View.INVISIBLE);
     }
@@ -93,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
             public void run()
             {
                 welcomeBinding.appTitle.setVisibility(View.VISIBLE);
+                welcomeBinding.singlePlayerButton.setVisibility(View.VISIBLE);
+                welcomeBinding.computerPlayerButton.setVisibility(View.VISIBLE);
                 welcomeBinding.multiPlayerButton.setVisibility(View.VISIBLE);
                 welcomeBinding.aboutButton.setVisibility(View.VISIBLE);
             }
