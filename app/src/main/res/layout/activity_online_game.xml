@@ -315,7 +315,7 @@
             android:rotation="45"
             app:visibility="@{viewModel.gameLiveData.winningLines.rightLeftDiagonal}" />
 
-        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
             style="@style/MatchParent">
 
             <!-- animated image which shows before the board is visible -->

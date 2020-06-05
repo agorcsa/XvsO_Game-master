@@ -1,16 +1,15 @@
 package com.example.xvso.ui;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,29 +17,30 @@ import com.example.xvso.R;
 
 import com.example.xvso.databinding.ActivitySinglePlayerBinding;
 import com.example.xvso.object.Team;
-import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.uifirebase.LoginActivity;
-import com.example.xvso.viewmodel.OnlineGameViewModel;
+import com.example.xvso.viewmodel.SinglePlayerViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.muddzdev.styleabletoast.StyleableToast;
 
-public class SinglePlayerActivity extends BaseActivity {
+public class SinglePlayerActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "SinglePlayerActivity";
  
     private ActivitySinglePlayerBinding singleBinding;
     
-    private OnlineGameViewModel onlineGameViewModel;
+    private SinglePlayerViewModel singlePlayerViewModel;
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         singleBinding = DataBindingUtil.setContentView(this, R.layout.activity_single_player);
-        onlineGameViewModel = ViewModelProviders.of(this).get(OnlineGameViewModel.class);
-        singleBinding.setViewModel(onlineGameViewModel);
+        singlePlayerViewModel = ViewModelProviders.of(this).get(SinglePlayerViewModel.class);
+        singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
+
+        setInitialVisibility();
+        animateViews();
     }
 
     /**
@@ -55,15 +55,15 @@ public class SinglePlayerActivity extends BaseActivity {
         counter.animate().translationYBy(1000f).setDuration(300);
 
         // play
-        mScoreViewModel.play(Integer.parseInt((String) view.getTag()));
+        singlePlayerViewModel.play(Integer.parseInt((String) view.getTag()));
 
-        if (mScoreViewModel.checkForWin()) {
-            mScoreViewModel.gameEnded();
+        if (singlePlayerViewModel.checkForWin()) {
+            singlePlayerViewModel.gameEnded();
             announceWinner();
-        } else if (mScoreViewModel.fullBoard()) {
+        } else if (singlePlayerViewModel.fullBoard()) {
             showToast(getString(R.string.draw));
         } else {
-            mScoreViewModel.togglePlayer();
+            singlePlayerViewModel.togglePlayer();
         }
     }
 
@@ -72,7 +72,7 @@ public class SinglePlayerActivity extends BaseActivity {
      */
     public void announceWinner() {
 
-        int team = mScoreViewModel.getCurrentTeam().getTeamType();
+        int team = singlePlayerViewModel.getCurrentTeam().getTeamType();
 
         if (team == Team.TEAM_X) {
             showToast(getString(R.string.player_x_won));
@@ -103,11 +103,11 @@ public class SinglePlayerActivity extends BaseActivity {
             Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.action_new_round) {
-            mScoreViewModel.newRound();
-            mScoreViewModel.togglePlayer();
+            singlePlayerViewModel.newRound();
+            singlePlayerViewModel.togglePlayer();
         } else if (item.getItemId() == R.id.action_new_game) {
-            mScoreViewModel.resetGame();
-            mScoreViewModel.togglePlayer();
+            singlePlayerViewModel.resetGame();
+            singlePlayerViewModel.togglePlayer();
             // no need to reset the score, as boardLiveData.setValue is being called on an empty board
         } else if (item.getItemId() == R.id.action_watch_video) {
             Intent intent = new Intent(SinglePlayerActivity.this, VideoActivity.class);
@@ -124,14 +124,55 @@ public class SinglePlayerActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setInitialVisibility() {
+        singleBinding.block1Single.setVisibility(View.INVISIBLE);
+        singleBinding.block2Single.setVisibility(View.INVISIBLE);
+        singleBinding.block3Single.setVisibility(View.INVISIBLE);
+        singleBinding.block4Single.setVisibility(View.INVISIBLE);
+        singleBinding.block5Single.setVisibility(View.INVISIBLE);
+        singleBinding.block6Single.setVisibility(View.INVISIBLE);
+        singleBinding.block7Single.setVisibility(View.INVISIBLE);
+        singleBinding.block8Single.setVisibility(View.INVISIBLE);
+        singleBinding.block9Single.setVisibility(View.INVISIBLE);
+
+        singleBinding.vsImageViewSingle.setVisibility(View.VISIBLE);
+
+        singleBinding.singlePlayer1Text.setVisibility(View.INVISIBLE);
+        singleBinding.singlePlayer2Text.setVisibility(View.INVISIBLE);
+    }
+
+    public void animateViews() {
+        singleBinding.vsImageViewSingle.animate().alpha(0f).setDuration(3000);
+
+        singleBinding.block1Single.setVisibility(View.VISIBLE);
+        singleBinding.block2Single.setVisibility(View.VISIBLE);
+        singleBinding.block3Single.setVisibility(View.VISIBLE);
+        singleBinding.block4Single.setVisibility(View.VISIBLE);
+        singleBinding.block5Single.setVisibility(View.VISIBLE);
+        singleBinding.block6Single.setVisibility(View.VISIBLE);
+        singleBinding.block7Single.setVisibility(View.VISIBLE);
+        singleBinding.block8Single.setVisibility(View.VISIBLE);
+        singleBinding.block9Single.setVisibility(View.VISIBLE);
+
+        singleBinding.singlePlayer1Text.postDelayed(new Runnable() {
+            public void run() {
+                singleBinding.singlePlayer1Text.setVisibility(View.VISIBLE);
+            }
+        }, 3000);
+
+        singleBinding.singlePlayer2Text.postDelayed(new Runnable() {
+            public void run() {
+                singleBinding.singlePlayer2Text.setVisibility(View.VISIBLE);
+            }
+        }, 3000);
+    }
+
     /**
      *
      * auxiliary method which displays a toast message only by giving the message as String parameter
      * @param message
      */
     public void showToast(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
     }
 }

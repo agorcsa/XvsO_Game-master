@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +24,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private ActivityWelcomeBinding welcomeBinding;
 
-    private Toolbar toolbar;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +34,14 @@ public class HomeActivity extends AppCompatActivity {
         animateRocket();
 
         showHomeViews();
+
+        welcomeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // opens SinglePlayer Activity
+                startSinglePlayer(view);
+            }
+        });
 
         welcomeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +62,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void startGameOnline(View view) {
+        // opens OnlineUsers Activity
         Intent intent = new Intent(this, OnlineUsersActivity.class);
+        startActivity(intent);
+    }
+
+    public void startSinglePlayer(View view) {
+        // opens SinglePlayer Activity
+        Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
         startActivity(intent);
     }
 

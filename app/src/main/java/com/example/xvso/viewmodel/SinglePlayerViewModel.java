@@ -12,6 +12,7 @@ import com.example.xvso.object.WinningLines;
 public class SinglePlayerViewModel extends BaseViewModel {
 
     private Game game = new Game();
+
     private MutableLiveData<Game> gameLiveData;
 
     private static final String PLAYER_X ="playerX";
@@ -19,6 +20,11 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
     private static final int TEAM_X = 1;
     private static final int TEAM_O = 2;
+
+
+    public SinglePlayerViewModel() {
+
+    };
 
     public void saveCell(int position) {
         game = gameLiveData.getValue();
@@ -69,7 +75,6 @@ public class SinglePlayerViewModel extends BaseViewModel {
         }
 
     }
-
 
     public boolean checkColumns() {
 
@@ -128,7 +133,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
     public boolean checkForWin() {
         game = gameLiveData.getValue();
         if (checkRows() || checkColumns() || checkDiagonals()) {
-            if (auth.getCurrentUser().getUid().equals(game.getHost().getUID())) {
+            if (game.getCurrentPlayer().equals(PLAYER_X)) {
 
                 game.setGameResult(1);
                 game.setHostScore(game.getHostScore() + 1);
@@ -163,32 +168,57 @@ public class SinglePlayerViewModel extends BaseViewModel {
     public void newRound() {
 
         game = gameLiveData.getValue();
-        game.setBoard(new Board());
-        game.setWinningLines(new WinningLines());
-        game.setGameResult(0);
-        game.setRoundCount(game.getRoundCount() + 1);
-        gameLiveData.setValue(game);
+
+        if (game != null) {
+            game.setBoard(new Board());
+            game.setWinningLines(new WinningLines());
+            game.setGameResult(0);
+            game.setRoundCount(game.getRoundCount() + 1);
+            gameLiveData.setValue(game);
+        }
     }
 
     public void resetGame(){
 
         game = gameLiveData.getValue();
-        game.setBoard(new Board());
-        game.setWinningLines(new WinningLines());
-        game.setGameResult(0);
-        game.setRoundCount(0);
-        gameLiveData.setValue(game);
-        resetScore();
+        if (game != null) {
+            game.setBoard(new Board());
+            game.setWinningLines(new WinningLines());
+            game.setGameResult(0);
+            game.setRoundCount(0);
+            gameLiveData.setValue(game);
+            resetScore();
+        }
     }
 
     public void resetScore() {
-        game.setHostScore(0);
-        game.setGuestScore(0);
+        if (game != null) {
+            game.setHostScore(0);
+            game.setGuestScore(0);
+        }
     }
 
     public void timeUp() {
         game = gameLiveData.getValue();
-        game.setGameResult(3);
-        gameLiveData.setValue(game);
+        if (game != null) {
+            game.setGameResult(3);
+            gameLiveData.setValue(game);
+        }
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public MutableLiveData<Game> getGameLiveData() {
+        return gameLiveData;
+    }
+
+    public void setGameLiveData(MutableLiveData<Game> gameLiveData) {
+        this.gameLiveData = gameLiveData;
     }
 }

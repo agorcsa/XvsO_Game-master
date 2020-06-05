@@ -1,12 +1,9 @@
 package com.example.xvso.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,9 +34,6 @@ import com.muddzdev.styleabletoast.StyleableToast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-
-import static com.example.xvso.widget.Xvs0WidgetPreferences.GUEST_SCORE;
-import static com.example.xvso.widget.Xvs0WidgetPreferences.HOST_SCORE;
 
 public class OnlineGameActivity extends AppCompatActivity {
 

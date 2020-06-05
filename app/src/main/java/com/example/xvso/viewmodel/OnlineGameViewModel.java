@@ -2,8 +2,6 @@ package com.example.xvso.viewmodel;
 
 
 import android.os.Build;
-import android.os.CountDownTimer;
-import android.view.View;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
