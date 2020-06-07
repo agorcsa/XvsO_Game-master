@@ -55,10 +55,8 @@ public class OnlineGameActivity extends AppCompatActivity {
     // other player user name
     private String opponentFirstName = "";
     private String gameId = "";
-    private String LoginUID = "";
     private String requestType = "";
     // current user is signed in with X
-    private String myGameSignIn = "X";
     private int gameState = 0;
     private User host;
     private User guest;

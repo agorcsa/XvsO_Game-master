@@ -5,25 +5,16 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
-
 import com.example.xvso.object.WinningLines;
 
-public class SinglePlayerViewModel extends BaseViewModel {
+public class ComputerViewModel extends BaseViewModel {
 
-    private Game game = new Game();
-
-    private MutableLiveData<Game> gameLiveData = new MutableLiveData<>();
-
-    private static final String PLAYER_X ="playerX";
-    private static final String PLAYER_O ="playerO";
-
+    private static final String PLAYER_X = "playerX";
+    private static final String PLAYER_O = "playerO";
     private static final int TEAM_X = 1;
     private static final int TEAM_O = 2;
-
-
-    public SinglePlayerViewModel() {
-
-    };
+    private Game game = new Game();
+    private MutableLiveData<Game> gameLiveData = new MutableLiveData<>();
 
     public void saveCell(int position) {
         game = gameLiveData.getValue();
@@ -49,7 +40,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X))  {
+        if (game.getCurrentPlayer().equals(PLAYER_X)) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -79,7 +70,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X))  {
+        if (game.getCurrentPlayer().equals(PLAYER_X)) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -108,7 +99,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X))  {
+        if (game.getCurrentPlayer().equals(PLAYER_X)) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -147,7 +138,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
             }
             return true;
         } else {
-            for (Cell cell: game.getBoard().getCells()) {
+            for (Cell cell : game.getBoard().getCells()) {
                 if (cell.getTag() == 0) {
                     return false; // code exits if it finds an empty cell
                 }
@@ -159,7 +150,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
     }
 
 
-    public void gameEnded(){
+    public void gameEnded() {
         isGameInProgress.postValue(false);
         updateScore();
     }
@@ -177,7 +168,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
         }
     }
 
-    public void resetGame(){
+    public void resetGame() {
 
         game = gameLiveData.getValue();
         if (game != null) {

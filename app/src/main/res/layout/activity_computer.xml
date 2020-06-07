@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.xvso.viewmodel.ComputerViewModel" />
+    </data>
+
+    <FrameLayout
+        style="@style/MatchParent"
+        android:background="@drawable/nightsky">
+
+        <!-- Board (3x3 cells) -->
+        <GridLayout
+            android:id="@+id/grid_layout_computer"
+            style="@style/WrapContent"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:columnCount="3"
+            android:rowCount="3">
+
+            <!-- Cell 0 (left-up) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_1_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:background="@drawable/nightsky"
+                android:layout_marginBottom="@dimen/margin"
+                android:onClick="@{() -> viewModel.saveCell(0)}"
+                android:tag="0"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(0)}" />
+
+            <!-- Cell 1 (center-up) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_2_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"
+                android:layout_marginBottom="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(1)}"
+                android:tag="1"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(1)}" />
+
+            <!-- Cell 2 (right-up) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_3_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginBottom="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(2)}"
+                android:tag="2"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(2)}" />
+            ​
+            <!-- Cell 3 (left-middle) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_4_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(3)}"
+                android:tag="3"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(3)}" />
+            ​
+            <!-- Cell 4 (center) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_5_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(4)}"
+                android:tag="4"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(4)}" />
+            ​
+            <!-- Cell 5 (right-middle) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_6_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:background="@drawable/nightsky"
+                android:clickable="@{viewModel.isGameInProgress}"
+                android:onClick="@{() -> viewModel.saveCell(5)}"
+                android:tag="5"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(5)}" />
+            ​
+            <!-- Cell 6 (right-down) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_7_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(6)}"
+                android:tag="6"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(6)}" />
+            ​
+            <!-- Cell 7 (center-down) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_8_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(7)}"
+                android:tag="7"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(7)}" />
+            ​
+            <!-- Cell 8 (right-down) -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/block_9_computer"
+                android:layout_width="@dimen/cell_width"
+                android:layout_height="@dimen/cell_height"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/nightsky"
+                android:onClick="@{() -> viewModel.saveCell(8)}"
+                android:tag="8"
+                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentU="@{viewModel.userLiveData.name}"
+                app:gameResult="@{viewModel.gameLiveData.gameResult}"
+                app:state="@{viewModel.gameLiveData.board.cells.get(8)}" />
+        </GridLayout>
+
+        <!-- switches the player's turn-->
+        <TextView
+            android:id="@+id/turn_switcher_text_view_computer"
+            style="@style/WrapContent"
+            android:textSize="@dimen/text_size_large"
+            android:contentDescription="@string/turn_order"
+            android:textColor="@color/white"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="@dimen/margin_40"
+            android:layout_gravity="center_horizontal"
+            app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+            app:currentUser="@{viewModel.userLiveData.name}"
+            app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
+
+        <RelativeLayout
+            style="@style/MatchWrap">
+
+            <TextView
+                android:id="@+id/timer_text_view_computer"
+                style="@style/WrapContent"
+                android:layout_marginTop="@dimen/margin_20"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_small"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/WrapContent">
+
+            <!-- Player1 -->
+            <TextView
+                android:id="@+id/computer_player1_text"
+                style="@style/WrapContent"
+                android:text="@string/player_x"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="@dimen/margin_40"
+                android:hint="@string/player_x"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large" />
+
+            <!-- Player2 -->
+            <TextView
+                android:id="@+id/computer_player2_text"
+                style="@style/WrapContent"
+                android:text="@string/player_y"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_40"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large" />
+        </RelativeLayout>
+
+        <!-- Winning lines -->
+
+        <!-- vertical lines -->
+        <!-- left-vertical line -->
+        <View
+            android:id="@+id/left_vertical"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="@dimen/line_height"
+            android:layout_gravity="center"
+            android:layout_marginEnd="70dp"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.leftVertical}" />
+
+        <!-- center-vertical line -->
+        <View
+            android:id="@+id/center_vertical"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="@dimen/line_height"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.centerVertical}" />
+        ​
+        <!-- right-vertical line -->
+        <View
+            android:id="@+id/right_vertical"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="@dimen/line_height"
+            android:layout_gravity="center"
+            android:layout_marginStart="70dp"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.rightVertical}" />
+        ​
+        <!-- horizontal lines -->
+        <!-- top-horizontal line -->
+        <View
+            android:id="@+id/top_horizontal"
+            android:layout_width="@dimen/line_height"
+            android:layout_height="@dimen/line_thickness"
+            android:layout_gravity="center"
+            android:layout_marginBottom="70dp"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.topHorizontalLine}" />
+
+        <!-- center-horizontal line -->
+        <View
+            android:id="@+id/center_horizontal"
+            android:layout_width="@dimen/line_height"
+            android:layout_height="@dimen/line_thickness"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.centerHorizontal}" />
+
+        <!-- bottom-horizontal line -->
+        <View
+            android:id="@+id/bottom_horizontal"
+            android:layout_width="@dimen/line_height"
+            android:layout_height="@dimen/line_thickness"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:background="@color/white"
+            app:visibility="@{viewModel.gameLiveData.winningLines.bottomHorizontal}" />
+
+        <!-- diagonals -->
+        <!-- left-right line -->
+        <View
+            android:id="@+id/left_right_diagonal"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:rotation="135"
+            app:visibility="@{viewModel.gameLiveData.winningLines.leftRightDiagonal}" />
+
+        <!-- right-left line -->
+        <View
+            android:id="@+id/right_left_diagonal"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:rotation="45"
+            app:visibility="@{viewModel.gameLiveData.winningLines.rightLeftDiagonal}" />
+
+        <RelativeLayout
+            style="@style/MatchParent">
+
+            <!-- animated image which shows before the board is visible -->
+            <ImageView
+                android:id="@+id/vs_image_view_computer"
+                style="@style/WrapContent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/nightsky"
+                android:contentDescription="@string/animated_image" />
+        </RelativeLayout>
+    </FrameLayout>
+</layout>
