@@ -31,20 +31,21 @@ public class SinglePlayerViewModel extends BaseViewModel {
     public void saveCell(int position) {
         game = gameLiveData.getValue();
         if (game != null) {
-
+            // set the cell for an X or O
             if (game.getCurrentPlayer().equals(PLAYER_X)) {
                 game.getBoard().getCells().get(position).setTag(1);
             } else {
                 game.getBoard().getCells().get(position).setTag(2);
-
-                if (game.getCurrentPlayer().equals(PLAYER_X)) {
-                    game.setCurrentPlayer(PLAYER_O);
-                } else {
-                    game.setCurrentPlayer(PLAYER_X);
-                }
-                gameLiveData.setValue(game);
             }
+            // update the game
+            gameLiveData.setValue(game);
             checkForWin();
+            // switch the player (no matter the current player)
+            if (game.getCurrentPlayer().equals(PLAYER_X)) {
+                game.setCurrentPlayer(PLAYER_O);
+            } else {
+                game.setCurrentPlayer(PLAYER_X);
+            }
         }
     }
 
@@ -136,17 +137,13 @@ public class SinglePlayerViewModel extends BaseViewModel {
         game = gameLiveData.getValue();
         if (checkRows() || checkColumns() || checkDiagonals()) {
             if (game.getCurrentPlayer().equals(PLAYER_X)) {
-
                 game.setGameResult(1);
                 game.setHostScore(game.getHostScore() + 1);
                 gameLiveData.setValue(game);
-
             } else {
-
                 game.setGameResult(2);
                 game.setGuestScore(game.getGuestScore() + 1);
                 gameLiveData.setValue(game);
-
             }
             return true;
         } else {
@@ -171,6 +168,7 @@ public class SinglePlayerViewModel extends BaseViewModel {
             String userName = game.getHost().getUserName();
             game.setUserName(userName);
             gameLiveData.setValue(game);
+            game.setCurrentPlayer(PLAYER_X);
         }
     }
 

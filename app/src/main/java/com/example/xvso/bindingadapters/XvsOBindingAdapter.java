@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Team;
 import com.example.xvso.R;
-import com.example.xvso.ui.OnlineGameActivity;
 import com.example.xvso.viewmodel.OnlineUsersViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -19,7 +18,6 @@ public class XvsOBindingAdapter {
 
     public static final String PLEASE_WAIT = "Please wait...";
     public static final String CONNECTED = "Connected";
-
 
     @BindingAdapter({"currentPlayer", "currentUser"})
     public static void showCurrentPlayerTurn(TextView textView, String currentPlayer, String currentUser) {
@@ -141,13 +139,11 @@ public class XvsOBindingAdapter {
             }
         }
         if (gameResult == 0) {
-            if (currentPlayer != null && currentUser != null) {
-                if (currentPlayer.equals(currentUser) && cell.getTag() == 0) {
+                if (cell.getTag() == 0) {
                     imageView.setClickable(true);
                 } else {
                     imageView.setClickable(false);
                 }
-            }
         } else {
             imageView.setClickable(false);
         }
