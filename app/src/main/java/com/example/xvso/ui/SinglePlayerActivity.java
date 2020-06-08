@@ -1,6 +1,8 @@
 package com.example.xvso.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -38,6 +40,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
         singlePlayerViewModel = ViewModelProviders.of(this).get(SinglePlayerViewModel.class);
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
+
+        readFromSharedPref();
 
         setInitialVisibility();
         animateViews();
@@ -165,6 +169,12 @@ public class SinglePlayerActivity extends AppCompatActivity {
                 singleBinding.singlePlayer2Text.setVisibility(View.VISIBLE);
             }
         }, 3000);
+    }
+
+    public void readFromSharedPref() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String counterPlayerName  = sharedPref.getString(HomeActivity.COUNTER_PLAYER_EDIT_TEXT, "PlayerY");
+        singleBinding.singlePlayer2Text.setText(counterPlayerName);
     }
 
     /**

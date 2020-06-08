@@ -1,6 +1,8 @@
 package com.example.xvso.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -25,8 +27,11 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "Welcome Screen";
+    public static final String COUNTER_PLAYER_EDIT_TEXT = "CounterPlayer EditText";
 
     private ActivityWelcomeBinding welcomeBinding;
+
+    private EditText counterPlayerEditText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // opens SinglePlayer Activity
-                startSinglePlayer(view);
                 createAlertDialog();
             }
         });
@@ -158,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
         // Get the custom alert dialog view widgets reference
         Button btn_positive = dialogView.findViewById(R.id.dialog_positive_btn);
         Button btn_negative = dialogView.findViewById(R.id.dialog_negative_btn);
-        final EditText et_name = dialogView.findViewById(R.id.et_name);
+        counterPlayerEditText = dialogView.findViewById(R.id.et_name);
 
         final AlertDialog dialog = builder.create();
 
@@ -168,11 +172,11 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Dismiss the alert dialog
                 dialog.cancel();
-                String name = et_name.getText().toString();
+                String name = counterPlayerEditText.getText().toString();
                 Toast.makeText(getApplication(),
                         "Submitted name : " + name, Toast.LENGTH_SHORT).show();
-                // Say hello to the submitter
-                //tv_message.setText("Hello " + name + "!");
+                writeToSharedPref();
+                startSinglePlayer(dialogView);
             }
         });
 
@@ -190,6 +194,13 @@ public class HomeActivity extends AppCompatActivity {
 
         // Display the custom alert dialog on interface
         dialog.show();
+    }
+
+    public void writeToSharedPref() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(COUNTER_PLAYER_EDIT_TEXT, counterPlayerEditText.getText().toString());
+        editor.apply();
     }
 }
 
