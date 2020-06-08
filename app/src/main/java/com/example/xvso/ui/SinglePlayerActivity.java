@@ -48,30 +48,6 @@ public class SinglePlayerActivity extends AppCompatActivity {
     }
 
     /**
-     * method used for the chips to enter the board
-     * @param view which represents one of the nine cells of the board
-     */
-    public void dropIn(View view) {
-
-        // animate
-        ImageView counter = (ImageView) view;
-        counter.setTranslationY(-1000f);
-        counter.animate().translationYBy(1000f).setDuration(300);
-
-        // play
-        singlePlayerViewModel.play(Integer.parseInt((String) view.getTag()));
-
-        if (singlePlayerViewModel.checkForWin()) {
-            singlePlayerViewModel.gameEnded();
-            announceWinner();
-        } else if (singlePlayerViewModel.fullBoard()) {
-            showToast(getString(R.string.draw));
-        } else {
-            singlePlayerViewModel.togglePlayer();
-        }
-    }
-
-    /**
      * announces the winner of the game (X or O) through a toast message
      */
     public void announceWinner() {

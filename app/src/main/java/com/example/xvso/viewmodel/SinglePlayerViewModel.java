@@ -6,6 +6,7 @@ import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
 
+import com.example.xvso.object.User;
 import com.example.xvso.object.WinningLines;
 
 public class SinglePlayerViewModel extends BaseViewModel {
@@ -20,10 +21,12 @@ public class SinglePlayerViewModel extends BaseViewModel {
     private static final int TEAM_X = 1;
     private static final int TEAM_O = 2;
 
+    private User playerXUser = new User();
+    private User playerOUser = new User();
 
     public SinglePlayerViewModel() {
-
-    };
+        createNewGame();
+    }
 
     public void saveCell(int position) {
         game = gameLiveData.getValue();
@@ -155,6 +158,19 @@ public class SinglePlayerViewModel extends BaseViewModel {
             game.setGameResult(3); // draw
             gameLiveData.setValue(game);
             return false;
+        }
+    }
+
+    public void createNewGame() {
+        if (playerXUser != null && playerOUser != null) {
+            Game game = new Game();
+            game.setHost(playerXUser);
+            game.setGuest(playerOUser);
+            game.setCurrentPlayer(playerXUser.getName());
+            game.setBoard(new Board());
+            String userName = game.getHost().getUserName();
+            game.setUserName(userName);
+            gameLiveData.setValue(game);
         }
     }
 
