@@ -211,7 +211,6 @@
             <TextView
                 android:id="@+id/single_player1_text"
                 style="@style/WrapContent"
-                android:text="@string/player_x"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="@dimen/margin_40"
                 android:hint="@string/player_x"
@@ -222,7 +221,6 @@
             <TextView
                 android:id="@+id/single_player2_text"
                 style="@style/WrapContent"
-                android:text="@string/player_y"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"

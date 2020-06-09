@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +20,17 @@ import com.example.xvso.R;
 
 import com.example.xvso.databinding.ActivitySinglePlayerBinding;
 import com.example.xvso.object.Team;
+import com.example.xvso.object.User;
+import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.muddzdev.styleabletoast.StyleableToast;
 
-public class SinglePlayerActivity extends AppCompatActivity {
+import java.util.Objects;
+
+public class SinglePlayerActivity extends BaseActivity {
 
     private static final String LOG_TAG = "SinglePlayerActivity";
  
@@ -41,6 +47,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
+        displayHostUserName();
         readFromSharedPref();
 
         setInitialVisibility();
@@ -148,8 +155,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
     }
 
     public void readFromSharedPref() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String counterPlayerName  = sharedPref.getString(HomeActivity.COUNTER_PLAYER_EDIT_TEXT, "PlayerY");
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String counterPlayerName  = sharedPrefs.getString(HomeActivity.COUNTER_PLAYER_EDIT_TEXT, "");
         singleBinding.singlePlayer2Text.setText(counterPlayerName);
     }
 
@@ -160,5 +167,16 @@ public class SinglePlayerActivity extends AppCompatActivity {
      */
     public void showToast(String message) {
         StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
+    }
+
+    public void displayHostUserName(){
+        FirebaseUser user = getFirebaseUser();
+        String emailLoggedUser = user.getEmail();
+        singleBinding.singlePlayer1Text.setText(convertEmailToString(emailLoggedUser));
+    }
+
+    private String convertEmailToString(String email) {
+
+        return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
     }
 }

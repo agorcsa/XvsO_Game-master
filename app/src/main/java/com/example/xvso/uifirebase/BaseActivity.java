@@ -21,8 +21,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public FirebaseUser getFirebaseUser() {
 
-        FirebaseUser user = auth.getCurrentUser();
-
-        return user;
+        return auth.getCurrentUser();
     }
 }

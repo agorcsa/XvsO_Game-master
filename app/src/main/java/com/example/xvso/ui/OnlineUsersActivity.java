@@ -187,37 +187,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         }
     }
 
-
-    private void acceptIncomingRequests() {
-        myRef.child("users").child(userName).child("request")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        try {
-
-                            HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
-                            if (map != null) {
-                                String value = "";
-
-                                for (String key : map.keySet()) {
-                                    value = (String) map.get(key);
-//                                    requestedUsersArrayAdapter.add(convertEmailToString(value));
-//                                    requestedUsersArrayAdapter.notifyDataSetChanged();
-                                    myRef.child("users").child(LoginUID).child("request").setValue(LoginUID);
-                                }
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-    }
-
     public void buildRecyclerView(User user) {
 
         layoutManager = new LinearLayoutManager(this);

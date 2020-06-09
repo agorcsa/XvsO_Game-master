@@ -1,10 +1,13 @@
 package com.example.xvso.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,8 +23,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityWelcomeBinding;
+import com.example.xvso.object.Game;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ActivityWelcomeBinding welcomeBinding;
 
-    private EditText counterPlayerEditText;
+    private EditText editText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,58 +156,48 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void createAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.alert_dialog_custom_view,null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
+        alertDialog.setTitle("Player 0");
+        alertDialog.setMessage("Enter counter player name");
 
-        // Specify alert dialog is not cancelable/not ignorable
-        builder.setCancelable(false);
+        editText = new EditText(HomeActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        editText.setLayoutParams(lp);
+        alertDialog.setView(editText);
+        alertDialog.setIcon(R.drawable.ic_cross);
 
-        // Set the custom layout as alert dialog view
-        builder.setView(dialogView);
+        alertDialog.setPositiveButton("CONFIRM",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String namePlayer0 = editText.getText().toString();
+                            if (!namePlayer0.isEmpty()) {
+                                showToast("Game will start against " + namePlayer0);
+                                writeToSharedPref();
+                                Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
+                                startActivity(intent);
+                            } else {
+                                showToast("Game can not start without introducing Player0's name!");
+                            }
+                        }
+                });
 
-        // Get the custom alert dialog view widgets reference
-        Button btn_positive = dialogView.findViewById(R.id.dialog_positive_btn);
-        Button btn_negative = dialogView.findViewById(R.id.dialog_negative_btn);
-        counterPlayerEditText = dialogView.findViewById(R.id.et_name);
-
-        final AlertDialog dialog = builder.create();
-
-        // Set positive/yes button click listener
-        btn_positive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Dismiss the alert dialog
-                dialog.cancel();
-                String name = counterPlayerEditText.getText().toString();
-                Toast.makeText(getApplication(),
-                        "Submitted name : " + name, Toast.LENGTH_SHORT).show();
-                writeToSharedPref();
-                startSinglePlayer(dialogView);
-            }
-        });
-
-        // Set negative/no button click listener
-        btn_negative.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Dismiss/cancel the alert dialog
-                //dialog.cancel();
-                dialog.dismiss();
-                Toast.makeText(getApplication(),
-                        "No button clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Display the custom alert dialog on interface
-        dialog.show();
+        alertDialog.setNegativeButton("NO",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        showToast("You have chosen to not start the game!");
+                        dialog.cancel();
+                    }
+                });
+        alertDialog.show();
     }
 
-    public void writeToSharedPref() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(COUNTER_PLAYER_EDIT_TEXT, counterPlayerEditText.getText().toString());
+public void writeToSharedPref() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(COUNTER_PLAYER_EDIT_TEXT, editText.getText().toString());
         editor.apply();
     }
 }
