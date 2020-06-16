@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
-
 import com.example.xvso.object.User;
 import com.example.xvso.object.WinningLines;
 
@@ -23,6 +22,8 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
     private User playerXUser = new User();
     private User playerOUser = new User();
+
+
 
     public SinglePlayerViewModel() {
         createNewGame();
@@ -233,5 +234,17 @@ public class SinglePlayerViewModel extends BaseViewModel {
 
     public void setGameLiveData(MutableLiveData<Game> gameLiveData) {
         this.gameLiveData = gameLiveData;
+    }
+
+    public void setGuestPlayerName(String name) {
+        game = gameLiveData.getValue();
+        game.getGuest().setName(name);
+        gameLiveData.setValue(game);
+    }
+
+    public void setHostPlayerName(String name) {
+        game = gameLiveData.getValue();
+        game.getHost().setName(name);
+        gameLiveData.setValue(game);
     }
 }

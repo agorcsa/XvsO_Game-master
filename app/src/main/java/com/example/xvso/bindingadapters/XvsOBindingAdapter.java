@@ -30,6 +30,17 @@ public class XvsOBindingAdapter {
         }
     }
 
+    @BindingAdapter({"actualPlayer", "hostName", "guestName"})
+    public static void singlePlayerTurn(TextView textView, String actualPlayer, String hostName, String guestName) {
+        if (actualPlayer != null) {
+            if (actualPlayer.equals("playerX")) {
+                textView.setText(textView.getContext().getString(R.string.players_turn, hostName));
+            } else {
+                textView.setText(textView.getContext().getString(R.string.players_turn, guestName));
+            }
+        }
+    }
+
     @BindingAdapter("isGameInProgress")
     public static void checkGameInProgress(ImageView imageView, boolean isGameInProgress) {
         if (isGameInProgress) {
