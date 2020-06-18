@@ -205,7 +205,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/WrapContent">
+            style="@style/MatchWrap">
 
             <!-- Player1 -->
             <TextView
@@ -213,9 +213,19 @@
                 style="@style/WrapContent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginEnd="@dimen/margin_20"
                 android:hint="@string/player_x"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
+
+            <TextView
+                android:id="@+id/player1_score_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/single_player1_text"
+                android:textSize="@dimen/text_size_large"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:text="0"/>
 
             <!-- Player2 -->
             <TextView
@@ -226,6 +236,16 @@
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
+
+            <TextView
+                android:id="@+id/player2_score_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/single_player2_text"
+                android:textSize="@dimen/text_size_large"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:text="0"/>
         </RelativeLayout>
 
         <!-- Winning lines -->
@@ -340,7 +360,9 @@
                 android:background="@color/colorPrimary"
                 android:padding="@dimen/margin_20"
                 android:text="PLAY AGAIN"
-                android:textColor="@android:color/white" />
+                android:onClick="onPlayAgainClick"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_large"/>
 
             <TextView
                 android:id="@+id/show_winner_text_view"

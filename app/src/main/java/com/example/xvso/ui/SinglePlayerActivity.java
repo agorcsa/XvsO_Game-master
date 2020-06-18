@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.xvso.R;
 
 import com.example.xvso.databinding.ActivitySinglePlayerBinding;
-import com.example.xvso.object.Game;
 import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
@@ -27,8 +26,6 @@ import com.muddzdev.styleabletoast.StyleableToast;
 import java.util.Objects;
 
 public class SinglePlayerActivity extends BaseActivity {
-
-    private static final String LOG_TAG = "SinglePlayerActivity";
  
     private ActivitySinglePlayerBinding singleBinding;
     
@@ -37,8 +34,6 @@ public class SinglePlayerActivity extends BaseActivity {
     private String emailLoggedUser;
 
     private String counterPlayerName;
-
-    private Game game = new Game();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +44,7 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
-        singleBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
+        winnerIsInvisible();
 
         displayHostUserName();
         readFromSharedPref();
@@ -60,22 +55,14 @@ public class SinglePlayerActivity extends BaseActivity {
         showWinningText();
     }
 
-    /**
-     * creates a menu in the right-up corner of the screen
-     * @param menu
-     * @return the menu itself
-     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    /**
-     * menu options: newRound, resetGame, watchVideo, logOut, settings
-     * @param item
-     * @return
-     */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_home) {
@@ -84,11 +71,11 @@ public class SinglePlayerActivity extends BaseActivity {
         } else if (item.getItemId() == R.id.action_new_round) {
             singlePlayerViewModel.newRound();
             singlePlayerViewModel.togglePlayer();
-            winnerTextInvisible();
+            winnerIsInvisible();
         } else if (item.getItemId() == R.id.action_new_game) {
             singlePlayerViewModel.resetGame();
             singlePlayerViewModel.togglePlayer();
-            winnerTextInvisible();
+            winnerIsInvisible();
             // no need to reset the score, as boardLiveData.setValue is being called on an empty board
         } else if (item.getItemId() == R.id.action_watch_video) {
             Intent intent = new Intent(SinglePlayerActivity.this, VideoActivity.class);
@@ -170,32 +157,38 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     private String convertEmailToString(String email) {
-
         return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
     }
 
     public void showWinningText(){
         singlePlayerViewModel.getGameLiveData().observe(this, game -> {
             if (game.getGameResult() == 1) {
-                singleBinding.showWinnerTextView.setVisibility(View.VISIBLE);
+                winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
                 game.setHostScore(game.getHostScore() + 1);
             } else if (game.getGameResult() == 2) {
-                singleBinding.showWinnerTextView.setVisibility(View.VISIBLE);
+                winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
                 game.setGuestScore(game.getGuestScore() + 1);
             } else if (game.getGameResult() == 3) {
-                singleBinding.showWinnerTextView.setVisibility(View.VISIBLE);
+                winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
             }
         });
     }
 
-    public void winnerTextVisible() {
-        singleBinding.showWinnerTextView.setVisibility(View.VISIBLE);
+    public void winnerIsVisible() {
+        singleBinding.showWinnerLayout.setVisibility(View.VISIBLE);
     }
 
-    public void winnerTextInvisible() {
-        singleBinding.showWinnerTextView.setVisibility(View.INVISIBLE);
+
+    public void winnerIsInvisible() {
+        singleBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
+    }
+
+    public void onPlayAgainClick(View view) {
+        singlePlayerViewModel.resetGame();
+        singlePlayerViewModel.togglePlayer();
+        winnerIsInvisible();
     }
 }
