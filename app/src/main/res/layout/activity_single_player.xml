@@ -225,7 +225,7 @@
                 android:layout_below="@id/single_player1_text"
                 android:textSize="@dimen/text_size_large"
                 android:layout_marginLeft="@dimen/margin_10"
-                android:text="0"/>
+                android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"/>
 
             <!-- Player2 -->
             <TextView
@@ -245,7 +245,7 @@
                 android:layout_below="@+id/single_player2_text"
                 android:textSize="@dimen/text_size_large"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:text="0"/>
+                android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}" />
         </RelativeLayout>
 
         <!-- Winning lines -->

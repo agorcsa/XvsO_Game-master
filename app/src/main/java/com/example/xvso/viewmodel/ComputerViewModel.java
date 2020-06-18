@@ -7,14 +7,21 @@ import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.WinningLines;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ComputerViewModel extends BaseViewModel {
 
     private static final String PLAYER_X = "playerX";
     private static final String PLAYER_O = "playerO";
+
     private static final int TEAM_X = 1;
     private static final int TEAM_O = 2;
+
     private Game game = new Game();
     private MutableLiveData<Game> gameLiveData = new MutableLiveData<>();
+
+    public ArrayList<Integer> preferredMoves = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
     public void saveCell(int position) {
         game = gameLiveData.getValue();
@@ -210,5 +217,15 @@ public class ComputerViewModel extends BaseViewModel {
 
     public void setGameLiveData(MutableLiveData<Game> gameLiveData) {
         this.gameLiveData = gameLiveData;
+    }
+
+
+    public void detectEmptyCell() {
+        for (int i = 0; i < preferredMoves.size(); i++ ) {
+            int index = preferredMoves.get(i); // get the value stored for each index on the list
+            if (game.getBoard().getCells().get(index).getTag() == 0) {
+                saveCell(index);
+            }
+        }
     }
 }
