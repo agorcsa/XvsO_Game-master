@@ -21,8 +21,13 @@ public abstract class AIPlayer {
         protected int COLS = 3;  // number of columns
 
         protected Cell[][] cells; // the board's ROWS-by-COLS array of Cells
+
         protected Seed mySeed;    // computer's seed
         protected Seed oppSeed;   // opponent's seed
+
+        private static final int TEAM_X = 1;
+        private static final int TEAM_O = 2;
+
 
         /** Constructor with reference to game board */
         public AIPlayer(Board board) {
