@@ -222,7 +222,7 @@
             <TextView
                 android:id="@+id/computer_player2_text"
                 style="@style/WrapContent"
-                android:text="@string/player_y"
+                android:text="Computer:"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"
@@ -323,6 +323,37 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/nightsky"
                 android:contentDescription="@string/animated_image" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/show_winner_layout"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/nightsky">
+
+            <Button
+                android:id="@+id/play_again_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/show_winner_text_view"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/margin_20"
+                android:text="PLAY AGAIN"
+                android:onClick="onPlayAgainClick"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_large"/>
+
+            <TextView
+                android:id="@+id/show_winner_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/text_size_xlarge" />
         </RelativeLayout>
     </FrameLayout>
 </layout>

@@ -1,14 +1,18 @@
 package com.example.xvso.viewmodel;
 
+import android.os.Handler;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.xvso.object.Board;
 import com.example.xvso.object.Cell;
 import com.example.xvso.object.Game;
+import com.example.xvso.object.User;
 import com.example.xvso.object.WinningLines;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class ComputerViewModel extends BaseViewModel {
 
@@ -18,28 +22,48 @@ public class ComputerViewModel extends BaseViewModel {
     private static final int TEAM_X = 1;
     private static final int TEAM_O = 2;
 
+    private User playerX = new User();
+    private User playerAI = new User();
+
     private Game game = new Game();
     private MutableLiveData<Game> gameLiveData = new MutableLiveData<>();
 
-    public ArrayList<Integer> preferredMoves = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
+    private ArrayList<Integer> preferredMoves = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
+    private ArrayList<Integer> computerTime = new ArrayList<>(Arrays.asList(100, 300, 500, 1000, 1200, 1500, 200, 800, 700));
+
+    final Handler handler = new Handler();
     public void saveCell(int position) {
         game = gameLiveData.getValue();
         if (game != null) {
-
-            if (game.getCurrentPlayer().equals(PLAYER_X)) {
                 game.getBoard().getCells().get(position).setTag(1);
-            } else {
-                game.getBoard().getCells().get(position).setTag(2);
-
-                if (game.getCurrentPlayer().equals(PLAYER_X)) {
-                    game.setCurrentPlayer(PLAYER_O);
-                } else {
-                    game.setCurrentPlayer(PLAYER_X);
-                }
                 gameLiveData.setValue(game);
+                if (checkForWin()) {
+                    // announce winner
+                } else {
+                            detectEmptyCell();
+                            checkForWin();
+                        }
+                    }
+                }
+
+
+
+    public void detectEmptyCell() {
+        for (int i = 0; i < preferredMoves.size(); i++ ) {
+            int index = preferredMoves.get(i); // get the value stored for each index on the list
+            if (game.getBoard().getCells().get(index).getTag() == 0) {
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        game.getBoard().getCells().get(index).setTag(2);
+                        gameLiveData.setValue(game);
+                    }
+                }, computerTime.get(new Random().nextInt(computerTime.size())));
+
+                break;
             }
-            checkForWin();
         }
     }
 
@@ -219,13 +243,27 @@ public class ComputerViewModel extends BaseViewModel {
         this.gameLiveData = gameLiveData;
     }
 
+    public ComputerViewModel() {
+        createNewGame();
+    }
 
-    public void detectEmptyCell() {
-        for (int i = 0; i < preferredMoves.size(); i++ ) {
-            int index = preferredMoves.get(i); // get the value stored for each index on the list
-            if (game.getBoard().getCells().get(index).getTag() == 0) {
-                saveCell(index);
-            }
+    public void createNewGame() {
+        if (playerX != null && playerAI != null) {
+            Game game = new Game();
+            game.setHost(playerX);
+            game.setGuest(playerAI);
+            game.setCurrentPlayer(playerX.getName());
+            game.setBoard(new Board());
+            String userName = game.getHost().getUserName();
+            game.setUserName(userName);
+            gameLiveData.setValue(game);
+            game.setCurrentPlayer(PLAYER_X);
         }
+    }
+
+    public void setHostPlayerName(String name) {
+        game = gameLiveData.getValue();
+        game.getHost().setName(name);
+        gameLiveData.setValue(game);
     }
 }
