@@ -41,7 +41,7 @@ public class XvsOBindingAdapter {
         }
     }
 
-    @BindingAdapter("isGameInProgress")
+   @BindingAdapter("isGameInProgress")
     public static void checkGameInProgress(ImageView imageView, boolean isGameInProgress) {
         if (isGameInProgress) {
             imageView.setClickable(true);
@@ -168,6 +168,48 @@ public class XvsOBindingAdapter {
         } else {
             int newScore = guestScore + 1;
             textView.setText(String.valueOf(newScore));
+        }
+    }
+
+    @BindingAdapter({"nowPlayer", "nowUser"})
+    public static void onCellClick(ImageView imageView, String nowPlayer, String nowUser) {
+        if (nowPlayer.equals(nowUser)) {
+            imageView.setClickable(true);
+        } else {
+            imageView.setClickable(false);
+        }
+    }
+
+// used for computer mode only
+    @BindingAdapter({"presentPlayer", "presentUser", "computerState", "computerGameResult"})
+    public static void stopCheatingComputer(ImageView imageView, String presentPlayer, String presentUser, Cell cell, int computerGameResult) {
+
+        if (cell != null) {
+            if (cell.getTag() == Team.TEAM_O) {
+                imageView.setImageResource(R.drawable.ic_zero);
+            } else if (cell.getTag() == Team.TEAM_X) {
+                imageView.setImageResource(R.drawable.ic_cross);
+            } else {
+                imageView.setImageResource(0);
+            }
+        }
+
+        if (computerGameResult == 0) {
+            if (cell.getTag() == 0) {
+                imageView.setClickable(true);
+            } else {
+                imageView.setClickable(false);
+            }
+        } else {
+            imageView.setClickable(false);
+        }
+
+        if (presentPlayer != null && presentUser != null) {
+            if (presentPlayer.equals(presentUser)) {
+                imageView.setClickable(true);
+            } else {
+                imageView.setClickable(false);
+            }
         }
     }
 }

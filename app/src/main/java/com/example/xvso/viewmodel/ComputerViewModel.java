@@ -1,6 +1,7 @@
 package com.example.xvso.viewmodel;
 
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -33,6 +34,7 @@ public class ComputerViewModel extends BaseViewModel {
     private ArrayList<Integer> computerTime = new ArrayList<>(Arrays.asList(100, 300, 500, 1000, 1200, 1500, 200, 800, 700));
 
     final Handler handler = new Handler();
+
     public void saveCell(int position) {
         game = gameLiveData.getValue();
         if (game != null) {
@@ -48,20 +50,23 @@ public class ComputerViewModel extends BaseViewModel {
                 }
 
 
-
     public void detectEmptyCell() {
+        // I'm the computer, it's my turn now
+        game.setCurrentPlayer("Player AI");
+        gameLiveData.setValue(game);
         for (int i = 0; i < preferredMoves.size(); i++ ) {
             int index = preferredMoves.get(i); // get the value stored for each index on the list
             if (game.getBoard().getCells().get(index).getTag() == 0) {
-
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         game.getBoard().getCells().get(index).setTag(2);
                         gameLiveData.setValue(game);
+                        // Ok,I'm done, now it's your turn, see if you can beat me now!
+                        game.setCurrentPlayer(game.getHost().getName());
+                        gameLiveData.setValue(game);
                     }
                 }, computerTime.get(new Random().nextInt(computerTime.size())));
-
                 break;
             }
         }
@@ -71,7 +76,7 @@ public class ComputerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X)) {
+        if (game.getCurrentPlayer().equals(game.getHost().getName())) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -101,7 +106,7 @@ public class ComputerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X)) {
+        if (game.getCurrentPlayer().equals(game.getHost().getName())) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -130,7 +135,7 @@ public class ComputerViewModel extends BaseViewModel {
 
         int team;
 
-        if (game.getCurrentPlayer().equals(PLAYER_X)) {
+       if (game.getCurrentPlayer().equals(game.getHost().getName())) {
             team = TEAM_X;
         } else {
             team = TEAM_O;
@@ -154,7 +159,7 @@ public class ComputerViewModel extends BaseViewModel {
     public boolean checkForWin() {
         game = gameLiveData.getValue();
         if (checkRows() || checkColumns() || checkDiagonals()) {
-            if (game.getCurrentPlayer().equals(PLAYER_X)) {
+            if (game.getCurrentPlayer().equals(game.getHost().getName()))  {
 
                 game.setGameResult(1);
                 game.setHostScore(game.getHostScore() + 1);
@@ -264,6 +269,7 @@ public class ComputerViewModel extends BaseViewModel {
     public void setHostPlayerName(String name) {
         game = gameLiveData.getValue();
         game.getHost().setName(name);
+        game.setCurrentPlayer(name);
         gameLiveData.setValue(game);
     }
 }

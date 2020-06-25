@@ -33,10 +33,10 @@
                 android:layout_marginBottom="@dimen/margin"
                 android:onClick="@{() -> viewModel.saveCell(0)}"
                 android:tag="0"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(0)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(0)}" />
 
             <!-- Cell 1 (center-up) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -53,10 +53,11 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(1)}"
                 android:tag="1"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(1)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(1)}"
+                />
 
             <!-- Cell 2 (right-up) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -69,10 +70,12 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(2)}"
                 android:tag="2"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(2)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(2)}"
+                />
+
             ​
             <!-- Cell 3 (left-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -84,11 +87,13 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(3)}"
                 android:tag="3"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(3)}" />
-            ​
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(3)}"/>
+
+
+
             <!-- Cell 4 (center) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_5_computer"
@@ -103,10 +108,11 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(4)}"
                 android:tag="4"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(4)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(4)}"/>
+
             ​
             <!-- Cell 5 (right-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -119,10 +125,11 @@
                 android:clickable="@{viewModel.isGameInProgress}"
                 android:onClick="@{() -> viewModel.saveCell(5)}"
                 android:tag="5"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(5)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(5)}"/>
+
             ​
             <!-- Cell 6 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -135,11 +142,11 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(6)}"
                 android:tag="6"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(6)}" />
-            ​
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(6)}"/>
+
             <!-- Cell 7 (center-down) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_8_computer"
@@ -155,10 +162,11 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(7)}"
                 android:tag="7"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(7)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(7)}"/>
+
             ​
             <!-- Cell 8 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -171,10 +179,10 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(8)}"
                 android:tag="8"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
-                app:gameResult="@{viewModel.gameLiveData.gameResult}"
-                app:state="@{viewModel.gameLiveData.board.cells.get(8)}" />
+                app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:presentUser="@{viewModel.userLiveData.name}"
+                app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(8)}" />
         </GridLayout>
 
         <!-- switches the player's turn-->

@@ -2,6 +2,8 @@ package com.example.xvso.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityComputerBinding;
+import com.example.xvso.object.Game;
+import com.example.xvso.object.User;
 import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.ComputerViewModel;
@@ -31,6 +35,8 @@ public class ComputerActivity extends BaseActivity {
 
     private String emailLoggedUser;
 
+    private final Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,8 @@ public class ComputerActivity extends BaseActivity {
         animateViews();
 
         showWinningText();
+
+        displayScore();
     }
 
     public void setInitialVisibility() {
@@ -164,7 +172,13 @@ public class ComputerActivity extends BaseActivity {
     }
 
     public void winnerIsVisible() {
-        computerBinding.showWinnerLayout.setVisibility(View.VISIBLE);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                computerBinding.showWinnerLayout.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
     }
 
     public void winnerIsInvisible() {
@@ -198,5 +212,43 @@ public class ComputerActivity extends BaseActivity {
 
     private String convertEmailToString(String email) {
         return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
+    }
+
+    public void onPlayAgainClick(View view) {
+        computerViewModel.newRound();
+        computerViewModel.togglePlayer();
+        winnerIsInvisible();
+    }
+
+    public void displayScore() {
+       Game game = computerViewModel.getGameLiveData().getValue();
+        if (game != null) {
+
+            User host = game.getHost();
+            String hostFirstName = host.getFirstName();
+            String hostName = host.getName();
+
+            String guestName = "Computer";
+
+            int hostScore = game.getHostScore();
+            int guestScore = game.getGuestScore();
+
+            Toast.makeText(getApplicationContext(),  hostName + " : " + hostScore
+                    + guestName + " : " + guestScore
+                    , Toast.LENGTH_LONG).show();
+
+            if (TextUtils.isEmpty(hostFirstName)) {
+                computerBinding.computerPlayer1Text.setText(
+                        getString(R.string.player_name_score, hostName, game.getHostScore()));
+            } else {
+                computerBinding.computerPlayer1Text.setText(
+                        getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
+                computerViewModel.checkForWin();
+            }
+
+            computerBinding.computerPlayer2Text.setText(
+                    getString(R.string.player_name_score, guestName, game.getGuestScore()));
+            computerViewModel.checkForWin();
+        }
     }
 }
