@@ -1,7 +1,6 @@
 package com.example.xvso.viewmodel;
 
 import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -44,7 +43,7 @@ public class ComputerViewModel extends BaseViewModel {
                     // announce winner
                 } else {
                             detectEmptyCell();
-                            checkForWin();
+                            //checkForWin();
                         }
                     }
                 }
@@ -61,8 +60,7 @@ public class ComputerViewModel extends BaseViewModel {
                     @Override
                     public void run() {
                         game.getBoard().getCells().get(index).setTag(2);
-                        gameLiveData.setValue(game);
-                        // Ok,I'm done, now it's your turn, see if you can beat me now!
+                        checkForWin();
                         game.setCurrentPlayer(game.getHost().getName());
                         gameLiveData.setValue(game);
                     }
@@ -71,7 +69,6 @@ public class ComputerViewModel extends BaseViewModel {
             }
         }
     }
-
     public boolean checkRows() {
 
         int team;
@@ -181,7 +178,7 @@ public class ComputerViewModel extends BaseViewModel {
             }
             game.setGameResult(3); // draw
             gameLiveData.setValue(game);
-            return false;
+            return true;
         }
     }
 

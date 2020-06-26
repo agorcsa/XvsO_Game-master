@@ -53,9 +53,9 @@ public class ComputerActivity extends BaseActivity {
         setInitialVisibility();
         animateViews();
 
-        showWinningText();
+        observeGame();
 
-        displayScore();
+        initialiseScore();
     }
 
     public void setInitialVisibility() {
@@ -97,7 +97,6 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.block7Computer.setClickable(false);
         computerBinding.block8Computer.setClickable(false);
         computerBinding.block9Computer.setClickable(false);
-
     }
 
     public void animateViews() {
@@ -186,20 +185,33 @@ public class ComputerActivity extends BaseActivity {
     }
 
 
-    public void showWinningText(){
+    // updates the winner
+    // updates the score
+    // displays the updated score
+    public void observeGame(){
         computerViewModel.getGameLiveData().observe(this, game -> {
             if (game.getGameResult() == 1) {
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
-                game.setHostScore(game.getHostScore() + 1);
+
+                User host = game.getHost();
+                String hostName = host.getName();
+                computerBinding.computerPlayer1Text.setText(
+                        getString(R.string.player_name_score, hostName, game.getHostScore()));
+
             } else if (game.getGameResult() == 2) {
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("Winner is computer ");
-                game.setGuestScore(game.getGuestScore() + 1);
+
+                String guestName = "Computer";
+                computerBinding.computerPlayer2Text.setText(
+                        getString(R.string.player_name_score, guestName, game.getGuestScore()));
             } else if (game.getGameResult() == 3) {
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("It's a draw!");
+               // no score update
             }
+            disableCellClick();
         });
     }
 
@@ -220,7 +232,7 @@ public class ComputerActivity extends BaseActivity {
         winnerIsInvisible();
     }
 
-    public void displayScore() {
+    public void initialiseScore() {
        Game game = computerViewModel.getGameLiveData().getValue();
         if (game != null) {
 
@@ -230,25 +242,16 @@ public class ComputerActivity extends BaseActivity {
 
             String guestName = "Computer";
 
-            int hostScore = game.getHostScore();
-            int guestScore = game.getGuestScore();
-
-            Toast.makeText(getApplicationContext(),  hostName + " : " + hostScore
-                    + guestName + " : " + guestScore
-                    , Toast.LENGTH_LONG).show();
-
             if (TextUtils.isEmpty(hostFirstName)) {
                 computerBinding.computerPlayer1Text.setText(
                         getString(R.string.player_name_score, hostName, game.getHostScore()));
             } else {
                 computerBinding.computerPlayer1Text.setText(
                         getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
-                computerViewModel.checkForWin();
             }
 
             computerBinding.computerPlayer2Text.setText(
                     getString(R.string.player_name_score, guestName, game.getGuestScore()));
-            computerViewModel.checkForWin();
         }
     }
 }
