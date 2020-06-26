@@ -336,7 +336,7 @@
         <RelativeLayout
             android:id="@+id/show_winner_layout"
             android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:background="@drawable/nightsky">
@@ -358,12 +358,12 @@
                 android:id="@+id/reset_game_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/play_again_button"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
-                android:layout_marginTop="@dimen/margin_20"
                 android:padding="@dimen/margin_20"
-                android:onClick="onPlayAgainClick"
+                android:text="RESET GAME"
+                android:onClick="onResetGameClick"
+                android:layout_alignParentBottom="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large"/>
 

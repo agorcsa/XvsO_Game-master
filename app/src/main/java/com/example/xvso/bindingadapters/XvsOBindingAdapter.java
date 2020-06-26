@@ -194,22 +194,15 @@ public class XvsOBindingAdapter {
             }
         }
 
-        if (computerGameResult == 0) {
-            if (cell.getTag() == 0) {
-                imageView.setClickable(true);
-            } else {
-                imageView.setClickable(false);
-            }
+        if (presentPlayer != null && presentUser != null) {
+            if (computerGameResult == 0 && presentPlayer.equals(presentUser))
+                if (cell.getTag() == 0) {
+                    imageView.setClickable(true);
+                } else {
+                    imageView.setClickable(false);
+                }
         } else {
             imageView.setClickable(false);
-        }
-
-        if (presentPlayer != null && presentUser != null) {
-            if (presentPlayer.equals(presentUser)) {
-                imageView.setClickable(true);
-            } else {
-                imageView.setClickable(false);
-            }
         }
     }
 }

@@ -232,6 +232,13 @@ public class ComputerActivity extends BaseActivity {
         winnerIsInvisible();
     }
 
+    public void onResetGameClick(View view) {
+        computerViewModel.resetGame();
+        initialiseScore();
+        computerViewModel.togglePlayer();
+        winnerIsInvisible();
+    }
+
     public void initialiseScore() {
        Game game = computerViewModel.getGameLiveData().getValue();
         if (game != null) {
