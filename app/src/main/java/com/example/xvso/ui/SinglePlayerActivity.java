@@ -105,6 +105,8 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.vsImageViewSingle.setVisibility(View.VISIBLE);
         singleBinding.singlePlayer1Text.setVisibility(View.INVISIBLE);
         singleBinding.singlePlayer2Text.setVisibility(View.INVISIBLE);
+        singleBinding.player1ScoreTextView.setVisibility(View.INVISIBLE);
+        singleBinding.player2ScoreTextView.setVisibility(View.INVISIBLE);
     }
 
     public void animateViews() {
@@ -123,12 +125,14 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.singlePlayer1Text.postDelayed(new Runnable() {
             public void run() {
                 singleBinding.singlePlayer1Text.setVisibility(View.VISIBLE);
+                singleBinding.player1ScoreTextView.setVisibility(View.VISIBLE);
             }
         }, 3000);
 
         singleBinding.singlePlayer2Text.postDelayed(new Runnable() {
             public void run() {
                 singleBinding.singlePlayer2Text.setVisibility(View.VISIBLE);
+                singleBinding.player2ScoreTextView.setVisibility(View.VISIBLE);
             }
         }, 3000);
     }
@@ -165,11 +169,11 @@ public class SinglePlayerActivity extends BaseActivity {
             if (game.getGameResult() == 1) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
-                game.setHostScore(game.getHostScore() + 1);
+                //game.setHostScore(game.getHostScore() + 1);
             } else if (game.getGameResult() == 2) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
-                game.setGuestScore(game.getGuestScore() + 1);
+                //game.setGuestScore(game.getGuestScore() + 1);
             } else if (game.getGameResult() == 3) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
