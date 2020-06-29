@@ -49,7 +49,6 @@ public class SinglePlayerActivity extends BaseActivity {
         displayHostUserName();
         readFromSharedPref();
 
-        setInitialVisibility();
         animateViews();
 
         showWinningText();
@@ -90,23 +89,6 @@ public class SinglePlayerActivity extends BaseActivity {
             startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setInitialVisibility() {
-        singleBinding.block1Single.setVisibility(View.INVISIBLE);
-        singleBinding.block2Single.setVisibility(View.INVISIBLE);
-        singleBinding.block3Single.setVisibility(View.INVISIBLE);
-        singleBinding.block4Single.setVisibility(View.INVISIBLE);
-        singleBinding.block5Single.setVisibility(View.INVISIBLE);
-        singleBinding.block6Single.setVisibility(View.INVISIBLE);
-        singleBinding.block7Single.setVisibility(View.INVISIBLE);
-        singleBinding.block8Single.setVisibility(View.INVISIBLE);
-        singleBinding.block9Single.setVisibility(View.INVISIBLE);
-        singleBinding.vsImageViewSingle.setVisibility(View.VISIBLE);
-        singleBinding.singlePlayer1Text.setVisibility(View.INVISIBLE);
-        singleBinding.singlePlayer2Text.setVisibility(View.INVISIBLE);
-        singleBinding.player1ScoreTextView.setVisibility(View.INVISIBLE);
-        singleBinding.player2ScoreTextView.setVisibility(View.INVISIBLE);
     }
 
     public void animateViews() {

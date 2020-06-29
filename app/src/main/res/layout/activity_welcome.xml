@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/motion_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_40"
         android:background="@android:color/white"
+        app:motionDebug="SHOW_ALL"
         app:layoutDescription="@xml/activity_welcome_xml_constraintlayout_scene">
 
         <Button

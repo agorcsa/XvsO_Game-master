@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -31,6 +32,7 @@ import com.example.xvso.databinding.ActivityWelcomeBinding;
 import com.example.xvso.object.Game;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityWelcomeBinding welcomeBinding;
 
     private EditText editText;
+    private boolean isRocketAnimated;
+    public static final String IS_ROCKET_ANIMATED = "isRocketAnimated";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +52,12 @@ public class HomeActivity extends AppCompatActivity {
 
         hideHomeViews();
 
-        animateRocket();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        isRocketAnimated = sharedPrefs.getBoolean(HomeActivity.IS_ROCKET_ANIMATED, false);
+
+        if (!isRocketAnimated) {
+            animateRocket();
+        }
 
         showHomeViews();
 
@@ -147,6 +156,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void animateRocket() {
         welcomeBinding.rocketImageView.animate().translationYBy(-2000).setDuration(3000);
+        isRocketAnimated = true;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("IS_ROCKET_ANIMATED", isRocketAnimated);
+        editor.apply();
     }
 
     public void showToast(String message) {
@@ -199,6 +213,19 @@ public void writeToSharedPref() {
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(COUNTER_PLAYER_EDIT_TEXT, editText.getText().toString());
         editor.apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (isRocketAnimated) {
+            showToast("Rocket has been animated");
+        }
+    }
+
+    private void startRocket() {
+        welcomeBinding.motionLayout.transitionToEnd();
     }
 }
 

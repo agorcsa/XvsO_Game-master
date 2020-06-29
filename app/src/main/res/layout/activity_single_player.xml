@@ -33,6 +33,7 @@
                 android:layout_marginBottom="@dimen/margin"
                 android:onClick="@{() -> viewModel.saveCell(0)}"
                 android:tag="0"
+                android:visibility="invisible"
                 app:currentP="@{viewModel.gameLiveData.currentPlayer}"
                 app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
@@ -43,6 +44,7 @@
                 android:id="@+id/block_2_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="0"
                 android:layout_column="1"
                 android:layout_marginStart="@dimen/margin"
@@ -63,6 +65,7 @@
                 android:id="@+id/block_3_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="0"
                 android:layout_column="2"
                 android:layout_marginBottom="@dimen/margin"
@@ -81,6 +84,7 @@
                 android:layout_height="@dimen/cell_height"
                 android:layout_row="1"
                 android:layout_column="0"
+                android:visibility="invisible"
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(3)}"
                 android:tag="3"
@@ -94,6 +98,7 @@
                 android:id="@+id/block_5_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="1"
                 android:layout_column="1"
                 android:layout_marginStart="@dimen/margin"
@@ -113,6 +118,7 @@
                 android:id="@+id/block_6_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="1"
                 android:layout_column="2"
                 android:background="@drawable/nightsky"
@@ -129,6 +135,7 @@
                 android:id="@+id/block_7_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="2"
                 android:layout_column="0"
                 android:layout_marginTop="@dimen/margin"
@@ -145,6 +152,7 @@
                 android:id="@+id/block_8_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="2"
                 android:layout_column="1"
                 android:layout_marginStart="@dimen/margin"
@@ -165,6 +173,7 @@
                 android:id="@+id/block_9_single"
                 android:layout_width="@dimen/cell_width"
                 android:layout_height="@dimen/cell_height"
+                android:visibility="invisible"
                 android:layout_row="2"
                 android:layout_column="2"
                 android:layout_marginTop="@dimen/margin"
@@ -216,16 +225,18 @@
                 android:layout_marginEnd="@dimen/margin_20"
                 android:hint="@string/player_x"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/player1_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/single_player1_text"
-                android:textSize="@dimen/text_size_large"
                 android:layout_marginLeft="@dimen/margin_10"
-                android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"/>
+                android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"
+                android:textSize="@dimen/text_size_large"
+                android:visibility="invisible" />
 
             <!-- Player2 -->
             <TextView
@@ -235,7 +246,8 @@
                 android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/player2_score_text_view"
@@ -245,7 +257,8 @@
                 android:layout_below="@+id/single_player2_text"
                 android:textSize="@dimen/text_size_large"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}" />
+                android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}"
+                android:visibility="invisible" />
         </RelativeLayout>
 
         <!-- Winning lines -->
