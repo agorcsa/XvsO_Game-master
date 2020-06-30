@@ -173,6 +173,12 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onPlayAgainClick(View view) {
+        singlePlayerViewModel.newRound();
+        singlePlayerViewModel.togglePlayer();
+        winnerIsInvisible();
+    }
+
+    public void onResetGameClick(View view) {
         singlePlayerViewModel.resetGame();
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();

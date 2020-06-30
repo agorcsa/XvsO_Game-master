@@ -21,18 +21,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityWelcomeBinding;
-import com.example.xvso.object.Game;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
 

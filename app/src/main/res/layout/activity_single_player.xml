@@ -377,6 +377,20 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large"/>
 
+            <Button
+                android:id="@+id/reset_game_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                android:onClick="onResetGameClick"
+                android:padding="@dimen/margin_20"
+                android:text="RESET GAME"
+                android:layout_alignParentEnd="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_large" />
+
             <TextView
                 android:id="@+id/show_winner_text_view"
                 android:layout_width="wrap_content"
