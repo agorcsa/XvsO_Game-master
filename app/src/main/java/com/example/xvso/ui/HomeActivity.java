@@ -44,8 +44,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
 
-        hideHomeViews();
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         isRocketAnimated = sharedPrefs.getBoolean(HomeActivity.IS_ROCKET_ANIMATED, false);
 
@@ -125,13 +123,6 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void hideHomeViews() {
-        welcomeBinding.appTitle.setVisibility(View.INVISIBLE);
-        welcomeBinding.singlePlayerButton.setVisibility(View.INVISIBLE);
-        welcomeBinding.computerPlayerButton.setVisibility(View.INVISIBLE);
-        welcomeBinding.multiPlayerButton.setVisibility(View.INVISIBLE);
-        welcomeBinding.aboutButton.setVisibility(View.INVISIBLE);
-    }
 
     public void showHomeViews() {
         new Handler().postDelayed(new Runnable()
@@ -149,7 +140,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void animateRocket() {
-        welcomeBinding.rocketImageView.animate().translationYBy(-2000).setDuration(3000);
+        welcomeBinding.motionLayout.transitionToEnd();
+        //welcomeBinding.rocketImageView.animate().translationYBy(-2000).setDuration(3000);
         isRocketAnimated = true;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();

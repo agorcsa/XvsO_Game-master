@@ -359,7 +359,7 @@
         <RelativeLayout
             android:id="@+id/show_winner_layout"
             android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:background="@drawable/nightsky">
@@ -382,12 +382,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
                 android:onClick="onResetGameClick"
-                android:padding="@dimen/margin_20"
+                android:padding="@dimen/padding_20"
                 android:text="RESET GAME"
-                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large" />
 
