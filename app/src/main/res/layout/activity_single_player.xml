@@ -222,7 +222,6 @@
                 style="@style/WrapContent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="@dimen/margin_40"
-                android:layout_marginEnd="@dimen/margin_20"
                 android:hint="@string/player_x"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large"
@@ -232,8 +231,8 @@
                 android:id="@+id/player1_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/single_player1_text"
-                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_toRightOf="@id/single_player1_text"
+                android:layout_marginTop="@dimen/margin_40"
                 android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"
                 android:textSize="@dimen/text_size_large"
                 android:visibility="invisible" />
@@ -242,10 +241,10 @@
             <TextView
                 android:id="@+id/single_player2_text"
                 style="@style/WrapContent"
-                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="@dimen/margin_40"
-                android:layout_alignParentEnd="true"
                 android:textColor="@color/white"
+                android:layout_toLeftOf="@id/player2_score_text_view"
                 android:textSize="@dimen/text_size_large"
                 android:visibility="invisible" />
 
@@ -253,10 +252,9 @@
                 android:id="@+id/player2_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/single_player2_text"
                 android:textSize="@dimen/text_size_large"
-                android:layout_marginEnd="@dimen/margin_10"
                 android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}"
                 android:visibility="invisible" />
         </RelativeLayout>
@@ -358,11 +356,10 @@
 
         <RelativeLayout
             android:id="@+id/show_winner_layout"
-            android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_width="275dp"
+            android:layout_height="388dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:background="@drawable/nightsky">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/play_again_button"
@@ -371,22 +368,22 @@
                 android:layout_below="@+id/show_winner_text_view"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
+                android:onClick="onPlayAgainClick"
                 android:padding="@dimen/margin_20"
                 android:text="PLAY AGAIN"
-                android:onClick="onPlayAgainClick"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large"/>
+                android:textSize="@dimen/text_size_large" />
 
             <Button
                 android:id="@+id/reset_game_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
                 android:onClick="onResetGameClick"
                 android:padding="@dimen/padding_20"
                 android:text="RESET GAME"
-                android:layout_centerHorizontal="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large" />
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -147,15 +148,14 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void showWinningText(){
+
         singlePlayerViewModel.getGameLiveData().observe(this, game -> {
             if (game.getGameResult() == 1) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
-                //game.setHostScore(game.getHostScore() + 1);
             } else if (game.getGameResult() == 2) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
-                //game.setGuestScore(game.getGuestScore() + 1);
             } else if (game.getGameResult() == 3) {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
@@ -164,11 +164,36 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void winnerIsVisible() {
-        singleBinding.showWinnerLayout.setVisibility(View.VISIBLE);
+
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                singleBinding.turnSwitcherTextViewSingle.setVisibility(View.INVISIBLE);
+                hideBoard();
+                hideWinningLines();
+                singleBinding.showWinnerLayout.setVisibility(View.VISIBLE);
+            }
+        };
+        handler.postDelayed(r, 1200);
+    }
+
+
+    public void hideWinningLines() {
+        singleBinding.leftVertical.setVisibility(View.INVISIBLE);
+        singleBinding.centerVertical.setVisibility(View.INVISIBLE);
+        singleBinding.rightVertical.setVisibility(View.INVISIBLE);
+
+        singleBinding.topHorizontal.setVisibility(View.INVISIBLE);
+        singleBinding.centerHorizontal.setVisibility(View.INVISIBLE);
+        singleBinding.bottomHorizontal.setVisibility(View.INVISIBLE);
+
+        singleBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
+        singleBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
     }
 
 
     public void winnerIsInvisible() {
+
         singleBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
     }
 
@@ -176,11 +201,21 @@ public class SinglePlayerActivity extends BaseActivity {
         singlePlayerViewModel.newRound();
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
+        showBoard();
     }
 
     public void onResetGameClick(View view) {
         singlePlayerViewModel.resetGame();
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
+        showBoard();
+    }
+
+    public void showBoard() {
+        singleBinding.gridLayoutSinglePlayer.setVisibility(View.VISIBLE);
+    }
+
+    public void hideBoard() {
+        singleBinding.gridLayoutSinglePlayer.setVisibility(View.INVISIBLE);
     }
 }

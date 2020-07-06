@@ -206,12 +206,8 @@ public void writeToSharedPref() {
         super.onResume();
 
         if (isRocketAnimated) {
-            showToast("Rocket has been animated");
+            isRocketAnimated = true;
         }
-    }
-
-    private void startRocket() {
-        welcomeBinding.motionLayout.transitionToEnd();
     }
 }
 

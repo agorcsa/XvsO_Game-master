@@ -24,7 +24,6 @@ public class SinglePlayerViewModel extends BaseViewModel {
     private User playerOUser = new User();
 
 
-
     public SinglePlayerViewModel() {
         createNewGame();
     }
@@ -209,14 +208,6 @@ public class SinglePlayerViewModel extends BaseViewModel {
         if (game != null) {
             game.setHostScore(0);
             game.setGuestScore(0);
-        }
-    }
-
-    public void timeUp() {
-        game = gameLiveData.getValue();
-        if (game != null) {
-            game.setGameResult(3);
-            gameLiveData.setValue(game);
         }
     }
 

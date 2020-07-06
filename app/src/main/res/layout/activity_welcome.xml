@@ -12,34 +12,40 @@
 
         <Button
             android:id="@+id/single_player_button"
-            style="@style/HomeButton"
+            android:background="@drawable/home_button"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+
+            android:layout_marginBottom="@dimen/margin_10"
             android:text="@string/btn_single_player_human"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_height="@dimen/height_30dp"
+            android:layout_width="@dimen/height_30dp" />
 
         <Button
             android:id="@+id/computer_player_button"
-            style="@style/HomeButton"
+            style="@style/MatchWrap"
+            android:background="@drawable/home_button"
             android:text="@string/btn_single_player_computer"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/multi_player_button"
-            style="@style/HomeButton"
+            style="@style/MatchWrap"
+            android:background="@drawable/home_button"
             android:text="@string/btn_multiplayer"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/about_button"
-            style="@style/HomeButton"
+            style="@style/MatchWrap"
+            android:background="@drawable/home_button"
             android:text="@string/btn_about"
             android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/rocket_image_view"
-            android:layout_width="@dimen/rocket_width"
-            android:layout_height="@dimen/rocket_height"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/rocket"
