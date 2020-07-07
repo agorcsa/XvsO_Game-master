@@ -85,8 +85,11 @@ public class SinglePlayerActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Intent loginIntent = new Intent(SinglePlayerActivity.this, LoginActivity.class);
             startActivity(loginIntent);
+        } else if (item.getItemId() == R.id.action_profile) {
+            Intent profileIntent = new Intent(SinglePlayerActivity.this, ProfileActivity.class);
+            startActivity(profileIntent);
         } else if (item.getItemId() == R.id.action_settings) {
-            Intent settingsIntent = new Intent(SinglePlayerActivity.this, ProfileActivity.class);
+            Intent settingsIntent = new Intent(SinglePlayerActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);

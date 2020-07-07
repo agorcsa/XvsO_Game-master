@@ -95,6 +95,16 @@
         </activity>
 
         <activity
+            android:name=".ui.SettingsActivity"
+            android:label="@string/settings_label"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.SinglePlayerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.SinglePlayerActivity" />
+        </activity>
+
+        <activity
             android:name=".ui.VideoActivity"
             android:label="Learn to play"
             android:launchMode="singleTop"

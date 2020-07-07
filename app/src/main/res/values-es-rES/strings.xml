@@ -95,4 +95,6 @@
     <string name="profile_image">imagen de perfil del usuario</string>
     <string name="btn_single_player_human">Solo Jugador (Humano)</string>
     <string name="btn_single_player_computer">Solo Jugador (Computadora)</string>
+    <string name="preferences_menu">Configuraciones</string>
+    <string name="settings_label">Configuraciones</string>
 </resources>

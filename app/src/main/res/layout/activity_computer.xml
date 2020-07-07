@@ -76,7 +76,6 @@
                 app:computerState="@{viewModel.gameLiveData.board.cells.get(2)}"
                 />
 
-            ​
             <!-- Cell 3 (left-middle) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_4_computer"
@@ -335,11 +334,10 @@
 
         <RelativeLayout
             android:id="@+id/show_winner_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="275dp"
+            android:layout_height="388dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:background="@drawable/nightsky">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/play_again_button"
@@ -348,24 +346,24 @@
                 android:layout_below="@+id/show_winner_text_view"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
+                android:onClick="onPlayAgainClick"
                 android:padding="@dimen/margin_20"
                 android:text="PLAY AGAIN"
-                android:onClick="onPlayAgainClick"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large"/>
+                android:textSize="@dimen/text_size_large" />
 
             <Button
                 android:id="@+id/reset_game_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
-                android:layout_below="@+id/play_again_button"
-                android:padding="@dimen/margin_20"
+                android:onClick="onResetGameClick"
+                android:padding="@dimen/padding_20"
                 android:text="RESET GAME"
-                android:layout_alignParentBottom="true"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large"/>
+                android:textSize="@dimen/text_size_large" />
 
             <TextView
                 android:id="@+id/show_winner_text_view"

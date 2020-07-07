@@ -2,6 +2,7 @@
     <string name="app_name">Xvs.O in Space</string>
     <string name="app_label">Xvs.O in Space</string>
     <string name="profile_label">Your Profile</string>
+    <string name="settings_label">Settings</string>
     <string name="log_in_activity">Log In</string>
     <string name="sign_up_activity">Sign Up</string>
     <string name="reset_password_activity">Reset Password</string>
@@ -67,6 +68,7 @@
     <string name="reset_game_menu">Reset Game</string>
     <string name="always_win_menu">Always win</string>
     <string name="profile_menu">Profile</string>
+    <string name="preferences_menu">Settings</string>
     <string name="log_out_menu">Log out</string>
 
     <string name="user_id" translatable="false">ID</string>

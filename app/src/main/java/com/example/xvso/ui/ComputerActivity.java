@@ -172,12 +172,16 @@ public class ComputerActivity extends BaseActivity {
 
     public void winnerIsVisible() {
 
-        handler.postDelayed(new Runnable() {
-            @Override
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
             public void run() {
+                computerBinding.turnSwitcherTextViewComputer.setVisibility(View.INVISIBLE);
+                hideBoard();
+                hideWinningLines();
                 computerBinding.showWinnerLayout.setVisibility(View.VISIBLE);
             }
-        }, 2000);
+        };
+        handler.postDelayed(r, 1200);
     }
 
     public void winnerIsInvisible() {
@@ -230,6 +234,7 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.newRound();
         computerViewModel.togglePlayer();
         winnerIsInvisible();
+        showBoard();
     }
 
     public void onResetGameClick(View view) {
@@ -237,6 +242,7 @@ public class ComputerActivity extends BaseActivity {
         initialiseScore();
         computerViewModel.togglePlayer();
         winnerIsInvisible();
+        showBoard();
     }
 
     public void initialiseScore() {
@@ -261,4 +267,26 @@ public class ComputerActivity extends BaseActivity {
                     getString(R.string.player_name_score, guestName, game.getGuestScore()));
         }
     }
+
+    public void showBoard() {
+        computerBinding.gridLayoutComputer.setVisibility(View.VISIBLE);
+    }
+
+    public void hideBoard() {
+        computerBinding.gridLayoutComputer.setVisibility(View.INVISIBLE);
+    }
+
+    public void hideWinningLines() {
+        computerBinding.leftVertical.setVisibility(View.INVISIBLE);
+        computerBinding.centerVertical.setVisibility(View.INVISIBLE);
+        computerBinding.rightVertical.setVisibility(View.INVISIBLE);
+
+        computerBinding.topHorizontal.setVisibility(View.INVISIBLE);
+        computerBinding.centerHorizontal.setVisibility(View.INVISIBLE);
+        computerBinding.bottomHorizontal.setVisibility(View.INVISIBLE);
+
+        computerBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
+        computerBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
+    }
+
 }
