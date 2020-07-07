@@ -152,7 +152,8 @@ public class XvsOBindingAdapter {
                 imageView.setImageResource(0);
             }
         }
-        if (gameResult == 0) {
+
+        if (cell != null && gameResult == 0) {
                 if (cell.getTag() == 0) {
                     imageView.setClickable(true);
                 } else {

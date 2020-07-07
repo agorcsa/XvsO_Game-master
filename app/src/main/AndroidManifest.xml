@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xvso">
-
 
     <application
         android:allowBackup="true"
@@ -11,14 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".widget.XvsOIntentService"/>
-
         <activity
             android:name=".uifirebase.LoginActivity"
             android:label="@string/log_in_activity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,13 +29,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".uifirebase.LoginActivity" />
         </activity>
-
         <activity
             android:name=".ui.HomeActivity"
             android:label="@string/home_menu"
-            android:launchMode="singleTop">
-        </activity>
-
+            android:launchMode="singleTop"></activity>
         <activity
             android:name=".ui.SinglePlayerActivity"
             android:label="Single Player"
@@ -48,7 +42,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>
-
         <activity
             android:name=".ui.ComputerActivity"
             android:label="Single Player (Computer)"
@@ -58,7 +51,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>
-
         <activity
             android:name=".ui.AboutActivity"
             android:label="@string/about"
@@ -68,7 +60,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>
-
         <activity
             android:name=".ui.OnlineUsersActivity"
             android:label="@string/online_users_activity"
@@ -78,12 +69,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>
-
         <activity
             android:name=".ui.OnlineGameActivity"
             android:label="XvsO in Space - Online"
-            android:launchMode="singleTop"/>
-
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.ProfileActivity"
             android:label="@string/profile_label"
@@ -93,7 +82,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".uifirebase.SignupActivity" />
         </activity>
-
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/settings_label"
@@ -103,7 +91,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>
-
         <activity
             android:name=".ui.VideoActivity"
             android:label="Learn to play"
@@ -113,7 +100,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.OnlineGameActivity" />
         </activity>
-
         <activity
             android:name=".uifirebase.ResetPasswordActivity"
             android:label="@string/reset_password_activity"
@@ -123,19 +109,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".uifirebase.LoginActivity" />
         </activity>
-
         <receiver android:name=".widget.XvsOAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="com.example.xvso.ACTION_DATA_UPDATED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/xvso_widget_info" />
         </receiver>
+
+        <service android:name=".widget.XvsOIntentService" />
     </application>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
