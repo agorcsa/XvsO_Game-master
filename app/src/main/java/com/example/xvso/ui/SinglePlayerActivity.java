@@ -56,45 +56,6 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_home) {
-            Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_new_round) {
-            singlePlayerViewModel.newRound();
-            singlePlayerViewModel.togglePlayer();
-            winnerIsInvisible();
-        } else if (item.getItemId() == R.id.action_new_game) {
-            singlePlayerViewModel.resetGame();
-            singlePlayerViewModel.togglePlayer();
-            winnerIsInvisible();
-            // no need to reset the score, as boardLiveData.setValue is being called on an empty board
-        } else if (item.getItemId() == R.id.action_watch_video) {
-            Intent intent = new Intent(SinglePlayerActivity.this, VideoActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_log_out) {
-            showToast(getString(R.string.log_out_menu));
-            FirebaseAuth.getInstance().signOut();
-            Intent loginIntent = new Intent(SinglePlayerActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
-        } else if (item.getItemId() == R.id.action_profile) {
-            Intent profileIntent = new Intent(SinglePlayerActivity.this, ProfileActivity.class);
-            startActivity(profileIntent);
-        } else if (item.getItemId() == R.id.action_settings) {
-            Intent settingsIntent = new Intent(SinglePlayerActivity.this, SettingsActivity.class);
-            startActivity(settingsIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void animateViews() {
         singleBinding.vsImageViewSingle.animate().alpha(0f).setDuration(3000);
 

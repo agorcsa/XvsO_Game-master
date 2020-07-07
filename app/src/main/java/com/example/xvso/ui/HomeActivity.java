@@ -101,25 +101,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_log_out_home) {
-            showToast(getString(R.string.log_out_menu));
-            FirebaseAuth.getInstance().signOut();
-            Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
     public void showHomeViews() {
         new Handler().postDelayed(new Runnable()
         {
@@ -190,7 +171,7 @@ public class HomeActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-public void writeToSharedPref() {
+    public void writeToSharedPref() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(COUNTER_PLAYER_EDIT_TEXT, editText.getText().toString());
@@ -204,6 +185,30 @@ public void writeToSharedPref() {
         if (isRocketAnimated) {
             isRocketAnimated = true;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_log_out_home) {
+            showToast(getString(R.string.log_out_menu));
+            FirebaseAuth.getInstance().signOut();
+            Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+        } else if (item.getItemId() == R.id.action_profile_home) {
+            Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(settingsIntent);
+        } else if (item.getItemId() == R.id.action_settings_home) {
+            Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

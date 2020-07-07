@@ -293,51 +293,6 @@ public class OnlineGameActivity extends AppCompatActivity {
         }, 3000);
     }
 
-    /**
-     * creates a menu in the right-up corner of the screen
-     *
-     * @param menu
-     * @return the menu itself
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    /**
-     * menu options: newRound, resetGame, watchVideo, logOut, settings
-     *
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_home) {
-            Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_new_round) {
-            onlineGameViewModel.newRound();
-        } else if (item.getItemId() == R.id.action_new_game) {
-            onlineGameViewModel.resetGame();
-            widgetPreferences.resetData(OnlineGameActivity.this);
-            widgetPreferences.updateWidgets(OnlineGameActivity.this);
-        } else if (item.getItemId() == R.id.action_watch_video) {
-            Intent intent = new Intent(OnlineGameActivity.this, VideoActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_log_out) {
-            showToast(getString(R.string.log_out_menu));
-            FirebaseAuth.getInstance().signOut();
-            Intent loginIntent = new Intent(OnlineGameActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
-        } else if (item.getItemId() == R.id.action_settings) {
-            Intent settingsIntent = new Intent(OnlineGameActivity.this, ProfileActivity.class);
-            startActivity(settingsIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     public void showToast(String message) {
 

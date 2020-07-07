@@ -1,5 +1,6 @@
 package com.example.xvso.bindingadapters;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class XvsOBindingAdapter {
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     @BindingAdapter({"actualPlayer", "hostName", "guestName"})
     public static void singlePlayerTurn(TextView textView, String actualPlayer, String hostName, String guestName) {
         if (actualPlayer != null) {
@@ -140,6 +142,7 @@ public class XvsOBindingAdapter {
 
     @BindingAdapter({"currentP", "currentU", "state", "gameResult"})
     public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell, int gameResult) {
+        //cell = new Cell();
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
                 imageView.setImageResource(R.drawable.ic_zero);

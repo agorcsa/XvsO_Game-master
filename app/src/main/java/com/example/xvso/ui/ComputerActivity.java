@@ -135,40 +135,6 @@ public class ComputerActivity extends BaseActivity {
         StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_home) {
-            Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_new_round) {
-            computerViewModel.newRound();
-            computerViewModel.togglePlayer();
-            winnerIsInvisible();
-        } else if (item.getItemId() == R.id.action_new_game) {
-            computerViewModel.resetGame();
-            computerViewModel.togglePlayer();
-            winnerIsInvisible();
-            // no need to reset the score, as boardLiveData.setValue is being called on an empty board
-        } else if (item.getItemId() == R.id.action_watch_video) {
-            Intent intent = new Intent(ComputerActivity.this, VideoActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.action_log_out) {
-            showToast(getString(R.string.log_out_menu));
-            FirebaseAuth.getInstance().signOut();
-            Intent loginIntent = new Intent(ComputerActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
-        } else if (item.getItemId() == R.id.action_settings) {
-            Intent settingsIntent = new Intent(ComputerActivity.this, ProfileActivity.class);
-            startActivity(settingsIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void winnerIsVisible() {
 

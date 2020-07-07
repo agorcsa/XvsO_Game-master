@@ -98,10 +98,10 @@
             android:name=".ui.SettingsActivity"
             android:label="@string/settings_label"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.SinglePlayerActivity">
+            android:parentActivityName=".ui.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.SinglePlayerActivity" />
+                android:value=".ui.HomeActivity" />
         </activity>
 
         <activity
