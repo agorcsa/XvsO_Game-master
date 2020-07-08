@@ -34,8 +34,6 @@
                 android:onClick="@{() -> viewModel.saveCell(0)}"
                 android:tag="0"
                 android:visibility="invisible"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(0)}" />
 
@@ -55,8 +53,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(1)}"
                 android:tag="1"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(1)}" />
 
@@ -72,8 +68,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(2)}"
                 android:tag="2"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(2)}" />
             ​
@@ -88,8 +82,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(3)}"
                 android:tag="3"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(3)}" />
             ​
@@ -108,8 +100,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(4)}"
                 android:tag="4"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(4)}" />
             ​
@@ -125,8 +115,6 @@
                 android:clickable="@{viewModel.isGameInProgress}"
                 android:onClick="@{() -> viewModel.saveCell(5)}"
                 android:tag="5"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(5)}" />
             ​
@@ -142,8 +130,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(6)}"
                 android:tag="6"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(6)}" />
             ​
@@ -163,8 +149,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(7)}"
                 android:tag="7"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(7)}" />
             ​
@@ -180,8 +164,6 @@
                 android:background="@drawable/nightsky"
                 android:onClick="@{() -> viewModel.saveCell(8)}"
                 android:tag="8"
-                app:currentP="@{viewModel.gameLiveData.currentPlayer}"
-                app:currentU="@{viewModel.userLiveData.name}"
                 app:gameResult="@{viewModel.gameLiveData.gameResult}"
                 app:state="@{viewModel.gameLiveData.board.cells.get(8)}" />
         </GridLayout>

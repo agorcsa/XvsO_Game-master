@@ -140,9 +140,8 @@ public class XvsOBindingAdapter {
         }
     }
 
-    @BindingAdapter({"currentP", "currentU", "state", "gameResult"})
-    public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell, int gameResult) {
-        //cell = new Cell();
+    @BindingAdapter({"state", "gameResult"})
+    public static void stopCheating(ImageView imageView, Cell cell, int gameResult) {
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
                 imageView.setImageResource(R.drawable.ic_zero);
