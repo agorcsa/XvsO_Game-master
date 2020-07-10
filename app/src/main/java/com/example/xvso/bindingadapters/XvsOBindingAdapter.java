@@ -140,8 +140,9 @@ public class XvsOBindingAdapter {
         }
     }
 
-    @BindingAdapter({"state", "gameResult"})
-    public static void stopCheating(ImageView imageView, Cell cell, int gameResult) {
+    @BindingAdapter({"currentP", "currentU", "state", "gameResult"})
+    public static void stopCheating(ImageView imageView, String currentPlayer, String currentUser, Cell cell, int gameResult) {
+        // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
                 imageView.setImageResource(R.drawable.ic_zero);
@@ -150,16 +151,31 @@ public class XvsOBindingAdapter {
             } else {
                 imageView.setImageResource(0);
             }
-        }
-
-        if (cell != null && gameResult == 0) {
-                if (cell.getTag() == 0) {
+            if (gameResult == 0) {
+                // The cell is clickable only if it's empty AND it's our turn
+                if (cell.getTag() == 0 && currentPlayer.equals(currentUser)) {
                     imageView.setClickable(true);
                 } else {
                     imageView.setClickable(false);
                 }
-        } else {
-            imageView.setClickable(false);
+            } else {
+                imageView.setClickable(false);
+            }
+        }
+    }
+
+
+    @BindingAdapter({"stateSinglePlayer", "gameResultSinglePlayer"})
+    public static void stopCheatingSinglePlayer(ImageView imageView, Cell cell, int gameResultSinglePlayer) {
+        // Do a null check for the whole code
+        if (cell != null) {
+            if (cell.getTag() == Team.TEAM_O) {
+                imageView.setImageResource(R.drawable.ic_zero);
+            } else if (cell.getTag() == Team.TEAM_X) {
+                imageView.setImageResource(R.drawable.ic_cross);
+            } else {
+                imageView.setImageResource(0);
+            }
         }
     }
 
