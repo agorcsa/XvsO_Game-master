@@ -1,8 +1,10 @@
 package com.example.xvso.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,7 +20,8 @@ import com.example.xvso.R;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.databinding.ActivityOnlineGameBinding;
-import com.example.xvso.uifirebase.LoginActivity;
+import com.example.xvso.uifirebase.BaseActivity;
+
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;
 import com.example.xvso.widget.Xvs0WidgetPreferences;
@@ -35,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class OnlineGameActivity extends AppCompatActivity {
+public class OnlineGameActivity extends BaseActivity {
 
     private static final String LOG_TAG = "OnlineGameActivity";
     private static final String GAME_ID = "gameId";
@@ -71,6 +74,9 @@ public class OnlineGameActivity extends AppCompatActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
+    private String emailLoggedUser;
+    private String counterPlayerName;
+
     private Xvs0WidgetPreferences widgetPreferences = new Xvs0WidgetPreferences();
 
     @Override
@@ -78,6 +84,8 @@ public class OnlineGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         startTimer();
+
+        //winnerIsInvisible();
 
         widgetPreferences.resetData(this);
         widgetPreferences.updateWidgets(getApplicationContext());
@@ -91,8 +99,13 @@ public class OnlineGameActivity extends AppCompatActivity {
             onlineGameBinding.setViewModel(onlineGameViewModel);
             onlineGameBinding.setLifecycleOwner(this);
 
+            winnerIsInvisible();
+
+            displayHostUserName();
             setInitialVisibility();
             animateViews();
+
+            showWinningText();
 
             reference.child("multiplayer").child(gameId).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -172,6 +185,7 @@ public class OnlineGameActivity extends AppCompatActivity {
         gameState = 1;
 
         reference.child("playing").child(gameId).child("turn").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("StringFormatInvalid")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
@@ -301,6 +315,7 @@ public class OnlineGameActivity extends AppCompatActivity {
 
     public void startTimer() {
         timer = new CountDownTimer(minute, interval) {
+            @SuppressLint("StringFormatInvalid")
             public void onTick(long millisUntilFinished) {
                 onlineGameBinding.timerTextView.setText(getString(R.string.time_left, millisUntilFinished / 1000));
             }
@@ -318,5 +333,91 @@ public class OnlineGameActivity extends AppCompatActivity {
             timer.cancel();
         }
         startTimer();
+    }
+
+    public void hideWinningLines() {
+        onlineGameBinding.leftVertical.setVisibility(View.INVISIBLE);
+        onlineGameBinding.centerVertical.setVisibility(View.INVISIBLE);
+        onlineGameBinding.rightVertical.setVisibility(View.INVISIBLE);
+
+        onlineGameBinding.topHorizontal.setVisibility(View.INVISIBLE);
+        onlineGameBinding.centerHorizontal.setVisibility(View.INVISIBLE);
+        onlineGameBinding.bottomHorizontal.setVisibility(View.INVISIBLE);
+
+        onlineGameBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
+        onlineGameBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
+    }
+
+    public void displayHostUserName() {
+        FirebaseUser user = getFirebaseUser();
+        emailLoggedUser = user.getEmail();
+        onlineGameBinding.player1Text.setText(convertEmailToString(emailLoggedUser));
+        //onlineGameViewModel.setHostPlayerName(convertEmailToString(emailLoggedUser));
+    }
+
+    public void showWinningText() {
+
+        onlineGameViewModel.gameLiveData.observe(this, game -> {
+            if (game.getGameResult() == 1) {
+                winnerIsVisible();
+                onlineGameBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
+            } else if (game.getGameResult() == 2) {
+                winnerIsVisible();
+                onlineGameBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
+            } else if (game.getGameResult() == 3) {
+                winnerIsVisible();
+                onlineGameBinding.showWinnerTextView.setText("It's a draw!");
+            }
+        });
+    }
+
+    private String convertEmailToString(String email) {
+        return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
+    }
+
+    public void winnerIsVisible() {
+
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                onlineGameBinding.turnSwitcherTextView.setVisibility(View.INVISIBLE);
+                hideBoard();
+                hideWinningLines();
+                onlineGameBinding.showWinnerLayout.setVisibility(View.VISIBLE);
+            }
+        };
+        handler.postDelayed(r, 1200);
+    }
+
+    public void winnerIsInvisible() {
+
+        onlineGameBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
+    }
+
+    public void onPlayAgainClick(View view) {
+        onlineGameViewModel.newRound();
+        onlineGameViewModel.togglePlayer();
+        winnerIsInvisible();
+        showBoard();
+    }
+
+    public void onResetGameClick(View view) {
+        onlineGameViewModel.resetGame();
+        onlineGameViewModel.togglePlayer();
+        winnerIsInvisible();
+        showBoard();
+    }
+
+    public void showBoard() {
+        onlineGameBinding.gridLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void hideBoard() {
+        onlineGameBinding.gridLayout.setVisibility(View.INVISIBLE);
+    }
+
+    public void onExitGame() {
+        Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }
