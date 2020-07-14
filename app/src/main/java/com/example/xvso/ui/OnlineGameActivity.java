@@ -79,6 +79,8 @@ public class OnlineGameActivity extends BaseActivity {
 
     private Xvs0WidgetPreferences widgetPreferences = new Xvs0WidgetPreferences();
 
+    private boolean isRocketAnimated;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -310,7 +312,7 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void showToast(String message) {
 
-        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
+        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT, R.style.StyleableToast).show();
     }
 
     public void startTimer() {
@@ -360,10 +362,10 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameViewModel.gameLiveData.observe(this, game -> {
             if (game.getGameResult() == 1) {
                 winnerIsVisible();
-                onlineGameBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
+                onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName());
             } else if (game.getGameResult() == 2) {
                 winnerIsVisible();
-                onlineGameBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
+                onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getGuest().getName());
             } else if (game.getGameResult() == 3) {
                 winnerIsVisible();
                 onlineGameBinding.showWinnerTextView.setText("It's a draw!");
@@ -418,6 +420,7 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void onExitGame() {
         Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+        intent.putExtra("key", false);
         startActivity(intent);
     }
 }

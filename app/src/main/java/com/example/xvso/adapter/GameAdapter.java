@@ -80,7 +80,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                 holder.joinGame.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        listener.onJoinGameClick(key);
+                        listener.onJoinGameClick(key, view);
                     }
                 });
             }
@@ -97,7 +97,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     }
 
     public interface JoinGameClick {
-        void onJoinGameClick(String key);
+        void onJoinGameClick(String key, View view);
     }
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {

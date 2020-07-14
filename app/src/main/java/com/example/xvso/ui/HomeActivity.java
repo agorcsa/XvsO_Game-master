@@ -182,8 +182,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (isRocketAnimated) {
-            isRocketAnimated = true;
+        if (getIntent() != null) {
+            Intent intent = getIntent();
+            isRocketAnimated = intent.getBooleanExtra("key", true);
+        }
+
+        if (!isRocketAnimated) {
+            animateRocket();
         }
     }
 

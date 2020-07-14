@@ -2,8 +2,10 @@ package com.example.xvso.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -96,6 +98,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     AlertDialog.Builder builder;
 
     private User guest;
+    private boolean isAlertBoxShown;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -307,7 +310,10 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                     if (!TextUtils.isEmpty(guestUID)) {
                         // Perhaps checking that the guest does not correspond to our currently logged in user?
                         if (!guest.getUID().equals(myUser.getUID())) {
-                            showAlert(key);
+                            if (!isAlertBoxShown) {
+                                showAlert(key);
+                                isAlertBoxShown = true;
+                            }
                         }
                     } else {
                         game.setStatus(Game.STATUS_WAITING);
@@ -326,7 +332,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     }
 
     @Override
-    public void onJoinGameClick(String key) {
+    public void onJoinGameClick(String key, View view) {
 
         database.getReference("multiplayer").child(key).child("guest").setValue(myUser);
 
@@ -351,6 +357,8 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
             }
         });
+        view.setClickable(false);
+        view.invalidate();
     }
 
     public String getGuestName(User user) {
