@@ -418,7 +418,7 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.gridLayout.setVisibility(View.INVISIBLE);
     }
 
-    public void onExitGame() {
+    public void onExitGame(View view) {
         Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
         intent.putExtra("key", false);
         startActivity(intent);

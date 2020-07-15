@@ -185,9 +185,7 @@ public class HomeActivity extends AppCompatActivity {
         if (getIntent() != null) {
             Intent intent = getIntent();
             isRocketAnimated = intent.getBooleanExtra("key", true);
-        }
-
-        if (!isRocketAnimated) {
+        } else {
             animateRocket();
         }
     }
