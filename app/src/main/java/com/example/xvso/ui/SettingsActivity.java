@@ -28,9 +28,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         settingsBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
         settingsBinding.setLifecycleOwner(this);
-
-        settingsBinding.volumeSeekBar.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        settingsBinding.volumeSeekBar.getThumb().setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_IN);
     }
 
     public void onBackButtonClicked(View view) {
