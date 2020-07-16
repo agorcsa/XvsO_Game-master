@@ -81,6 +81,8 @@ public class OnlineGameActivity extends BaseActivity {
 
     private boolean isRocketAnimated;
 
+    private static final String KEY = "key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -420,7 +422,7 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void onExitGame(View view) {
         Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
-        intent.putExtra("key", false);
+        intent.putExtra(KEY, true);
         startActivity(intent);
     }
 }

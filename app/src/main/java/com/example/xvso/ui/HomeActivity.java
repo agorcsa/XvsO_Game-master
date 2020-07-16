@@ -2,10 +2,8 @@ package com.example.xvso.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +27,8 @@ public class HomeActivity extends AppCompatActivity {
     private static final String LOG_TAG = "Welcome Screen";
     public static final String COUNTER_PLAYER_EDIT_TEXT = "CounterPlayer EditText";
 
+    private static final String KEY = "key";
+
     private ActivityWelcomeBinding welcomeBinding;
 
     private EditText editText;
@@ -39,15 +39,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
-
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        isRocketAnimated = sharedPrefs.getBoolean(HomeActivity.IS_ROCKET_ANIMATED, false);
-
-        if (!isRocketAnimated) {
-            animateRocket();
-        }
-
-        showHomeViews();
 
         welcomeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +109,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void animateRocket() {
         welcomeBinding.motionLayout.transitionToEnd();
-        //welcomeBinding.rocketImageView.animate().translationYBy(-2000).setDuration(3000);
         isRocketAnimated = true;
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("IS_ROCKET_ANIMATED", isRocketAnimated);
-        editor.apply();
     }
 
     public void showToast(String message) {
@@ -152,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
                         String namePlayer0 = editText.getText().toString();
                             if (!namePlayer0.isEmpty()) {
                                 showToast("Game will start against " + namePlayer0);
-                                writeToSharedPref();
+
                                 Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                                 startActivity(intent);
                             } else {
@@ -171,22 +157,14 @@ public class HomeActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void writeToSharedPref() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString(COUNTER_PLAYER_EDIT_TEXT, editText.getText().toString());
-        editor.apply();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (getIntent() != null) {
-            Intent intent = getIntent();
-            isRocketAnimated = intent.getBooleanExtra("key", true);
-        } else {
+        if (getIntent() == null || !getIntent().hasExtra(KEY)) {
             animateRocket();
+        } else {
+            welcomeBinding.motionLayout.setProgress(100f);
         }
     }
 

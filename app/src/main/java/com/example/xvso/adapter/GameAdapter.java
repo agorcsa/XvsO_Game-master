@@ -52,37 +52,39 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
             String key = currentGame.getKey();
             User host = currentGame.getHost();
-            UID = host.getUID();
 
-            User guest = currentGame.getGuest();
+            if (host != null) {
+                UID = host.getUID();
+                User guest = currentGame.getGuest();
 
-            if (!TextUtils.isEmpty(host.getImageUrl())) {
-                Picasso.get().
-                        load(host.getImageUrl()).
-                        into(holder.profilePicture);
-            }
+                if (!TextUtils.isEmpty(host.getImageUrl())) {
+                    Picasso.get().
+                            load(host.getImageUrl()).
+                            into(holder.profilePicture);
+                }
 
-            holder.gameNumber.setText(String.valueOf(position + 1));
+                holder.gameNumber.setText(String.valueOf(position + 1));
 
-            if (TextUtils.isEmpty(host.getFirstName())) {
-                holder.userName.setText(host.getName());
-            } else {
-                holder.userName.setText(host.getFirstName());
-            }
+                if (TextUtils.isEmpty(host.getFirstName())) {
+                    holder.userName.setText(host.getName());
+                } else {
+                    holder.userName.setText(host.getFirstName());
+                }
 
-            // compare the host uid with the current user uid in the adapter.
-            if (UID.equals(user.getUID())) {
-                holder.joinGame.setVisibility(View.INVISIBLE);
-                mGameItemsList.set(0, currentGame);
-            } else {
-                holder.joinGame.setText("JOIN");
-                holder.joinGame.setVisibility(View.VISIBLE);
-                holder.joinGame.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onJoinGameClick(key, view);
-                    }
-                });
+                // compare the host uid with the current user uid in the adapter.
+                if (UID.equals(user.getUID())) {
+                    holder.joinGame.setVisibility(View.INVISIBLE);
+                    mGameItemsList.set(0, currentGame);
+                } else {
+                    holder.joinGame.setText("JOIN");
+                    holder.joinGame.setVisibility(View.VISIBLE);
+                    holder.joinGame.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            listener.onJoinGameClick(key, view);
+                        }
+                    });
+                }
             }
         }
     }

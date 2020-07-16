@@ -209,6 +209,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
             game.setBoard(new Board());
             userName = game.getHost().getUserName();
             game.setUserName(userName);
+            game.setAcceptedRequest(Game.STATUS_WAITING);
             DatabaseReference newGameRef = myRef.child(MULTIPLAYER).push();
             key = newGameRef.getKey();
             game.setKey(key);
@@ -246,16 +247,19 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Game game = item.getValue(Game.class);
-
-                    mOpenGamesList.add(game);
                     User host = game.getHost();
-                    String uidHost = host.getUID();
-                    String UID = myUser.getUID();
-                    // makes sure that the host can add only one game at a time
-                    if (UID.equals(uidHost)) {
-                        newGame = true;
-                        key = item.getKey();
-                        opponentJoinedGame(key);
+                    if (host != null) {
+                        mOpenGamesList.add(game);
+                        String uidHost = host.getUID();
+                        if (myUser != null) {
+                            String UID = myUser.getUID();
+                            // makes sure that the host can add only one game at a time
+                            if (UID.equals(uidHost)) {
+                                newGame = true;
+                                key = item.getKey();
+                                opponentJoinedGame(key);
+                            }
+                        }
                     }
                 }
 
@@ -342,13 +346,16 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Integer isRequestAccepted = dataSnapshot.getValue(Integer.class);
+                if (dataSnapshot != null) {
 
-                if (isRequestAccepted == REQUEST_ACCEPTED) {
-                    startGame(key);
-                    game.setStatus(Game.STATUS_PLAYING);
-                    database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_PLAYING);
+                    Integer isRequestAccepted = dataSnapshot.getValue(Integer.class);
 
+                    if (isRequestAccepted == REQUEST_ACCEPTED) {
+                        startGame(key);
+                        game.setStatus(Game.STATUS_PLAYING);
+                        database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_PLAYING);
+
+                    }
                 }
             }
 
