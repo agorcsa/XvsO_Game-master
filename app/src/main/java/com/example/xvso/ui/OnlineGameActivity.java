@@ -1,7 +1,9 @@
 package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -82,6 +84,8 @@ public class OnlineGameActivity extends BaseActivity {
     private boolean isRocketAnimated;
 
     private static final String KEY = "key";
+
+    private boolean switchState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -417,5 +421,16 @@ public class OnlineGameActivity extends BaseActivity {
         Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
+    }
+
+    public void readFromSharedPrefs() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        switchState = sharedPref.getBoolean("switch_value", false);
+
+        SharedPreferences.OnSharedPreferenceChangeListener myPrefListner = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+
+            }
+        };
     }
 }
