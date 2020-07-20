@@ -1,8 +1,8 @@
 package com.example.xvso.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,6 +19,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private ActivitySettingsBinding settingsBinding;
 
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,5 +35,10 @@ public class SettingsActivity extends AppCompatActivity {
     public void onBackButtonClicked(View view) {
         Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
         startActivity(intent);
+    }
+
+    public void setUpMediaPlayer() {
+        mediaPlayer = MediaPlayer.create(SettingsActivity.this, R.raw.orbit);
+        mediaPlayer.start();
     }
 }

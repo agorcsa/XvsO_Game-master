@@ -125,19 +125,19 @@ public class OnlineGameActivity extends BaseActivity {
                                 // widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 1:
-                                showToast(getString(R.string.has_won, game.getHost().getName()));
+                                //showToast(getString(R.string.has_won, game.getHost().getName()));
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 2:
-                                showToast(getString(R.string.has_won, game.getGuest().getName()));
+                                //showToast(getString(R.string.has_won, game.getGuest().getName()));
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 3:
-                                showToast("It's a draw!");
+                                // showToast("It's a draw!");
                                 timer.cancel();
                                 break;
                         }
@@ -405,13 +405,6 @@ public class OnlineGameActivity extends BaseActivity {
         showBoard();
     }
 
-    public void onResetGameClick(View view) {
-        onlineGameViewModel.resetGame();
-        onlineGameViewModel.togglePlayer();
-        winnerIsInvisible();
-        showBoard();
-    }
-
     public void showBoard() {
         onlineGameBinding.gridLayout.setVisibility(View.VISIBLE);
     }
@@ -421,7 +414,7 @@ public class OnlineGameActivity extends BaseActivity {
     }
 
     public void onExitGame(View view) {
-        Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+        Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
     }

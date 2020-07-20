@@ -357,18 +357,6 @@
                 android:textSize="@dimen/text_size_large" />
 
             <Button
-                android:id="@+id/reset_game_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:background="@color/colorPrimary"
-                android:onClick="onResetGameClick"
-                android:padding="@dimen/padding_20"
-                android:text="RESET GAME"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
-
-            <Button
                 android:id="@+id/exit_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
