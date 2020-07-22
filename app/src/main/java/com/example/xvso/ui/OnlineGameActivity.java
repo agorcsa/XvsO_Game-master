@@ -4,13 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -77,15 +81,16 @@ public class OnlineGameActivity extends BaseActivity {
     private final int minute = 60000;
 
     private String emailLoggedUser;
-    private String counterPlayerName;
 
     private Xvs0WidgetPreferences widgetPreferences = new Xvs0WidgetPreferences();
 
-    private boolean isRocketAnimated;
-
     private static final String KEY = "key";
 
-    private boolean switchState;
+    MediaPlayer mediaPlayer;
+    private SoundPool soundPool;
+    private int sound1, sound2, sound3, sound4, sound5, sound6;
+
+    private static final String USER_EXIT = "user_exit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +98,29 @@ public class OnlineGameActivity extends BaseActivity {
 
         startTimer();
 
-        //winnerIsInvisible();
-
         widgetPreferences.resetData(this);
         widgetPreferences.updateWidgets(getApplicationContext());
+
+        SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
+        boolean value = sharedPref.getBoolean("switch_value", false);
+        if (value) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build();
+                soundPool = new SoundPool.Builder()
+                        .setMaxStreams(2)
+                        .setAudioAttributes(audioAttributes)
+                        .build();
+            } else {
+                soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+            }
+            sound2 = soundPool.load(this, R.raw.orbit, 1); // load a sound into SoundPool, but doesn't play it
+            mediaPlayer = MediaPlayer.create(this, R.raw.orbitbeat);
+            mediaPlayer.start(); // play background music
+        }
+
 
         if (getIntent().getExtras() != null) {
 
@@ -376,8 +400,24 @@ public class OnlineGameActivity extends BaseActivity {
                 winnerIsVisible();
                 onlineGameBinding.showWinnerTextView.setText("It's a draw!");
             }
+
+            if (game.getStatus() == Game.STATUS_USER_EXIT) {
+                // Show the Toast
+                showToast("Your counterpart has left the game!");
+
+                Handler handler = new Handler();
+                final Runnable r = new Runnable() {
+                    public void run() {
+                        Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
+                        intent.putExtra(KEY, true);
+                        startActivity(intent);
+                    }
+                };
+                handler.postDelayed(r, 1200);
+            }
         });
     }
+
 
     private String convertEmailToString(String email) {
         return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
@@ -417,20 +457,15 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.gridLayout.setVisibility(View.INVISIBLE);
     }
 
-    public void onExitGame(View view) {
-        Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
-        intent.putExtra(KEY, true);
-        startActivity(intent);
+    public void startMediaPlayer() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.orbit);
+        mediaPlayer.start();
     }
 
-    public void readFromSharedPrefs() {
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        switchState = sharedPref.getBoolean("switch_value", false);
+    public void onDestroy() {
+        super.onDestroy();
 
-        SharedPreferences.OnSharedPreferenceChangeListener myPrefListner = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-
-            }
-        };
+        mediaPlayer.release();
+        soundPool.release();
     }
 }

@@ -362,8 +362,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:padding="@dimen/padding_20"
-                android:onClick="onExitGame"
                 android:text="EXIT GAME"
+                android:onClick="@{() -> viewModel.exitGame()}"
                 android:textSize="@dimen/text_size_large"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:textColor="@android:color/white" />

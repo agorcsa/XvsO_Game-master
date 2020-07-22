@@ -2,6 +2,8 @@ package com.example.xvso.viewmodel;
 
 
 import android.os.Build;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
@@ -19,9 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
+
 
 public class OnlineGameViewModel extends BaseViewModel {
 
@@ -33,6 +35,7 @@ public class OnlineGameViewModel extends BaseViewModel {
     private DatabaseReference query;
     private MutableLiveData<ArrayList<Cell>> boardLiveData = new MutableLiveData<>();
     private Game game = new Game();
+
     public LiveData<Game> gameLiveData;
 
     private String gameID = "";
@@ -217,6 +220,18 @@ public class OnlineGameViewModel extends BaseViewModel {
     public void timeUp() {
         game = gameLiveData.getValue();
         game.setGameResult(3);
+        query.setValue(game);
+    }
+
+    /*This also requires you to update the value of the game status in Firebase.
+    To do this you could call a method in the ViewModel in response to the button click, set the game status accordingly, and push to Firebase.
+    So, before pushing the game to Firebase, you can call this line (assuming you have a constant for STATUS_USER_EXIT in the Game class)
+game.setStatus(Game.STATUS_USER_EXIT);*/
+
+
+    public void exitGame() {
+        game = gameLiveData.getValue();
+        game.setStatus(Game.STATUS_USER_EXIT);
         query.setValue(game);
     }
 }

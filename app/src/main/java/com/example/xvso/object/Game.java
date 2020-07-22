@@ -6,6 +6,7 @@ public class Game {
     public static final int STATUS_WAITING = 0;
     public static final int STATUS_PLAYING = 1;
     public static final int STATUS_FINISHED = 2;
+    public static final int STATUS_USER_EXIT = 3;
 
     private Board board;
     private WinningLines winningLines = new WinningLines(0, 0, 0, 0, 0, 0, 0, 0);
@@ -30,6 +31,8 @@ public class Game {
 
     private int roundCount;
 
+    private int exitUser;
+
     // empty constructor
     public Game() {
 
@@ -42,7 +45,8 @@ public class Game {
                 String currentPlayer, int gameResult,
                 int guestScore, int hostScore,
                 int roundCount,
-                WinningLines winningLines) {
+                WinningLines winningLines,
+                int exitUser) {
 
         this.board = board;
         this.host = host;
@@ -59,31 +63,18 @@ public class Game {
         this.hostScore = hostScore;
         this.roundCount = roundCount;
         this.winningLines = winningLines;
+        this.exitUser = exitUser;
     }
 
-    public String getCurrentPlayer() {
-        return currentPlayer;
-    }
+    public Game(int picture, String gameNumber, String userName, int acceptedRequest, int roundCount, WinningLines winningLines, int exitUser) {
 
-    public void setCurrentPlayer(String currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    public int getGameResult() {
-        return gameResult;
-    }
-
-    public void setGameResult(int gameResult) {
-        this.gameResult = gameResult;
-    }
-
-    public Game(int picture, String gameNumber, String userName, int acceptedRequest, int roundCount, WinningLines winningLines) {
         this.picture = picture;
         this.gameNumber = gameNumber;
         this.userName = userName;
         this.acceptedRequest = acceptedRequest;
         this.roundCount = roundCount;
         this.winningLines = winningLines;
+        this.exitUser = exitUser;
     }
 
     // constructor
@@ -93,7 +84,9 @@ public class Game {
                 String gameNumber, String userName,
                 String key, int acceptedRequest,
                 int roundCount,
-                WinningLines winningLines) {
+                WinningLines winningLines,
+                int exitUser) {
+
         this.board = board;
         this.host = host;
         this.guest = guest;
@@ -105,6 +98,7 @@ public class Game {
         this.acceptedRequest = acceptedRequest;
         this.roundCount = roundCount;
         this.winningLines = winningLines;
+        this.exitUser = exitUser;
     }
 
     public Board getBoard() {
@@ -209,6 +203,30 @@ public class Game {
 
     public void setRoundCount(int roundCount) {
         this.roundCount = roundCount;
+    }
+
+    public int getExitUser() {
+        return exitUser;
+    }
+
+    public void setExitUser(int exitUser) {
+        this.exitUser = exitUser;
+    }
+
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(String currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public int getGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(int gameResult) {
+        this.gameResult = gameResult;
     }
 }
 
