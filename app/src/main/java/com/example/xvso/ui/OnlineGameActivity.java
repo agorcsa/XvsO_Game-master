@@ -14,7 +14,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -117,10 +116,13 @@ public class OnlineGameActivity extends BaseActivity {
                 soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
             }
             sound2 = soundPool.load(this, R.raw.orbit, 1); // load a sound into SoundPool, but doesn't play it
+            sound3 = soundPool.load(this, R.raw.orbitbeat, 2);
+            sound4 = soundPool.load(this, R.raw.spaceloop, 3);
+            sound5 = soundPool.load(this, R.raw.moongarden, 4);
+
             mediaPlayer = MediaPlayer.create(this, R.raw.orbitbeat);
             mediaPlayer.start(); // play background music
         }
-
 
         if (getIntent().getExtras() != null) {
 
@@ -384,9 +386,9 @@ public class OnlineGameActivity extends BaseActivity {
         FirebaseUser user = getFirebaseUser();
         emailLoggedUser = user.getEmail();
         onlineGameBinding.player1Text.setText(convertEmailToString(emailLoggedUser));
-        //onlineGameViewModel.setHostPlayerName(convertEmailToString(emailLoggedUser));
     }
 
+    // shows winning text according to the gameResult
     public void showWinningText() {
 
         onlineGameViewModel.gameLiveData.observe(this, game -> {
@@ -401,10 +403,11 @@ public class OnlineGameActivity extends BaseActivity {
                 onlineGameBinding.showWinnerTextView.setText("It's a draw!");
             }
 
+            // runs when the EXIT button is clicked
             if (game.getStatus() == Game.STATUS_USER_EXIT) {
-                // Show the Toast
+                // Shows the Toast
                 showToast("Your counterpart has left the game!");
-
+                // Starts the OnlineUsersActivity  with 2 seconds delay
                 Handler handler = new Handler();
                 final Runnable r = new Runnable() {
                     public void run() {
@@ -413,7 +416,15 @@ public class OnlineGameActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 };
-                handler.postDelayed(r, 1200);
+                handler.postDelayed(r, 2000);
+            }
+
+            if (game.getStatus() == Game.STATUS_PLAY_AGAIN) {
+                showToast("A new round will start!");
+                onlineGameViewModel.newRound();
+                onlineGameViewModel.togglePlayer();
+                winnerIsInvisible();
+                showBoard();
             }
         });
     }
@@ -434,7 +445,7 @@ public class OnlineGameActivity extends BaseActivity {
                 onlineGameBinding.showWinnerLayout.setVisibility(View.VISIBLE);
             }
         };
-        handler.postDelayed(r, 1200);
+        handler.postDelayed(r, 2000);
     }
 
     public void winnerIsInvisible() {
@@ -455,11 +466,6 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void hideBoard() {
         onlineGameBinding.gridLayout.setVisibility(View.INVISIBLE);
-    }
-
-    public void startMediaPlayer() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.orbit);
-        mediaPlayer.start();
     }
 
     public void onDestroy() {

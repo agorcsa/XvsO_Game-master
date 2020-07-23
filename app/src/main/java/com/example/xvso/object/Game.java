@@ -7,6 +7,7 @@ public class Game {
     public static final int STATUS_PLAYING = 1;
     public static final int STATUS_FINISHED = 2;
     public static final int STATUS_USER_EXIT = 3;
+    public static final int STATUS_PLAY_AGAIN = 4;
 
     private Board board;
     private WinningLines winningLines = new WinningLines(0, 0, 0, 0, 0, 0, 0, 0);
@@ -14,6 +15,7 @@ public class Game {
     private User host;
     private User guest;
     private int status;
+    private int playAgain;
 
     private int picture;
     private String gameNumber;
@@ -46,7 +48,7 @@ public class Game {
                 int guestScore, int hostScore,
                 int roundCount,
                 WinningLines winningLines,
-                int exitUser) {
+                int exitUser, int playAgain) {
 
         this.board = board;
         this.host = host;
@@ -64,9 +66,10 @@ public class Game {
         this.roundCount = roundCount;
         this.winningLines = winningLines;
         this.exitUser = exitUser;
+        this.playAgain = playAgain;
     }
 
-    public Game(int picture, String gameNumber, String userName, int acceptedRequest, int roundCount, WinningLines winningLines, int exitUser) {
+    public Game(int picture, String gameNumber, String userName, int acceptedRequest, int roundCount, WinningLines winningLines, int exitUser, int playAgain) {
 
         this.picture = picture;
         this.gameNumber = gameNumber;
@@ -75,6 +78,7 @@ public class Game {
         this.roundCount = roundCount;
         this.winningLines = winningLines;
         this.exitUser = exitUser;
+        this.playAgain = playAgain;
     }
 
     // constructor
@@ -85,7 +89,7 @@ public class Game {
                 String key, int acceptedRequest,
                 int roundCount,
                 WinningLines winningLines,
-                int exitUser) {
+                int exitUser, int playAgain) {
 
         this.board = board;
         this.host = host;
@@ -99,6 +103,7 @@ public class Game {
         this.roundCount = roundCount;
         this.winningLines = winningLines;
         this.exitUser = exitUser;
+        this.playAgain = playAgain;
     }
 
     public Board getBoard() {
@@ -227,6 +232,14 @@ public class Game {
 
     public void setGameResult(int gameResult) {
         this.gameResult = gameResult;
+    }
+
+    public int getPlayAgain() {
+        return playAgain;
+    }
+
+    public void setPlayAgain(int playAgain) {
+        this.playAgain = playAgain;
     }
 }
 

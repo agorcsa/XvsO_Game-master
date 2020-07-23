@@ -1,7 +1,11 @@
 package com.example.xvso.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -39,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
+
+        playRocketSound();
 
         welcomeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +196,17 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(settingsIntent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void playRocketSound() {
+        SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
+        boolean value = sharedPref.getBoolean(SettingsActivity.SWITCH_VALUE_SOUND, false);
+        if (value) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.rocket);
+                mediaPlayer.start(); // play rocket sound
+            }
+        }
     }
 }
 

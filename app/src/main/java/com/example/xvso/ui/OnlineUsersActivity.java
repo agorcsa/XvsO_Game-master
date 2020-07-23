@@ -1,8 +1,15 @@
 package com.example.xvso.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -116,6 +123,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         mAuth = FirebaseAuth.getInstance();
 
         buildRecyclerView(currentUser);
+
 
         myRef.getRoot().child("users").addValueEventListener(new ValueEventListener() {
             @Override

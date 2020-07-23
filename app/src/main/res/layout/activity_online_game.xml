@@ -350,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:background="@color/colorPrimary"
-                android:onClick="onPlayAgainClick"
+                android:onClick="@{() -> viewModel.playGame()}"
                 android:padding="@dimen/margin_20"
                 android:text="PLAY AGAIN"
                 android:textColor="@android:color/white"

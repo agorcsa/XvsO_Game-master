@@ -185,14 +185,12 @@ public class OnlineGameViewModel extends BaseViewModel {
         }
     }
 
-
     public void gameEnded(){
         isGameInProgress.postValue(false);
         updateScore();
     }
 
     public void newRound() {
-
         game = gameLiveData.getValue();
         game.setBoard(new Board());
         game.setWinningLines(new WinningLines());
@@ -201,33 +199,17 @@ public class OnlineGameViewModel extends BaseViewModel {
         query.setValue(game);
     }
 
-    public void resetGame(){
-
-        game = gameLiveData.getValue();
-        game.setBoard(new Board());
-        game.setWinningLines(new WinningLines());
-        game.setGameResult(0);
-        game.setRoundCount(0);
-        query.setValue(game);
-        resetScore();
-    }
-
-    public void resetScore() {
-        game.setHostScore(0);
-        game.setGuestScore(0);
-    }
-
     public void timeUp() {
         game = gameLiveData.getValue();
         game.setGameResult(3);
         query.setValue(game);
     }
 
-    /*This also requires you to update the value of the game status in Firebase.
-    To do this you could call a method in the ViewModel in response to the button click, set the game status accordingly, and push to Firebase.
-    So, before pushing the game to Firebase, you can call this line (assuming you have a constant for STATUS_USER_EXIT in the Game class)
-game.setStatus(Game.STATUS_USER_EXIT);*/
-
+    public void playGame() {
+        game = gameLiveData.getValue();
+        game.setPlayAgain(Game.STATUS_PLAY_AGAIN);
+        query.setValue(game);
+    }
 
     public void exitGame() {
         game = gameLiveData.getValue();
