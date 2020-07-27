@@ -257,7 +257,9 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                     Game game = item.getValue(Game.class);
                     User host = game.getHost();
                     if (host != null) {
-                        mOpenGamesList.add(game);
+                        if (!host.getName().equals(myUser.getName())) {
+                            mOpenGamesList.add(game);
+                        }
                         String uidHost = host.getUID();
                         if (myUser != null) {
                             String UID = myUser.getUID();

@@ -391,26 +391,30 @@ public class OnlineGameActivity extends BaseActivity {
     // shows winning text according to the gameResult
     public void showWinningText() {
 
+
         onlineGameViewModel.gameLiveData.observe(this, game -> {
-            if (game.getGameResult() == 1) {
-                winnerIsVisible();
-                onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName());
-            } else if (game.getGameResult() == 2) {
-                winnerIsVisible();
-                onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getGuest().getName());
-            } else if (game.getGameResult() == 3) {
-                winnerIsVisible();
-                onlineGameBinding.showWinnerTextView.setText("It's a draw!");
+            if (game.getStatus() == Game.STATUS_ROUND_FINISHED) {
+                if (game.getGameResult() == 1) {
+                    winnerIsVisible();
+                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName());
+                } else if (game.getGameResult() == 2) {
+                    winnerIsVisible();
+                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getGuest().getName());
+                } else if (game.getGameResult() == 3) {
+                    winnerIsVisible();
+                    onlineGameBinding.showWinnerTextView.setText("It's a draw!");
+                }
             }
 
             // runs when the EXIT button is clicked
             if (game.getStatus() == Game.STATUS_USER_EXIT) {
-                // Shows the Toast
-                showToast("Your counterpart has left the game!");
+
                 // Starts the OnlineUsersActivity  with 2 seconds delay
                 Handler handler = new Handler();
                 final Runnable r = new Runnable() {
                     public void run() {
+                        // Shows the Toast
+                        showToast("Your counterpart has left the game!");
                         Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
                         intent.putExtra(KEY, true);
                         startActivity(intent);

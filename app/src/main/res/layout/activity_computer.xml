@@ -91,8 +91,6 @@
                 app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
                 app:computerState="@{viewModel.gameLiveData.board.cells.get(3)}"/>
 
-
-
             <!-- Cell 4 (center) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_5_computer"
@@ -166,7 +164,6 @@
                 app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
                 app:computerState="@{viewModel.gameLiveData.board.cells.get(7)}"/>
 
-            ​
             <!-- Cell 8 (right-down) -->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/block_9_computer"
@@ -206,9 +203,19 @@
                 style="@style/WrapContent"
                 android:layout_marginTop="@dimen/margin_20"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/time_left_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time left"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/timer_text_view_computer" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -233,6 +240,7 @@
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
         </RelativeLayout>
@@ -345,10 +353,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/show_winner_text_view"
                 android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/capsule_button"
                 android:onClick="onPlayAgainClick"
                 android:padding="@dimen/margin_20"
-                android:text="PLAY AGAIN"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large" />
 

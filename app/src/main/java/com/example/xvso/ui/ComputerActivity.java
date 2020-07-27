@@ -1,12 +1,13 @@
 package com.example.xvso.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
@@ -17,9 +18,7 @@ import com.example.xvso.databinding.ActivityComputerBinding;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.uifirebase.BaseActivity;
-import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.ComputerViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.muddzdev.styleabletoast.StyleableToast;
 
@@ -37,6 +36,10 @@ public class ComputerActivity extends BaseActivity {
 
     private final Handler handler = new Handler();
 
+    private CountDownTimer timer = null;
+    private final int interval = 1000;
+    private final int minute = 60000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,14 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel = ViewModelProviders.of(this).get(ComputerViewModel.class);
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
+
+        // hides status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // hides action bar
+        getSupportActionBar().hide();
+
+        // starts the round timer
+        startTimer();
 
         winnerIsInvisible();
 
@@ -253,6 +264,21 @@ public class ComputerActivity extends BaseActivity {
 
         computerBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
         computerBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
+    }
+
+    public void startTimer() {
+        timer = new CountDownTimer(minute, interval) {
+            @SuppressLint("StringFormatInvalid")
+            public void onTick(long millisUntilFinished) {
+                computerBinding.timerTextViewComputer.setText(getString(R.string.time_left, millisUntilFinished / 1000));
+            }
+
+            public void onFinish() {
+                computerBinding.timerTextViewComputer.setText(getResources().getString(R.string.game_over));
+                computerViewModel.timeUp();
+            }
+        };
+        timer.start();
     }
 
 }

@@ -5,9 +5,10 @@ public class Game {
     // game status constants
     public static final int STATUS_WAITING = 0;
     public static final int STATUS_PLAYING = 1;
-    public static final int STATUS_FINISHED = 2;
-    public static final int STATUS_USER_EXIT = 3;
-    public static final int STATUS_PLAY_AGAIN = 4;
+    public static final int STATUS_GAME_FINISHED = 2;
+    public static final int STATUS_ROUND_FINISHED = 3;
+    public static final int STATUS_USER_EXIT = 4;
+    public static final int STATUS_PLAY_AGAIN = 5;
 
     private Board board;
     private WinningLines winningLines = new WinningLines(0, 0, 0, 0, 0, 0, 0, 0);

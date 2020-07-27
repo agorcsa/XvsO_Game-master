@@ -1,5 +1,6 @@
 package com.example.xvso.adapter;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +85,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                             listener.onJoinGameClick(key, view);
                         }
                     });
+                }
+
+                if (currentGame.getStatus() == Game.STATUS_WAITING) {
+                    holder.itemView.setBackgroundColor(Color.GREEN);
+                } else {
+                    holder.itemView.setBackgroundColor(Color.GRAY);
                 }
             }
         }

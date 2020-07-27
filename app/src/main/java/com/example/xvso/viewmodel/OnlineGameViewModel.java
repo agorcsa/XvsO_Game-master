@@ -88,14 +88,17 @@ public class OnlineGameViewModel extends BaseViewModel {
 
         if (board.getCells().get(0).getTag() == team && board.getCells().get(1).getTag() == team && board.getCells().get(2).getTag() == team) {
             game.getWinningLines().setTopHorizontalLine(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else if (board.getCells().get(3).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(5).getTag() == team) {
             game.getWinningLines().setCenterHorizontal(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else if (board.getCells().get(6).getTag() == team && board.getCells().get(7).getTag() == team && board.getCells().get(8).getTag() == team) {
             game.getWinningLines().setBottomHorizontal(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else {
@@ -116,14 +119,17 @@ public class OnlineGameViewModel extends BaseViewModel {
         Board board = game.getBoard();
         if (board.getCells().get(0).getTag() == team && board.getCells().get(3).getTag() == team && board.getCells().get(6).getTag() == team) {
             game.getWinningLines().setLeftVertical(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else if (board.getCells().get(1).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(7).getTag() == team) {
             game.getWinningLines().setCenterVertical(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(5).getTag() == team && board.getCells().get(8).getTag() == team) {
             game.getWinningLines().setRightVertical(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else {
@@ -145,10 +151,12 @@ public class OnlineGameViewModel extends BaseViewModel {
         
         if (board.getCells().get(0).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(8).getTag() == team) {
             game.getWinningLines().setLeftRightDiagonal(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else if (board.getCells().get(2).getTag() == team && board.getCells().get(4).getTag() == team && board.getCells().get(6).getTag() == team) {
             game.getWinningLines().setRightLeftDiagonal(1);
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return true;
         } else {
@@ -160,15 +168,16 @@ public class OnlineGameViewModel extends BaseViewModel {
         game = gameLiveData.getValue();
         if (checkRows() || checkColumns() || checkDiagonals()) {
             if (auth.getCurrentUser().getUid().equals(game.getHost().getUID())) {
-
                 game.setGameResult(1);
                 game.setHostScore(game.getHostScore() + 1);
+                game.setStatus(Game.STATUS_ROUND_FINISHED);
                 query.setValue(game);
 
             } else {
 
                 game.setGameResult(2);
                 game.setGuestScore(game.getGuestScore() + 1);
+                game.setStatus(Game.STATUS_ROUND_FINISHED);
                 query.setValue(game);
 
             }
@@ -180,6 +189,7 @@ public class OnlineGameViewModel extends BaseViewModel {
                 }
             }
             game.setGameResult(3); // draw
+            game.setStatus(Game.STATUS_ROUND_FINISHED);
             query.setValue(game);
             return false;
         }
@@ -196,6 +206,7 @@ public class OnlineGameViewModel extends BaseViewModel {
         game.setWinningLines(new WinningLines());
         game.setGameResult(0);
         game.setRoundCount(game.getRoundCount() + 1);
+        game.setStatus(Game.STATUS_ROUND_FINISHED);
         query.setValue(game);
     }
 
@@ -207,13 +218,17 @@ public class OnlineGameViewModel extends BaseViewModel {
 
     public void playGame() {
         game = gameLiveData.getValue();
-        game.setPlayAgain(Game.STATUS_PLAY_AGAIN);
+        game.setStatus(Game.STATUS_PLAY_AGAIN);
+        game.setWinningLines(new WinningLines());
         query.setValue(game);
     }
 
     public void exitGame() {
         game = gameLiveData.getValue();
         game.setStatus(Game.STATUS_USER_EXIT);
+        query.setValue(game);
+        game.setStatus(Game.STATUS_GAME_FINISHED);
+        game.setWinningLines(new WinningLines());
         query.setValue(game);
     }
 }
