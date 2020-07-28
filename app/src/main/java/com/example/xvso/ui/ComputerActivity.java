@@ -22,6 +22,7 @@ import com.example.xvso.viewmodel.ComputerViewModel;
 import com.google.firebase.auth.FirebaseUser;
 import com.muddzdev.styleabletoast.StyleableToast;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class ComputerActivity extends BaseActivity {
@@ -270,15 +271,15 @@ public class ComputerActivity extends BaseActivity {
         timer = new CountDownTimer(minute, interval) {
             @SuppressLint("StringFormatInvalid")
             public void onTick(long millisUntilFinished) {
-                computerBinding.timerTextViewComputer.setText(getString(R.string.time_left, millisUntilFinished / 1000));
+                int remaining = (int) ((millisUntilFinished / 1000) % 60);
+                String clock = String.format(Locale.US, "00:%02d", remaining);
+                computerBinding.timerTextViewComputer.setText(clock);
             }
 
             public void onFinish() {
-                computerBinding.timerTextViewComputer.setText(getResources().getString(R.string.game_over));
                 computerViewModel.timeUp();
             }
         };
         timer.start();
     }
-
 }

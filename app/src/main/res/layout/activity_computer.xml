@@ -56,8 +56,8 @@
                 app:presentPlayer="@{viewModel.gameLiveData.currentPlayer}"
                 app:presentUser="@{viewModel.userLiveData.name}"
                 app:computerGameResult="@{viewModel.gameLiveData.gameResult}"
-                app:computerState="@{viewModel.gameLiveData.board.cells.get(1)}"
-                />
+                app:computerState="@{viewModel.gameLiveData.board.cells.get(1)}" />
+
 
             <!-- Cell 2 (right-up) -->
             <androidx.appcompat.widget.AppCompatImageView
@@ -185,12 +185,13 @@
         <TextView
             android:id="@+id/turn_switcher_text_view_computer"
             style="@style/WrapContent"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_xlarge"
             android:contentDescription="@string/turn_order"
             android:textColor="@color/white"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="140dp"
             android:layout_marginBottom="@dimen/margin_40"
             android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-thin"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
             app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
@@ -227,7 +228,8 @@
                 style="@style/WrapContent"
                 android:text="@string/player_x"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginTop="80dp"
+                android:fontFamily="sans-serif-condensed"
                 android:hint="@string/player_x"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
@@ -237,8 +239,9 @@
                 android:id="@+id/computer_player2_text"
                 style="@style/WrapContent"
                 android:text="Computer:"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginTop="80dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
@@ -347,30 +350,28 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <ImageView
                 android:id="@+id/play_again_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_below="@+id/show_winner_text_view"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/capsule_button"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
                 android:onClick="onPlayAgainClick"
-                android:padding="@dimen/margin_20"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
+                app:srcCompat="@drawable/capsule_button" />
 
-            <Button
+            <ImageView
                 android:id="@+id/reset_game_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="700dp"
+                android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
                 android:onClick="onResetGameClick"
                 android:padding="@dimen/padding_20"
-                android:text="RESET GAME"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"
+                app:srcCompat="@drawable/capsule_buton_start_game" />
 
             <TextView
                 android:id="@+id/show_winner_text_view"
@@ -378,8 +379,19 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginBottom="@dimen/margin_20"
+                android:fontFamily="sans-serif-medium"
                 android:background="@android:color/transparent"
                 android:textSize="@dimen/text_size_xlarge" />
         </RelativeLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit to menu"
+            android:onClick="onBackButtonClicked"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_gravity="center|bottom"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent" />
     </FrameLayout>
 </layout>

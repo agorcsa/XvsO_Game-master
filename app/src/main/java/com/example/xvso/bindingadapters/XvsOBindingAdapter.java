@@ -24,9 +24,9 @@ public class XvsOBindingAdapter {
     public static void showCurrentPlayerTurn(TextView textView, String currentPlayer, String currentUser) {
         if (currentPlayer != null && currentUser != null) {
             if (currentPlayer.equals(currentUser)) {
-                textView.setText("My turn");
+                textView.setText("It's your move!");
             } else {
-                textView.setText(currentPlayer + " has the turn");
+                textView.setText(currentPlayer + " has the move!");
             }
         }
     }

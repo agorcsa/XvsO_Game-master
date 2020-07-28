@@ -14,5 +14,5 @@
             </item>
         </selector>
     </item>
-    <item android:drawable="@drawable/ic_baseline_refresh_24" />
+    <item android:drawable="@drawable/ic_baseline_autorenew_24" />
 </layer-list>

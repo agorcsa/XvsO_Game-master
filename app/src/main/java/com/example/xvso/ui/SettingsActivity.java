@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onBackButtonClicked(View view) {
-        Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, OnlineUsersActivity.class);
         startActivity(intent);
     }
 
