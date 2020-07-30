@@ -129,7 +129,7 @@
 
     <!-- activity_online_game -->
     <string name="turn_order">Your turn</string>
-    <string name="players_turn">%1$s \'s turn</string>
+    <string name="players_turn">%1$s has the move</string>
     <string name="game_over">00:00</string>
     <string name="time_left">00:%1$d</string>
 
@@ -155,5 +155,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
 
 </resources>

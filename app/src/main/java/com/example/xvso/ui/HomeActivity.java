@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -142,6 +143,7 @@ public class HomeActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String namePlayer0 = editText.getText().toString();
+                        writeGuestNameToSharedPrefs(namePlayer0);
                             if (!namePlayer0.isEmpty()) {
                                 showToast("Game will start against " + namePlayer0);
 
@@ -162,6 +164,14 @@ public class HomeActivity extends AppCompatActivity {
                 });
         alertDialog.show();
     }
+
+    public void writeGuestNameToSharedPrefs(String string) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(COUNTER_PLAYER_EDIT_TEXT, string);
+        editor.apply();
+    }
+
 
     @Override
     protected void onResume() {

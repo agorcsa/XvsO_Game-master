@@ -30,7 +30,7 @@ public class ComputerViewModel extends BaseViewModel {
 
     private ArrayList<Integer> preferredMoves = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
-    private ArrayList<Integer> computerTime = new ArrayList<>(Arrays.asList(100, 300, 500, 1000, 1200, 1500, 200, 800, 700));
+    private ArrayList<Integer> computerTime = new ArrayList<>(Arrays.asList(500, 1000, 500, 1000, 500, 1000, 500, 1000, 500));
 
     final Handler handler = new Handler();
 

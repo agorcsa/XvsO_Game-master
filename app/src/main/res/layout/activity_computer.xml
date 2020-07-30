@@ -188,7 +188,7 @@
             android:textSize="@dimen/text_size_xlarge"
             android:contentDescription="@string/turn_order"
             android:textColor="@color/white"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="150dp"
             android:layout_marginBottom="@dimen/margin_40"
             android:layout_gravity="center_horizontal"
             android:fontFamily="sans-serif-thin"
@@ -223,25 +223,54 @@
             style="@style/WrapContent">
 
             <!-- Player1 -->
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_1"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:contentDescription="@string/profile_image"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+
             <TextView
                 android:id="@+id/computer_player1_text"
                 style="@style/WrapContent"
                 android:text="@string/player_x"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="80dp"
+                android:layout_below="@+id/profile_picture_player_1"
+                android:layout_marginStart="@dimen/margin_20"
                 android:fontFamily="sans-serif-condensed"
                 android:hint="@string/player_x"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
 
             <!-- Player2 -->
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_2"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginRight="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/profile_image"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+
             <TextView
                 android:id="@+id/computer_player2_text"
                 style="@style/WrapContent"
                 android:text="Computer:"
                 android:fontFamily="sans-serif-condensed"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:layout_marginTop="80dp"
+                android:layout_below="@id/profile_picture_player_2"
                 android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
@@ -363,12 +392,11 @@
 
             <ImageView
                 android:id="@+id/reset_game_button"
-                android:layout_width="700dp"
+                android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:onClick="onResetGameClick"
-                android:padding="@dimen/padding_20"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_large"
                 app:srcCompat="@drawable/capsule_buton_start_game" />
@@ -381,14 +409,15 @@
                 android:layout_marginBottom="@dimen/margin_20"
                 android:fontFamily="sans-serif-medium"
                 android:background="@android:color/transparent"
-                android:textSize="@dimen/text_size_xlarge" />
+                android:textSize="@dimen/text_size_large" />
         </RelativeLayout>
 
         <Button
+            android:id="@+id/exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exit to menu"
-            android:onClick="onBackButtonClicked"
+            android:onClick="onExitClicked"
             android:layout_marginBottom="@dimen/margin_20"
             android:layout_gravity="center|bottom"
             android:textColor="@color/colorPrimary"

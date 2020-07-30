@@ -172,11 +172,12 @@
         <TextView
             android:id="@+id/turn_switcher_text_view_single"
             style="@style/WrapContent"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_xlarge"
             android:contentDescription="@string/turn_order"
             android:textColor="@color/white"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="150dp"
             android:layout_marginBottom="@dimen/margin_40"
+            android:fontFamily="sans-serif-medium"
             android:layout_gravity="center_horizontal"
             app:hostName="@{viewModel.gameLiveData.host.name}"
             app:guestName="@{viewModel.gameLiveData.guest.name}"
@@ -190,53 +191,98 @@
                 style="@style/WrapContent"
                 android:layout_marginTop="@dimen/margin_20"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/time_left_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time left"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/timer_text_view_single" />
         </RelativeLayout>
+
 
         <RelativeLayout
             style="@style/MatchWrap">
 
             <!-- Player1 -->
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_1"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:contentDescription="@string/profile_image"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+
             <TextView
                 android:id="@+id/single_player1_text"
                 style="@style/WrapContent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginStart="@dimen/margin_20"
                 android:hint="@string/player_x"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large"
+                android:layout_below="@id/profile_picture_player_1"
                 android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/player1_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_toRightOf="@id/single_player1_text"
-                android:layout_marginTop="@dimen/margin_40"
                 android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"
                 android:textSize="@dimen/text_size_large"
+                android:layout_below="@id/profile_picture_player_1"
                 android:visibility="invisible" />
 
             <!-- Player2 -->
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_2"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginRight="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/profile_image"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+
             <TextView
                 android:id="@+id/single_player2_text"
                 style="@style/WrapContent"
                 android:layout_marginEnd="5dp"
-                android:layout_marginTop="@dimen/margin_40"
                 android:textColor="@color/white"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_toLeftOf="@id/player2_score_text_view"
                 android:textSize="@dimen/text_size_large"
+                android:layout_below="@+id/profile_picture_player_2"
                 android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/player2_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_40"
                 android:layout_alignParentEnd="true"
                 android:textSize="@dimen/text_size_large"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_below="@id/profile_picture_player_2"
                 android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}"
                 android:visibility="invisible" />
         </RelativeLayout>
@@ -343,31 +389,27 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <ImageView
                 android:id="@+id/play_again_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_below="@+id/show_winner_text_view"
                 android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
                 android:onClick="onPlayAgainClick"
-                android:padding="@dimen/margin_20"
-                android:text="PLAY AGAIN"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
+                app:srcCompat="@drawable/capsule_button" />
 
-            <Button
+            <ImageView
                 android:id="@+id/reset_game_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
                 android:onClick="onResetGameClick"
-                android:padding="@dimen/padding_20"
-                android:text="RESET GAME"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"
+                app:srcCompat="@drawable/capsule_buton_start_game" />
 
             <TextView
                 android:id="@+id/show_winner_text_view"
@@ -375,8 +417,20 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginBottom="@dimen/margin_20"
+                android:fontFamily="sans-serif-medium"
                 android:background="@android:color/transparent"
-                android:textSize="@dimen/text_size_xlarge" />
+                android:textSize="@dimen/text_size_large" />
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/exit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit to menu"
+            android:onClick="onExitClicked"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_gravity="center|bottom"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent" />
     </FrameLayout>
 </layout>

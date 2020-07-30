@@ -1,14 +1,17 @@
 package com.example.xvso.ui;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
@@ -18,12 +21,11 @@ import com.example.xvso.R;
 
 import com.example.xvso.databinding.ActivitySinglePlayerBinding;
 import com.example.xvso.uifirebase.BaseActivity;
-import com.example.xvso.uifirebase.LoginActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.muddzdev.styleabletoast.StyleableToast;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class SinglePlayerActivity extends BaseActivity {
@@ -36,6 +38,10 @@ public class SinglePlayerActivity extends BaseActivity {
 
     private String counterPlayerName;
 
+    private CountDownTimer timer = null;
+    private final int interval = 1000;
+    private final int minute = 60000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,14 @@ public class SinglePlayerActivity extends BaseActivity {
         singlePlayerViewModel = ViewModelProviders.of(this).get(SinglePlayerViewModel.class);
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
+
+        // hides status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // hides action bar
+        getSupportActionBar().hide();
+
+        // starts the round timer
+        startTimer();
 
         winnerIsInvisible();
 
@@ -91,15 +105,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singlePlayerViewModel.setGuestPlayerName(counterPlayerName);
     }
 
-    /**
-     *
-     * auxiliary method which displays a toast message only by giving the message as String parameter
-     * @param message
-     */
-    public void showToast(String message) {
-        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG, R.style.StyleableToast).show();
-    }
-
     public void displayHostUserName(){
         FirebaseUser user = getFirebaseUser();
         emailLoggedUser = user.getEmail();
@@ -115,12 +120,16 @@ public class SinglePlayerActivity extends BaseActivity {
 
         singlePlayerViewModel.getGameLiveData().observe(this, game -> {
             if (game.getGameResult() == 1) {
+                ;
+                stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
             } else if (game.getGameResult() == 2) {
+                stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
             } else if (game.getGameResult() == 3) {
+                stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
             }
@@ -162,6 +171,7 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onPlayAgainClick(View view) {
+        startTimer();
         singlePlayerViewModel.newRound();
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
@@ -169,6 +179,7 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onResetGameClick(View view) {
+        startTimer();
         singlePlayerViewModel.resetGame();
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
@@ -181,5 +192,30 @@ public class SinglePlayerActivity extends BaseActivity {
 
     public void hideBoard() {
         singleBinding.gridLayoutSinglePlayer.setVisibility(View.INVISIBLE);
+    }
+
+    public void startTimer() {
+        timer = new CountDownTimer(minute, interval) {
+            @SuppressLint("StringFormatInvalid")
+            public void onTick(long millisUntilFinished) {
+                int remaining = (int) ((millisUntilFinished / 1000) % 60);
+                String clock = String.format(Locale.US, "00:%02d", remaining);
+                singleBinding.timerTextViewSingle.setText(clock);
+            }
+
+            public void onFinish() {
+                singlePlayerViewModel.timeUp();
+            }
+        };
+        timer.start();
+    }
+
+    public void stopTimer() {
+        timer.cancel();
+    }
+
+    public void onExitClicked(View view) {
+        Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

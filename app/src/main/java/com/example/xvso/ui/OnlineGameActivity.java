@@ -396,10 +396,10 @@ public class OnlineGameActivity extends BaseActivity {
             if (game.getStatus() == Game.STATUS_ROUND_FINISHED) {
                 if (game.getGameResult() == 1) {
                     winnerIsVisible();
-                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName());
+                    onlineGameBinding.showWinnerTextView.setText(game.getHost().getName() + " won!");
                 } else if (game.getGameResult() == 2) {
                     winnerIsVisible();
-                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getGuest().getName());
+                    onlineGameBinding.showWinnerTextView.setText(game.getGuest().getName() + " won!");
                 } else if (game.getGameResult() == 3) {
                     winnerIsVisible();
                     onlineGameBinding.showWinnerTextView.setText("It's a draw!");

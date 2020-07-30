@@ -238,4 +238,12 @@ public class SinglePlayerViewModel extends BaseViewModel {
         game.getHost().setName(name);
         gameLiveData.setValue(game);
     }
+
+    public void timeUp() {
+        game = gameLiveData.getValue();
+        if (game != null) {
+            game.setGameResult(3);
+            gameLiveData.setValue(game);
+        }
+    }
 }
