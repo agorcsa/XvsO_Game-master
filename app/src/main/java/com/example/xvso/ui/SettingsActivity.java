@@ -66,4 +66,10 @@ public class SettingsActivity extends AppCompatActivity {
         onSwitchClick(settingsBinding.musicSwitch, SWITCH_VALUE_MUSIC);
         onSwitchClick(settingsBinding.modeSwitch, SWITCH_VALUE_MODE);
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }

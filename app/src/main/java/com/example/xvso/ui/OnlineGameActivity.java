@@ -1,6 +1,7 @@
 package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -469,8 +470,20 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void onDestroy() {
         super.onDestroy();
+        if (mediaPlayer != null) mediaPlayer.release();
+        if (soundPool != null) soundPool.release();
+    }
 
-        mediaPlayer.release();
-        soundPool.release();
+    public void onExitClicked(View view) {
+        Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+        intent.putExtra(KEY, true);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        onlineGameViewModel.exitGame();
+        super.onBackPressed();
     }
 }

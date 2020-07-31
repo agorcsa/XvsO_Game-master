@@ -35,4 +35,10 @@ public class AboutActivity extends AppCompatActivity {
 
         aboutBinding.aboutTextView.setText(aboutText);
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }

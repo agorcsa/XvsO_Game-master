@@ -175,4 +175,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         return input;
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }

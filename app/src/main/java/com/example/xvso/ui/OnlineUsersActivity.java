@@ -410,7 +410,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         if (!isFinishing()) {
             new MaterialDialog.Builder(this)
                     .icon(getResources().getDrawable(R.drawable.ic_cross, null))
-                    .backgroundColorRes(R.drawable.nightsky)
                     .limitIconToDefaultSize()
                     .title(R.string.alert_dialog_title)
                     .content(getString(R.string.alert_dialog_content, getGuestName(guest)))
@@ -436,5 +435,11 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                     })
                     .show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
     }
 }

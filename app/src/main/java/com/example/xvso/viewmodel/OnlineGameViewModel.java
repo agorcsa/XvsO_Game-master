@@ -36,7 +36,7 @@ public class OnlineGameViewModel extends BaseViewModel {
     private MutableLiveData<ArrayList<Cell>> boardLiveData = new MutableLiveData<>();
     private Game game = new Game();
 
-    public LiveData<Game> gameLiveData;
+    public MutableLiveData<Game> gameLiveData;
 
     private String gameID = "";
 
@@ -51,7 +51,7 @@ public class OnlineGameViewModel extends BaseViewModel {
             query = FirebaseDatabase.getInstance().getReference(MULTIPLAYER).child((gameID));
 
             FirebaseQueryLiveData resultLiveData = new FirebaseQueryLiveData(query);
-            gameLiveData = Transformations.map(resultLiveData, new GameDeserializer());
+              gameLiveData = (MutableLiveData<Game>) Transformations.map(resultLiveData, new GameDeserializer());
 
         }
     }
@@ -68,6 +68,7 @@ public class OnlineGameViewModel extends BaseViewModel {
         } else {
             game.setCurrentPlayer(game.getHost().getName());
         }
+        gameLiveData.setValue(game);
         query
                 .setValue(game)
         ;

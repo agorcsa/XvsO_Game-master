@@ -219,4 +219,10 @@ public class SinglePlayerActivity extends BaseActivity {
         intent.putExtra(KEY, true);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }

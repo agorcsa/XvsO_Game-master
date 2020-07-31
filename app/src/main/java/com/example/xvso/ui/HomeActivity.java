@@ -218,5 +218,11 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }
 

@@ -271,4 +271,10 @@ public class ComputerActivity extends BaseActivity {
     public void stopTimer() {
         timer.cancel();
     }
+
+    @Override
+    public void onBackPressed() {
+        // place your code as needed here
+        super.onBackPressed();
+    }
 }
