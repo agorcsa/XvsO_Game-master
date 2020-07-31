@@ -1,5 +1,6 @@
 package com.example.xvso.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -388,6 +389,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
     // shows AlertDialog
     // when guest sends a request to the host
+    @SuppressLint("ResourceType")
     public void showAlert(String key) {
 
         DatabaseReference ref = database.getReference(MULTIPLAYER).child(key).child("guest");
@@ -408,6 +410,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         if (!isFinishing()) {
             new MaterialDialog.Builder(this)
                     .icon(getResources().getDrawable(R.drawable.ic_cross, null))
+                    .backgroundColorRes(R.drawable.nightsky)
                     .limitIconToDefaultSize()
                     .title(R.string.alert_dialog_title)
                     .content(getString(R.string.alert_dialog_content, getGuestName(guest)))

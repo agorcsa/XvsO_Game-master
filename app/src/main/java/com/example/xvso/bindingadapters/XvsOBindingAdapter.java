@@ -167,6 +167,16 @@ public class XvsOBindingAdapter {
 
     @BindingAdapter({"stateSinglePlayer", "gameResultSinglePlayer"})
     public static void stopCheatingSinglePlayer(ImageView imageView, Cell cell, int gameResultSinglePlayer) {
+        if (gameResultSinglePlayer == 0) {
+            // The cell is clickable only if it's empty
+            if (cell.getTag() == 0) {
+                imageView.setClickable(true);
+            } else {
+                imageView.setClickable(false);
+            }
+        } else {
+            imageView.setClickable(false);
+        }
         // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {

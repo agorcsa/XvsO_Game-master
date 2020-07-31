@@ -29,6 +29,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class SinglePlayerActivity extends BaseActivity {
+
+    private static final String KEY = "key";
  
     private ActivitySinglePlayerBinding singleBinding;
     
@@ -117,10 +119,8 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void showWinningText(){
-
         singlePlayerViewModel.getGameLiveData().observe(this, game -> {
             if (game.getGameResult() == 1) {
-                ;
                 stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
@@ -132,6 +132,8 @@ public class SinglePlayerActivity extends BaseActivity {
                 stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
+            } else {
+                singleBinding.turnSwitcherTextViewSingle.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -155,11 +157,9 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.leftVertical.setVisibility(View.INVISIBLE);
         singleBinding.centerVertical.setVisibility(View.INVISIBLE);
         singleBinding.rightVertical.setVisibility(View.INVISIBLE);
-
         singleBinding.topHorizontal.setVisibility(View.INVISIBLE);
         singleBinding.centerHorizontal.setVisibility(View.INVISIBLE);
         singleBinding.bottomHorizontal.setVisibility(View.INVISIBLE);
-
         singleBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
         singleBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
     }
@@ -216,6 +216,7 @@ public class SinglePlayerActivity extends BaseActivity {
 
     public void onExitClicked(View view) {
         Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
+        intent.putExtra(KEY, true);
         startActivity(intent);
     }
 }

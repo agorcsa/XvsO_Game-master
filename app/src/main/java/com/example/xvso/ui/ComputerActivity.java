@@ -35,6 +35,8 @@ public class ComputerActivity extends BaseActivity {
 
     private final Handler handler = new Handler();
 
+    private static final String KEY = "key";
+
     private CountDownTimer timer = null;
     private final int interval = 1000;
     private final int minute = 60000;
@@ -262,6 +264,7 @@ public class ComputerActivity extends BaseActivity {
 
     public void onExitClicked(View view) {
         Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
+        intent.putExtra(KEY, true);
         startActivity(intent);
     }
 

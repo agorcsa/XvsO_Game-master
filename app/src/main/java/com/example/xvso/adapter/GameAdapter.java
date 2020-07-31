@@ -56,7 +56,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
             if (host != null) {
                 UID = host.getUID();
-                User guest = currentGame.getGuest();
 
                 if (!TextUtils.isEmpty(host.getImageUrl())) {
                     Picasso.get().
@@ -64,7 +63,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                             into(holder.profilePicture);
                 }
 
-                holder.gameNumber.setText(String.valueOf(position + 1));
+                //holder.gameNumber.setText(String.valueOf(position + 1));
 
                 if (TextUtils.isEmpty(host.getFirstName())) {
                     holder.userName.setText(host.getName());
@@ -86,12 +85,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                         }
                     });
                 }
-
-                if (currentGame.getStatus() == Game.STATUS_WAITING) {
-                    holder.itemView.setBackgroundColor(Color.GREEN);
-                } else {
-                    holder.itemView.setBackgroundColor(Color.GRAY);
-                }
             }
         }
     }
@@ -112,7 +105,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public static class GameViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView profilePicture;
-        public TextView gameNumber;
+        //public TextView gameNumber;
         public TextView userName;
         public TextView joinGame;
 
@@ -120,7 +113,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             super(itemView);
 
             profilePicture = itemView.findViewById(R.id.profile_image_view);
-            gameNumber = itemView.findViewById(R.id.first_line_text_view);
+            //gameNumber = itemView.findViewById(R.id.first_line_text_view);
             userName = itemView.findViewById(R.id.second_line_text_view);
             joinGame = itemView.findViewById(join_game_text_view);
         }

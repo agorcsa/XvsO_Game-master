@@ -54,8 +54,6 @@ public class OnlineGameActivity extends BaseActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference = database.getReference();
     int activePlayer = 1;
-    ArrayList<Integer> player1 = new ArrayList<>();
-    ArrayList<Integer> player2 = new ArrayList<>();
     private OnlineGameViewModel onlineGameViewModel;
     private ActivityOnlineGameBinding onlineGameBinding;
     // current player user name
@@ -63,7 +61,6 @@ public class OnlineGameActivity extends BaseActivity {
     // other player user name
     private String opponentFirstName = "";
     private String gameId = "";
-    private String requestType = "";
     // current user is signed in with X
     private int gameState = 0;
     private User host;
@@ -373,11 +370,9 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.leftVertical.setVisibility(View.INVISIBLE);
         onlineGameBinding.centerVertical.setVisibility(View.INVISIBLE);
         onlineGameBinding.rightVertical.setVisibility(View.INVISIBLE);
-
         onlineGameBinding.topHorizontal.setVisibility(View.INVISIBLE);
         onlineGameBinding.centerHorizontal.setVisibility(View.INVISIBLE);
         onlineGameBinding.bottomHorizontal.setVisibility(View.INVISIBLE);
-
         onlineGameBinding.leftRightDiagonal.setVisibility(View.INVISIBLE);
         onlineGameBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
     }

@@ -22,6 +22,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private ActivitySettingsBinding settingsBinding;
 
+    private static final String KEY = "key";
+
     private MediaPlayer mediaPlayer;
 
     public final static String SWITCH_VALUE_SOUND = "switch_value_sound";
@@ -43,7 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onBackButtonClicked(View view) {
-        Intent intent = new Intent(SettingsActivity.this, OnlineUsersActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
+        intent.putExtra(KEY, true);
         startActivity(intent);
     }
 
