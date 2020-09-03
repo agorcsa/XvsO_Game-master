@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -40,6 +41,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         settingsBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
         settingsBinding.setLifecycleOwner(this);
+
+        //hides status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         saveSwitchValue();
     }

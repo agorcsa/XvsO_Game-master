@@ -3,25 +3,25 @@
 
     <FrameLayout
         style="@style/MatchParent"
-        android:background="@color/about_screen_background">
+        android:background="@drawable/nightsky">
 
         <ImageView
             android:id="@+id/astronaut_image_view"
-            android:layout_width="@dimen/astronaut_image_width"
-            android:layout_height="@dimen/astronaut_image_height"
-            android:layout_gravity="bottom"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_marginBottom="@dimen/margin_20"
-            android:background="@drawable/astronaut"
-            android:contentDescription="@string/cosmonaut_image" />
+            android:layout_gravity="bottom"
+            android:background="@drawable/moon"
+            android:contentDescription="@string/moon_image" />
 
         <me.biubiubiu.justifytext.library.JustifyTextView
             android:id="@+id/about_text_view"
             android:layout_width="@dimen/about_text_width"
             android:layout_height="@dimen/about_text_height"
             android:layout_gravity="end"
-            android:layout_margin="@dimen/margin_20"
-            android:fontFamily="monospace"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/futuristic_font"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="10sp" />
     </FrameLayout>
 </layout>

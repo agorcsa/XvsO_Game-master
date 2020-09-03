@@ -14,7 +14,6 @@
     <RelativeLayout
         style="@style/MatchParent">
 
-
     <LinearLayout
         style="@style/MatchParent"
         android:orientation="vertical">
@@ -24,15 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/home_background">
+            android:background="@drawable/nightsky">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/greengalaxy" />
 
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture"
                 android:layout_width="@dimen/circular_width"
                 android:layout_height="@dimen/circular_height"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="@dimen/margin_30"
                 android:contentDescription="@string/profile_image"
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="@dimen/border_width"
@@ -60,6 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="2"
+                    android:background="@drawable/nightsky"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -73,6 +77,7 @@
                             style="@style/WrapContent"
                             android:layout_marginRight="@dimen/margin_20"
                             android:text="@string/first_name"
+                            android:fontFamily="@font/futuristic_font"
                             android:textSize="@dimen/text_size_medium" />
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -102,6 +107,7 @@
                         <TextView
                             android:id="@+id/last_name_textview"
                             style="@style/WrapContent"
+                            android:fontFamily="@font/futuristic_font"
                             android:layout_marginRight="@dimen/margin_20"
                             android:text="@string/last_name"
                             android:textSize="@dimen/text_size_medium" />
@@ -133,6 +139,7 @@
                             android:id="@+id/email_textview"
                             style="@style/WrapContent"
                             android:layout_marginRight="@dimen/margin_10"
+                            android:fontFamily="@font/futuristic_font"
                             android:text="@string/e_mail"
                             android:textSize="@dimen/text_size_medium" />
 
@@ -164,6 +171,7 @@
                             android:id="@+id/password_textview"
                             style="@style/WrapContent"
                             android:layout_marginRight="@dimen/margin_20"
+                            android:fontFamily="@font/futuristic_font"
                             android:text="@string/password"
                             android:textSize="@dimen/text_size_medium" />
 
@@ -192,9 +200,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:text="@string/submit_button"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="@dimen/margin_10"
-            android:textColor="@android:color/white"
+            android:layout_margin="32dp"
+            android:fontFamily="@font/futuristic_font"
+            android:background="@drawable/home_button"
+            android:textColor="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             android:onClick="@{()-> viewModelProfile.submitForm()}"/>
     </RelativeLayout>

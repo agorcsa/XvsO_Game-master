@@ -5,8 +5,8 @@
     <item
         android:id="@+id/action_log_out_home"
         android:orderInCategory="1"
-        android:title="@string/log_out_menu"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:title="Log out" />
 
     <item
         android:id="@+id/action_profile_home"

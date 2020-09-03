@@ -172,12 +172,11 @@
         <TextView
             android:id="@+id/turn_switcher_text_view_single"
             style="@style/WrapContent"
-            android:textSize="@dimen/text_size_xlarge"
             android:contentDescription="@string/turn_order"
-            android:textColor="@color/white"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="@dimen/margin_40"
-            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:layout_marginTop="140dp"
+            android:layout_marginBottom="60dp"
             android:layout_gravity="center_horizontal"
             app:hostName="@{viewModel.gameLiveData.host.name}"
             app:guestName="@{viewModel.gameLiveData.guest.name}"
@@ -190,9 +189,7 @@
                 android:id="@+id/timer_text_view_single"
                 style="@style/WrapContent"
                 android:layout_marginTop="@dimen/margin_20"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/colorPrimary"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
@@ -200,8 +197,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="time left"
+                android:textSize="12sp"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/timer_text_view_single" />
         </RelativeLayout>
@@ -230,9 +228,7 @@
                 style="@style/WrapContent"
                 android:layout_marginStart="@dimen/margin_20"
                 android:hint="@string/player_x"
-                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large"
                 android:layout_below="@id/profile_picture_player_1"
                 android:visibility="invisible" />
 
@@ -240,10 +236,8 @@
                 android:id="@+id/player1_score_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:layout_toRightOf="@id/single_player1_text"
                 android:text="@{String.valueOf(viewModel.gameLiveData.hostScore)}"
-                android:textSize="@dimen/text_size_large"
                 android:layout_below="@id/profile_picture_player_1"
                 android:visibility="invisible" />
 
@@ -261,16 +255,14 @@
                 app:civ_border_color="@color/colorPrimaryDark"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
-                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+                android:src="@drawable/redalien" />
 
             <TextView
                 android:id="@+id/single_player2_text"
                 style="@style/WrapContent"
                 android:layout_marginEnd="5dp"
                 android:textColor="@color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_toLeftOf="@id/player2_score_text_view"
-                android:textSize="@dimen/text_size_large"
+                android:layout_toStartOf="@id/player2_score_text_view"
                 android:layout_below="@+id/profile_picture_player_2"
                 android:visibility="invisible" />
 
@@ -279,8 +271,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:textSize="@dimen/text_size_large"
-                android:fontFamily="sans-serif-condensed"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_below="@id/profile_picture_player_2"
                 android:text="@{String.valueOf(viewModel.gameLiveData.guestScore)}"
@@ -417,7 +407,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginBottom="@dimen/margin_20"
-                android:fontFamily="sans-serif"
                 android:background="@android:color/transparent"
                 android:textSize="@dimen/text_size_large" />
         </RelativeLayout>
@@ -426,11 +415,12 @@
             android:id="@+id/exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exit to menu"
+            android:text="@string/exit_to_menu"
+            android:textSize="12sp"
             android:onClick="onExitClicked"
             android:layout_marginBottom="@dimen/margin_20"
             android:layout_gravity="center|bottom"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:background="@android:color/transparent" />
     </FrameLayout>
 </layout>

@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
     // Youtube Android WebView
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
@@ -85,7 +85,11 @@ dependencies {
     // Styleable Toast
     implementation 'com.muddzdev:styleabletoast:2.2.3'
 
+    //ViewPager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    // RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

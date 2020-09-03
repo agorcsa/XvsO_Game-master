@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_20"
+        android:background="@drawable/nightsky"
+        app:layoutDescription="@xml/activity_welcome_xml_constraintlayout_scene">
+
+        <Button
+            android:id="@+id/single_player_button"
+            style="@style/MatchWrap"
+            android:background="@drawable/home_button"
+            android:text="single player (alien)"
+            android:textStyle="bold"
+            android:fontFamily="@font/futuristic_font"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/computer_player_button"
+            style="@style/MatchWrap"
+            android:background="@drawable/home_button"
+            android:fontFamily="@font/futuristic_font"
+            android:text="single player (ai)"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/multi_player_button"
+            style="@style/MatchWrap"
+            android:textStyle="bold"
+            android:background="@drawable/home_button"
+            android:fontFamily="@font/futuristic_font"
+            android:text="multiplayer (galaxy)"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/about_button"
+            style="@style/MatchWrap"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/futuristic_font"
+            android:background="@drawable/home_button"
+            android:text="@string/btn_about"
+            android:textColor="@color/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/rocket_image_view"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/nebula"
+            android:contentDescription="@string/rocket_image"
+            app:layout_constraintBottom_toBottomOf="@+id/about_button"
+            app:layout_constraintEnd_toEndOf="@+id/multi_player_button"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/app_title"
+            style="@style/WrapContent"
+            android:layout_centerHorizontal="@bool/value_true"
+            android:fontFamily="@font/futuristic_font"
+            android:text="XvsO in Space"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_xlarge"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

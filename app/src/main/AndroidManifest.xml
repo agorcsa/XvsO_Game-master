@@ -36,6 +36,15 @@
             android:name=".ui.SinglePlayerActivity"
             android:label="Single Player"
             android:launchMode="singleTop"
+            android:parentActivityName=".ui.AlienActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.AlienActivity" />
+        </activity>
+        <activity
+            android:name=".ui.AlienActivity"
+            android:label="Aliens"
+            android:launchMode="singleTop"
             android:parentActivityName=".ui.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

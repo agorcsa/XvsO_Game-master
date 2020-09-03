@@ -56,8 +56,8 @@
     <string name="password">Password</string>
     <string name="submit_button">Submit</string>
 
-    <string name="player_x">Player X:</string>
-    <string name="player_y">Player Y:</string>
+    <string name="player_x">Player X: </string>
+    <string name="player_y">Player Y: </string>
 
     <string name="player_x_won">Player 1 has won! (X)</string>
     <string name="player_y_won">Player 2 has won! (O)</string>
@@ -67,8 +67,8 @@
     <string name="new_round_menu">New Round</string>
     <string name="reset_game_menu">Reset Game</string>
     <string name="always_win_menu">Always win</string>
-    <string name="profile_menu">Profile</string>
-    <string name="preferences_menu">Settings</string>
+    <string name="profile_menu">PROFILE</string>
+    <string name="preferences_menu">SETTINGS</string>
     <string name="log_out_menu">Log out</string>
 
     <string name="user_id" translatable="false">ID</string>
@@ -120,7 +120,7 @@
     <string name="timer_message">Seconds remaining: %2$s</string>
     <string name="player_name_score" translatable="false">%1$s: %2$d</string>
 
-    <!-- activity_welcome.xml-->
+    <!-- activity_homel-->
     <string name="btn_single_player_human">Single Player (Human)</string>
     <string name="btn_single_player_computer">Single Player (Computer)</string>
     <string name="btn_multiplayer">Multi Player (Online)</string>
@@ -155,6 +155,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="moon_image">moon image</string>
+    <string name="exit_to_menu">Exit to menu</string>
 
 
 </resources>
