@@ -1,9 +1,9 @@
 package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
@@ -12,8 +12,8 @@ import android.preference.PreferenceManager;
 
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -23,7 +23,6 @@ import com.example.xvso.databinding.ActivitySinglePlayerBinding;
 import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
 import com.google.firebase.auth.FirebaseUser;
-import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -44,6 +43,7 @@ public class SinglePlayerActivity extends BaseActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

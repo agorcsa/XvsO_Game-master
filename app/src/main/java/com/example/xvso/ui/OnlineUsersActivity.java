@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -14,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,6 +52,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class OnlineUsersActivity extends BaseActivity implements GameAdapter.JoinGameClick {
@@ -112,6 +115,11 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // hides status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // hides action bar
+        getSupportActionBar().hide();
+
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);
 
@@ -124,7 +132,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         mAuth = FirebaseAuth.getInstance();
 
         buildRecyclerView(currentUser);
-
 
         myRef.getRoot().child("users").addValueEventListener(new ValueEventListener() {
             @Override

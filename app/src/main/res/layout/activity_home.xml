@@ -66,7 +66,7 @@
             android:layout_centerHorizontal="@bool/value_true"
             android:fontFamily="@font/futuristic_font"
             android:text="XvsO in Space"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_xlarge"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

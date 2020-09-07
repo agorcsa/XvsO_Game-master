@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         style="@style/MatchWrap"
         android:layout_margin="@dimen/margin"
-        app:cardCornerRadius="@dimen/margin">
+        card_view:cardElevation="2dp"
+        app:cardCornerRadius="4dp">
 
         <RelativeLayout
             style="@style/MatchParent"
-            android:layout_margin="@dimen/margin">
+            android:background="@color/colorPrimary">
 
-            <ImageView
-                android:id="@+id/profile_image_view"
-                android:layout_width="@dimen/user_image_width"
-                android:layout_height="@dimen/user_image_height"
-                android:padding="@dimen/padding_2"
-                android:src="@drawable/ic_cross" />
-
-            <TextView
-                android:id="@+id/first_line_text_view"
+            <RelativeLayout
                 style="@style/WrapContent"
-                android:layout_alignParentTop="@bool/value_true"
-                android:layout_toEndOf="@+id/profile_image_view"
-                android:hint="@string/game_number"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_large"
-                android:textStyle="bold" />
+                android:background="@android:color/black"
+                android:layout_margin="@dimen/margin">
 
-            <TextView
-                android:id="@+id/second_line_text_view"
-                style="@style/WrapContent"
-                android:layout_below="@+id/first_line_text_view"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_toEndOf="@+id/profile_image_view"
-                android:hint="@string/user_name"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size_medium"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/profile_image_view"
+                    android:layout_width="@dimen/user_image_width"
+                    android:layout_height="@dimen/user_image_height"
+                    android:padding="@dimen/padding_2"
+                    android:src="@drawable/anim_cross" />
 
-            <TextView
-                android:id="@+id/join_game_text_view"
-                style="@style/WrapContent"
-                android:layout_alignParentRight="@bool/value_true"
-                android:layout_centerVertical="@bool/value_true"
-                android:clickable="@bool/value_true"
-                android:text="@string/join_game"
-                android:textAllCaps="@bool/value_true"
-                android:textColor="@android:color/holo_orange_dark"
-                android:textSize="@dimen/text_size_xlarge"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/second_line_text_view"
+                    style="@style/WrapContent"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toEndOf="@+id/profile_image_view"
+                    android:hint="@string/user_name"
+                    android:layout_centerVertical="@bool/value_true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/join_game_text_view"
+                    style="@style/WrapContent"
+                    android:layout_alignParentEnd="@bool/value_true"
+                    android:layout_centerVertical="@bool/value_true"
+                    android:clickable="true"
+                    android:text="@string/join_game"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:textAllCaps="@bool/value_true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xlarge"
+                    android:textStyle="bold"
+                    android:focusable="true" />
+            </RelativeLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

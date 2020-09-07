@@ -1,11 +1,10 @@
 package com.example.xvso.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -49,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-
         configureActionBar();
         playSound();
 
@@ -57,14 +55,15 @@ public class HomeActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                createAlertDialog();
+                createAlertDialogSingle();
             }
         });
 
         homeBinding.computerPlayerButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, ComputerActivity.class);
+                Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
                 startActivity(intent);
             }
         });
@@ -105,9 +104,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void createAlertDialog() {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
+    public void createAlertDialogSingle() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this, R.style.AlertDialogStyle);
         alertDialog.setTitle("Player 0");
         alertDialog.setMessage("Enter counter player name");
 
@@ -127,8 +125,7 @@ public class HomeActivity extends AppCompatActivity {
                         writeGuestNameToSharedPrefs(namePlayer0);
                         if (!namePlayer0.isEmpty()) {
                             showToast("Game will start against " + namePlayer0);
-
-                            Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
+                            Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
                         } else {
                             showToast("Game can not start without introducing Player0's name!");

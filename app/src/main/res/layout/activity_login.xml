@@ -60,7 +60,7 @@
             android:id="@+id/btn_login"
             style="@style/MatchWrap"
             android:layout_marginTop="@dimen/margin_20"
-            android:background="@color/colorAccent"
+            android:background="@drawable/home_button"
             android:text="@string/btn_login"
             android:textAllCaps="@bool/value_true"
             android:textColor="@android:color/black" />

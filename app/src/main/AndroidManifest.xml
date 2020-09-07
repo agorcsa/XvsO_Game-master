@@ -11,7 +11,7 @@
 
         <activity
             android:name=".uifirebase.LoginActivity"
-            android:label="XvsO in Space"
+            android:label="Log In"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,10 +36,10 @@
             android:name=".ui.SinglePlayerActivity"
             android:label="Single Player"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.AlienActivity">
+            android:parentActivityName=".ui.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.AlienActivity" />
+                android:value=".ui.HomeActivity" />
         </activity>
         <activity
             android:name=".ui.AlienActivity"
@@ -58,10 +58,10 @@
             android:name=".ui.AboutActivity"
             android:label="@string/about"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.HomeActivity">
+            android:parentActivityName=".ui.AlienActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.HomeActivity" />
+                android:value=".ui.AlienActivity" />
         </activity>
         <activity
             android:name=".ui.OnlineUsersActivity"

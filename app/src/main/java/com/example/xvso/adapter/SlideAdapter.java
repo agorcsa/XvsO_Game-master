@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.xvso.R;
 import com.example.xvso.object.SliderItem;
+import com.kienht.csiv.CircleSliceImageView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
@@ -19,9 +20,12 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
     private List<SliderItem> sliderItems;
     private ViewPager2 viewPager2;
 
-    public SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
+    private SliderViewHolder.AlienClick alienListener;
+
+    public SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2, SliderViewHolder.AlienClick alienListener) {
         this.sliderItems = sliderItems;
         this.viewPager2 = viewPager2;
+        this.alienListener = alienListener;
     }
 
     @NonNull
@@ -34,6 +38,13 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
+        SliderItem currentItem = sliderItems.get(position);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alienListener.onAlienClick(currentItem);
+            }
+        });
         holder.setImage(sliderItems.get(position));
     }
 
@@ -42,9 +53,9 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
         return sliderItems.size();
     }
 
-    static class SliderViewHolder extends RecyclerView.ViewHolder {
+    public static class SliderViewHolder extends RecyclerView.ViewHolder {
 
-        private RoundedImageView imageView;
+        private CircleSliceImageView imageView;
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +64,10 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
 
         void setImage(SliderItem sliderItem) {
             imageView.setImageResource(sliderItem.getImage());
+        }
+
+        public interface AlienClick {
+            void onAlienClick(SliderItem item);
         }
     }
 }

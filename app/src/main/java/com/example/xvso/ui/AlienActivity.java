@@ -1,7 +1,12 @@
 package com.example.xvso.ui;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +22,11 @@ import com.example.xvso.object.SliderItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class AlienActivity extends AppCompatActivity {
+public class AlienActivity extends AppCompatActivity implements SlideAdapter.SliderViewHolder.AlienClick {
 
+    public static final String ALIEN_KEY = "alien_key";
     private ViewPager2 viewPager2;
 
     @Override
@@ -27,15 +34,17 @@ public class AlienActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alien);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 
         List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.alien));
-        sliderItems.add(new SliderItem(R.drawable.redalien));
-        sliderItems.add(new SliderItem(R.drawable.greenalien));
-        sliderItems.add(new SliderItem(R.drawable.blackalien));
+        sliderItems.add(new SliderItem(R.drawable.blue));
+        sliderItems.add(new SliderItem(R.drawable.bluecrab));
+        sliderItems.add(new SliderItem(R.drawable.turquiousecrab));
 
-        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2));
+        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
 
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
@@ -53,5 +62,14 @@ public class AlienActivity extends AppCompatActivity {
             }
         });
         viewPager2.setPageTransformer(compositePageTransformer);
+    }
+
+    @Override
+    public void onAlienClick(SliderItem item) {
+        Toast.makeText(getApplicationContext(), "Alien was clicked!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
+        int image = item.getImage();
+        intent.putExtra(ALIEN_KEY, image);
+        startActivity(intent);
     }
 }

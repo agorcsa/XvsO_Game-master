@@ -1,6 +1,7 @@
 package com.example.xvso.bindingadapters;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -145,9 +146,9 @@ public class XvsOBindingAdapter {
         // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.ic_zero);
+                imageView.setImageResource(R.drawable.anim_zero);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.ic_cross);
+                imageView.setImageResource(R.drawable.anim_cross);
             } else {
                 imageView.setImageResource(0);
             }
@@ -180,9 +181,9 @@ public class XvsOBindingAdapter {
         // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.ic_zero);
+                imageView.setImageResource(R.drawable.anim_zero);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.ic_cross);
+                imageView.setImageResource(R.drawable.anim_cross);
             } else {
                 imageView.setImageResource(0);
             }
@@ -215,9 +216,9 @@ public class XvsOBindingAdapter {
 
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.ic_zero);
+                imageView.setImageResource(R.drawable.anim_zero);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.ic_cross);
+                imageView.setImageResource(R.drawable.anim_cross);
             } else {
                 imageView.setImageResource(0);
             }

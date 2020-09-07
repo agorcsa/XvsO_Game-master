@@ -80,7 +80,7 @@
     <string name="register">Register</string>
     <string name="back">Back</string>
 
-    <string name="new_game">New Game</string>
+    <string name="new_game">Reset Game</string>
 
     <!-- Alert Dialog-->
     <string name="alert_dialog_title">Accept invitation</string>
@@ -113,7 +113,7 @@
     <string name="user_name">User Name</string>
 
     <!-- join game button -->
-    <string name="join_game">Join Game</string>
+    <string name="join_game">Join</string>
     <string name="animated_image">Animmated XvsO image</string>
 
     <string name="has_won">%1$s has won</string>
@@ -156,6 +156,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="moon_image">moon image</string>
+    <string name="new_round">New Round</string>
     <string name="exit_to_menu">Exit to menu</string>
 
 

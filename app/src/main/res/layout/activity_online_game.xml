@@ -348,37 +348,36 @@
                 android:id="@+id/play_again_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:background="@color/colorPrimary"
+                android:layout_above="@+id/reset_game_button"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
                 android:onClick="@{() -> viewModel.playGame()}"
-                android:padding="@dimen/margin_20"
-                android:text="PLAY AGAIN"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_large" />
+                android:layout_marginBottom="@dimen/margin_20"
+                android:text="@string/new_round"
+                android:background="@drawable/home_button" />
 
             <Button
-                android:id="@+id/exit_button"
+                android:id="@+id/reset_game_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="@dimen/padding_20"
-                android:text="EXIT GAME"
-                android:onClick="@{() -> viewModel.exitGame()}"
-                android:textSize="@dimen/text_size_large"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/exit_button_online"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="@dimen/padding_20"
-                android:text="EXIT GAME"
-                android:onClick="@{() -> viewModel.exitGame()}"
-                android:textSize="@dimen/text_size_large"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:textColor="@android:color/white" />
+                android:layout_alignParentBottom="true"
+                android:onClick="onResetGameClick"
+                android:text="@string/new_game"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="bottom"
+                android:background="@drawable/home_button" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/exit_button_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exit_to_menu"
+            android:textSize="12sp"
+            android:onClick="@{() -> viewModel.exitGame()}"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_gravity="center|bottom"
+            android:textColor="@color/white"
+            android:background="@android:color/transparent" />
     </FrameLayout>
 </layout>

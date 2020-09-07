@@ -37,6 +37,8 @@ public class ComputerActivity extends BaseActivity {
 
     private static final String KEY = "key";
 
+    private int alienImage;
+
     private CountDownTimer timer = null;
     private final int interval = 1000;
     private final int minute = 60000;
@@ -68,6 +70,9 @@ public class ComputerActivity extends BaseActivity {
         observeGame();
 
         initialiseScore();
+
+        getAlienImage();
+        computerBinding.profilePicturePlayer2.setImageResource(alienImage);
     }
 
     public void setInitialVisibility() {
@@ -276,5 +281,9 @@ public class ComputerActivity extends BaseActivity {
     public void onBackPressed() {
         // place your code as needed here
         super.onBackPressed();
+    }
+
+    public void getAlienImage() {
+        alienImage = Objects.requireNonNull(getIntent().getExtras()).getInt(AlienActivity.ALIEN_KEY);
     }
 }

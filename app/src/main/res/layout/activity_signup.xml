@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
-                android:background="@color/colorAccent"
+                android:background="@drawable/home_button"
                 android:text="@string/action_sign_in_short"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
