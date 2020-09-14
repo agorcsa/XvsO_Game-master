@@ -40,9 +40,11 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 
         List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.blue));
-        sliderItems.add(new SliderItem(R.drawable.bluecrab));
-        sliderItems.add(new SliderItem(R.drawable.turquiousecrab));
+        sliderItems.add(new SliderItem(R.drawable.alien1));
+        sliderItems.add(new SliderItem(R.drawable.alien2));
+        sliderItems.add(new SliderItem(R.drawable.alien3));
+        sliderItems.add(new SliderItem(R.drawable.alien4));
+        sliderItems.add(new SliderItem(R.drawable.alien5));
 
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
 
@@ -66,7 +68,6 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
 
     @Override
     public void onAlienClick(SliderItem item) {
-        Toast.makeText(getApplicationContext(), "Alien was clicked!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
         int image = item.getImage();
         intent.putExtra(ALIEN_KEY, image);

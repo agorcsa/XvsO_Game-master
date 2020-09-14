@@ -24,7 +24,7 @@
                     android:layout_width="@dimen/user_image_width"
                     android:layout_height="@dimen/user_image_height"
                     android:padding="@dimen/padding_2"
-                    android:src="@drawable/anim_cross" />
+                    android:src="@drawable/moon" />
 
                 <TextView
                     android:id="@+id/second_line_text_view"

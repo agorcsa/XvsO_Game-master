@@ -8,7 +8,6 @@
         android:id="@+id/alien_view_pager_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:paddingStart="80dp"
-        android:paddingEnd="80dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

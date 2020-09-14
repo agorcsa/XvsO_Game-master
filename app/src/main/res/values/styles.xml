@@ -129,7 +129,6 @@
         <item name="stSolidBackground">true</item>
         <item name="stStrokeWidth">3dp</item>
         <item name="stStrokeColor">@color/colorPrimaryDark</item>
-        <item name="stIconStart">@drawable/rocket</item>
         <item name="stLength">LONG</item>
         <item name="stGravity">center</item>
         <item name="stRadius">5dp</item>

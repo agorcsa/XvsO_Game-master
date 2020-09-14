@@ -119,7 +119,7 @@ public class XvsOBindingAdapter {
 
         } else {
             Glide.with(view.getContext())
-                    .load(R.drawable.cosmonaut)
+                    .load(R.drawable.astronautprofile)
                     .into(view);
         }
     }

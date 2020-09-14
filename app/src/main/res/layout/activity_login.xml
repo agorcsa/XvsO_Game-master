@@ -9,7 +9,7 @@
 
     <LinearLayout
         style="@style/MatchParent"
-        android:background="@color/home_background"
+        android:background="@drawable/earth"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -24,7 +24,7 @@
             app:civ_border_width="@dimen/border_width"
             app:civ_mode="2"
             android:contentDescription="@string/login_logo"
-            android:src="@drawable/spaceship" />
+            android:src="@drawable/blackmoon" />
 
         <!-- Email EditText -->
         <com.google.android.material.textfield.TextInputLayout
@@ -62,8 +62,9 @@
             android:layout_marginTop="@dimen/margin_20"
             android:background="@drawable/home_button"
             android:text="@string/btn_login"
+            android:textStyle="bold"
             android:textAllCaps="@bool/value_true"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <!-- Reset Password Button -->
         <Button
@@ -72,6 +73,7 @@
             android:layout_marginTop="@dimen/margin_20"
             android:background="@null"
             android:text="@string/btn_forgot_password"
+            android:textStyle="bold"
             android:textAllCaps="@bool/value_false"
             android:textColor="@android:color/black" />
 
@@ -83,7 +85,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="@bool/value_false"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium" />
     </LinearLayout>
 

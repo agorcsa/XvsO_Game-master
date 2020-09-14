@@ -55,7 +55,7 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
 
     public static class SliderViewHolder extends RecyclerView.ViewHolder {
 
-        private CircleSliceImageView imageView;
+        private RoundedImageView imageView;
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);

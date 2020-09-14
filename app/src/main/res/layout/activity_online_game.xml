@@ -13,7 +13,6 @@
         style="@style/MatchParent"
         android:background="@drawable/nightsky">
 
-
         <!-- Board (3x3 cells) -->
         <GridLayout
             android:id="@+id/grid_layout"
@@ -182,53 +181,102 @@
         <TextView
             android:id="@+id/turn_switcher_text_view"
             style="@style/WrapContent"
-            android:textSize="@dimen/text_size_large"
-            android:contentDescription="Your turn"
+            android:contentDescription="@string/turn_order"
             android:textColor="@color/white"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="@dimen/margin_40"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="60dp"
             android:layout_gravity="center_horizontal"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
             app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/MatchWrap">
 
             <TextView
-                android:id="@+id/timer_text_view"
+                android:id="@+id/timer_text_view_single"
                 style="@style/WrapContent"
-                android:layout_marginTop="@dimen/margin_20"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:textSize="@dimen/text_size_large"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_size_small"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            style="@style/WrapContent">
+            <TextView
+                android:id="@+id/time_left_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timer_text_view_single"
+                android:layout_marginTop="8dp"
+                android:text="Time Left"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timer_text_view_single" />
 
             <!-- Player1 -->
-                <TextView
-                    android:id="@+id/player1_text"
-                    style="@style/WrapContent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="@dimen/margin_40"
-                    android:hint="@string/player_x"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large" />
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_1"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/profile_image"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+
+            <TextView
+                android:id="@+id/online_player1_text"
+                style="@style/WrapContent"
+                android:layout_below="@id/profile_picture_player_1"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/player_x"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_picture_player_1" />
 
             <!-- Player2 -->
-                <TextView
-                    android:id="@+id/player2_text"
-                    style="@style/WrapContent"
-                    android:text="@string/player_y"
-                    android:layout_marginRight="@dimen/margin_10"
-                    android:layout_marginTop="@dimen/margin_40"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large" />
-        </RelativeLayout>
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/profile_picture_player_2"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/profile_image"
+                android:src="@drawable/alienwon"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/player2_text"
+                style="@style/WrapContent"
+                android:text="@string/player_y"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintTop_toBottomOf="@+id/profile_picture_player_2"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Winning lines -->
 

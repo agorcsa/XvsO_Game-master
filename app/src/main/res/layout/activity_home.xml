@@ -68,7 +68,6 @@
             android:text="XvsO in Space"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_xlarge"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

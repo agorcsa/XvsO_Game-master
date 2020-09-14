@@ -186,39 +186,42 @@
             android:id="@+id/turn_switcher_text_view_computer"
             style="@style/WrapContent"
             android:contentDescription="@string/turn_order"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:layout_marginTop="150dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="160dp"
             android:layout_marginBottom="60dp"
             android:layout_gravity="center_horizontal"
             app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
             app:currentUser="@{viewModel.userLiveData.name}"
             app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/MatchWrap">
 
             <TextView
                 android:id="@+id/timer_text_view_computer"
                 style="@style/WrapContent"
-                android:layout_marginTop="@dimen/margin_20"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/time_left_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="time left"
-                android:textSize="12sp"
+                android:layout_below="@+id/timer_text_view_single"
+                android:layout_marginTop="8dp"
+                android:text="Time Left"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/timer_text_view_computer" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            style="@style/WrapContent">
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timer_text_view_computer" />
 
             <!-- Player1 -->
             <com.kienht.csiv.CircleSliceImageView
@@ -226,49 +229,57 @@
                 android:layout_width="70sp"
                 android:layout_height="70sp"
                 android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_marginLeft="@dimen/margin_20"
-                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:contentDescription="@string/profile_image"
-                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:profileImage="@{viewModel.userLiveData.imageUrl}" />
 
             <TextView
                 android:id="@+id/computer_player1_text"
                 style="@style/WrapContent"
-                android:text="@string/player_x"
-                android:layout_below="@+id/profile_picture_player_1"
-                android:layout_marginStart="@dimen/margin_20"
+                android:layout_below="@id/profile_picture_player_1"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:hint="@string/player_x"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_picture_player_1" />
 
             <!-- Player2 -->
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture_player_2"
                 android:layout_width="70sp"
                 android:layout_height="70sp"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_marginRight="@dimen/margin_20"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:layout_alignParentEnd="true"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:contentDescription="@string/profile_image"
-                app:civ_border_color="@color/colorPrimaryDark"
+                android:src="@drawable/alienwon"
+                app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
-                app:civ_mode="2" />
+                app:civ_mode="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/computer_player2_text"
                 style="@style/WrapContent"
-                android:text="Computer"
-                android:layout_marginEnd="@dimen/margin_10"
-                android:layout_below="@id/profile_picture_player_2"
+                android:layout_below="@+id/profile_picture_player_2"
                 android:layout_alignParentEnd="true"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/white" />
-        </RelativeLayout>
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_picture_player_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Winning lines -->
 
@@ -398,22 +409,36 @@
                 android:id="@+id/show_winner_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_above="@+id/winning_image_view"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:background="@android:color/transparent"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />
+
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/winning_image_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_above="@+id/play_again_button"
+                android:layout_marginBottom="@dimen/margin_20"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible" />
         </RelativeLayout>
 
         <Button
             android:id="@+id/exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/exit_to_menu"
-            android:textSize="12sp"
-            android:onClick="onExitClicked"
-            android:layout_marginBottom="@dimen/margin_20"
             android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:background="@android:color/transparent"
+            android:onClick="onExitClicked"
+            android:text="@string/exit_to_menu"
             android:textColor="@color/white"
-            android:background="@android:color/transparent" />
+            android:textSize="12sp" />
     </FrameLayout>
 </layout>

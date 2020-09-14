@@ -22,6 +22,6 @@
             android:layout_marginTop="80dp"
             android:fontFamily="@font/futuristic_font"
             android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
     </FrameLayout>
 </layout>

@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -92,6 +93,9 @@ public class OnlineGameActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
 
         startTimer();
 
@@ -179,10 +183,10 @@ public class OnlineGameActivity extends BaseActivity {
                         guestFirstName = guest.getFirstName();
                         guestName = guest.getName();
                         if (TextUtils.isEmpty(hostFirstName)) {
-                            onlineGameBinding.player1Text.setText(
+                            onlineGameBinding.onlinePlayer1Text.setText(
                                     getString(R.string.player_name_score, hostName, game.getHostScore()));
                         } else {
-                            onlineGameBinding.player1Text.setText(
+                            onlineGameBinding.onlinePlayer1Text.setText(
                                     getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
                         }
                         if (TextUtils.isEmpty(guestFirstName)) {
@@ -224,13 +228,13 @@ public class OnlineGameActivity extends BaseActivity {
                     String value = (String) dataSnapshot.getValue();
                     if (value.equals(userName)) {
 
-                        onlineGameBinding.player1Text.setText(getResources().getString(R.string.turn_order));
+                        onlineGameBinding.onlinePlayer1Text.setText(getResources().getString(R.string.turn_order));
                         onlineGameBinding.player2Text.setText(getResources().getString(R.string.turn_order));
                         setEnableClick(true);
                         activePlayer = 1;
                     } else if (value.equals(opponentFirstName)) {
 
-                        onlineGameBinding.player1Text.setText(getString(R.string.players_turn, opponentFirstName));
+                        onlineGameBinding.onlinePlayer1Text.setText(getString(R.string.players_turn, opponentFirstName));
                         onlineGameBinding.player2Text.setText(getString(R.string.players_turn, opponentFirstName));
                         setEnableClick(false);
                         activePlayer = 2;
@@ -309,7 +313,7 @@ public class OnlineGameActivity extends BaseActivity {
 
         onlineGameBinding.vsImageView.setVisibility(View.VISIBLE);
 
-        onlineGameBinding.player1Text.setVisibility(View.INVISIBLE);
+        onlineGameBinding.onlinePlayer1Text.setVisibility(View.INVISIBLE);
         onlineGameBinding.player2Text.setVisibility(View.INVISIBLE);
     }
 
@@ -326,9 +330,9 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.block8.setVisibility(View.VISIBLE);
         onlineGameBinding.block9.setVisibility(View.VISIBLE);
 
-        onlineGameBinding.player1Text.postDelayed(new Runnable() {
+        onlineGameBinding.onlinePlayer1Text.postDelayed(new Runnable() {
             public void run() {
-                onlineGameBinding.player1Text.setVisibility(View.VISIBLE);
+                onlineGameBinding.onlinePlayer1Text.setVisibility(View.VISIBLE);
             }
         }, 3000);
 
@@ -349,11 +353,11 @@ public class OnlineGameActivity extends BaseActivity {
         timer = new CountDownTimer(minute, interval) {
             @SuppressLint("StringFormatInvalid")
             public void onTick(long millisUntilFinished) {
-                onlineGameBinding.timerTextView.setText(getString(R.string.time_left, millisUntilFinished / 1000));
+                onlineGameBinding.timeLeftTextView.setText(getString(R.string.time_left, millisUntilFinished / 1000));
             }
 
             public void onFinish() {
-                onlineGameBinding.timerTextView.setText(getResources().getString(R.string.game_over));
+                onlineGameBinding.timeLeftTextView.setText(getResources().getString(R.string.game_over));
                 onlineGameViewModel.timeUp();
             }
         };
@@ -381,7 +385,7 @@ public class OnlineGameActivity extends BaseActivity {
     public void displayHostUserName() {
         FirebaseUser user = getFirebaseUser();
         emailLoggedUser = user.getEmail();
-        onlineGameBinding.player1Text.setText(convertEmailToString(emailLoggedUser));
+        onlineGameBinding.onlinePlayer1Text.setText(convertEmailToString(emailLoggedUser));
     }
 
     // shows winning text according to the gameResult

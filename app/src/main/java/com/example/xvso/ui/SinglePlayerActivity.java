@@ -23,6 +23,7 @@ import com.example.xvso.databinding.ActivitySinglePlayerBinding;
 import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -123,15 +124,27 @@ public class SinglePlayerActivity extends BaseActivity {
             if (game.getGameResult() == 1) {
                 stopTimer();
                 winnerIsVisible();
-                singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser));
+                singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser) + "!");
+                singleBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.astronaut)
+                        .into(singleBinding.winningImageView);
             } else if (game.getGameResult() == 2) {
                 stopTimer();
                 winnerIsVisible();
-                singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName);
+                singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName + "!");
+                singleBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.alienwon)
+                        .into(singleBinding.winningImageView);
             } else if (game.getGameResult() == 3) {
                 stopTimer();
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("It's a draw!");
+                singleBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.draw)
+                        .into(singleBinding.winningImageView);
             } else {
                 singleBinding.turnSwitcherTextViewSingle.setVisibility(View.VISIBLE);
             }

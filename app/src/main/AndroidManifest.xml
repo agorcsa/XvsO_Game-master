@@ -86,15 +86,6 @@
                 android:value=".uifirebase.SignupActivity" />
         </activity>
         <activity
-            android:name=".ui.SettingsActivity"
-            android:label="@string/settings_label"
-            android:launchMode="singleTop"
-            android:parentActivityName=".ui.HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.HomeActivity" />
-        </activity>
-        <activity
             android:name=".ui.VideoActivity"
             android:label="Learn to play"
             android:launchMode="singleTop"

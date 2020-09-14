@@ -5,18 +5,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputFilter;
+import android.text.LoginFilter;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -40,6 +45,11 @@ public class HomeActivity extends AppCompatActivity {
     private static final String KEY = "key";
     public static final String COUNTER_PLAYER_EDIT_TEXT = "CounterPlayer EditText";
 
+    private MediaPlayer mediaPlayer;
+    public final static String SWITCH_VALUE_SOUND = "switch_value_sound";
+    public final static String SWITCH_VALUE_MUSIC = "switch_value_music";
+    public final static String SWITCH_VALUE_MODE = "switch_value_mode";
+
     private ActivityHomeBinding homeBinding;
 
     private EditText dialogEditText;
@@ -49,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         configureActionBar();
-        playSound();
+        //playSound();
 
         homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -92,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    public void playSound() {
+    /*public void playSound() {
         SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
         boolean value = sharedPref.getBoolean(SettingsActivity.SWITCH_VALUE_SOUND, false);
         if (value) {
@@ -101,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                 mediaPlayer.start();
             }
         }
-    }
+    }*/
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createAlertDialogSingle() {
@@ -115,6 +125,11 @@ public class HomeActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT);
         dialogEditText.setLayoutParams(lp);
         dialogEditText.setTextColor(getColor(R.color.colorPrimary));
+
+        dialogEditText.setFilters(new InputFilter[]{
+                new InputFilter.LengthFilter(8)
+        });
+
         alertDialog.setView(dialogEditText);
         alertDialog.setIcon(R.drawable.ic_cross);
 
@@ -124,7 +139,7 @@ public class HomeActivity extends AppCompatActivity {
                         String namePlayer0 = dialogEditText.getText().toString();
                         writeGuestNameToSharedPrefs(namePlayer0);
                         if (!namePlayer0.isEmpty()) {
-                            showToast("Game will start against " + namePlayer0);
+                            //showToast("Game will start against " + namePlayer0);
                             Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
                         } else {
@@ -188,11 +203,39 @@ public class HomeActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.action_profile_home) {
             Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
             startActivity(settingsIntent);
-        } else if (item.getItemId() == R.id.action_settings_home) {
-            Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-            startActivity(settingsIntent);
+        } else if (item.getItemId() == R.id.action_music_home) {
+            // toggle button (stop music)
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    menuItem.setIcon(R.drawable.music_off);
+                    return false;
+                }
+            });
+        } else if (item.getItemId() == R.id.action_sound_home) {
+            // toggle button (stop sound)
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+   /* public void onSwitchClick(Switch s, String key) {
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                SharedPreferences sharedPref = getBaseContext().getSharedPreferences("switch_status", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean(key, b);
+                editor.apply();
+            }
+        });
+    }
+
+    // sound
+    public void saveSwitchValue() {
+        onSwitchClick(settingsBinding.soundSwitch, SWITCH_VALUE_SOUND);
+        onSwitchClick(settingsBinding.musicSwitch, SWITCH_VALUE_MUSIC);
+        onSwitchClick(settingsBinding.modeSwitch, SWITCH_VALUE_MODE);
+    }*/
 }
 

@@ -2,9 +2,12 @@ package com.example.xvso.uifirebase;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,12 +28,10 @@ public class LoginActivity extends BaseActivity {
 
     ActivityLoginBinding loginBinding;
     private LoginViewModel loginViewModel;
-    private SignupActivity signupActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
         if (getFirebaseUser() != null) {
@@ -79,28 +80,32 @@ public class LoginActivity extends BaseActivity {
                 loginBinding.progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate user
-                auth.signInWithEmailAndPassword(loginViewModel.getEmail().getValue(), loginViewModel.getPassword().getValue())
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                loginBinding.progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (loginViewModel.getPassword().toString().length() < 6) {
-                                    loginBinding.loginPassword.setError(getString(R.string.minimum_password));
+                if (!loginViewModel.getEmail().getValue().isEmpty() || !loginViewModel.getEmail().getValue().isEmpty()) {
+                    auth.signInWithEmailAndPassword(loginViewModel.getEmail().getValue(), loginViewModel.getPassword().getValue())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    loginBinding.progressBar.setVisibility(View.GONE);
+                                    if (!task.isSuccessful()) {
+                                        // there was an error
+                                        if (loginViewModel.getPassword().toString().length() < 6) {
+                                            loginBinding.loginPassword.setError(getString(R.string.minimum_password));
+                                        } else {
+                                            Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        }
                                     } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
                                 }
-                            }
-                        });
+                            });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please enter yur email address and password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

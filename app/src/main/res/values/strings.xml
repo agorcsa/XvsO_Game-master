@@ -158,6 +158,9 @@
     <string name="moon_image">moon image</string>
     <string name="new_round">New Round</string>
     <string name="exit_to_menu">Exit to menu</string>
+    <string name="sound">sound</string>
+    <string name="music">music</string>
+    <string name="log_out">Log out</string>
 
 
 </resources>

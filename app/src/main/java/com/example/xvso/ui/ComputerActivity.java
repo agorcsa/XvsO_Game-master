@@ -19,6 +19,7 @@ import com.example.xvso.object.User;
 import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.ComputerViewModel;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -162,19 +163,30 @@ public class ComputerActivity extends BaseActivity {
                 String hostName = host.getName();
                 computerBinding.computerPlayer1Text.setText(
                         getString(R.string.player_name_score, hostName, game.getHostScore()));
+                computerBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.astronaut)
+                        .into(computerBinding.winningImageView);
 
             } else if (game.getGameResult() == 2) {
                 stopTimer();
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("Computer won!");
-
                 String guestName = "Computer";
                 computerBinding.computerPlayer2Text.setText(
                         getString(R.string.player_name_score, guestName, game.getGuestScore()));
+                computerBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.alienwon)
+                        .into(computerBinding.winningImageView);
             } else if (game.getGameResult() == 3) {
                 stopTimer();
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("It's a draw!");
+                computerBinding.winningImageView.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(R.drawable.draw)
+                        .into(computerBinding.winningImageView);
                // no score update
             }
             disableCellClick();

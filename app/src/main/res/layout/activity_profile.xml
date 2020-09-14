@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="@dimen/margin_30"
                 android:contentDescription="@string/profile_image"
-                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
                 app:profileImage="@{viewModelProfile.userLiveData.imageUrl}"/>

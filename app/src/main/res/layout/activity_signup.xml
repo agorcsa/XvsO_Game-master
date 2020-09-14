@@ -10,7 +10,7 @@
 
         <LinearLayout
             style="@style/MatchParent"
-            android:background="@color/home_background"
+            android:background="@drawable/earth"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/activity_horizontal_margin">
@@ -25,8 +25,7 @@
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
                 android:contentDescription="@string/login_logo"
-                android:src="@drawable/spaceship" />
-
+                android:src="@drawable/blackmoon" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/MatchWrap">
@@ -63,13 +62,12 @@
             <!-- Link to Login Screen -->
             <Button
                 android:id="@+id/sign_up_button"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16"
                 android:background="@drawable/home_button"
                 android:text="@string/action_sign_in_short"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <Button
@@ -79,7 +77,8 @@
                 android:background="@null"
                 android:text="@string/btn_forgot_password"
                 android:textAllCaps="@bool/value_false"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/sign_in_button"
@@ -88,7 +87,7 @@
                 android:background="@null"
                 android:text="@string/btn_link_to_login"
                 android:textAllCaps="@bool/value_false"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_medium" />
         </LinearLayout>
 
