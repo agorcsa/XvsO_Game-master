@@ -1,27 +1,25 @@
 package com.example.xvso.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputFilter;
-import android.text.LoginFilter;
+
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
+
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
+
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -54,11 +52,16 @@ public class HomeActivity extends AppCompatActivity {
 
     private EditText dialogEditText;
 
+    public static final String STATUS = "status";
+    private boolean isSoundOn = true;
+    private boolean isMusicOn = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         configureActionBar();
+        playMusic();
         //playSound();
 
         homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
@@ -102,16 +105,6 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    /*public void playSound() {
-        SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
-        boolean value = sharedPref.getBoolean(SettingsActivity.SWITCH_VALUE_SOUND, false);
-        if (value) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.rocket);
-                mediaPlayer.start();
-            }
-        }
-    }*/
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createAlertDialogSingle() {
@@ -205,37 +198,56 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(settingsIntent);
         } else if (item.getItemId() == R.id.action_music_home) {
             // toggle button (stop music)
-            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    menuItem.setIcon(R.drawable.music_off);
-                    return false;
-                }
-            });
+            if (isMusicOn) {
+                item.setIcon(R.drawable.music_off);
+                isMusicOn = false;
+                saveToSharedPrefs(isMusicOn);
+            } else {
+                item.setIcon(R.drawable.music_on);
+                isMusicOn = true;
+                saveToSharedPrefs(isMusicOn);
+            }
         } else if (item.getItemId() == R.id.action_sound_home) {
             // toggle button (stop sound)
+            if (isSoundOn) {
+                item.setIcon(R.drawable.volume_off);
+                isSoundOn = false;
+                saveToSharedPrefs(isSoundOn);
+            } else {
+                item.setIcon(R.drawable.volume_on);
+                isSoundOn = true;
+                saveToSharedPrefs(isSoundOn);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-   /* public void onSwitchClick(Switch s, String key) {
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                SharedPreferences sharedPref = getBaseContext().getSharedPreferences("switch_status", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putBoolean(key, b);
-                editor.apply();
-            }
-        });
+    public void saveToSharedPrefs(boolean b) {
+        SharedPreferences sharedPref = getBaseContext().getSharedPreferences(STATUS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(KEY, b);
+        editor.apply();
     }
 
-    // sound
-    public void saveSwitchValue() {
-        onSwitchClick(settingsBinding.soundSwitch, SWITCH_VALUE_SOUND);
-        onSwitchClick(settingsBinding.musicSwitch, SWITCH_VALUE_MUSIC);
-        onSwitchClick(settingsBinding.modeSwitch, SWITCH_VALUE_MODE);
-    }*/
+
+    public void playSound() {
+        SharedPreferences sharedPref = getSharedPreferences(STATUS, Context.MODE_PRIVATE);
+        boolean value = sharedPref.getBoolean(KEY, false);
+        if (value) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.orbit);
+                mediaPlayer.start();
+            }
+        }
+    }
+
+    public void playMusic() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.orbitbeat);
+        mediaPlayer.start();
+    }
+
+    public void stopMusic() {
+        mediaPlayer.stop();
+    }
 }
 

@@ -6,7 +6,7 @@
         android:id="@+id/action_sound_home"
         android:orderInCategory="1"
         android:title="@string/sound"
-        android:icon="@drawable/sound_on"
+        android:icon="@drawable/volume_on"
         app:showAsAction="always" />
 
     <item
