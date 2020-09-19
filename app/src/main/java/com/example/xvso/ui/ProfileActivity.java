@@ -67,8 +67,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // binds the activity_profile.xml with ProfileActivity.java
         profileBinding = DataBindingUtil.setContentView(this, R.layout.activity_profile);

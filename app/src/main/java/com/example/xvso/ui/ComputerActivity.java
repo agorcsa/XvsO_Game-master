@@ -53,10 +53,7 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
 
-        // hides status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // hides action bar
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // starts the round timer
         startTimer();
@@ -177,7 +174,7 @@ public class ComputerActivity extends BaseActivity {
                         getString(R.string.player_name_score, guestName, game.getGuestScore()));
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
-                        .load(R.drawable.alienwon)
+                        .load(getAlienImage())
                         .into(computerBinding.winningImageView);
             } else if (game.getGameResult() == 3) {
                 stopTimer();
@@ -295,7 +292,8 @@ public class ComputerActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    public void getAlienImage() {
+    public int getAlienImage() {
         alienImage = Objects.requireNonNull(getIntent().getExtras()).getInt(AlienActivity.ALIEN_KEY);
+        return alienImage;
     }
 }

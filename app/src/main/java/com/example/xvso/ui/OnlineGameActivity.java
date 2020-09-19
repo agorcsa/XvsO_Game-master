@@ -94,8 +94,7 @@ public class OnlineGameActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         startTimer();
 
@@ -182,20 +181,40 @@ public class OnlineGameActivity extends BaseActivity {
                         hostName = host.getName();
                         guestFirstName = guest.getFirstName();
                         guestName = guest.getName();
-                        if (TextUtils.isEmpty(hostFirstName)) {
+
+                        // old code
+                        /*if (TextUtils.isEmpty(hostFirstName)) {
                             onlineGameBinding.onlinePlayer1Text.setText(
                                     getString(R.string.player_name_score, hostName, game.getHostScore()));
                         } else {
                             onlineGameBinding.onlinePlayer1Text.setText(
                                     getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
                         }
-                        if (TextUtils.isEmpty(guestFirstName)) {
-                            onlineGameBinding.player2Text.setText(
-                                    getString(R.string.player_name_score, guestName, game.getGuestScore()));
+
+                        if (TextUtils.isEmpty(hostFirstName)) {
+                            onlineGameBinding.onlinePlayer2Text.setText(
+                                    getString(R.string.player_name_score, guestName, game.getHostScore()));
                         } else {
-                            onlineGameBinding.player2Text.setText(
-                                    getString(R.string.player_name_score, guestFirstName, game.getGuestScore()));
+                            onlineGameBinding.onlinePlayer2Text.setText(
+                                    getString(R.string.player_name_score, guestFirstName, game.getHostScore()));
+                        }*/
+
+                        // new code
+                        if (TextUtils.isEmpty(hostFirstName)) {
+                            onlineGameBinding.onlinePlayer1Text.setText(hostName);
+                        } else {
+                            onlineGameBinding.onlinePlayer1Text.setText(hostFirstName);
                         }
+
+                        onlineGameBinding.onlinePlayer1Score.setText(game.getHostScore());
+
+                        if (TextUtils.isEmpty(guestFirstName)) {
+                            onlineGameBinding.onlinePlayer1Text.setText(guestName);
+                        } else {
+                            onlineGameBinding.onlinePlayer1Text.setText(guestFirstName);
+                        }
+
+                        onlineGameBinding.onlinePlayer2Score.setText(game.getGuestScore());
                     }
                 }
 
@@ -229,13 +248,13 @@ public class OnlineGameActivity extends BaseActivity {
                     if (value.equals(userName)) {
 
                         onlineGameBinding.onlinePlayer1Text.setText(getResources().getString(R.string.turn_order));
-                        onlineGameBinding.player2Text.setText(getResources().getString(R.string.turn_order));
+                        onlineGameBinding.onlinePlayer2Text.setText(getResources().getString(R.string.turn_order));
                         setEnableClick(true);
                         activePlayer = 1;
                     } else if (value.equals(opponentFirstName)) {
 
                         onlineGameBinding.onlinePlayer1Text.setText(getString(R.string.players_turn, opponentFirstName));
-                        onlineGameBinding.player2Text.setText(getString(R.string.players_turn, opponentFirstName));
+                        onlineGameBinding.onlinePlayer2Text.setText(getString(R.string.players_turn, opponentFirstName));
                         setEnableClick(false);
                         activePlayer = 2;
                     }
@@ -314,7 +333,7 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.vsImageView.setVisibility(View.VISIBLE);
 
         onlineGameBinding.onlinePlayer1Text.setVisibility(View.INVISIBLE);
-        onlineGameBinding.player2Text.setVisibility(View.INVISIBLE);
+        onlineGameBinding.onlinePlayer2Text.setVisibility(View.INVISIBLE);
     }
 
     public void animateViews() {
@@ -336,9 +355,9 @@ public class OnlineGameActivity extends BaseActivity {
             }
         }, 3000);
 
-        onlineGameBinding.player2Text.postDelayed(new Runnable() {
+        onlineGameBinding.onlinePlayer2Text.postDelayed(new Runnable() {
             public void run() {
-                onlineGameBinding.player2Text.setVisibility(View.VISIBLE);
+                onlineGameBinding.onlinePlayer2Text.setVisibility(View.VISIBLE);
             }
         }, 3000);
     }

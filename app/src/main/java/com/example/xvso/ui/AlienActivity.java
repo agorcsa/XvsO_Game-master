@@ -34,8 +34,7 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alien);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 
@@ -45,6 +44,8 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         sliderItems.add(new SliderItem(R.drawable.alien3));
         sliderItems.add(new SliderItem(R.drawable.alien4));
         sliderItems.add(new SliderItem(R.drawable.alien5));
+        sliderItems.add(new SliderItem(R.drawable.alien6));
+        sliderItems.add(new SliderItem(R.drawable.alien7));
 
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
 

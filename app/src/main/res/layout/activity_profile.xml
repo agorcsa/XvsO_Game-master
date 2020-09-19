@@ -200,10 +200,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:text="@string/submit_button"
-            android:layout_margin="32dp"
-            android:fontFamily="@font/futuristic_font"
+            android:layout_margin="16dp"
             android:background="@drawable/home_button"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_alignParentBottom="true"
             android:onClick="@{()-> viewModelProfile.submitForm()}"/>
     </RelativeLayout>

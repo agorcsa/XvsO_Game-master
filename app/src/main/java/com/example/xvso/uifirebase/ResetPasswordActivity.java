@@ -13,6 +13,8 @@ import com.example.xvso.databinding.ActivityResetPasswordBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Objects;
+
 public class ResetPasswordActivity extends BaseActivity {
 
     ActivityResetPasswordBinding resetPasswordBinding;
@@ -21,6 +23,8 @@ public class ResetPasswordActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         resetPasswordBinding = DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
 

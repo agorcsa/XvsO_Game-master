@@ -2,12 +2,9 @@ package com.example.xvso.uifirebase;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +21,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
+import java.util.Objects;
+
+
 public class LoginActivity extends BaseActivity {
 
     ActivityLoginBinding loginBinding;
@@ -33,6 +33,8 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if (getFirebaseUser() != null) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));

@@ -1,9 +1,6 @@
 package com.example.xvso.ui;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +11,7 @@ import com.example.xvso.databinding.ActivityAboutBinding;
 
 import java.util.Objects;
 
+
 public class AboutActivity extends AppCompatActivity {
 
     private ActivityAboutBinding aboutBinding;
@@ -23,8 +21,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         aboutBinding = DataBindingUtil.setContentView(this, R.layout.activity_about);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         String aboutText = getResources().getString(R.string.welcome)
                             + System.getProperty("line.separator")

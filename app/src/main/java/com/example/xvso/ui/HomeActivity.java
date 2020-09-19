@@ -37,32 +37,35 @@ import java.util.Objects;
 
 import static com.example.xvso.R.drawable.nightsky;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
-    private static final String TAG = "HomeActivity";
     private static final String KEY = "key";
     public static final String COUNTER_PLAYER_EDIT_TEXT = "CounterPlayer EditText";
 
     private MediaPlayer mediaPlayer;
-    public final static String SWITCH_VALUE_SOUND = "switch_value_sound";
-    public final static String SWITCH_VALUE_MUSIC = "switch_value_music";
-    public final static String SWITCH_VALUE_MODE = "switch_value_mode";
 
     private ActivityHomeBinding homeBinding;
 
     private EditText dialogEditText;
 
     public static final String STATUS = "status";
-    private boolean isSoundOn = true;
-    private boolean isMusicOn = true;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         configureActionBar();
-        playMusic();
-        //playSound();
+
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
 
         homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -201,33 +204,50 @@ public class HomeActivity extends AppCompatActivity {
             if (isMusicOn) {
                 item.setIcon(R.drawable.music_off);
                 isMusicOn = false;
-                saveToSharedPrefs(isMusicOn);
+                stopMusic();
+                saveMusicToSharedPrefs(isMusicOn);
             } else {
                 item.setIcon(R.drawable.music_on);
                 isMusicOn = true;
-                saveToSharedPrefs(isMusicOn);
+                playMusic();
+                saveMusicToSharedPrefs(isMusicOn);
             }
         } else if (item.getItemId() == R.id.action_sound_home) {
             // toggle button (stop sound)
             if (isSoundOn) {
                 item.setIcon(R.drawable.volume_off);
                 isSoundOn = false;
-                saveToSharedPrefs(isSoundOn);
+                saveSoundToSharedPrefs(isSoundOn);
             } else {
                 item.setIcon(R.drawable.volume_on);
                 isSoundOn = true;
-                saveToSharedPrefs(isSoundOn);
+                saveSoundToSharedPrefs(isSoundOn);
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void saveToSharedPrefs(boolean b) {
-        SharedPreferences sharedPref = getBaseContext().getSharedPreferences(STATUS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(KEY, b);
-        editor.apply();
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // code here
+        super.onPrepareOptionsMenu(menu);
+
+        MenuItem musicMenuItem = menu.findItem(R.id.action_music_home);
+        MenuItem soundMenuItem = menu.findItem(R.id.action_sound_home);
+
+        if (isMusicOn) {
+            musicMenuItem.setIcon(R.drawable.music_on);
+        } else {
+            musicMenuItem.setIcon(R.drawable.music_off);
+        }
+        if (isSoundOn) {
+            soundMenuItem.setIcon(R.drawable.volume_on);
+        } else {
+            soundMenuItem.setIcon(R.drawable.volume_off);
+        }
+        return true;
     }
+
 
 
     public void playSound() {
@@ -236,6 +256,7 @@ public class HomeActivity extends AppCompatActivity {
         if (value) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mediaPlayer = MediaPlayer.create(this, R.raw.orbit);
+                mediaPlayer.setLooping(true);
                 mediaPlayer.start();
             }
         }

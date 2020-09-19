@@ -118,10 +118,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // hides status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // hides action bar
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);

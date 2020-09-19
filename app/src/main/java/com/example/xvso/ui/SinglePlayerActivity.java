@@ -54,10 +54,7 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
-        // hides status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // hides action bar
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // starts the round timer
         startTimer();
