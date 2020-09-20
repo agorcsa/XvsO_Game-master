@@ -53,8 +53,6 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         // starts the round timer
         startTimer();
 

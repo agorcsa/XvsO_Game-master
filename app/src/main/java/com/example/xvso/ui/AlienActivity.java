@@ -22,7 +22,6 @@ import com.example.xvso.object.SliderItem;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class AlienActivity extends AppCompatActivity implements SlideAdapter.SliderViewHolder.AlienClick {
 
@@ -33,8 +32,6 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alien);
-
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 

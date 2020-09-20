@@ -53,7 +53,6 @@ public class SignupActivity extends BaseActivity {
         setContentView(R.layout.activity_signup);
 
         signupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         auth = FirebaseAuth.getInstance();
 

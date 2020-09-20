@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -55,50 +56,58 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        configureActionBar();
 
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // Redirect to login
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+        } else {
+            // follow the rest of the code
+            configureActionBar();
+
+            isMusicOn = readMusicFromSharedPrefs();
+            if (isMusicOn) {
+                playMusic();
+            }
+
+            isSoundOn = readSoundFromSharedPrefs();
+            if (isSoundOn) {
+                playSound();
+            }
+
+            homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void onClick(View view) {
+                    createAlertDialogSingle();
+                }
+            });
+
+            homeBinding.computerPlayerButton.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            homeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            homeBinding.aboutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
-
-        homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
-                createAlertDialogSingle();
-            }
-        });
-
-        homeBinding.computerPlayerButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        homeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        homeBinding.aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void configureActionBar() {
@@ -125,6 +134,9 @@ public class HomeActivity extends BaseActivity {
         dialogEditText.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(8)
         });
+
+        //Typeface typeface = Typeface.createFromAsset(getAssets(),"font/futuristic_font");
+        //dialogEditText.setTypeface(typeface);
 
         alertDialog.setView(dialogEditText);
         alertDialog.setIcon(R.drawable.ic_cross);

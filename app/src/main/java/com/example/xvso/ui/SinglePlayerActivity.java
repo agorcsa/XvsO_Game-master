@@ -54,8 +54,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         // starts the round timer
         startTimer();
 

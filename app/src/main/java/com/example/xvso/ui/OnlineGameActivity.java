@@ -43,6 +43,7 @@ import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Objects;
 
 public class OnlineGameActivity extends BaseActivity {
@@ -93,8 +94,6 @@ public class OnlineGameActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         startTimer();
 
@@ -206,15 +205,15 @@ public class OnlineGameActivity extends BaseActivity {
                             onlineGameBinding.onlinePlayer1Text.setText(hostFirstName);
                         }
 
-                        onlineGameBinding.onlinePlayer1Score.setText(game.getHostScore());
+                        onlineGameBinding.onlinePlayer1Score.setText(String.valueOf(game.getHostScore()));
 
                         if (TextUtils.isEmpty(guestFirstName)) {
-                            onlineGameBinding.onlinePlayer1Text.setText(guestName);
+                            onlineGameBinding.onlinePlayer2Text.setText(guestName);
                         } else {
-                            onlineGameBinding.onlinePlayer1Text.setText(guestFirstName);
+                            onlineGameBinding.onlinePlayer2Text.setText(guestFirstName);
                         }
 
-                        onlineGameBinding.onlinePlayer2Score.setText(game.getGuestScore());
+                        onlineGameBinding.onlinePlayer2Score.setText(String.valueOf(game.getGuestScore()));
                     }
                 }
 
@@ -372,11 +371,13 @@ public class OnlineGameActivity extends BaseActivity {
         timer = new CountDownTimer(minute, interval) {
             @SuppressLint("StringFormatInvalid")
             public void onTick(long millisUntilFinished) {
-                onlineGameBinding.timeLeftTextView.setText(getString(R.string.time_left, millisUntilFinished / 1000));
+                int remaining = (int) ((millisUntilFinished / 1000) % 60);
+                String clock = String.format(Locale.US, "00:%02d", remaining);
+                onlineGameBinding.timerTextViewOnline.setText(clock);
             }
 
             public void onFinish() {
-                onlineGameBinding.timeLeftTextView.setText(getResources().getString(R.string.game_over));
+                onlineGameBinding.timerTextViewOnline.setText(getResources().getString(R.string.game_over));
                 onlineGameViewModel.timeUp();
             }
         };

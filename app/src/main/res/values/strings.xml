@@ -56,8 +56,8 @@
     <string name="password">Password</string>
     <string name="submit_button">Submit</string>
 
-    <string name="player_x">Player X: </string>
-    <string name="player_y">Player Y: </string>
+    <string name="player_x">Player X </string>
+    <string name="player_y">Player Y </string>
 
     <string name="player_x_won">Player 1 has won! (X)</string>
     <string name="player_y_won">Player 2 has won! (O)</string>
@@ -161,6 +161,7 @@
     <string name="sound">sound</string>
     <string name="music">music</string>
     <string name="log_out">Log out</string>
+    <string name="exit_to_home">exit to home</string>
 
 
 </resources>

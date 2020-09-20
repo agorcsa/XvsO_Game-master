@@ -34,7 +34,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if (getFirebaseUser() != null) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));

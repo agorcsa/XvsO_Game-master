@@ -24,8 +24,6 @@ public class ResetPasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         resetPasswordBinding = DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
 
         resetPasswordBinding.btnBack.setOnClickListener(new View.OnClickListener() {

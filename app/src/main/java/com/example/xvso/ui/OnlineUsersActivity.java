@@ -2,25 +2,14 @@ package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,9 +40,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class OnlineUsersActivity extends BaseActivity implements GameAdapter.JoinGameClick {
@@ -117,8 +104,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);
@@ -448,5 +433,10 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     public void onBackPressed() {
         // place your code as needed here
         super.onBackPressed();
+    }
+
+    public void onExitToHomeClick(View view) {
+        Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

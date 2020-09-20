@@ -21,8 +21,6 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         aboutBinding = DataBindingUtil.setContentView(this, R.layout.activity_about);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         String aboutText = getResources().getString(R.string.welcome)
                             + System.getProperty("line.separator")
                             +  System.getProperty("line.separator")
