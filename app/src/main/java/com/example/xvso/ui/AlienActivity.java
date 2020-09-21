@@ -27,6 +27,7 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
 
     public static final String ALIEN_KEY = "alien_key";
     private ViewPager2 viewPager2;
+    List<SliderItem> sliderItems = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,14 +36,12 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
 
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 
-        List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem(R.drawable.alien1));
         sliderItems.add(new SliderItem(R.drawable.alien2));
         sliderItems.add(new SliderItem(R.drawable.alien3));
         sliderItems.add(new SliderItem(R.drawable.alien4));
         sliderItems.add(new SliderItem(R.drawable.alien5));
         sliderItems.add(new SliderItem(R.drawable.alien6));
-        sliderItems.add(new SliderItem(R.drawable.alien7));
 
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
 
@@ -70,5 +69,16 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         int image = item.getImage();
         intent.putExtra(ALIEN_KEY, image);
         startActivity(intent);
+    }
+
+    public void onImageHovering(String text) {
+        Toast viewToast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+        View view = findViewById(R.id.alien_view_pager_slider);
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return false;
+            }
+        });
     }
 }
