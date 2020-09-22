@@ -6,11 +6,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -23,11 +25,14 @@ import com.example.xvso.object.SliderItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlienActivity extends AppCompatActivity implements SlideAdapter.SliderViewHolder.AlienClick {
+public class AlienActivity extends AppCompatActivity implements SlideAdapter.ShowDescription, SlideAdapter.SliderViewHolder.AlienClick {
 
     public static final String ALIEN_KEY = "alien_key";
     private ViewPager2 viewPager2;
     List<SliderItem> sliderItems = new ArrayList<>();
+
+    private TextView alienDescription;
+    private ConstraintLayout alienDescriptionContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         setContentView(R.layout.activity_alien);
 
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
+        alienDescriptionContainer = findViewById(R.id.alien_text_container);
+        alienDescription = findViewById(R.id.alien_description_text_view);
 
         String alien1Text = "Name: Tasp"
                 + System.getProperty("line.separator")
@@ -90,7 +97,7 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
         sliderItems.add(new SliderItem(R.drawable.alien5, alien5Text));
         sliderItems.add(new SliderItem(R.drawable.alien6, alien6Text));
 
-        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
+        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this, this::onImageHovering));
 
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
@@ -119,13 +126,21 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
     }
 
     public void onImageHovering(String text) {
+
         Toast viewToast = Toast.makeText(this, text, Toast.LENGTH_LONG);
         View view = findViewById(R.id.alien_view_pager_slider);
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                alienDescriptionContainer.setVisibility(View.VISIBLE);
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onImageHover(String description) {
+        alienDescriptionContainer.setVisibility(View.VISIBLE);
+        alienDescription.setText(description);
     }
 }

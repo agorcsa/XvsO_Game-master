@@ -5,6 +5,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,10 +28,13 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
 
     private SliderViewHolder.AlienClick alienListener;
 
-    public SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2, SliderViewHolder.AlienClick alienListener) {
+    private ShowDescription showDescription;
+
+    public SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2, SliderViewHolder.AlienClick alienListener, ShowDescription descriptionListener) {
         this.sliderItems = sliderItems;
         this.viewPager2 = viewPager2;
         this.alienListener = alienListener;
+        this.showDescription = descriptionListener;
     }
 
     @NonNull
@@ -52,19 +56,20 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
             }
         });
 
+        holder.setImage(sliderItems.get(position));
+
+
         holder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public boolean onLongClick(View view) {
-
-                //Toast.makeText(view.getContext(), sliderItem.getDescription(), Toast.LENGTH_LONG).show();
-                view.setTooltipText(sliderItem.getDescription());
-
+            public boolean onLongClick(View v) {
+                showDescription.onImageHover(sliderItem.getDescription());
                 return true;
             }
         });
+    }
 
-        holder.setImage(sliderItems.get(position));
+    public interface ShowDescription {
+        void onImageHover(String description);
     }
 
     @Override
@@ -75,6 +80,7 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
     public static class SliderViewHolder extends RecyclerView.ViewHolder {
 
         private RoundedImageView imageView;
+        private TextView description;
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +90,7 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
         void setImage(SliderItem sliderItem) {
             imageView.setImageResource(sliderItem.getImage());
         }
+
 
         public interface AlienClick {
             void onAlienClick(SliderItem item);
