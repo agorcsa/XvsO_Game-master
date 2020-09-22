@@ -36,12 +36,59 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sli
 
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
 
-        sliderItems.add(new SliderItem(R.drawable.alien1));
-        sliderItems.add(new SliderItem(R.drawable.alien2));
-        sliderItems.add(new SliderItem(R.drawable.alien3));
-        sliderItems.add(new SliderItem(R.drawable.alien4));
-        sliderItems.add(new SliderItem(R.drawable.alien5));
-        sliderItems.add(new SliderItem(R.drawable.alien6));
+        String alien1Text = "Name: Tasp"
+                + System.getProperty("line.separator")
+                + System.getProperty("line.separator")
+                + "Characteristics:"
+                + System.getProperty("line.separator")
+                + System.getProperty("line.separator")
+                + "Name on earth: Humans call it Monoculus"
+                + System.getProperty("line.separator")
+                + "Race: Amphibio"
+                + System.getProperty("line.separator")
+                + "Height: 60 - 80cm (for adult of its species)"
+                + System.getProperty("line.separator")
+                + "Adulthood: under 14 years"
+                + System.getProperty("line.separator")
+                + "Planet: Pegasus 3"
+                + System.getProperty("line.separator")
+                + "Taps' short story:"
+                + System.getProperty("line.separator")
+                + "On their home planet, Pegasus 3, the climate is very stormy most of the part of the year, but their amphibian nature helped them to find abundant food during the whole year. Their planet is home to usually smaller life forms, Tasp being the largest."
+                + System.getProperty("line.separator");
+
+        String alien2Text = "Name: Glu"
+                + System.getProperty("line.separator")
+                + System.getProperty("line.separator")
+                + "Characteristics:"
+                + System.getProperty("line.separator")
+                + System.getProperty("line.separator")
+                + "Name on earth: Humans call it Eyed-Jelly"
+                + System.getProperty("line.separator")
+                + "Race: Alborian"
+                + System.getProperty("line.separator")
+                + "Height: 135 - 150cm (for adult of its species)"
+                + System.getProperty("line.separator")
+                + "Adulthood: under 7 years"
+                + System.getProperty("line.separator")
+                + "Planet: Alborus"
+                + System.getProperty("line.separator")
+                + "Glu's short story:"
+                + System.getProperty("line.separator")
+                + "Alborus is a planet with moderate climate. Alborians are forming a society with common support to each others. Everything is well designed and they live under strict social rules. They are friendly beings, but humans have to be careful not to break their rules as punishment can even to not return to Earth ever again."
+                + System.getProperty("line.separator");
+
+        String alien3Text = "3";
+        String alien4Text = "4";
+        String alien5Text = "5";
+        String alien6Text = "6";
+
+        sliderItems.add(new SliderItem(R.drawable.alien1, alien1Text));
+        sliderItems.add(new SliderItem(R.drawable.alien2, alien2Text));
+        sliderItems.add(new SliderItem(R.drawable.alien3, alien3Text));
+        sliderItems.add(new SliderItem(R.drawable.alien4, alien4Text));
+        sliderItems.add(new SliderItem(R.drawable.alien5, alien5Text));
+        sliderItems.add(new SliderItem(R.drawable.alien6, alien6Text));
 
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this));
 

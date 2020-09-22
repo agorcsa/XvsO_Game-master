@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityAboutBinding;
 
-import java.util.Objects;
-
 
 public class AboutActivity extends AppCompatActivity {
 
