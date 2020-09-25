@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +30,25 @@ import java.util.List;
 public class AlienActivity extends AppCompatActivity implements SlideAdapter.ShowDescription, SlideAdapter.SliderViewHolder.AlienClick {
 
     public static final String ALIEN_KEY = "alien_key";
+    public static final String ALIEN_NAME = "alien_name";
+
     private ViewPager2 viewPager2;
     List<SliderItem> sliderItems = new ArrayList<>();
 
     private TextView alienDescription;
     private ConstraintLayout alienDescriptionContainer;
+
+    private ImageView xButton;
+    private String alienName1 = "Tasp";
+    private String alienName2 = "Glu";
+    private String alienName3 = "";
+    private String alienName4 = "";
+    private String alienName5 = "";
+    private String alienName6 = "";
+
+    // fields in bold
+    private String name = "Name: ";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,8 +58,10 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
         alienDescriptionContainer = findViewById(R.id.alien_text_container);
         alienDescription = findViewById(R.id.alien_description_text_view);
+        xButton = findViewById(R.id.x_button);
 
-        String alien1Text = "Name: Tasp"
+
+        String alien1Text = "<b>" + name + "</b> " + "Tasp"
                 + System.getProperty("line.separator")
                 + System.getProperty("line.separator")
                 + "Characteristics:"
@@ -90,14 +108,14 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
         String alien5Text = "5";
         String alien6Text = "6";
 
-        sliderItems.add(new SliderItem(R.drawable.alien1, alien1Text));
-        sliderItems.add(new SliderItem(R.drawable.alien2, alien2Text));
-        sliderItems.add(new SliderItem(R.drawable.alien3, alien3Text));
-        sliderItems.add(new SliderItem(R.drawable.alien4, alien4Text));
-        sliderItems.add(new SliderItem(R.drawable.alien5, alien5Text));
-        sliderItems.add(new SliderItem(R.drawable.alien6, alien6Text));
+        sliderItems.add(new SliderItem(alienName1, R.drawable.alien1, alien1Text));
+        sliderItems.add(new SliderItem(alienName2, R.drawable.alien2, alien2Text));
+        sliderItems.add(new SliderItem(alienName3, R.drawable.alien3, alien3Text));
+        sliderItems.add(new SliderItem(alienName4, R.drawable.alien4, alien4Text));
+        sliderItems.add(new SliderItem(alienName5, R.drawable.alien5, alien5Text));
+        sliderItems.add(new SliderItem(alienName6, R.drawable.alien6, alien6Text));
 
-        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this, this::onImageHovering));
+        viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this, this));
 
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
@@ -122,9 +140,10 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
         Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
         int image = item.getImage();
         intent.putExtra(ALIEN_KEY, image);
+        intent.putExtra(ALIEN_NAME, item.getName());
         startActivity(intent);
     }
-
+/*
     public void onImageHovering(String text) {
 
         Toast viewToast = Toast.makeText(this, text, Toast.LENGTH_LONG);
@@ -136,11 +155,20 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
                 return false;
             }
         });
-    }
+    }*/
 
     @Override
     public void onImageHover(String description) {
         alienDescriptionContainer.setVisibility(View.VISIBLE);
         alienDescription.setText(description);
+    }
+
+    public void onXButtonClick(View view) {
+        alienDescriptionContainer.setVisibility(View.INVISIBLE);
+    }
+
+    public void onExitAlienScreen(View view) {
+        Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

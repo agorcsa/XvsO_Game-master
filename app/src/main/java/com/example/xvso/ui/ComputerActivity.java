@@ -39,6 +39,7 @@ public class ComputerActivity extends BaseActivity {
     private static final String KEY = "key";
 
     private int alienImage;
+    private String alienName;
 
     private CountDownTimer timer = null;
     private final int interval = 1000;
@@ -67,7 +68,9 @@ public class ComputerActivity extends BaseActivity {
 
         initialiseScore();
 
+        getAlienName();
         getAlienImage();
+
         computerBinding.profilePicturePlayer2.setImageResource(alienImage);
     }
 
@@ -167,7 +170,7 @@ public class ComputerActivity extends BaseActivity {
                 stopTimer();
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("Computer won!");
-                String guestName = "Computer";
+                String guestName = getAlienName();
                 computerBinding.computerPlayer2Text.setText(
                         getString(R.string.player_name_score, guestName, game.getGuestScore()));
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
@@ -224,7 +227,7 @@ public class ComputerActivity extends BaseActivity {
             String hostFirstName = host.getFirstName();
             String hostName = host.getName();
 
-            String guestName = "Computer";
+            String guestName = getAlienName();
 
             if (TextUtils.isEmpty(hostFirstName)) {
                 computerBinding.computerPlayer1Text.setText(
@@ -293,5 +296,10 @@ public class ComputerActivity extends BaseActivity {
     public int getAlienImage() {
         alienImage = Objects.requireNonNull(getIntent().getExtras()).getInt(AlienActivity.ALIEN_KEY);
         return alienImage;
+    }
+
+    public String getAlienName() {
+        alienName = getIntent().getExtras().getString(AlienActivity.ALIEN_NAME);
+        return alienName;
     }
 }

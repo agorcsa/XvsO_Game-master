@@ -388,6 +388,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/reset_game_button"
+                android:textColor="@android:color/white"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:onClick="onPlayAgainClick"
@@ -402,7 +403,7 @@
                 android:layout_alignParentBottom="true"
                 android:onClick="onResetGameClick"
                 android:text="@string/new_game"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@android:color/white"
                 android:background="@drawable/home_button" />
 
             <TextView

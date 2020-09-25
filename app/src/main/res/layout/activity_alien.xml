@@ -4,10 +4,37 @@
     android:layout_height="match_parent"
     android:background="@drawable/nightsky">
 
+    <TextView
+        android:id="@+id/choose_alien_text_view"
+        android:text="Choose the ALIEN against which you want to play!"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="wrap_content" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/alien_view_pager_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true" />
+
+    <include layout="@layout/alien_description_dialog" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exit_to_menu"
+        android:textSize="12sp"
+        android:onClick="onExitAlienScreen"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:textColor="@color/white"
+        android:background="@android:color/transparent" />
 </RelativeLayout>
