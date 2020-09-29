@@ -57,12 +57,6 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            // Redirect to login
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-        } else {
-            // follow the rest of the code
             configureActionBar();
 
             isMusicOn = readMusicFromSharedPrefs();
@@ -108,7 +102,6 @@ public class HomeActivity extends BaseActivity {
                 }
             });
         }
-    }
 
     public void configureActionBar() {
         Drawable drawable = getResources().getDrawable(nightsky);

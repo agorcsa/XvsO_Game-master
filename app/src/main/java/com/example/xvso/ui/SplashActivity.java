@@ -8,6 +8,8 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 
 import com.example.xvso.R;
+import com.example.xvso.uifirebase.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends Activity {
 
@@ -18,13 +20,26 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                SplashActivity.this.startActivity(intent);
-                SplashActivity.this.finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // Redirect to login
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+        }
     }
 }
