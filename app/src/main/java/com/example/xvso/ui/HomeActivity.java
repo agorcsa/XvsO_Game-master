@@ -277,6 +277,7 @@ public class HomeActivity extends BaseActivity {
     public void playMusic() {
         mediaPlayer = MediaPlayer.create(this, R.raw.orbitbeat);
         mediaPlayer.start();
+        //mediaPlayer.setLooping(true);
     }
 
     public void stopMusic() {

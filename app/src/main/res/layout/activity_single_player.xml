@@ -428,6 +428,7 @@
                 android:onClick="onPlayAgainClick"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:text="@string/new_round"
+                android:textColor="@color/white"
                 android:background="@drawable/home_button" />
 
             <Button
@@ -437,7 +438,7 @@
                 android:layout_alignParentBottom="true"
                 android:onClick="onResetGameClick"
                 android:text="@string/new_game"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:background="@drawable/home_button" />
         </RelativeLayout>
 

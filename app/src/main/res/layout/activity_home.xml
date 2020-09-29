@@ -48,17 +48,6 @@
             android:text="@string/btn_about"
             android:textColor="@color/white" />
 
-        <ImageView
-            android:id="@+id/rocket_image_view"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/nebula"
-            android:contentDescription="@string/rocket_image"
-            app:layout_constraintBottom_toBottomOf="@+id/about_button"
-            app:layout_constraintEnd_toEndOf="@+id/multi_player_button"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/app_title"

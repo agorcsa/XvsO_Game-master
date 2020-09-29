@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/alien_text_container"
+    android:id="@+id/alien_card_view"
     android:layout_width="350dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/nightsky"
-    android:layout_centerInParent="true"
-    android:visibility="invisible">
+    android:visibility="invisible"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="6dp"
+    android:background="@color/lightPurple"
+    android:layout_centerInParent="true">
 
-    <androidx.core.widget.NestedScrollView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/alien_description_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/alien_description_text_view"
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ImageView
-                android:id="@+id/x_button"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:onClick="onXButtonClick"
-                android:src="@drawable/ic_cross" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/x_button"
+            style="@style/MatchWrap"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/home_button"
+            android:fontFamily="@font/futuristic_font"
+            android:onClick="onXButtonClick"
+            android:text="close"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

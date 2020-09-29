@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".uifirebase.LoginActivity"
-            android:label="LogIn"
+            android:name=".ui.SplashActivity"
+            android:label="Splash"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".uifirebase.LoginActivity"
+            android:label="LogIn"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".uifirebase.SignupActivity"
