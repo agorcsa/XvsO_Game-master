@@ -128,8 +128,6 @@ public class HomeActivity extends BaseActivity {
                 new InputFilter.LengthFilter(8)
         });
 
-        //Typeface typeface = Typeface.createFromAsset(getAssets(),"font/futuristic_font");
-        //dialogEditText.setTypeface(typeface);
 
         alertDialog.setView(dialogEditText);
         alertDialog.setIcon(R.drawable.ic_cross);

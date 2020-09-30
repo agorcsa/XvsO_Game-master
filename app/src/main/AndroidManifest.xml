@@ -29,7 +29,6 @@
             android:name=".uifirebase.LoginActivity"
             android:label="LogIn"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"></activity>
 
         <activity
