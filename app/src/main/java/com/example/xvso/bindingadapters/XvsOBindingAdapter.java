@@ -148,7 +148,7 @@ public class XvsOBindingAdapter {
             if (cell.getTag() == Team.TEAM_O) {
                 imageView.setImageResource(R.drawable.anim_zero);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.anim_cross);
+                imageView.setImageResource(R.drawable.ic_cross);
             } else {
                 imageView.setImageResource(0);
             }

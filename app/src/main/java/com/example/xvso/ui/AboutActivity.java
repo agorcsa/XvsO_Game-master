@@ -8,6 +8,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityAboutBinding;
+import com.google.android.libraries.places.api.model.PhotoMetadata;
+// Add an import statement for the client library.
+import com.google.android.libraries.places.api.Places;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -41,5 +44,21 @@ public class AboutActivity extends AppCompatActivity {
     public void onBackPressed() {
         // place your code as needed here
         super.onBackPressed();
+    }
+
+    public void displayPhotoAttributions() {
+        // attribution links
+
+        // ufo image
+        //<a href='https://pngtree.com/so/world-space-day-illustration'>world-space-day-illustration png from pngtree.com</a>
+
+        // green alien
+        //<a href='https://pngtree.com/so/cartoon'>cartoon png from pngtree.com</a>
+
+        // Get the photo metadata from the Place object.
+        //PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
+
+        // Get the attribution text.
+        // String attributions = photoMetadata.getAttributions();
     }
 }

@@ -274,19 +274,6 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
         intent.putExtra(ALIEN_NAME, item.getName());
         startActivity(intent);
     }
-/*
-    public void onImageHovering(String text) {
-
-        Toast viewToast = Toast.makeText(this, text, Toast.LENGTH_LONG);
-        View view = findViewById(R.id.alien_view_pager_slider);
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                alienDescriptionContainer.setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
-    }*/
 
     @Override
     public void onImageHover(String description) {

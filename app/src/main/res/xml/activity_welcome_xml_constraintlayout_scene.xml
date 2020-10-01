@@ -37,7 +37,7 @@
     <!-- Constraints to apply at the start of the animation -->
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/rocket_image_view"
+            android:id="@+id/ufo_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -93,7 +93,7 @@
     <!-- Constraints to apply at the end of the animation -->
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/rocket_image_view"
+            android:id="@+id/ufo_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:layout_constraintLeft_toLeftOf="parent"
