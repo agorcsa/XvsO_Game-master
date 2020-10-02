@@ -1,6 +1,12 @@
 package com.example.xvso.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Html;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,19 +14,28 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityAboutBinding;
-import com.google.android.libraries.places.api.model.PhotoMetadata;
-// Add an import statement for the client library.
-import com.google.android.libraries.places.api.Places;
 
 
 public class AboutActivity extends AppCompatActivity {
 
     private ActivityAboutBinding aboutBinding;
+    private TextView attributionLink;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         aboutBinding = DataBindingUtil.setContentView(this, R.layout.activity_about);
+
+        attributionLink = findViewById(R.id.attribution_link_text_view);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                displayPhotoAttributions();
+            }
+        }, 3000);
 
         String aboutText = getResources().getString(R.string.welcome)
                             + System.getProperty("line.separator")
@@ -37,7 +52,7 @@ public class AboutActivity extends AppCompatActivity {
                             + System.getProperty("line.separator")
                             + getResources().getString(R.string.spanish_support);
 
-        aboutBinding.aboutTextView.setText(aboutText);
+        //aboutBinding.aboutTextView.setText(aboutText);
     }
 
     @Override
@@ -47,18 +62,36 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void displayPhotoAttributions() {
-        // attribution links
 
-        // ufo image
-        //<a href='https://pngtree.com/so/world-space-day-illustration'>world-space-day-illustration png from pngtree.com</a>
+        String attributions =
+                getString(R.string.ufo_attr)
+                        + "<br>" + "</br>"
+                        + "<br>" + "</br>"
+                        + getString(R.string.draw_attr)
+                        + "<br>" + "</br>"
+                        + "<br>" + "</br>"
+                        + getString(R.string.earth_attr)
+                        + "<br>" + "</br>"
+                        + "<br>" + "</br>"
+                        + getString(R.string.green_alien)
+                        + "<br>" + "</br>"
+                        + "<br>" + "</br>"
+                        + getString(R.string.turquoise_alien)
+                        + "<br>" + "</br>"
+                        + "<br>" + "</br>"
+                        + getString(R.string.pink_alien)
+                        + "<br>" + "</br>";
 
-        // green alien
-        //<a href='https://pngtree.com/so/cartoon'>cartoon png from pngtree.com</a>
+        attributionLink.setText(Html.fromHtml(attributions));
+    }
 
-        // Get the photo metadata from the Place object.
-        //PhotoMetadata photoMetadata = place.getPhotoMetadatas().get(0);
+    public void startImplicitIntent(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://pngtree.com/so/world-space-day-illustration"));
+        startActivity(intent);
+    }
 
-        // Get the attribution text.
-        // String attributions = photoMetadata.getAttributions();
+    public void onExitToHome(View view) {
+        Intent intent = new Intent(AboutActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

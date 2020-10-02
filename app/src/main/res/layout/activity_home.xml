@@ -51,7 +51,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/futuristic_font"
             android:background="@drawable/home_button"
-            android:text="@string/btn_about"
+            android:text="Attributions"
             android:textColor="@color/white" />
 
         <TextView
@@ -60,8 +60,7 @@
             android:layout_centerHorizontal="@bool/value_true"
             android:fontFamily="@font/futuristic_font"
             android:text="XvsO in Space"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
+            android:textColor="@android:color/white"
             android:paddingBottom="@dimen/margin_40"
             android:textSize="@dimen/text_size_xlarge"
             app:layout_constraintEnd_toEndOf="parent"

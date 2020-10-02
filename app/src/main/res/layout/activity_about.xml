@@ -3,25 +3,52 @@
 
     <FrameLayout
         style="@style/MatchParent"
+        android:padding="@dimen/margin_10"
         android:background="@drawable/nightsky">
+
+        <TextView
+            android:id="@+id/attributions_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/attributions"
+            android:layout_margin="16dp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_medium" />
+
+        <ScrollView
+            android:id="@+id/attribution_scroll"
+            android:layout_marginTop="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/attribution_link_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="startImplicitIntent" />
+        </ScrollView>
 
         <ImageView
             android:id="@+id/astronaut_image_view"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginBottom="@dimen/margin_20"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_40"
             android:background="@drawable/moon"
             android:contentDescription="@string/moon_image" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/about_text_view"
-            android:layout_width="@dimen/about_text_width"
-            android:layout_height="@dimen/about_text_height"
-            android:layout_gravity="end"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/futuristic_font"
+        <Button
+            android:id="@+id/exit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="exit to home"
+            android:textSize="12sp"
+            android:onClick="onExitToHome"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center|bottom"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:background="@android:color/transparent" />
     </FrameLayout>
 </layout>

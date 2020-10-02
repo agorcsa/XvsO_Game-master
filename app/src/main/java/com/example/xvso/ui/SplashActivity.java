@@ -29,9 +29,8 @@ public class SplashActivity extends Activity {
 
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
-            }, 2000);
+            }, 1500);
 
         } else {
             new Handler().postDelayed(new Runnable() {
@@ -39,6 +38,7 @@ public class SplashActivity extends Activity {
                 public void run() {
                     Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                     SplashActivity.this.startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     SplashActivity.this.finish();
                 }
             }, SPLASH_DISPLAY_LENGTH);
