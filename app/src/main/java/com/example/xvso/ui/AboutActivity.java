@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -62,27 +63,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void displayPhotoAttributions() {
-
-        String attributions =
-                getString(R.string.ufo_attr)
-                        + "<br>" + "</br>"
-                        + "<br>" + "</br>"
-                        + getString(R.string.draw_attr)
-                        + "<br>" + "</br>"
-                        + "<br>" + "</br>"
-                        + getString(R.string.earth_attr)
-                        + "<br>" + "</br>"
-                        + "<br>" + "</br>"
-                        + getString(R.string.green_alien)
-                        + "<br>" + "</br>"
-                        + "<br>" + "</br>"
-                        + getString(R.string.turquoise_alien)
-                        + "<br>" + "</br>"
-                        + "<br>" + "</br>"
-                        + getString(R.string.pink_alien)
-                        + "<br>" + "</br>";
-
-        attributionLink.setText(Html.fromHtml(attributions));
+        attributionLink.setMovementMethod(LinkMovementMethod.getInstance());
+        attributionLink.setText(Html.fromHtml(getString(R.string.attributions)));
     }
 
     public void startImplicitIntent(View view) {

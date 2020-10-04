@@ -164,26 +164,28 @@
     <string name="exit_to_home">exit to home</string>
 
     <!-- attributions in HTML format -->
-    <string name="attributions">Attributions</string>
 
     // earth image
-    <string name="ufo_attr"><a href='https://pngtree.com/so/globe-navigational-equipment'>globe-navigational-equipment png from pngtree.com</a></string>
-
     // ufo image
-    <string name="earth_attr"><a href='https://pngtree.com/so/world-space-day-illustration'>world-space-day-illustration png from pngtree.com</a></string>
-
     // it's a draw
-    <string name="draw_attr"><a href='https://pngtree.com/so/universe'>universe png from pngtree.com</a></string>
-
     // green alien
     // alien 2
-    <string name="green_alien"><a href='https://pngtree.com/so/cartoon'>cartoon png from pngtree.com</a></string>
-
     // turquoise alien
     // alien 4
-    <string name="turquoise_alien"><a href='https://pngtree.com/so/cartoon-alien'>cartoon-alien png from pngtree.com</a></string>
-
     // pink alien
     // alien 5
-    <string name="pink_alien"><a href='https://pngtree.com/so/monster'>monster png from pngtree.com</a></string>
+
+    <!-- attributions in HTML format -->
+    <string name="attributions">
+    <![CDATA[
+     <h2>Attributions<h2>
+     <p><a href="https://pngtree.com/so/globe-navigational-equipment">globe-navigational-equipment png from pngtree.com</a></p>
+     <p><a href="https://pngtree.com/so/world-space-day-illustration">world-space-day-illustration png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/world-space-day-illustration">world-space-day-illustration png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/universe">universe png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/cartoon">cartoon png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/cartoon-alien">cartoon-alien png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/monster">monster png from pngtree.com</a> </p>
+    ]]>
+</string>
 </resources>

@@ -9,18 +9,18 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.InputFilter;
 
-import android.view.Gravity;
+import android.text.InputFilter;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -31,6 +31,7 @@ import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityHomeBinding;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.Objects;
 
@@ -72,6 +73,7 @@ public class HomeActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     createAlertDialogSingle();
+                    hideViews();
                 }
             });
 
@@ -103,6 +105,24 @@ public class HomeActivity extends BaseActivity {
             });
         }
 
+    public void hideViews() {
+        homeBinding.appTitle.setVisibility(View.INVISIBLE);
+        homeBinding.ufoImageView.setVisibility(View.INVISIBLE);
+        homeBinding.singlePlayerButton.setVisibility(View.INVISIBLE);
+        homeBinding.computerPlayerButton.setVisibility(View.INVISIBLE);
+        homeBinding.multiPlayerButton.setVisibility(View.INVISIBLE);
+        homeBinding.aboutButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void showViews() {
+        homeBinding.appTitle.setVisibility(View.VISIBLE);
+        homeBinding.ufoImageView.setVisibility(View.VISIBLE);
+        homeBinding.singlePlayerButton.setVisibility(View.VISIBLE);
+        homeBinding.computerPlayerButton.setVisibility(View.VISIBLE);
+        homeBinding.multiPlayerButton.setVisibility(View.VISIBLE);
+        homeBinding.aboutButton.setVisibility(View.VISIBLE);
+    }
+
     public void configureActionBar() {
         Drawable drawable = getResources().getDrawable(nightsky);
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(drawable);
@@ -113,21 +133,28 @@ public class HomeActivity extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createAlertDialogSingle() {
+
+      /*  LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogLayout);*/
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this, R.style.AlertDialogStyle);
-        alertDialog.setTitle("Player 0");
+        alertDialog.setTitle("Player");
         alertDialog.setMessage("Enter counter player name");
 
         dialogEditText = new EditText(HomeActivity.this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
+
         dialogEditText.setLayoutParams(lp);
         dialogEditText.setTextColor(getColor(R.color.colorPrimary));
 
         dialogEditText.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(8)
         });
-
 
         alertDialog.setView(dialogEditText);
         alertDialog.setIcon(R.drawable.ic_cross);
@@ -138,11 +165,12 @@ public class HomeActivity extends BaseActivity {
                         String namePlayer0 = dialogEditText.getText().toString();
                         writeGuestNameToSharedPrefs(namePlayer0);
                         if (!namePlayer0.isEmpty()) {
-                            //showToast("Game will start against " + namePlayer0);
                             Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
                         } else {
-                            showToast("Game can not start without introducing Player0's name!");
+                            showToast("Please introduce playerO's name!");
+                            animateViews();
+                            showViews();
                         }
                     }
                 });
@@ -152,8 +180,11 @@ public class HomeActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         showToast("You have chosen to not start the game!");
                         dialog.cancel();
+                        animateViews();
+                        showViews();
                     }
                 });
+
         alertDialog.show();
     }
 
@@ -181,9 +212,10 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void showToast(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+        StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
+        /*Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        toast.show();*/
     }
 
     @Override
@@ -195,7 +227,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_log_out_home) {
-            showToast(getString(R.string.log_out_menu));
             FirebaseAuth.getInstance().signOut();
             Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(loginIntent);
@@ -273,6 +304,21 @@ public class HomeActivity extends BaseActivity {
 
     public void stopMusic() {
         mediaPlayer.stop();
+    }
+
+    public void animateViews() {
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        // animation has 2 second duration
+        animation.setDuration(2000);
+        // animation will start after 2 seconds
+        animation.setStartOffset(2000);
+
+        homeBinding.appTitle.startAnimation(animation);
+        homeBinding.ufoImageView.startAnimation(animation);
+        homeBinding.singlePlayerButton.startAnimation(animation);
+        homeBinding.computerPlayerButton.startAnimation(animation);
+        homeBinding.multiPlayerButton.startAnimation(animation);
+        homeBinding.aboutButton.startAnimation(animation);
     }
 }
 

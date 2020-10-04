@@ -364,7 +364,7 @@ public class OnlineGameActivity extends BaseActivity {
 
     public void showToast(String message) {
 
-        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT, R.style.StyleableToast).show();
+        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT, R.style.styleableToast).show();
     }
 
     public void startTimer() {

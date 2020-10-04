@@ -6,16 +6,6 @@
         android:padding="@dimen/margin_10"
         android:background="@drawable/nightsky">
 
-        <TextView
-            android:id="@+id/attributions_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/attributions"
-            android:layout_margin="16dp"
-            android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_medium" />
-
         <ScrollView
             android:id="@+id/attribution_scroll"
             android:layout_marginTop="48dp"
@@ -26,8 +16,7 @@
             <TextView
                 android:id="@+id/attribution_link_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="startImplicitIntent" />
+                android:layout_height="wrap_content" />
         </ScrollView>
 
         <ImageView

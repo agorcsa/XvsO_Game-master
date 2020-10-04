@@ -51,7 +51,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/futuristic_font"
             android:background="@drawable/home_button"
-            android:text="Attributions"
+            android:text="About"
             android:textColor="@color/white" />
 
         <TextView

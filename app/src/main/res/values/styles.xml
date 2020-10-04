@@ -1,6 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,6 +9,7 @@
         <item name="colorAccent">#80000000</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/futuristic_font</item>
+        <item name="android:textColorLink">@color/white</item>
         <item name="android:itemBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
@@ -122,17 +124,18 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:padding">20dp</item>
     </style>
-    
-    <style name="StyleableToast">
-        <item name="stTextBold">true</item>
+
+    <style name="styleableToast">
+        <item name="stTextBold">false</item>
         <item name="stTextColor">@android:color/white</item>
-        <item name="stTextSize">@dimen/text_size_medium</item>
-        <item name="stColorBackground">@color/colorPrimary</item>
+        <item name="stTextSize">@dimen/text_size_small</item>
+        <item name="stFont">@font/futuristic_font</item>
+        <item name="stColorBackground">@android:color/black</item>
         <item name="stSolidBackground">true</item>
         <item name="stStrokeWidth">3dp</item>
-        <item name="stStrokeColor">@color/colorPrimaryDark</item>
-        <item name="stLength">LONG</item>
+        <item name="stStrokeColor">@color/colorPrimary</item>
+        <item name="stLength">SHORT</item>
         <item name="stGravity">center</item>
-        <item name="stRadius">5dp</item>
+        <item name="stRadius">50dp</item>
     </style>
 </resources>
