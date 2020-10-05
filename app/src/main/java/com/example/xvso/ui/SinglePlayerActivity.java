@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
@@ -172,9 +171,7 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.rightLeftDiagonal.setVisibility(View.INVISIBLE);
     }
 
-
     public void winnerIsInvisible() {
-
         singleBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
     }
 

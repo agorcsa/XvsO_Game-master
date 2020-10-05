@@ -251,6 +251,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_picture_player_1" />
 
+            <TextView
+                android:id="@+id/player1_score_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/computer_player1_text"
+                android:layout_marginStart="16dp"
+                android:visibility="invisible"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_size_xlarge"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/computer_player1_text" />
+
             <!-- Player2 -->
             <com.kienht.csiv.CircleSliceImageView
                 android:id="@+id/profile_picture_player_2"
@@ -279,10 +291,21 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_picture_player_2" />
+
+            <TextView
+                android:id="@+id/player2_score_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_below="@id/computer_player2_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:textSize="@dimen/text_size_xlarge"
+                app:layout_constraintTop_toBottomOf="@id/computer_player2_text"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Winning lines -->
-
         <!-- vertical lines -->
         <!-- left-vertical line -->
         <View

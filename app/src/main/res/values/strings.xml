@@ -188,4 +188,7 @@
      <p><a href="https://pngtree.com/so/monster">monster png from pngtree.com</a> </p>
     ]]>
 </string>
+
+    <string name="attributions_text">To see all the photo attributions, please click on the astronaut</string>
+    <string name="moonclick">To get back to the game rules, please press the moon.</string>
 </resources>

@@ -99,8 +99,8 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    HomeActivity.this.finish();
+                    //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    //HomeActivity.this.finish();
                 }
             });
         }
@@ -134,7 +134,7 @@ public class HomeActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createAlertDialogSingle() {
 
-      /*  LayoutInflater inflater = (LayoutInflater) this
+        /*  LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -213,9 +213,6 @@ public class HomeActivity extends BaseActivity {
 
     public void showToast(String message) {
         StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
-        /*Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();*/
     }
 
     @Override

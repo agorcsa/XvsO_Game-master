@@ -181,24 +181,6 @@ public class OnlineGameActivity extends BaseActivity {
                         guestFirstName = guest.getFirstName();
                         guestName = guest.getName();
 
-                        // old code
-                        /*if (TextUtils.isEmpty(hostFirstName)) {
-                            onlineGameBinding.onlinePlayer1Text.setText(
-                                    getString(R.string.player_name_score, hostName, game.getHostScore()));
-                        } else {
-                            onlineGameBinding.onlinePlayer1Text.setText(
-                                    getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
-                        }
-
-                        if (TextUtils.isEmpty(hostFirstName)) {
-                            onlineGameBinding.onlinePlayer2Text.setText(
-                                    getString(R.string.player_name_score, guestName, game.getHostScore()));
-                        } else {
-                            onlineGameBinding.onlinePlayer2Text.setText(
-                                    getString(R.string.player_name_score, guestFirstName, game.getHostScore()));
-                        }*/
-
-                        // new code
                         if (TextUtils.isEmpty(hostFirstName)) {
                             onlineGameBinding.onlinePlayer1Text.setText(hostName);
                         } else {
@@ -212,7 +194,6 @@ public class OnlineGameActivity extends BaseActivity {
                         } else {
                             onlineGameBinding.onlinePlayer2Text.setText(guestFirstName);
                         }
-
                         onlineGameBinding.onlinePlayer2Score.setText(String.valueOf(game.getGuestScore()));
                     }
                 }
@@ -410,8 +391,6 @@ public class OnlineGameActivity extends BaseActivity {
 
     // shows winning text according to the gameResult
     public void showWinningText() {
-
-
         onlineGameViewModel.gameLiveData.observe(this, game -> {
             if (game.getStatus() == Game.STATUS_ROUND_FINISHED) {
                 if (game.getGameResult() == 1) {

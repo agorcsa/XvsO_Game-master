@@ -118,13 +118,14 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.computerPlayer1Text.postDelayed(new Runnable() {
             public void run() {
                 computerBinding.computerPlayer1Text.setVisibility(View.VISIBLE);
+                computerBinding.player1ScoreTextView.setVisibility(View.VISIBLE);
             }
         }, 3000);
 
         computerBinding.computerPlayer2Text.postDelayed(new Runnable() {
             public void run() {
                 computerBinding.computerPlayer2Text.setVisibility(View.VISIBLE);
-
+                computerBinding.player2ScoreTextView.setVisibility(View.VISIBLE);
             }
         }, 3000);
     }
@@ -159,8 +160,11 @@ public class ComputerActivity extends BaseActivity {
                 computerBinding.showWinnerTextView.setText(convertEmailToString(emailLoggedUser) + " won!");
                 User host = game.getHost();
                 String hostName = host.getName();
-                computerBinding.computerPlayer1Text.setText(
-                        getString(R.string.player_name_score, hostName, game.getHostScore()));
+
+                // Player 1
+                computerBinding.computerPlayer1Text.setText(hostName);
+                computerBinding.player1ScoreTextView.setText(String.valueOf(game.getHostScore()));
+
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
                         .load(R.drawable.astronaut)
@@ -171,8 +175,11 @@ public class ComputerActivity extends BaseActivity {
                 winnerIsVisible();
                 computerBinding.showWinnerTextView.setText("Computer won!");
                 String guestName = getAlienName();
-                computerBinding.computerPlayer2Text.setText(
-                        getString(R.string.player_name_score, guestName, game.getGuestScore()));
+
+                // Player 2
+                computerBinding.computerPlayer2Text.setText(guestName);
+                computerBinding.player2ScoreTextView.setText(String.valueOf(game.getGuestScore()));
+
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
                         .load(getAlienImage())
@@ -229,7 +236,21 @@ public class ComputerActivity extends BaseActivity {
 
             String guestName = getAlienName();
 
+            // host
             if (TextUtils.isEmpty(hostFirstName)) {
+                computerBinding.computerPlayer1Text.setText(hostName);
+            } else {
+                computerBinding.computerPlayer1Text.setText(hostFirstName);
+            }
+
+            computerBinding.player1ScoreTextView.setText(String.valueOf(game.getHostScore()));
+
+            // guest
+            computerBinding.computerPlayer2Text.setText(guestName);
+            computerBinding.player2ScoreTextView.setText(String.valueOf(game.getGuestScore()));
+
+
+           /* if (TextUtils.isEmpty(hostFirstName)) {
                 computerBinding.computerPlayer1Text.setText(
                         getString(R.string.player_name_score, hostName, game.getHostScore()));
             } else {
@@ -238,7 +259,7 @@ public class ComputerActivity extends BaseActivity {
             }
 
             computerBinding.computerPlayer2Text.setText(
-                    getString(R.string.player_name_score, guestName, game.getGuestScore()));
+                    getString(R.string.player_name_score, guestName, game.getGuestScore()));*/
         }
     }
 
