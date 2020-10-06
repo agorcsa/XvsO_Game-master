@@ -3,12 +3,9 @@ package com.example.xvso.ui;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
@@ -28,8 +25,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.muddzdev.styleabletoast.StyleableToast;
-
-import java.util.Objects;
 
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
@@ -74,7 +69,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
-        profileBinding.submitButton.setOnClickListener(this);
+        // profileBinding.submitButton.setOnClickListener(this);
         // sets onClickListener on the profilePicture in order to be clickable and run some code
         profileBinding.profilePicture.setOnClickListener(this);
 
@@ -86,6 +81,22 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("users");
 
         setupProgressDialog();
+
+        profileBinding.exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        profileBinding.submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = "";
+                StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
+            }
+        });
     }
 
     // called when we want to select a picture from the phone's gallery
@@ -111,16 +122,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    // returns the type of a file extension
-    private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
 
-
-    // used while clicking on the user's profile picture
-    // used while clicking on the submit button
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

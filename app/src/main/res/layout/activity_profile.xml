@@ -83,6 +83,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_input_first_name"
                             style="@style/MatchWrap"
+                            android:background="@android:color/transparent"
                             app:counterEnabled="true"
                             app:counterMaxLength="10">
 
@@ -200,10 +201,24 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:text="@string/submit_button"
-            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/home_button"
+            android:layout_above="@+id/exit_button"
+            android:textColor="@color/white"
+            android:onClick="@{()-> viewModelProfile.submitForm()}"/>
+
+        <Button
+            android:id="@+id/exit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exit_to_menu"
+            android:textSize="12sp"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:layout_alignParentBottom="true"
-            android:onClick="@{()-> viewModelProfile.submitForm()}"/>
+            android:background="@android:color/transparent" />
     </RelativeLayout>
 </layout>

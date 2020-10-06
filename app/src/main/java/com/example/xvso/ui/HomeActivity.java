@@ -130,17 +130,14 @@ public class HomeActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createAlertDialogSingle() {
 
-        /*  LayoutInflater inflater = (LayoutInflater) this
+        LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(dialogLayout);*/
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this, R.style.AlertDialogStyle);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
+        alertDialog.setView(dialogLayout);
         alertDialog.setTitle("Player");
         alertDialog.setMessage("Enter counter player name");
 

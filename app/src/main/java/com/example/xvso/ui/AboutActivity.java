@@ -40,28 +40,27 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (!isImageClicked) {
+
                     isImageClicked = true;
 
-                    Picasso.get()
-                            .load(R.drawable.astronautprofile)
-                            .into(aboutBinding.astronautImageView);
+                    aboutBinding.moonImageView.animate().alpha(0f).setDuration(2000);
+                    aboutBinding.astronautImageView.animate().alpha(1f).setDuration(2000);
 
                     showViews();
                     hidePhotoAttributions();
 
                 } else {
+
                     isImageClicked = false;
 
-                    Picasso.get()
-                            .load(R.drawable.blackmoon)
-                            .into(aboutBinding.astronautImageView);
+                    aboutBinding.astronautImageView.animate().alpha(0f).setDuration(2000);
+                    aboutBinding.moonImageView.animate().alpha(1f).setDuration(2000);
 
                     hideViews();
                     displayPhotoAttributions();
                 }
             }
         });
-
 
         String aboutText2 = getResources().getString(R.string.rule_2)
                             + System.getProperty("line.separator")
@@ -88,17 +87,13 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // place your code as needed here
         super.onBackPressed();
     }
 
     public void displayPhotoAttributions() {
 
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
-        // animation has 2 second duration
         animation.setDuration(2000);
-        // animation will start after 2 seconds
-        animation.setStartOffset(2000);
 
         aboutBinding.aboutScrollView.setAnimation(animation);
         aboutBinding.moonClickTextView.setAnimation(animation);
@@ -115,13 +110,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void hideViews() {
-        //aboutBinding.astronautImageView.setVisibility(View.INVISIBLE);
-
         Animation animation = new AlphaAnimation(1.0f, 0.0f);
-        // animation has 2 second duration
         animation.setDuration(2000);
-        // animation will start after 2 seconds
-        animation.setStartOffset(2000);
 
         aboutBinding.aboutLayout.setAnimation(animation);
         aboutBinding.aboutLayout.setVisibility(View.INVISIBLE);
@@ -129,22 +119,15 @@ public class AboutActivity extends AppCompatActivity {
 
     public void showViews() {
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
-        // animation has 2 second duration
         animation.setDuration(2000);
-        // animation will start after 2 seconds
-        animation.setStartOffset(2000);
 
         aboutBinding.aboutLayout.setAnimation(animation);
-
         aboutBinding.aboutLayout.setVisibility(View.VISIBLE);
     }
 
     public void hidePhotoAttributions() {
         Animation animation = new AlphaAnimation(1.0f, 0.0f);
-        // animation has 2 second duration
         animation.setDuration(2000);
-        // animation will start after 2 seconds
-        animation.setStartOffset(2000);
 
         aboutBinding.aboutScrollView.startAnimation(animation);
         aboutBinding.moonClickTextView.startAnimation(animation);
