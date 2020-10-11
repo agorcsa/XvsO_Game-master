@@ -39,6 +39,7 @@
             android:onClick="onXButtonClick"
             android:layout_below="@+id/scroll_view_description"
             android:text="close"
+            android:layout_margin="8dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
     </RelativeLayout>

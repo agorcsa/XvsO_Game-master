@@ -22,7 +22,7 @@
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:background="@drawable/nightsky">
 
             <ImageView
@@ -35,7 +35,6 @@
                 android:layout_width="@dimen/circular_width"
                 android:layout_height="@dimen/circular_height"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="@dimen/margin_30"
                 android:contentDescription="@string/profile_image"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
@@ -83,7 +82,6 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_input_first_name"
                             style="@style/MatchWrap"
-                            android:background="@android:color/transparent"
                             app:counterEnabled="true"
                             app:counterMaxLength="10">
 
@@ -91,12 +89,14 @@
                                 android:id="@+id/first_name_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="text"
+                                android:textColor="@color/white"
+                                android:background="@drawable/edit_dialog_shape"
+                                android:backgroundTint="@color/colorPrimary"
                                 android:text="@={viewModelProfile.userLiveData.firstName}"
                                 app:errorFirstName="@{viewModelProfile.isFirstNameValid}"
                                 android:maxLines="1"
                                 android:textSize="@dimen/text_size_medium" />
                         </com.google.android.material.textfield.TextInputLayout>
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -124,6 +124,9 @@
                                 style="@style/MatchWrap"
                                 android:inputType="text"
                                 android:maxLines="1"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:background="@drawable/edit_dialog_shape"
+                                android:textColor="@color/white"
                                 android:text="@={viewModelProfile.userLiveData.lastName}"
                                 app:errorLastName="@{viewModelProfile.isLastNameValid}"
                                 android:textSize="@dimen/text_size_medium" />
@@ -155,6 +158,9 @@
                                 android:id="@+id/email_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="textEmailAddress"
+                                android:background="@drawable/edit_dialog_shape"
+                                android:textColor="@color/white"
+                                android:backgroundTint="@color/colorPrimary"
                                 android:text="@={viewModelProfile.userLiveData.emailAddress}"
                                 app:errorEmail="@{viewModelProfile.isEmailValid}"
                                 android:maxLines="1"
@@ -187,6 +193,9 @@
                                 android:id="@+id/password_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="textPassword"
+                                android:background="@drawable/edit_dialog_shape"
+                                android:textColor="@color/white"
+                                android:backgroundTint="@color/colorPrimary"
                                 android:text="@={viewModelProfile.userLiveData.password}"
                                 app:errorPassword="@{viewModelProfile.isPasswordValid}"
                                 android:maxLines="1"
@@ -199,11 +208,12 @@
         <Button
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="wrap_content"
             android:text="@string/submit_button"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/home_button"
             android:layout_above="@+id/exit_button"
             android:textColor="@color/white"

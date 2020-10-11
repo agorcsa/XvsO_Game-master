@@ -121,7 +121,7 @@ public class SinglePlayerActivity extends BaseActivity {
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser) + "!");
                 singleBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
-                        .load(R.drawable.astronaut)
+                        .load(R.drawable.astronautprofile)
                         .into(singleBinding.winningImageView);
             } else if (game.getGameResult() == 2) {
                 stopTimer();
@@ -129,7 +129,7 @@ public class SinglePlayerActivity extends BaseActivity {
                 singleBinding.showWinnerTextView.setText("Winner is " + counterPlayerName + "!");
                 singleBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
-                        .load(R.drawable.alienwon)
+                        .load(R.drawable.ufo_black)
                         .into(singleBinding.winningImageView);
             } else if (game.getGameResult() == 3) {
                 stopTimer();

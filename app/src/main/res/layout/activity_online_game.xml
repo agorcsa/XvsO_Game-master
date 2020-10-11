@@ -267,7 +267,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/profile_image"
-                android:src="@drawable/alienwon"
+                android:src="@drawable/ufo_black"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
@@ -394,10 +394,10 @@
                 android:contentDescription="@string/animated_image" />
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/show_winner_layout"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="275dp"
+            android:layout_height="450dp"
             android:layout_gravity="center"
             android:orientation="vertical">
 
@@ -407,17 +407,32 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_above="@+id/winning_image_view"
+                android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:background="@android:color/transparent"
-                android:textSize="@dimen/text_size_xlarge" />
+                android:textSize="@dimen/text_size_large"
+                android:textColor="@color/white" />
+
+            <com.kienht.csiv.CircleSliceImageView
+                android:id="@+id/winning_image_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_above="@+id/play_again_button"
+                android:layout_centerHorizontal="true"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="@dimen/border_width"
+                app:civ_mode="2"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/play_again_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/reset_game_button"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
+                android:layout_above="@+id/reset_game_button"
                 android:onClick="@{() -> viewModel.playGame()}"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:text="@string/new_round"
@@ -430,10 +445,10 @@
                 android:layout_alignParentBottom="true"
                 android:onClick="onResetGameClick"
                 android:text="@string/new_game"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:layout_gravity="bottom"
                 android:background="@drawable/home_button" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/exit_button_online"

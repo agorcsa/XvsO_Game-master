@@ -7,7 +7,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -33,8 +32,6 @@ public class ComputerActivity extends BaseActivity {
     private ComputerViewModel computerViewModel;
 
     private String emailLoggedUser;
-
-    private final Handler handler = new Handler();
 
     private static final String KEY = "key";
 
@@ -167,14 +164,15 @@ public class ComputerActivity extends BaseActivity {
 
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
-                        .load(R.drawable.astronaut)
+                        .load(R.drawable.astronautprofile)
                         .into(computerBinding.winningImageView);
 
             } else if (game.getGameResult() == 2) {
                 stopTimer();
                 winnerIsVisible();
-                computerBinding.showWinnerTextView.setText("Computer won!");
+
                 String guestName = getAlienName();
+                computerBinding.showWinnerTextView.setText(guestName + " won!");
 
                 // Player 2
                 computerBinding.computerPlayer2Text.setText(guestName);
@@ -248,18 +246,6 @@ public class ComputerActivity extends BaseActivity {
             // guest
             computerBinding.computerPlayer2Text.setText(guestName);
             computerBinding.player2ScoreTextView.setText(String.valueOf(game.getGuestScore()));
-
-
-           /* if (TextUtils.isEmpty(hostFirstName)) {
-                computerBinding.computerPlayer1Text.setText(
-                        getString(R.string.player_name_score, hostName, game.getHostScore()));
-            } else {
-                computerBinding.computerPlayer1Text.setText(
-                        getString(R.string.player_name_score, hostFirstName, game.getHostScore()));
-            }
-
-            computerBinding.computerPlayer2Text.setText(
-                    getString(R.string.player_name_score, guestName, game.getGuestScore()));*/
         }
     }
 

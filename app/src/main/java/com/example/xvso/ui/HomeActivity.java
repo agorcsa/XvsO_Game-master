@@ -72,8 +72,8 @@ public class HomeActivity extends BaseActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View view) {
-                    createAlertDialogSingle();
                     hideViews();
+                    createAlertDialogSingle();
                 }
             });
 
@@ -155,6 +155,8 @@ public class HomeActivity extends BaseActivity {
 
         alertDialog.setView(dialogEditText);
         alertDialog.setIcon(R.drawable.ic_cross);
+
+        hideViews();
 
         alertDialog.setPositiveButton("CONFIRM",
                 new DialogInterface.OnClickListener() {
@@ -275,7 +277,6 @@ public class HomeActivity extends BaseActivity {
         }
         return true;
     }
-
 
 
     public void playSound() {

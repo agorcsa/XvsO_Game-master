@@ -15,7 +15,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,8 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.muddzdev.styleabletoast.StyleableToast;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
@@ -155,27 +154,22 @@ public class OnlineGameActivity extends BaseActivity {
                                 // widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 1:
-                                //showToast(getString(R.string.has_won, game.getHost().getName()));
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 2:
-                                //showToast(getString(R.string.has_won, game.getGuest().getName()));
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
                                 break;
                             case 3:
-                                // showToast("It's a draw!");
                                 timer.cancel();
                                 break;
                         }
                         host = game.getHost();
                         guest = game.getGuest();
                         hostUID = host.getUID();
-                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                        String firebaseUID = firebaseUser.getUid();
                         hostFirstName = host.getFirstName();
                         hostName = host.getName();
                         guestFirstName = guest.getFirstName();
@@ -395,12 +389,24 @@ public class OnlineGameActivity extends BaseActivity {
             if (game.getStatus() == Game.STATUS_ROUND_FINISHED) {
                 if (game.getGameResult() == 1) {
                     winnerIsVisible();
-                    onlineGameBinding.showWinnerTextView.setText(game.getHost().getName() + " won!");
+                    onlineGameBinding.winningImageView.setVisibility(View.VISIBLE);
+                    Picasso.get()
+                            .load(R.drawable.astronautprofile)
+                            .into(onlineGameBinding.winningImageView);
+                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName() + " !");
                 } else if (game.getGameResult() == 2) {
                     winnerIsVisible();
-                    onlineGameBinding.showWinnerTextView.setText(game.getGuest().getName() + " won!");
+                    onlineGameBinding.winningImageView.setVisibility(View.VISIBLE);
+                    Picasso.get()
+                            .load(R.drawable.ufo_black)
+                            .into(onlineGameBinding.winningImageView);
+                    onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getGuest().getName() + " !");
                 } else if (game.getGameResult() == 3) {
                     winnerIsVisible();
+                    onlineGameBinding.winningImageView.setVisibility(View.VISIBLE);
+                    Picasso.get()
+                            .load(R.drawable.draw)
+                            .into(onlineGameBinding.winningImageView);
                     onlineGameBinding.showWinnerTextView.setText("It's a draw!");
                 }
             }
@@ -445,6 +451,7 @@ public class OnlineGameActivity extends BaseActivity {
                 onlineGameBinding.turnSwitcherTextView.setVisibility(View.INVISIBLE);
                 hideBoard();
                 hideWinningLines();
+                // onlineGameBinding.showWinnerLayout.setVisibility(View.VISIBLE);
                 onlineGameBinding.showWinnerLayout.setVisibility(View.VISIBLE);
             }
         };

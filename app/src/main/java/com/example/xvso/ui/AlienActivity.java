@@ -47,10 +47,10 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
     private Button xButton;
     private String alienName1 = "Tasp";
     private String alienName2 = "Glu";
-    private String alienName3 = "";
-    private String alienName4 = "";
-    private String alienName5 = "";
-    private String alienName6 = "";
+    private String alienName3 = "Eshu";
+    private String alienName4 = "Ushuqop";
+    private String alienName5 = "Yumay";
+    private String alienName6 = "Uzapoc";
 
     // fields in bold
     // TO DO: add strings to strings.xml

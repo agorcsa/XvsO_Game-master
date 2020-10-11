@@ -117,7 +117,7 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="styleableToast">
@@ -125,12 +125,13 @@
         <item name="stTextColor">@android:color/white</item>
         <item name="stTextSize">@dimen/text_size_small</item>
         <item name="stColorBackground">@android:color/black</item>
+        <item name="stFont">@font/futuristic_font</item>
         <item name="stSolidBackground">true</item>
         <item name="stStrokeWidth">3dp</item>
         <item name="stStrokeColor">@color/colorPrimary</item>
         <item name="stLength">SHORT</item>
         <item name="stGravity">center</item>
-        <item name="stRadius">50dp</item>
+        <item name="stRadius">10dp</item>
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog">

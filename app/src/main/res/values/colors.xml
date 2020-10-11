@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#b2bcf5</color>
-    <color name="colorPrimaryDark">#2ea2d0</color>
+    <color name="colorPrimaryDark">#b2bcf5</color>
     <color name="colorAccent">#f7ed9d</color>
     <color name="deepPurple">#854bb3</color>
     <color name="lightPurple">#b2bcf5</color>
@@ -16,16 +16,16 @@
     <color name="about_screen_background">#141522</color>
 
     <!-- Firebase colors -->
-    <color name="bg_login">#26ae90</color>
+    <color name="bg_login">#b2bcf5</color>
     <color name="bg_register">#2e3237</color>
-    <color name="bg_main">#428bca</color>
+    <color name="bg_main">#b2bcf5</color>
     <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
     <color name="input_register_bg">#3b4148</color>
     <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
+    <color name="btn_login">#b2bcf5</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>

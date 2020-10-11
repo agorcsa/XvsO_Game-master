@@ -69,7 +69,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
-        // profileBinding.submitButton.setOnClickListener(this);
+        profileBinding.submitButton.setOnClickListener(this);
         // sets onClickListener on the profilePicture in order to be clickable and run some code
         profileBinding.profilePicture.setOnClickListener(this);
 
@@ -87,14 +87,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        profileBinding.submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String message = "";
-                StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
             }
         });
     }
@@ -134,7 +126,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     // auxiliary method for displaying a Toast message, by just giving the message we want to display
     public void showMessage(String message) {
-        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
     }
 
     private void setupProgressDialog() {

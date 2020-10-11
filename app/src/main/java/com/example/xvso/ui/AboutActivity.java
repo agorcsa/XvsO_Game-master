@@ -1,9 +1,7 @@
 package com.example.xvso.ui;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -17,7 +15,6 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityAboutBinding;
-import com.squareup.picasso.Picasso;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -70,13 +67,14 @@ public class AboutActivity extends AppCompatActivity {
                             + System.getProperty("line.separator")
                             + getResources().getString(R.string.spanish_support);
 
-        String aboutText1 = getResources().getString(R.string.welcome)
-                + System.getProperty("line.separator")
-                + System.getProperty("line.separator")
-                + getResources().getString(R.string.about_the_app)
+        String aboutText0 = getResources().getString(R.string.welcome);
+
+        String aboutText1 = getResources().getString(R.string.about_the_app)
                 + System.getProperty("line.separator");
 
         String aboutText3 = getResources().getString(R.string.attributions_text);
+
+        aboutBinding.aboutTextView0.setText(aboutText0);
 
         aboutBinding.aboutTextView1.setText(aboutText1);
 
@@ -95,11 +93,14 @@ public class AboutActivity extends AppCompatActivity {
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
         animation.setDuration(2000);
 
+        aboutBinding.attributionsText.setAnimation(animation);
         aboutBinding.aboutScrollView.setAnimation(animation);
         aboutBinding.moonClickTextView.setAnimation(animation);
 
+        aboutBinding.attributionsText.setVisibility(View.VISIBLE);
         aboutBinding.aboutScrollView.setVisibility(View.VISIBLE);
         aboutBinding.moonClickTextView.setVisibility(View.VISIBLE);
+
         attributionLink.setMovementMethod(LinkMovementMethod.getInstance());
         attributionLink.setText(Html.fromHtml(getString(R.string.attributions)));
     }
@@ -129,9 +130,11 @@ public class AboutActivity extends AppCompatActivity {
         Animation animation = new AlphaAnimation(1.0f, 0.0f);
         animation.setDuration(2000);
 
+        aboutBinding.attributionsText.startAnimation(animation);
         aboutBinding.aboutScrollView.startAnimation(animation);
         aboutBinding.moonClickTextView.startAnimation(animation);
 
+        aboutBinding.attributionsText.setVisibility(View.INVISIBLE);
         aboutBinding.aboutScrollView.setVisibility(View.INVISIBLE);
         aboutBinding.moonClickTextView.setVisibility(View.INVISIBLE);
     }

@@ -20,11 +20,25 @@
         android:id="@+id/scroll_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_30"
+        android:layout_marginTop="16dp"
         android:textSize="@dimen/text_size_large"
         android:text="->>"
         android:layout_below="@+id/choose_alien_text_view"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/alien_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scroll_text"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="11dp"
+        android:gravity="center_horizontal"
+        android:text="Keep a long click on the alien to find out more about it." />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/alien_view_pager_slider"

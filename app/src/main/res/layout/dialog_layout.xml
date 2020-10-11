@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,7 +24,8 @@
             android:id="@+id/alert_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:maxLength="8"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="@+id/alert_title_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>

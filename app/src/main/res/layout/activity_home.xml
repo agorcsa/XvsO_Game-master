@@ -14,7 +14,7 @@
             android:id="@+id/ufo_image_view"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/ufo" />
+            android:background="@drawable/ufo_transparent" />
 
         <Button
             android:id="@+id/single_player_button"

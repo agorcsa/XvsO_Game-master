@@ -94,9 +94,9 @@
     <!-- text -->
     <string name="welcome">Greetings Earthling,</string>
     <string name="about_the_app">If you loved playing XvsO, but also like to set your imagination free, this is the perfect game for you! Below you can find some general rules for the game:</string>
-    <string name="rule_1">   - the board consists of 3x3 cells</string>
-    <string name="rule_2">   - two players play alternatively, marking one empty cell at a time</string>
-    <string name="rule_3">   - the objective (equal to 3) is the number of markings to achieve in line (horizontally, vertically or diagonally)</string>
+    <string name="rule_1">   \u2022 the board consists of 3x3 cells</string>
+    <string name="rule_2">   \u2022 two players play alternatively, marking one empty cell at a time</string>
+    <string name="rule_3">   \u2022 the objective (equal to 3) is the number of markings to achieve in line (horizontally, vertically or diagonally)</string>
     <string name="spanish_support">The app supports beside English, Spanish language as well.</string>
 
     <!-- activity_login.xml -->
@@ -166,19 +166,25 @@
     <!-- attributions in HTML format -->
 
     // earth image
+    // green galaxy
     // ufo image
     // it's a draw
-    // green alien
+    // astronaut profile
+
     // alien 2
-    // turquoise alien
+    // alien 3
     // alien 4
-    // pink alien
     // alien 5
+    // alien 6
+
+    <!-- <h2>Attributions<h2> -->
+
+    // log in earth
+    <!-- <a href='https://pngtree.com/so/atmosphere'>atmosphere png from pngtree.com</a> -->
 
     <!-- attributions in HTML format -->
     <string name="attributions">
     <![CDATA[
-     <h2>Attributions<h2>
      <p><a href="https://pngtree.com/so/globe-navigational-equipment">globe-navigational-equipment png from pngtree.com</a></p>
      <p><a href="https://pngtree.com/so/world-space-day-illustration">world-space-day-illustration png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/world-space-day-illustration">world-space-day-illustration png from pngtree.com</a> </p>
@@ -186,6 +192,10 @@
      <p><a href="https://pngtree.com/so/cartoon">cartoon png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/cartoon-alien">cartoon-alien png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/monster">monster png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/clouds">clouds png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/red">red png from pngtree.com</a>  </p>
+     <p><a href="https://pngtree.com/so/cartoon-vector">cartoon-vector png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/outer-space">outer-space png from pngtree.com</a> </p>
     ]]>
 </string>
 
