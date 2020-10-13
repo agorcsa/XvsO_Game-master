@@ -20,12 +20,4 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/alert_title_text_view" />
 
-        <EditText
-            android:id="@+id/alert_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="8"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toTopOf="@+id/alert_title_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>

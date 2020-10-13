@@ -34,6 +34,7 @@
                 android:id="@+id/profile_picture"
                 android:layout_width="@dimen/circular_width"
                 android:layout_height="@dimen/circular_height"
+                android:layout_marginTop="16dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:contentDescription="@string/profile_image"
                 app:civ_border_color="@color/colorPrimary"
@@ -68,7 +69,7 @@
                     <LinearLayout
                         android:id="@+id/linear_layout_1"
                         style="@style/MatchWrap"
-                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_margin="16dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -79,30 +80,25 @@
                             android:fontFamily="@font/futuristic_font"
                             android:textSize="@dimen/text_size_medium" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_input_first_name"
-                            style="@style/MatchWrap"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="10">
-
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/first_name_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="text"
                                 android:textColor="@color/white"
-                                android:background="@drawable/edit_dialog_shape"
-                                android:backgroundTint="@color/colorPrimary"
+                                android:backgroundTint="@color/white"
                                 android:text="@={viewModelProfile.userLiveData.firstName}"
                                 app:errorFirstName="@{viewModelProfile.isFirstNameValid}"
                                 android:maxLines="1"
+                                android:maxLength="10"
                                 android:textSize="@dimen/text_size_medium" />
-                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linear_layout_2"
                         style="@style/MatchWrap"
-                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -113,30 +109,25 @@
                             android:text="@string/last_name"
                             android:textSize="@dimen/text_size_medium" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_input_last_name"
-                            style="@style/MatchWrap"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="10">
-
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/last_name_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="text"
                                 android:maxLines="1"
-                                android:backgroundTint="@color/colorPrimary"
-                                android:background="@drawable/edit_dialog_shape"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/white"
+                                android:maxLength="10"
                                 android:text="@={viewModelProfile.userLiveData.lastName}"
                                 app:errorLastName="@{viewModelProfile.isLastNameValid}"
                                 android:textSize="@dimen/text_size_medium" />
-                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linear_layout_3"
                         style="@style/MatchWrap"
-                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -147,31 +138,25 @@
                             android:text="@string/e_mail"
                             android:textSize="@dimen/text_size_medium" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_input_email"
-                            style="@style/MatchWrap"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="30"
-                            app:errorEnabled="true">
-
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/email_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="textEmailAddress"
-                                android:background="@drawable/edit_dialog_shape"
                                 android:textColor="@color/white"
-                                android:backgroundTint="@color/colorPrimary"
+                                android:backgroundTint="@color/white"
                                 android:text="@={viewModelProfile.userLiveData.emailAddress}"
                                 app:errorEmail="@{viewModelProfile.isEmailValid}"
                                 android:maxLines="1"
+                                android:maxLength="30"
                                 android:textSize="@dimen/text_size_medium" />
-                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/linear_layout_4"
                         style="@style/MatchWrap"
-                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -182,25 +167,17 @@
                             android:text="@string/password"
                             android:textSize="@dimen/text_size_medium" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_input_password"
-                            style="@style/MatchWrap"
-                            app:counterEnabled="true"
-                            app:counterMaxLength="10"
-                            app:passwordToggleEnabled="true">
-
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/password_editview"
                                 style="@style/MatchWrap"
                                 android:inputType="textPassword"
-                                android:background="@drawable/edit_dialog_shape"
                                 android:textColor="@color/white"
-                                android:backgroundTint="@color/colorPrimary"
+                                android:backgroundTint="@color/white"
                                 android:text="@={viewModelProfile.userLiveData.password}"
                                 app:errorPassword="@{viewModelProfile.isPasswordValid}"
                                 android:maxLines="1"
+                                android:maxLength="10"
                                 android:textSize="@dimen/text_size_medium" />
-                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>
     </LinearLayout>

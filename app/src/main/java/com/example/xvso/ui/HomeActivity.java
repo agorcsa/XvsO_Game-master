@@ -136,24 +136,17 @@ public class HomeActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
         alertDialog.setView(dialogLayout);
         alertDialog.setTitle("Player");
         alertDialog.setMessage("Enter counter player name");
 
-        dialogEditText = new EditText(HomeActivity.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-
-        dialogEditText.setLayoutParams(lp);
-        dialogEditText.setTextColor(getColor(R.color.colorPrimary));
-
-        dialogEditText.setFilters(new InputFilter[]{
-                new InputFilter.LengthFilter(8)
-        });
-
-        alertDialog.setView(dialogEditText);
+        LayoutInflater inflater1 = (LayoutInflater) getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater1.inflate(R.layout.edit_text, null);
+        dialogEditText = view.findViewById(R.id.alert_edit_text);
+        alertDialog.setView(view);
         alertDialog.setIcon(R.drawable.ic_cross);
 
         hideViews();

@@ -2,11 +2,15 @@ package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -100,6 +104,8 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     private boolean isAlertBoxShown;
 
     private ProgressBar progressBar;
+
+    private EditText dialogEditText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -400,7 +406,40 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
 
         if (!isFinishing()) {
-            new MaterialDialog.Builder(this)
+
+            LayoutInflater inflater = (LayoutInflater) this
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View dialogLayout = inflater.inflate(R.layout.accept_invitation_layout, null);
+            androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.AlertDialogStyle);
+            alertDialog.setTitle(R.string.alert_dialog_title);
+            alertDialog.setMessage(getString(R.string.alert_dialog_content, getGuestName(guest)));
+
+            alertDialog.setView(dialogLayout);
+            alertDialog.setIcon(R.drawable.ic_cross);
+
+            alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // updates the acceptedRequest variable in the Firebase database
+                    database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
+                    startGame(key);
+                    alertDialog.setCancelable(true);
+                    /// --> here is the problem
+                    //alertDialog.dismiss();
+                }
+            });
+
+            alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    game.setStatus(Game.STATUS_WAITING);
+                    database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);
+                }
+            });
+
+            alertDialog.show();
+
+            /*new MaterialDialog.Builder(this)
                     .icon(getResources().getDrawable(R.drawable.ic_cross, null))
                     .limitIconToDefaultSize()
                     .title(R.string.alert_dialog_title)
@@ -408,6 +447,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                     .positiveText(R.string.alert_dialog_yes)
                     .negativeText(R.string.alert_dialog_no)
                     .theme(Theme.DARK)
+
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(MaterialDialog dialog, DialogAction which) {
@@ -426,6 +466,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                         }
                     })
                     .show();
+        }*/
         }
     }
 

@@ -17,7 +17,7 @@
 
         <activity
             android:name=".ui.SplashActivity"
-            android:label="Splash"
+            android:label="XvsO in Space"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">

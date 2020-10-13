@@ -21,7 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
-import java.util.Objects;
+import org.w3c.dom.Text;
 
 
 public class LoginActivity extends BaseActivity {
@@ -81,8 +81,8 @@ public class LoginActivity extends BaseActivity {
                 loginBinding.progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate user
-                if (!loginViewModel.getEmail().getValue().isEmpty() || !loginViewModel.getEmail().getValue().isEmpty()) {
-                    auth.signInWithEmailAndPassword(loginViewModel.getEmail().getValue(), loginViewModel.getPassword().getValue())
+                if (!TextUtils.isEmpty(loginBinding.loginEmail.getText()) && !TextUtils.isEmpty(loginBinding.loginPassword.getText())) {
+                    auth.signInWithEmailAndPassword(loginBinding.loginEmail.getText().toString(), loginBinding.loginPassword.getText().toString())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
