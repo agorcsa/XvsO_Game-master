@@ -1,7 +1,6 @@
 package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -391,7 +390,7 @@ public class OnlineGameActivity extends BaseActivity {
                     winnerIsVisible();
                     onlineGameBinding.winningImageView.setVisibility(View.VISIBLE);
                     Picasso.get()
-                            .load(R.drawable.astronautprofile)
+                            .load(R.drawable.astronaut)
                             .into(onlineGameBinding.winningImageView);
                     onlineGameBinding.showWinnerTextView.setText("Winner is " + game.getHost().getName() + " !");
                 } else if (game.getGameResult() == 2) {

@@ -22,9 +22,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.example.xvso.R;
 import com.example.xvso.object.Board;
 import com.example.xvso.object.Game;
@@ -415,7 +412,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
             alertDialog.setMessage(getString(R.string.alert_dialog_content, getGuestName(guest)));
 
             alertDialog.setView(dialogLayout);
-            alertDialog.setIcon(R.drawable.ic_cross);
+            alertDialog.setIcon(R.drawable.cross);
 
             alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                 @Override
@@ -424,8 +421,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                     database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
                     startGame(key);
                     alertDialog.setCancelable(true);
-                    /// --> here is the problem
-                    //alertDialog.dismiss();
+
                 }
             });
 
@@ -438,35 +434,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
             });
 
             alertDialog.show();
-
-            /*new MaterialDialog.Builder(this)
-                    .icon(getResources().getDrawable(R.drawable.ic_cross, null))
-                    .limitIconToDefaultSize()
-                    .title(R.string.alert_dialog_title)
-                    .content(getString(R.string.alert_dialog_content, getGuestName(guest)))
-                    .positiveText(R.string.alert_dialog_yes)
-                    .negativeText(R.string.alert_dialog_no)
-                    .theme(Theme.DARK)
-
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(MaterialDialog dialog, DialogAction which) {
-                            // updates the acceptedRequest variable in the Firebase database
-                            database.getReference("multiplayer").child(key).child("acceptedRequest").setValue(REQUEST_ACCEPTED);
-                            startGame(key);
-                            /// --> here is the problem
-                            dialog.dismiss();
-                        }
-                    })
-                    .onNegative(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(MaterialDialog dialog, DialogAction which) {
-                            game.setStatus(Game.STATUS_WAITING);
-                            database.getReference("multiplayer").child(key).child("status").setValue(Game.STATUS_WAITING);
-                        }
-                    })
-                    .show();
-        }*/
         }
     }
 

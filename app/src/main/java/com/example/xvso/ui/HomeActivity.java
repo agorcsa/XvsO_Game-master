@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
-import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +19,6 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -147,7 +145,8 @@ public class HomeActivity extends BaseActivity {
         View view = inflater1.inflate(R.layout.edit_text, null);
         dialogEditText = view.findViewById(R.id.alert_edit_text);
         alertDialog.setView(view);
-        alertDialog.setIcon(R.drawable.ic_cross);
+        alertDialog.setIcon(R.drawable.cross);
+        alertDialog.setCancelable(false);
 
         hideViews();
 

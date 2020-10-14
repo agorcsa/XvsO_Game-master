@@ -164,7 +164,7 @@ public class ComputerActivity extends BaseActivity {
 
                 computerBinding.winningImageView.setVisibility(View.VISIBLE);
                 Picasso.get()
-                        .load(R.drawable.astronautprofile)
+                        .load(R.drawable.astronaut)
                         .into(computerBinding.winningImageView);
 
             } else if (game.getGameResult() == 2) {

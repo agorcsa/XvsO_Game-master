@@ -436,7 +436,7 @@
                 android:onClick="@{() -> viewModel.playGame()}"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:text="@string/new_round"
-                android:background="@drawable/home_button" />
+                android:background="@drawable/button_purple_transparent" />
 
             <Button
                 android:id="@+id/reset_game_button"
@@ -447,7 +447,7 @@
                 android:text="@string/new_game"
                 android:textColor="@color/white"
                 android:layout_gravity="bottom"
-                android:background="@drawable/home_button" />
+                android:background="@drawable/button_purple_transparent" />
         </RelativeLayout>
 
         <Button

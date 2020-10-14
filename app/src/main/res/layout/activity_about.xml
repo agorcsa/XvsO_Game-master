@@ -9,7 +9,7 @@
             android:id="@+id/moon_image_view"
             android:layout_width="270dp"
             android:layout_height="270dp"
-            android:background="@drawable/blackmoon"
+            android:background="@drawable/picture_blackmoon"
             android:layout_gravity="top|right"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="@dimen/margin_40" />
@@ -18,7 +18,7 @@
             android:id="@+id/astronaut_image_view"
             android:layout_width="270dp"
             android:layout_height="270dp"
-            android:background="@drawable/astronautprofile"
+            android:background="@drawable/astronaut"
             android:layout_gravity="top|right"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="@dimen/margin_40" />

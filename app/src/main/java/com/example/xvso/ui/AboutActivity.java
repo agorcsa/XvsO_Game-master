@@ -30,7 +30,7 @@ public class AboutActivity extends AppCompatActivity {
 
         attributionLink = findViewById(R.id.attribution_link_text_view);
 
-        aboutBinding.astronautImageView.setImageResource(R.drawable.astronautprofile);
+        aboutBinding.astronautImageView.setImageResource(R.drawable.astronaut);
 
         aboutBinding.astronautImageView.setOnClickListener(new View.OnClickListener() {
             @Override

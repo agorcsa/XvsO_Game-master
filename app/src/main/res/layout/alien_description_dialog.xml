@@ -34,7 +34,7 @@
             android:id="@+id/x_button"
             style="@style/MatchWrap"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/button_purple_solid"
             android:fontFamily="@font/futuristic_font"
             android:onClick="onXButtonClick"
             android:layout_below="@+id/scroll_view_description"

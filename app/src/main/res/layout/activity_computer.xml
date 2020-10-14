@@ -273,7 +273,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/profile_image"
-                android:src="@drawable/alienwon"
+                android:src="@drawable/ufo_black"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
@@ -417,7 +417,7 @@
                 android:onClick="onPlayAgainClick"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:text="@string/new_round"
-                android:background="@drawable/home_button" />
+                android:background="@drawable/button_purple_transparent" />
 
             <Button
                 android:id="@+id/reset_game_button"
@@ -427,7 +427,7 @@
                 android:onClick="onResetGameClick"
                 android:text="@string/new_game"
                 android:textColor="@android:color/white"
-                android:background="@drawable/home_button" />
+                android:background="@drawable/button_purple_transparent" />
 
             <TextView
                 android:id="@+id/show_winner_text_view"
