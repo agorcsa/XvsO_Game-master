@@ -165,22 +165,23 @@
 
     <!-- attributions in HTML format -->
 
-    // earth image
-    // green galaxy
-    // ufo image
-    // it's a draw
-    // astronaut profile
+    // greengalaxy
+    // ufo
+    // draw
+    // astronaut
+    // nebula
+    // moon
+    // earth
+    // logo
+    // night sky
 
+    // alien 1
     // alien 2
     // alien 3
     // alien 4
     // alien 5
     // alien 6
 
-    <!-- <h2>Attributions<h2> -->
-
-    // log in earth
-    <!-- <a href='https://pngtree.com/so/atmosphere'>atmosphere png from pngtree.com</a> -->
 
     <!-- attributions in HTML format -->
     <string name="attributions">
@@ -197,6 +198,12 @@
      <p><a href="https://pngtree.com/so/cartoon-vector">cartoon-vector png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/outer-space">outer-space png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/vs">vs png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/atmosphere">atmosphere png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/nebula">nebula png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/star">star png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/starlight">starlight png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/distorted-alien">distorted-alien png from pngtree.com</a> </p>
+
     ]]>
 </string>
 
