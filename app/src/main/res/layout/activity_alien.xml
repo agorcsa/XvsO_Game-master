@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/choose_alien_text_view"
-        android:text="Choose the ALIEN against which you want to play!"
+        android:text="@string/choose_alien"
         android:layout_width="wrap_content"
         android:textColor="@android:color/white"
         android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textSize="@dimen/text_size_large"
-        android:text="->>"
+        android:text="@string/slide_next"
         android:layout_below="@+id/choose_alien_text_view"
         android:layout_centerHorizontal="true" />
 
@@ -38,7 +38,7 @@
         android:layout_marginRight="16dp"
         android:textSize="11dp"
         android:gravity="center_horizontal"
-        android:text="Keep a long click on the alien to find out more about it." />
+        android:text="@string/alien_click" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/alien_view_pager_slider"

@@ -86,7 +86,7 @@
                 android:layout_marginTop="@dimen/margin_30"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
-                android:text="Not a member? Register now!"
+                android:text="@string/register_now"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>

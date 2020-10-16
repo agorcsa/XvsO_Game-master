@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/timer_text_view_online"
                 android:layout_marginTop="8dp"
-                android:text="Time Left"
+                android:text="@string/time_left_text"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@+id/timer_text_view_online"

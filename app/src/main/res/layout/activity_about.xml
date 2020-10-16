@@ -31,7 +31,7 @@
             android:layout_marginLeft="16dp"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="100dp"
-            android:text="Attributions"
+            android:text="@string/attributions_title"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -113,7 +113,7 @@
             android:id="@+id/exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="exit to home"
+            android:text="@string/exit_to_home"
             android:textSize="12sp"
             android:onClick="onExitToHome"
             android:layout_marginBottom="16dp"

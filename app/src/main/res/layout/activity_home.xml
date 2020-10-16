@@ -20,7 +20,7 @@
             android:id="@+id/single_player_button"
             style="@style/MatchWrap"
             android:background="@drawable/button_purple_transparent"
-            android:text="single player (alien)"
+            android:text="@string/single_player_button"
             android:textStyle="bold"
             android:fontFamily="@font/futuristic_font"
             android:textColor="@color/white" />
@@ -30,7 +30,7 @@
             style="@style/MatchWrap"
             android:background="@drawable/button_purple_transparent"
             android:fontFamily="@font/futuristic_font"
-            android:text="single player (ai)"
+            android:text="@string/player_ai_button"
             android:textStyle="bold"
             android:textColor="@color/white" />
 
@@ -40,7 +40,7 @@
             android:textStyle="bold"
             android:background="@drawable/button_purple_transparent"
             android:fontFamily="@font/futuristic_font"
-            android:text="multiplayer (galaxy)"
+            android:text="@string/multiplayer_galaxy_button"
             android:textColor="@color/white" />
 
         <Button
@@ -51,7 +51,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/futuristic_font"
             android:background="@drawable/button_purple_transparent"
-            android:text="About"
+            android:text="@string/about_button"
             android:textColor="@color/white" />
 
         <TextView
@@ -59,7 +59,7 @@
             style="@style/WrapContent"
             android:layout_centerHorizontal="@bool/value_true"
             android:fontFamily="@font/futuristic_font"
-            android:text="XvsO in Space"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
             android:paddingBottom="@dimen/margin_40"
             android:textSize="@dimen/text_size_xlarge"

@@ -161,7 +161,6 @@
     <string name="sound">sound</string>
     <string name="music">music</string>
     <string name="log_out">Log out</string>
-    <string name="exit_to_home">exit to home</string>
 
     <!-- attributions in HTML format -->
 
@@ -184,7 +183,7 @@
 
 
     <!-- attributions in HTML format -->
-    <string name="attributions">
+    <string name="attributions" translatable="false">
     <![CDATA[
      <p><a href="https://pngtree.com/so/globe-navigational-equipment">globe-navigational-equipment png from pngtree.com</a></p>
      <p><a href="https://pngtree.com/so/world-space-day-illustration">world-space-day-illustration png from pngtree.com</a> </p>
@@ -203,10 +202,22 @@
      <p><a href="https://pngtree.com/so/star">star png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/starlight">starlight png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/distorted-alien">distorted-alien png from pngtree.com</a> </p>
-
     ]]>
 </string>
 
-    <string name="attributions_text">To see all the photo attributions, please click on the astronaut</string>
+    <string name="attributions_text">To see all the photo attributions, please click on the astronaut.</string>
     <string name="moonclick">To get back to the game rules, please press the moon.</string>
+    <string name="exit_to_home">exit to home</string>
+    <string name="attributions_title">Attributions</string>
+    <string name="choose_alien">Choose the ALIEN against which you want to play!</string>
+    <string name="slide_next"><![CDATA[->>]]></string>
+    <string name="alien_click">Keep a long click on the alien to find out more about it.</string>
+    <string name="time_left_text">Time Left</string>
+    <string name="single_player_button">single player (alien)</string>
+    <string name="player_ai_button">single player (ai)</string>
+    <string name="multiplayer_galaxy_button">multiplayer (galaxy)</string>
+    <string name="about_button">About</string>
+    <string name="register_now">Not a member? Register now!</string>
+    <string name="close">close</string>
+    <string name="license">license</string>
 </resources>

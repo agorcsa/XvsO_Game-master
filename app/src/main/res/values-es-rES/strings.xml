@@ -97,4 +97,26 @@
     <string name="btn_single_player_computer">Solo Jugador (Computadora)</string>
     <string name="preferences_menu">Configuraciones</string>
     <string name="settings_label">Configuraciones</string>
+    <string name="exit_to_home">exit to home</string>
+    <string name="attributions_title">Attributions</string>
+    <string name="choose_alien">Choose the ALIEN against which you want to play!</string>
+    <string name="slide_next"><![CDATA[->>]]></string>
+    <string name="alien_click">Keep a long click on the alien to find out more about it.</string>
+    <string name="time_left_text">Time Left</string>
+    <string name="single_player_button">single player (alien)</string>
+    <string name="player_ai_button">single player (ai)</string>
+    <string name="multiplayer_galaxy_button">multiplayer (galaxy)</string>
+    <string name="about_button">About</string>
+    <string name="register_now">Not a member? Register now!</string>
+    <string name="close">close</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="music">Música</string>
+    <string name="sound">Sonido</string>
+    <string name="exit_to_menu">Salir al menú</string>
+    <string name="new_round">Nueva ronda</string>
+    <string name="moon_image">Imagen de la luna</string>
+    <string name="title_activity_settings2">Configuraciones</string>
+    <string name="attributions_text">Para ver todas las atribuciones de las fotos, haga clic en el astronauta.</string>
+    <string name="moonclick">Para volver a las reglas del juego, presione la luna.</string>
+    <string name="license">license</string>
 </resources>

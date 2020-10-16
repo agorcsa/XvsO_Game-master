@@ -38,7 +38,7 @@
             android:fontFamily="@font/futuristic_font"
             android:onClick="onXButtonClick"
             android:layout_below="@+id/scroll_view_description"
-            android:text="close"
+            android:text="@string/close"
             android:layout_margin="8dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
