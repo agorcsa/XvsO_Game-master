@@ -17,7 +17,6 @@ import com.example.xvso.progressdialog.ProfileEditState;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityProfileBinding;
 import com.example.xvso.eventobserver.EventObserver;
-import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.ProfileViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -89,6 +88,16 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 startActivity(intent);
             }
         });
+
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
     }
 
     // called when we want to select a picture from the phone's gallery

@@ -23,9 +23,11 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/margin_40"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/player1_score_text_view"
                 app:layout_constraintBottom_toTopOf="@+id/grid_layout_single_player"
                 app:hostName="@{viewModel.gameLiveData.host.name}"
                 app:guestName="@{viewModel.gameLiveData.guest.name}"
@@ -69,7 +71,8 @@
                 app:civ_mode="2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:profileImage="@{viewModel.userLiveData.imageUrl}" />
+                app:profileImage="@{viewModel.userLiveData.imageUrl}"
+                android:transitionName="human_transition" />
 
             <TextView
                 android:id="@+id/single_player1_text"
@@ -112,7 +115,8 @@
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:transitionName="alien_transition" />
 
             <TextView
                 android:id="@+id/single_player2_text"
@@ -420,6 +424,7 @@
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="@dimen/border_width"
                 app:civ_mode="2"
+                android:transitionName="human_transition"
                 android:layout_centerHorizontal="true"
                 android:visibility="invisible" />
 

@@ -3,50 +3,30 @@
 
     <FrameLayout
         style="@style/MatchParent"
-        android:background="@drawable/nightsky">
-
-        <ImageView
-            android:id="@+id/moon_image_view"
-            android:layout_width="270dp"
-            android:layout_height="270dp"
-            android:background="@drawable/picture_blackmoon"
-            android:layout_gravity="top|right"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="@dimen/margin_40" />
+        android:background="@android:color/black">
 
         <ImageView
             android:id="@+id/astronaut_image_view"
             android:layout_width="270dp"
             android:layout_height="270dp"
             android:background="@drawable/astronaut"
-            android:layout_gravity="top|right"
+            android:layout_gravity="right"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="@dimen/margin_40" />
-
-        <TextView
-            android:id="@+id/attributions_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginLeft="16dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="100dp"
-            android:text="@string/attributions_title"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="@dimen/margin_20" />
 
         <LinearLayout
             android:id="@+id/about_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/about_text_view_0"
                 android:layout_width="150dp"
                 android:textStyle="bold"
-                android:layout_marginTop="32dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="16dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp" />
 
@@ -80,42 +60,14 @@
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/about_scroll_view"
-            android:visibility="gone"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="290dp">
-
-            <TextView
-                android:id="@+id/attribution_link_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </ScrollView>
-
-        <TextView
-            android:id="@+id/moon_click_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="90dp"
-            android:layout_gravity="bottom"
-            android:text="@string/moonclick"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_small" />
-
         <Button
             android:id="@+id/exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exit_to_home"
             android:textSize="12sp"
-            android:onClick="onExitToHome"
+            android:onClick="onExitButtonClick"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:layout_gravity="center|bottom"
             android:textColor="@color/white"

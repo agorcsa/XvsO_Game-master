@@ -3,29 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_sound_home"
+        android:id="@+id/action_sound_up"
         android:orderInCategory="1"
+        android:title="volume up"
+        android:icon="@drawable/volume_up"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_sound_down"
+        android:orderInCategory="2"
+        android:title="volume down"
+        android:icon="@drawable/volume_down"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_sound_home"
+        android:orderInCategory="3"
         android:title="@string/sound"
         android:icon="@drawable/volume_on"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_music_home"
-        android:orderInCategory="2"
+        android:orderInCategory="4"
         android:title="@string/music"
         android:icon="@drawable/music_on"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_profile_home"
-        android:orderInCategory="3"
+        android:orderInCategory="5"
         android:title="@string/profile_menu"
         android:icon="@drawable/ic_profile"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_log_out_home"
-        android:orderInCategory="4"
+        android:orderInCategory="6"
         app:showAsAction="always"
         android:title="@string/log_out"
         android:icon="@drawable/ic_exit" />

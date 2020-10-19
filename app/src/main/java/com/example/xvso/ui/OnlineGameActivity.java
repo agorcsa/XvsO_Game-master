@@ -25,7 +25,6 @@ import com.example.xvso.R;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.databinding.ActivityOnlineGameBinding;
-import com.example.xvso.uifirebase.BaseActivity;
 
 import com.example.xvso.viewmodel.OnlineGameViewModel;
 import com.example.xvso.viewmodel.OnlineUsersViewModelFactory;
@@ -274,6 +273,16 @@ public class OnlineGameActivity extends BaseActivity {
 
             }
         });
+
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
     }
 
     public void setEnableClick(boolean b) {

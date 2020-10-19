@@ -28,7 +28,6 @@ import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
 import com.example.xvso.adapter.GameAdapter;
 import com.example.xvso.databinding.ActivityOnlineUsersBinding;
-import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.OnlineUsersViewModel;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,6 +150,16 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         });
 
         gameAdapter.notifyDataSetChanged();
+
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
     }
 
 

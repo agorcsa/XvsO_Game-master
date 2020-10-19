@@ -6,25 +6,33 @@
         app:constraintSetEnd="@+id/end"
         app:constraintSetStart="@+id/start"
         app:duration="2000">
+
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="90"
+                app:framePosition="110"
                 app:motionTarget="@+id/single_player_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="70"
+                app:framePosition="90"
                 app:motionTarget="@+id/computer_player_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="50"
+                app:framePosition="70"
                 app:motionTarget="@+id/multi_player_button" />
+        </KeyFrameSet>
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.0"
+                app:framePosition="50"
+                app:motionTarget="@+id/policy_attributions_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
@@ -43,6 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
         <Constraint
             android:id="@+id/single_player_button"
             android:layout_width="match_parent"
@@ -54,6 +63,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/computer_player_button" />
+
         <Constraint
             android:id="@+id/computer_player_button"
             android:layout_width="match_parent"
@@ -66,6 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/multi_player_button"
             android:layout_marginBottom="0dp" />
+
         <Constraint
             android:id="@+id/multi_player_button"
             android:layout_width="match_parent"
@@ -76,14 +87,28 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/computer_player_button"
             app:layout_editor_absoluteY="397dp"
+            app:layout_constraintBottom_toTopOf="@+id/policy_attributions_button"
+            android:layout_marginBottom="0dp" />
+
+        <Constraint
+            android:id="@+id/policy_attributions_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:alpha="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/multi_player_button"
+            app:layout_editor_absoluteY="397dp"
             app:layout_constraintBottom_toTopOf="@+id/about_button"
             android:layout_marginBottom="0dp" />
+
         <Constraint
             android:id="@+id/about_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:alpha="0.0"
-            app:layout_constraintTop_toBottomOf="@id/multi_player_button"
+            app:layout_constraintTop_toBottomOf="@id/policy_attributions_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
@@ -98,7 +123,8 @@
             android:layout_height="150dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_title" />
+            app:layout_constraintTop_toBottomOf="@+id/app_title"
+            app:layout_constraintBottom_toTopOf="@+id/single_player_button" />
         <Constraint
             android:id="@+id/single_player_button"
             android:layout_width="match_parent"
@@ -127,6 +153,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/computer_player_button" />
         <Constraint
+            android:id="@+id/policy_attributions_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:alpha="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/multi_player_button" />
+        <Constraint
             android:id="@+id/about_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,7 +169,7 @@
             android:alpha="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/multi_player_button"
+            app:layout_constraintTop_toBottomOf="@id/policy_attributions_button"
             app:layout_constraintBottom_toBottomOf="parent" />
     </ConstraintSet>
 </MotionScene>

@@ -3,15 +3,9 @@ package com.example.xvso.license;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.xvso.R;
 
 import java.lang.ref.WeakReference;
-import java.util.concurrent.ExecutionException;
 
 public class ReadFileAsyncTask extends AsyncTask<String, Void, String> {
 
@@ -25,11 +19,15 @@ public class ReadFileAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String fileName = "license.txt";
+        String fileName = "privacypolicy.txt";
         return Utils.readFileFromAssets(weakContext.get(), fileName);
     }
 
     @Override
     protected void onPostExecute(String result) {
+    }
+
+    public interface OnTaskCompleted {
+        void onTaskCompleted(String result);
     }
 }

@@ -5,21 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.xvso.R;
-
 import com.example.xvso.databinding.ActivitySinglePlayerBinding;
-import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.SinglePlayerViewModel;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -53,7 +50,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
-        // starts the round timer
         startTimer();
 
         winnerIsInvisible();
@@ -64,8 +60,17 @@ public class SinglePlayerActivity extends BaseActivity {
         animateViews();
 
         showWinningText();
-    }
 
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
+    }
 
     public void animateViews() {
         singleBinding.vsImageViewSingle.animate().alpha(0f).setDuration(3000);
@@ -120,9 +125,11 @@ public class SinglePlayerActivity extends BaseActivity {
                 winnerIsVisible();
                 singleBinding.showWinnerTextView.setText("Winner is " + convertEmailToString(emailLoggedUser) + "!");
                 singleBinding.winningImageView.setVisibility(View.VISIBLE);
+
                 Picasso.get()
                         .load(R.drawable.astronaut)
                         .into(singleBinding.winningImageView);
+
             } else if (game.getGameResult() == 2) {
                 stopTimer();
                 winnerIsVisible();
@@ -227,7 +234,6 @@ public class SinglePlayerActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        // place your code as needed here
         super.onBackPressed();
     }
 }

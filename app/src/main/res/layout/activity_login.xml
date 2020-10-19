@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/MatchParent"
         android:background="@android:color/black"
         android:fitsSystemWindows="@bool/value_true"
@@ -38,6 +39,7 @@
                     android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
                     app:counterEnabled="@bool/value_true"
+                    android:backgroundTint="@color/white"
                     android:background="@drawable/edit_field"
                     android:textColor="@android:color/white"
                     android:textColorHint="@android:color/white" />
@@ -59,17 +61,18 @@
                     android:textColorHint="@android:color/white" />
             </com.google.android.material.textfield.TextInputLayout>
             <!-- Login Button -->
+            <!-- Reset Password Button -->
             <Button
                 android:id="@+id/btn_login"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/margin_20"
                 android:background="@drawable/button_transparent"
-                android:text="@string/btn_login"
-                android:textStyle="bold"
                 android:elevation="6dp"
+                android:text="@string/btn_login"
                 android:textAllCaps="@bool/value_true"
-                android:textColor="@android:color/white" />
-            <!-- Reset Password Button -->
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/btn_reset_password"
                 style="@style/MatchWrap"

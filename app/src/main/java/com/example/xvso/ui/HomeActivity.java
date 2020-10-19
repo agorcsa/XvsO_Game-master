@@ -5,7 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
+
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,22 +38,21 @@ import static com.example.xvso.R.drawable.nightsky;
 
 public class HomeActivity extends BaseActivity {
 
-    private static final String KEY = "key";
     public static final String COUNTER_PLAYER_EDIT_TEXT = "CounterPlayer EditText";
-
-    private MediaPlayer mediaPlayer;
 
     private ActivityHomeBinding homeBinding;
 
     private EditText dialogEditText;
 
-    public static final String STATUS = "status";
+    private AudioManager audioManager;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+
+        audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 
             configureActionBar();
 
@@ -92,13 +92,19 @@ public class HomeActivity extends BaseActivity {
                 }
             });
 
+        homeBinding.policyAttributionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
+                startActivity(intent);
+            }
+        });
+
             homeBinding.aboutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
                     startActivity(intent);
-                    //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    //HomeActivity.this.finish();
                 }
             });
         }
@@ -109,6 +115,7 @@ public class HomeActivity extends BaseActivity {
         homeBinding.singlePlayerButton.setVisibility(View.INVISIBLE);
         homeBinding.computerPlayerButton.setVisibility(View.INVISIBLE);
         homeBinding.multiPlayerButton.setVisibility(View.INVISIBLE);
+        homeBinding.policyAttributionsButton.setVisibility(View.INVISIBLE);
         homeBinding.aboutButton.setVisibility(View.INVISIBLE);
     }
 
@@ -118,6 +125,7 @@ public class HomeActivity extends BaseActivity {
         homeBinding.singlePlayerButton.setVisibility(View.VISIBLE);
         homeBinding.computerPlayerButton.setVisibility(View.VISIBLE);
         homeBinding.multiPlayerButton.setVisibility(View.VISIBLE);
+        homeBinding.policyAttributionsButton.setVisibility(View.VISIBLE);
         homeBinding.aboutButton.setVisibility(View.VISIBLE);
     }
 
@@ -245,7 +253,13 @@ public class HomeActivity extends BaseActivity {
                 isSoundOn = true;
                 saveSoundToSharedPrefs(isSoundOn);
             }
+        } else if (item.getItemId() == R.id.action_sound_up) {
+            increaseVolume();
+
+        } else if (item.getItemId() == R.id.action_sound_down) {
+            decreaseVolume();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -271,28 +285,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    public void playSound() {
-        SharedPreferences sharedPref = getSharedPreferences(STATUS, Context.MODE_PRIVATE);
-        boolean value = sharedPref.getBoolean(KEY, false);
-        if (value) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mediaPlayer = MediaPlayer.create(this, R.raw.orbit);
-                mediaPlayer.setLooping(true);
-                mediaPlayer.start();
-            }
-        }
-    }
-
-    public void playMusic() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.orbitbeat);
-        mediaPlayer.start();
-        //mediaPlayer.setLooping(true);
-    }
-
-    public void stopMusic() {
-        mediaPlayer.stop();
-    }
-
     public void animateViews() {
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
         // animation has 2 second duration
@@ -305,7 +297,18 @@ public class HomeActivity extends BaseActivity {
         homeBinding.singlePlayerButton.startAnimation(animation);
         homeBinding.computerPlayerButton.startAnimation(animation);
         homeBinding.multiPlayerButton.startAnimation(animation);
+        homeBinding.policyAttributionsButton.startAnimation(animation);
         homeBinding.aboutButton.startAnimation(animation);
+    }
+
+    //To increase media player volume
+    public void increaseVolume() {
+        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+    }
+
+    //To decrease media player volume
+    public void decreaseVolume() {
+        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
     }
 }
 

@@ -15,7 +15,6 @@ import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityComputerBinding;
 import com.example.xvso.object.Game;
 import com.example.xvso.object.User;
-import com.example.xvso.uifirebase.BaseActivity;
 import com.example.xvso.viewmodel.ComputerViewModel;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -69,6 +68,16 @@ public class ComputerActivity extends BaseActivity {
         getAlienImage();
 
         computerBinding.profilePicturePlayer2.setImageResource(alienImage);
+
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
     }
 
     public void setInitialVisibility() {

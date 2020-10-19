@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 
+import android.text.Spanned;
 import android.view.View;
 
 import android.widget.Button;
@@ -29,7 +30,7 @@ import com.example.xvso.object.SliderItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlienActivity extends AppCompatActivity implements SlideAdapter.ShowDescription, SlideAdapter.SliderViewHolder.AlienClick {
+public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDescription, SlideAdapter.SliderViewHolder.AlienClick {
 
     public static final String ALIEN_KEY = "alien_key";
     public static final String ALIEN_NAME = "alien_name";
@@ -52,18 +53,6 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
     private String alienName5 = "Yumay";
     private String alienName6 = "Uzapoc";
 
-    // fields in bold
-    // TO DO: add strings to strings.xml
-    private String name = "Name: ";
-    private String characteristics = "Characteristics";
-    private String nameOnEarth = "Name on earth: ";
-    private String race = "Race: ";
-    private String height = "Height: ";
-    private String adulthood = "Adulthood: ";
-    private String planet = "Planet: ";
-    private String story = " short story";
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,173 +67,29 @@ public class AlienActivity extends AppCompatActivity implements SlideAdapter.Sho
         exitButton = findViewById(R.id.exit_button);
         chooseAlien = findViewById(R.id.choose_alien_text_view);
 
-        String alien1Text = "<b>" + name + "</b> " + "Tasp"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Humans call it Monoculus"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Amphibio"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "60 - 80cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 14 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Pegasus 3"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Tasp's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "On their home planet, Pegasus 3, the climate is very stormy most of the part of the year, but their amphibian nature helped them to find abundant food during the whole year. Their planet is home to usually smaller life forms, Tasp being the largest."
-                + "<br>" + "</br>"
-                + "<br>" + "</br>";
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
 
-        String alien2Text = "<b>" + name + "</b> " + "Obgu"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Humans call it Happy Eyed Face"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Alborian"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "30 - 40cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 7 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Alborus"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Obgu's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "Alborians are forming a society with common support for each other, but they live under strict rules. They are very friendly and helpful to humans. Having an Alborian on a spaceship can be very beneficial, as they are great navigators. Alborus is a planet wih moderate climate and luxuriant plants, the food of the Alborians is mainly plat base and they eat several species of snails for protein. "
-                + "<br>" + "</br>"
-                + "<br>" + "</br>";
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playSound();
+        }
 
-        String alien3Text = "<b>" + name + "</b> " + "Eshu"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Yellow Snail"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Redolan"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "30 - 40cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 8 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Redolus"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Eshu's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "The Redolans developed from the same ancestors as the Alborians. Million of years before, both the Alborians and the Redolans, lived together on the same planet, which was a supernova. They live also in a developed society, they are omnivores, but they are able to sustain themselves also only with plant-based food. They make excellent traders and scientists."
-                + "<br>" + "</br>"
-                + "<br>" + "</br>";
+        String alien1 = getResources().getString(R.string.alien1Text);
+        String alien2 = getResources().getString(R.string.alien2Text);
+        String alien3 = getResources().getString(R.string.alien3Text);
+        String alien4 = getResources().getString(R.string.alien4Text);
+        String alien5 = getResources().getString(R.string.alien5Text);
+        String alien6 = getResources().getString(R.string.alien6Text);
 
-        String alien4Text = "<b>" + name + "</b> " + "Ushuqop"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Blue Monster"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Atlasians"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "90 - 110 cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 11 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Atlas 2"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Ushuqop's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "Ushuqop comes from the cold planet Atlas 2, one of the 6 planets from the Atlas planet cluster. Atlasians hunt for animals in groups. Cruel in war, but very patient and polite with guests, they indulge in hedonistic pleasure like alcohol, music and gambling. Their strong strategic thinking and coleric nature make then a fearful enemy."
-                + "<br>" + "</br>"
-                + "<br>" + "</br>";
-
-        String alien5Text = "<b>" + name + "</b> " + "Yumay"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Running Strawberry"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Atlasian"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "30 - 40cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 9 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Atlas 4"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Yumay's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "The creature lost its connection with nature due to their society development, as they are provided with artificial food and drinks. As they have fast feet, running is traditional sport and many running competitions are being organised. Atlas 4 is a planet with hot climate, so the aliens spend most o their time outside. Their main food is a sort of giant strawberry, which gives the alien the pink color and happy mood."
-                + "<br>" + "</br>";
-
-        String alien6Text = "<b>" + name + "</b> " + "Uzapoc"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + characteristics + "</b>"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + nameOnEarth + "</b>" + "Red Devil"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + race + "</b> " + "Patarian"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + height + "</b>" + "120 - 140cm (for adult of its species)"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + adulthood + "</b>" + "under 15 years"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + planet + "</b>" + "Patarius"
-                + "<br>" + "</br>"
-                + "<br>" + "</br>"
-                + "<b>" + "Eshu's" + story + ":" + "</b>"
-                + "<br>" + "</br>"
-                + "Their planet is volcanic, rocky with high temperatures. Patarians are mainly carnivors and they feel the need to hunt often. They are individualistic, polygamic and with a huge appetite for food."
-                + "<br>" + "</br>"
-                + "<br>" + "</br>";
-
-        sliderItems.add(new SliderItem(alienName1, R.drawable.alien1, alien1Text));
-        sliderItems.add(new SliderItem(alienName2, R.drawable.alien2, alien2Text));
-        sliderItems.add(new SliderItem(alienName3, R.drawable.alien3, alien3Text));
-        sliderItems.add(new SliderItem(alienName4, R.drawable.alien4, alien4Text));
-        sliderItems.add(new SliderItem(alienName5, R.drawable.alien5, alien5Text));
-        sliderItems.add(new SliderItem(alienName6, R.drawable.alien6, alien6Text));
+        sliderItems.add(new SliderItem(alienName1, R.drawable.alien1, alien1));
+        sliderItems.add(new SliderItem(alienName2, R.drawable.alien2, alien2));
+        sliderItems.add(new SliderItem(alienName3, R.drawable.alien3, alien3));
+        sliderItems.add(new SliderItem(alienName4, R.drawable.alien4, alien4));
+        sliderItems.add(new SliderItem(alienName5, R.drawable.alien5, alien5));
+        sliderItems.add(new SliderItem(alienName6, R.drawable.alien6, alien6));
 
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2, this, this));
 

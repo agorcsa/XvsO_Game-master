@@ -119,4 +119,9 @@
     <string name="attributions_text">Para ver todas las atribuciones de las fotos, haga clic en el astronauta.</string>
     <string name="moonclick">Para volver a las reglas del juego, presione la luna.</string>
     <string name="license">license</string>
+    <string name="see_license">see license</string>
+    <string name="privacy_policy">To read the privacy policy, please click here.</string>
+    <string name="privacy_policy_button">Privacy Policy</string>
+    <string name="exit_to_about">exit to about</string>
+    <string name="privacy_policy_and_attributions">Privacy Policy and Attributions</string>
 </resources>

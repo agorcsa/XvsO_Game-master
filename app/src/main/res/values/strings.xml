@@ -181,6 +181,148 @@
     // alien 5
     // alien 6
 
+    <string name="alien1Text" translatable="true">
+        <![CDATA[
+        <b>Name: Tasp</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Humans call it Monoculus</b>
+        <br></br>
+        <br><b>Race: </b>Amphibio</br>
+        <br></br>
+        <br><b>Height: </b>60 - 80cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 14 years</br>
+        <br></br>
+        <br><b>Planet: </b>Pegasus 3</br>
+        <br></br>
+        <br><b>Tasp\'s story: </b></br>
+        <br>On their home planet, Pegasus 3, the climate is very stormy most of the part of the year, but their amphibian nature helped them to find abundant food during the whole year. Their planet is home to usually smaller life forms, Tasp being the largest.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien2Text" translatable="true">
+        <![CDATA[
+        <b>Name: Obgu</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Humans call it Happy Eyed Face</b>
+        <br></br>
+        <br><b>Race: </b>Alborian</br>
+        <br></br>
+        <br><b>Height: </b>30 - 40cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 7 years</br>
+        <br></br>
+        <br><b>Planet: </b>Alborus</br>
+        <br></br>
+        <br><b>Obgu\'s story: </b></br>
+        <br>Alborians are forming a society with common support for each other, but they live under strict rules. They are very friendly and helpful to humans. Having an Alborian on a spaceship can be very beneficial, as they are great navigators. Alborus is a planet wih moderate climate and luxuriant plants, the food of the Alborians is mainly plat base and they eat several species of snails for protein.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien3Text" translatable="true">
+        <![CDATA[
+        <b>Name: Eshu</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Yellow Snail</b>
+        <br></br>
+        <br><b>Race: </b>Redolan</br>
+        <br></br>
+        <br><b>Height: </b>30 - 40cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 8 years</br>
+        <br></br>
+        <br><b>Planet: </b>Redolus</br>
+        <br></br>
+        <br><b>Eshu\'s story: </b></br>
+        <br>The Redolans developed from the same ancestors as the Alborians. Million of years before, both the Alborians and the Redolans, lived together on the same planet, which was a supernova. They live also in a developed society, they are omnivores, but they are able to sustain themselves also only with plant-based food. They make excellent traders and scientists.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien4Text" translatable="true">
+        <![CDATA[
+        <b>Name: Ushuqop</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Blue Monster</b>
+        <br></br>
+        <br><b>Race: </b>Atlasian</br>
+        <br></br>
+        <br><b>Height: </b>90 - 110 cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 11 years</br>
+        <br></br>
+        <br><b>Planet: </b>Atlas 2</br>
+        <br></br>
+        <br><b>Ushuqop\'s story: </b></br>
+        <br>Ushuqop comes from the cold planet Atlas 2, one of the 6 planets from the Atlas planet cluster. Atlasians hunt for animals in groups. Cruel in war, but very patient and polite with guests, they indulge in hedonistic pleasure like alcohol, music and gambling. Their strong strategic thinking and coleric nature make then a fearful enemy.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien5Text" translatable="true">
+        <![CDATA[
+        <b>Name: Yumay</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Running Strawberry</b>
+        <br></br>
+        <br><b>Race: </b>Atlasian</br>
+        <br></br>
+        <br><b>Height: </b>20 - 40cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 9 years</br>
+        <br></br>
+        <br><b>Planet: </b>Atlas 4</br>
+        <br></br>
+        <br><b>Yumay\'s story: </b></br>
+        <br>The creature lost its connection with nature due to their society development, as they are provided with artificial food and drinks. As they have fast feet, running is traditional sport and many running competitions are being organised. Atlas 4 is a planet with hot climate, so the aliens spend most o their time outside. Their main food is a sort of giant strawberry, which gives the alien the pink color and happy mood.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien6Text" translatable="true">
+        <![CDATA[
+        <b>Name: Uzapoc</b>
+        <br></br>
+        <br></br>
+        <b>Characteristics</b>
+        <br></br>
+        <br><b>Name on earth:</b> Red Devil</b>
+        <br></br>
+        <br><b>Race: </b>Patarian</br>
+        <br></br>
+        <br><b>Height: </b>120 - 140cm (for adult of its species)</br>
+        <br></br>
+        <br><b>Adulthood: </b>under 15 years</br>
+        <br></br>
+        <br><b>Planet: </b>Patarius</br>
+        <br></br>
+        <br><b>Uzapoc\'s story: </b></br>
+        <br>Their planet is volcanic, rocky with high temperatures. Patarians are mainly carnivors and they feel the need to hunt often. They are individualistic, polygamic and with a huge appetite for food.</br>
+        <br></br>
+      ]]>
+    </string>
 
     <!-- attributions in HTML format -->
     <string name="attributions" translatable="false">
@@ -202,6 +344,7 @@
      <p><a href="https://pngtree.com/so/star">star png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/starlight">starlight png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/distorted-alien">distorted-alien png from pngtree.com</a> </p>
+     <p><a href="https://pngtree.com/so/planet">planet png from pngtree.com</a> </p>
     ]]>
 </string>
 
@@ -219,5 +362,9 @@
     <string name="about_button">About</string>
     <string name="register_now">Not a member? Register now!</string>
     <string name="close">close</string>
-    <string name="license">license</string>
+    <string name="see_license">see license</string>
+    <string name="privacy_policy">To read the privacy policy, please click here: </string>
+    <string name="privacy_policy_button">Privacy Policy</string>
+    <string name="exit_to_about">exit to about</string>
+    <string name="privacy_policy_and_attributions">Policy and Attributions</string>
 </resources>
