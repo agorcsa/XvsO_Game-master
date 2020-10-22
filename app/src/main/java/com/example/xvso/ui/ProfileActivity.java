@@ -151,7 +151,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     // auxiliary method for displaying a Toast message, by just giving the message we want to display
     public void showMessage(String message) {
-        StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void setupProgressDialog() {

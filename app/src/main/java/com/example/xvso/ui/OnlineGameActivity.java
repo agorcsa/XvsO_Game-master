@@ -36,7 +36,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.muddzdev.styleabletoast.StyleableToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -350,8 +349,7 @@ public class OnlineGameActivity extends BaseActivity {
 
 
     public void showToast(String message) {
-
-        StyleableToast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT, R.style.styleableToast).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void startTimer() {

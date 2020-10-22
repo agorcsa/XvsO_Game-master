@@ -79,7 +79,6 @@ public class BaseActivity extends AppCompatActivity {
         mediaPlayer.stop();
     }
 
-
     // Firebase
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,5 +89,11 @@ public class BaseActivity extends AppCompatActivity {
     public FirebaseUser getFirebaseUser() {
 
         return auth.getCurrentUser();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mediaPlayer.release();
     }
 }

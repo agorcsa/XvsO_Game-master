@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -31,7 +32,6 @@ import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityHomeBinding;
 import com.example.xvso.uifirebase.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.muddzdev.styleabletoast.StyleableToast;
 
 import java.util.Objects;
 
@@ -49,6 +49,7 @@ public class HomeActivity extends BaseActivity {
 
     private MediaPlayer mpAlert;
     private MediaPlayer mpButton;
+    private MediaPlayer mpSpaceship;
 
 
     @Override
@@ -60,6 +61,7 @@ public class HomeActivity extends BaseActivity {
 
         mpButton = MediaPlayer.create(this, R.raw.alert);
         mpAlert = MediaPlayer.create(this, R.raw.button);
+        mpSpaceship = MediaPlayer.create(this, R.raw.spaceship);
 
             configureActionBar();
 
@@ -69,9 +71,12 @@ public class HomeActivity extends BaseActivity {
             }
 
             isSoundOn = readSoundFromSharedPrefs();
-            if (isSoundOn) {
-                playSound();
-            }
+        if (isSoundOn) {
+            playSound();
+        } else {
+            mpButton.stop();
+            mpAlert.stop();
+        }
 
             homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -222,11 +227,11 @@ public class HomeActivity extends BaseActivity {
 
     public void animateRocket() {
         homeBinding.motionLayout.transitionToEnd();
-        boolean isRocketAnimated = true;
+        mpSpaceship.start();
     }
 
     public void showToast(String message) {
-        StyleableToast.makeText(getApplicationContext(), message, R.style.styleableToast).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -265,6 +270,7 @@ public class HomeActivity extends BaseActivity {
                 saveSoundToSharedPrefs(isSoundOn);
             } else {
                 item.setIcon(R.drawable.volume_on);
+
                 isSoundOn = true;
                 saveSoundToSharedPrefs(isSoundOn);
             }
