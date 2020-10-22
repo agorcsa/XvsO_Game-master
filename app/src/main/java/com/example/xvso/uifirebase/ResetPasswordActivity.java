@@ -1,5 +1,6 @@
 package com.example.xvso.uifirebase;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,9 @@ public class ResetPasswordActivity extends BaseActivity {
 
     ActivityResetPasswordBinding resetPasswordBinding;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +30,13 @@ public class ResetPasswordActivity extends BaseActivity {
 
         resetPasswordBinding = DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
 
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
+
         resetPasswordBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mpAlert.start();
                 finish();
             }
         });
@@ -41,6 +49,7 @@ public class ResetPasswordActivity extends BaseActivity {
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                    mpButton.start();
                     return;
                 }
 

@@ -124,4 +124,5 @@
     <string name="privacy_policy_button">Privacy Policy</string>
     <string name="exit_to_about">exit to about</string>
     <string name="privacy_policy_and_attributions">Privacy Policy and Attributions</string>
+    <string name="press_moon">To get back to the privacy policy, please press the moon</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.xvso.ui;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -57,6 +58,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfileEditState profileEditState;
     private ProfileViewModel.NetworkState networkState;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +70,20 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         // the profileViewModel instance uses the ProfileViewModel.class
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
+
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
         profileBinding.submitButton.setOnClickListener(this);
+
+        /*profileBinding.submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mpButton.start();
+            }
+        });
+        */
         // sets onClickListener on the profilePicture in order to be clickable and run some code
         profileBinding.profilePicture.setOnClickListener(this);
 
@@ -86,6 +101,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(intent);
+                mpAlert.start();
             }
         });
 

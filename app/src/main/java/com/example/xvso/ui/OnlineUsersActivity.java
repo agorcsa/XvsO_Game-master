@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -103,12 +104,18 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
     private EditText dialogEditText;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);
+
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         joinButton = findViewById(R.id.join_game_text_view);
 
@@ -173,6 +180,8 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
         startActivity(intent);
         finish();
+
+        mpButton.start();
     }
 
 
@@ -421,7 +430,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
             alertDialog.setMessage(getString(R.string.alert_dialog_content, getGuestName(guest)));
 
             alertDialog.setView(dialogLayout);
-            alertDialog.setIcon(R.drawable.cross);
+            alertDialog.setIcon(R.drawable.x_vector);
 
             alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                 @Override
@@ -455,5 +464,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     public void onExitToHomeClick(View view) {
         Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
         startActivity(intent);
+        mpAlert.start();
     }
 }

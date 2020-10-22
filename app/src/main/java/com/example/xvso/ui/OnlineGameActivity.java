@@ -88,6 +88,9 @@ public class OnlineGameActivity extends BaseActivity {
 
     private static final String USER_EXIT = "user_exit";
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,9 @@ public class OnlineGameActivity extends BaseActivity {
 
         widgetPreferences.resetData(this);
         widgetPreferences.updateWidgets(getApplicationContext());
+
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
         boolean value = sharedPref.getBoolean("switch_value", false);
@@ -155,14 +161,20 @@ public class OnlineGameActivity extends BaseActivity {
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
+
+                                mpButton.start();
                                 break;
                             case 2:
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
+
+                                mpAlert.start();
                                 break;
                             case 3:
                                 timer.cancel();
+
+                                mpButton.start();
                                 break;
                         }
                         host = game.getHost();
@@ -223,6 +235,7 @@ public class OnlineGameActivity extends BaseActivity {
                         onlineGameBinding.onlinePlayer2Text.setText(getResources().getString(R.string.turn_order));
                         setEnableClick(true);
                         activePlayer = 1;
+
                     } else if (value.equals(opponentFirstName)) {
 
                         onlineGameBinding.onlinePlayer1Text.setText(getString(R.string.players_turn, opponentFirstName));
@@ -331,17 +344,8 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.block8.setVisibility(View.VISIBLE);
         onlineGameBinding.block9.setVisibility(View.VISIBLE);
 
-        onlineGameBinding.onlinePlayer1Text.postDelayed(new Runnable() {
-            public void run() {
-                onlineGameBinding.onlinePlayer1Text.setVisibility(View.VISIBLE);
-            }
-        }, 3000);
-
-        onlineGameBinding.onlinePlayer2Text.postDelayed(new Runnable() {
-            public void run() {
-                onlineGameBinding.onlinePlayer2Text.setVisibility(View.VISIBLE);
-            }
-        }, 3000);
+        onlineGameBinding.onlinePlayer1Text.setVisibility(View.VISIBLE);
+        onlineGameBinding.onlinePlayer2Text.setVisibility(View.VISIBLE);
     }
 
 
@@ -476,6 +480,7 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
+        mpButton.start();
     }
 
     public void showBoard() {
@@ -496,6 +501,7 @@ public class OnlineGameActivity extends BaseActivity {
         Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
+        mpAlert.start();
     }
 
     @Override

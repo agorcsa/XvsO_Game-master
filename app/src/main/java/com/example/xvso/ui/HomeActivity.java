@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -46,6 +47,9 @@ public class HomeActivity extends BaseActivity {
 
     private AudioManager audioManager;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +57,9 @@ public class HomeActivity extends BaseActivity {
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
         audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
 
             configureActionBar();
 
@@ -72,6 +79,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     hideViews();
                     createAlertDialogSingle();
+                    mpButton.start();
                 }
             });
 
@@ -81,6 +89,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
                     startActivity(intent);
+                    mpButton.start();
                 }
             });
 
@@ -89,6 +98,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
                     startActivity(intent);
+                    mpButton.start();
                 }
             });
 
@@ -97,6 +107,7 @@ public class HomeActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
                 startActivity(intent);
+                mpButton.start();
             }
         });
 
@@ -105,6 +116,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
                     startActivity(intent);
+                    mpButton.start();
                 }
             });
         }
@@ -153,7 +165,7 @@ public class HomeActivity extends BaseActivity {
         View view = inflater1.inflate(R.layout.edit_text, null);
         dialogEditText = view.findViewById(R.id.alert_edit_text);
         alertDialog.setView(view);
-        alertDialog.setIcon(R.drawable.cross);
+        alertDialog.setIcon(R.drawable.x_vector);
         alertDialog.setCancelable(false);
 
         hideViews();
@@ -166,10 +178,12 @@ public class HomeActivity extends BaseActivity {
                         if (!namePlayer0.isEmpty()) {
                             Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
+                            mpButton.start();
                         } else {
                             showToast("Please introduce playerO's name!");
                             animateViews();
                             showViews();
+                            mpAlert.start();
                         }
                     }
                 });
@@ -181,6 +195,7 @@ public class HomeActivity extends BaseActivity {
                         dialog.cancel();
                         animateViews();
                         showViews();
+                        mpAlert.start();
                     }
                 });
 
@@ -197,11 +212,11 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         if (getIntent() == null || !getIntent().hasExtra(KEY)) {
             animateRocket();
         } else {
-            homeBinding.motionLayout.setProgress(100f);
+            homeBinding.motionLayout.setProgress(99f);
+            animateRocket();
         }
     }
 
@@ -253,11 +268,6 @@ public class HomeActivity extends BaseActivity {
                 isSoundOn = true;
                 saveSoundToSharedPrefs(isSoundOn);
             }
-        } else if (item.getItemId() == R.id.action_sound_up) {
-            increaseVolume();
-
-        } else if (item.getItemId() == R.id.action_sound_down) {
-            decreaseVolume();
         }
 
         return super.onOptionsItemSelected(item);

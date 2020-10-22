@@ -2,6 +2,7 @@ package com.example.xvso.ui;
 
 import android.content.Intent;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Html;
 
@@ -53,6 +54,9 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
     private String alienName5 = "Yumay";
     private String alienName6 = "Uzapoc";
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,9 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
 
         exitButton = findViewById(R.id.exit_button);
         chooseAlien = findViewById(R.id.choose_alien_text_view);
+
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         isMusicOn = readMusicFromSharedPrefs();
         if (isMusicOn) {
@@ -118,6 +125,7 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
         intent.putExtra(ALIEN_KEY, image);
         intent.putExtra(ALIEN_NAME, item.getName());
         startActivity(intent);
+        mpButton.start();
     }
 
     @Override
@@ -141,5 +149,6 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
     public void onExitAlienScreen(View view) {
         Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
         startActivity(intent);
+        mpAlert.start();
     }
 }

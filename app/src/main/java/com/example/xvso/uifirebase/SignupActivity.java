@@ -2,6 +2,7 @@ package com.example.xvso.uifirebase;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -47,14 +48,19 @@ public class SignupActivity extends BaseActivity {
 
     private DatabaseReference databaseReference;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         signupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-
         auth = FirebaseAuth.getInstance();
+
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
             Toast.makeText(getApplicationContext(), "Google Play Services are not available", Toast.LENGTH_LONG).show();
@@ -64,12 +70,14 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
+                mpButton.start();
             }
         });
 
         signupBinding.signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mpButton.start();
                 finish();
             }
         });
@@ -77,6 +85,7 @@ public class SignupActivity extends BaseActivity {
         signupBinding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mpButton.start();
 
                 final String email = signupBinding.inputEmail.getText().toString().trim();
                 final String password = signupBinding.inputPassword.getText().toString().trim();

@@ -181,20 +181,6 @@
                 app:computerState="@{viewModel.gameLiveData.board.cells.get(8)}" />
         </GridLayout>
 
-        <!-- switches the player's turn-->
-        <TextView
-            android:id="@+id/turn_switcher_text_view_computer"
-            style="@style/WrapContent"
-            android:contentDescription="@string/turn_order"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_large"
-            android:layout_marginTop="160dp"
-            android:layout_marginBottom="60dp"
-            android:layout_gravity="center_horizontal"
-            app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
-            app:currentUser="@{viewModel.userLiveData.name}"
-            app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/MatchWrap">
 
@@ -303,6 +289,22 @@
                 android:textSize="@dimen/text_size_xlarge"
                 app:layout_constraintTop_toBottomOf="@id/computer_player2_text"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- switches the player's turn-->
+            <TextView
+                android:id="@+id/turn_switcher_text_view_computer"
+                style="@style/WrapContent"
+                android:contentDescription="@string/turn_order"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/player1_score_text_view"
+                app:currentPlayer="@{viewModel.gameLiveData.currentPlayer}"
+                app:currentUser="@{viewModel.userLiveData.name}"
+                app:gameFinished="@{viewModel.gameLiveData.gameResult}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Winning lines -->
@@ -401,7 +403,7 @@
 
         <RelativeLayout
             android:id="@+id/show_winner_layout"
-            android:layout_width="275dp"
+            android:layout_width="350dp"
             android:layout_height="388dp"
             android:layout_gravity="center"
             android:orientation="vertical">
@@ -431,11 +433,11 @@
 
             <TextView
                 android:id="@+id/show_winner_text_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/winning_image_view"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/margin_20"
+                android:gravity="center_horizontal"
                 android:background="@android:color/transparent"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_large" />

@@ -2,6 +2,7 @@ package com.example.xvso.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -41,6 +42,9 @@ public class ComputerActivity extends BaseActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
+    private MediaPlayer mpAlert;
+    private MediaPlayer mpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +54,15 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
 
+        mpButton = MediaPlayer.create(this, R.raw.alert);
+        mpAlert = MediaPlayer.create(this, R.raw.button);
+
         // starts the round timer
         startTimer();
 
         winnerIsInvisible();
 
+        displayGuestUserName();
         displayHostUserName();
 
         setInitialVisibility();
@@ -121,19 +129,12 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.block8Computer.setVisibility(View.VISIBLE);
         computerBinding.block9Computer.setVisibility(View.VISIBLE);
 
-        computerBinding.computerPlayer1Text.postDelayed(new Runnable() {
-            public void run() {
-                computerBinding.computerPlayer1Text.setVisibility(View.VISIBLE);
-                computerBinding.player1ScoreTextView.setVisibility(View.VISIBLE);
-            }
-        }, 3000);
+        computerBinding.computerPlayer1Text.setVisibility(View.VISIBLE);
+        computerBinding.player1ScoreTextView.setVisibility(View.VISIBLE);
 
-        computerBinding.computerPlayer2Text.postDelayed(new Runnable() {
-            public void run() {
-                computerBinding.computerPlayer2Text.setVisibility(View.VISIBLE);
-                computerBinding.player2ScoreTextView.setVisibility(View.VISIBLE);
-            }
-        }, 3000);
+        computerBinding.computerPlayer2Text.setVisibility(View.VISIBLE);
+        computerBinding.player2ScoreTextView.setVisibility(View.VISIBLE);
+
     }
 
     public void winnerIsVisible() {
@@ -175,6 +176,7 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.astronaut)
                         .into(computerBinding.winningImageView);
+                mpButton.start();
 
             } else if (game.getGameResult() == 2) {
                 stopTimer();
@@ -191,6 +193,8 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(getAlienImage())
                         .into(computerBinding.winningImageView);
+                mpAlert.start();
+
             } else if (game.getGameResult() == 3) {
                 stopTimer();
                 winnerIsVisible();
@@ -199,7 +203,7 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.draw)
                         .into(computerBinding.winningImageView);
-               // no score update
+                mpButton.start();
             }
             disableCellClick();
         });
@@ -212,6 +216,10 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.setHostPlayerName(convertEmailToString(emailLoggedUser));
     }
 
+    public void displayGuestUserName() {
+        computerViewModel.setGuestPlayerName(getAlienName());
+    }
+
     private String convertEmailToString(String email) {
         return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
     }
@@ -222,6 +230,7 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
+        mpButton.start();
     }
 
     public void onResetGameClick(View view) {
@@ -231,6 +240,7 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
+        mpButton.start();
     }
 
     public void initialiseScore() {
@@ -240,7 +250,6 @@ public class ComputerActivity extends BaseActivity {
             User host = game.getHost();
             String hostFirstName = host.getFirstName();
             String hostName = host.getName();
-
             String guestName = getAlienName();
 
             // host
@@ -297,6 +306,7 @@ public class ComputerActivity extends BaseActivity {
         Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
+        mpAlert.start();
     }
 
     public void stopTimer() {

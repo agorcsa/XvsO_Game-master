@@ -42,7 +42,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="32dp"
             android:layout_above="@+id/policy_scroll_view"
-            android:text="@string/moonclick"
+            android:text="@string/press_moon"
             android:textColor="@color/light_blue"
             android:textSize="@dimen/text_size_small" />
 

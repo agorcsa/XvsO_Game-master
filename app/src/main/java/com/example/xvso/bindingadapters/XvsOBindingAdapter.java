@@ -145,9 +145,9 @@ public class XvsOBindingAdapter {
         // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.zero);
+                imageView.setImageResource(R.drawable.o_vector);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.cross);
+                imageView.setImageResource(R.drawable.x_vector);
             } else {
                 imageView.setImageResource(0);
             }
@@ -180,9 +180,9 @@ public class XvsOBindingAdapter {
         // Do a null check for the whole code
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.zero);
+                imageView.setImageResource(R.drawable.o_vector);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.cross);
+                imageView.setImageResource(R.drawable.x_vector);
             } else {
                 imageView.setImageResource(0);
             }
@@ -215,9 +215,9 @@ public class XvsOBindingAdapter {
 
         if (cell != null) {
             if (cell.getTag() == Team.TEAM_O) {
-                imageView.setImageResource(R.drawable.zero);
+                imageView.setImageResource(R.drawable.o_vector);
             } else if (cell.getTag() == Team.TEAM_X) {
-                imageView.setImageResource(R.drawable.cross);
+                imageView.setImageResource(R.drawable.x_vector);
             } else {
                 imageView.setImageResource(0);
             }

@@ -51,7 +51,7 @@ public class ComputerViewModel extends BaseViewModel {
 
     public void detectEmptyCell() {
         // I'm the computer, it's my turn now
-        game.setCurrentPlayer("Player AI");
+        game.setCurrentPlayer(game.getGuest().getName());
         gameLiveData.setValue(game);
         for (int i = 0; i < preferredMoves.size(); i++ ) {
             int index = preferredMoves.get(i); // get the value stored for each index on the list
@@ -266,6 +266,14 @@ public class ComputerViewModel extends BaseViewModel {
     public void setHostPlayerName(String name) {
         game = gameLiveData.getValue();
         game.getHost().setName(name);
+        game.setCurrentPlayer(name);
+        gameLiveData.setValue(game);
+    }
+
+
+    public void setGuestPlayerName(String name) {
+        game = gameLiveData.getValue();
+        game.getGuest().setName(name);
         game.setCurrentPlayer(name);
         gameLiveData.setValue(game);
     }

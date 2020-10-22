@@ -360,11 +360,12 @@
     <string name="player_ai_button">single player (ai)</string>
     <string name="multiplayer_galaxy_button">multiplayer (galaxy)</string>
     <string name="about_button">About</string>
-    <string name="register_now">Not a member? Register now!</string>
+    <string name="register_now">Register</string>
     <string name="close">close</string>
     <string name="see_license">see license</string>
     <string name="privacy_policy">To read the privacy policy, please click here: </string>
     <string name="privacy_policy_button">Privacy Policy</string>
     <string name="exit_to_about">exit to about</string>
     <string name="privacy_policy_and_attributions">Policy and Attributions</string>
+    <string name="press_moon">To get back to the privacy policy, please press the moon.</string>
 </resources>
