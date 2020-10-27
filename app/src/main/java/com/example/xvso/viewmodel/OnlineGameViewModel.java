@@ -232,4 +232,10 @@ public class OnlineGameViewModel extends BaseViewModel {
         game.setWinningLines(new WinningLines());
         query.setValue(game);
     }
+
+    public void onGameExitAbruptly() {
+        game = gameLiveData.getValue();
+        game.setStatus(Game.STATUS_USER_EXIT);
+        query.setValue(game);
+    }
 }

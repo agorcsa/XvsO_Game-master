@@ -93,7 +93,9 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
         super.onDestroy();
-        mediaPlayer.release();
     }
 }

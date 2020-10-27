@@ -499,6 +499,7 @@ public class OnlineGameActivity extends BaseActivity {
         Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
+        onlineGameViewModel.onGameExitAbruptly();
         mpAlert.start();
     }
 
