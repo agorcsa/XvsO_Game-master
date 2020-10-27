@@ -266,7 +266,6 @@ public class HomeActivity extends BaseActivity {
                 saveSoundToSharedPrefs(isSoundOn);
             } else {
                 item.setIcon(R.drawable.volume_on);
-
                 isSoundOn = true;
                 saveSoundToSharedPrefs(isSoundOn);
             }

@@ -144,12 +144,14 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void stopPositiveSound() {
-        positiveSound = MediaPlayer.create(this, R.raw.positive);
-        positiveSound.stop();
+        if (positiveSound != null) {
+            positiveSound.stop();
+        }
     }
 
     public void stopNegativeSound() {
-        negativeSound = MediaPlayer.create(this, R.raw.negative);
-        negativeSound.stop();
+        if (negativeSound != null) {
+            negativeSound.stop();
+        }
     }
 }
