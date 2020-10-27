@@ -30,9 +30,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
         resetPasswordBinding = DataBindingUtil.setContentView(this, R.layout.activity_reset_password);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
         resetPasswordBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

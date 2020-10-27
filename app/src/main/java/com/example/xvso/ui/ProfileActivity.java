@@ -70,8 +70,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         // the profileViewModel instance uses the ProfileViewModel.class
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
@@ -104,16 +102,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 mpAlert.start();
             }
         });
-
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
     }
 
     // called when we want to select a picture from the phone's gallery

@@ -54,9 +54,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
         startTimer();
 
         winnerIsInvisible();
@@ -67,16 +64,6 @@ public class SinglePlayerActivity extends BaseActivity {
         animateViews();
 
         showWinningText();
-
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
     }
 
     public void animateViews() {

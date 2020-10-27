@@ -37,16 +37,6 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
             e.printStackTrace();
         }
 
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
-
         policyBinding.blueMoonImageView.setImageResource(R.drawable.bluemoon);
 
         policyBinding.blueMoonImageView.setOnClickListener(new View.OnClickListener() {

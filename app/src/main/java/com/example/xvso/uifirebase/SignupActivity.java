@@ -59,8 +59,6 @@ public class SignupActivity extends BaseActivity {
         signupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         auth = FirebaseAuth.getInstance();
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
             Toast.makeText(getApplicationContext(), "Google Play Services are not available", Toast.LENGTH_LONG).show();

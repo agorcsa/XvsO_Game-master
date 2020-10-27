@@ -54,9 +54,6 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
         // starts the round timer
         startTimer();
 
@@ -76,16 +73,6 @@ public class ComputerActivity extends BaseActivity {
         getAlienImage();
 
         computerBinding.profilePicturePlayer2.setImageResource(alienImage);
-
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
     }
 
     public void setInitialVisibility() {

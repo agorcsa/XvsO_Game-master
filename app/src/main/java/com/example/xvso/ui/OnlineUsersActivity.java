@@ -114,9 +114,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
         joinButton = findViewById(R.id.join_game_text_view);
 
         usersBinding.setViewModel(onlineUsersViewModel);
@@ -158,15 +155,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
         gameAdapter.notifyDataSetChanged();
 
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
     }
 
 

@@ -3,6 +3,7 @@ package com.example.xvso.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,7 +25,13 @@ public class BaseActivity extends AppCompatActivity {
     public boolean isSoundOn = true;
 
     public static final String STATUS = "status";
+
+    // used for music
     public android.media.MediaPlayer mediaPlayer;
+
+    // used for sound
+    public MediaPlayer positiveSound;
+    public MediaPlayer negativeSound;
 
     FirebaseAuth auth;
 
@@ -56,7 +63,7 @@ public class BaseActivity extends AppCompatActivity {
         return isSoundOn;
     }
 
-    // MediaPlayer
+   /* // MediaPlayer
     public void playSound() {
         SharedPreferences sharedPref = getSharedPreferences(STATUS, Context.MODE_PRIVATE);
         boolean value = sharedPref.getBoolean(KEY, false);
@@ -67,12 +74,12 @@ public class BaseActivity extends AppCompatActivity {
                 mediaPlayer.start();
             }
         }
-    }
+    }*/
 
     public void playMusic() {
         mediaPlayer = android.media.MediaPlayer.create(this, R.raw.orbitbeat);
         mediaPlayer.start();
-        //mediaPlayer.setLooping(true);
+        mediaPlayer.setLooping(true);
     }
 
     public void stopMusic() {
@@ -93,9 +100,56 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
         super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        if (positiveSound != null) {
+            positiveSound.stop();
+            positiveSound.release();
+            positiveSound = null;
+        }
+
+        if (negativeSound != null) {
+            negativeSound.stop();
+            negativeSound.release();
+            negativeSound = null;
+        }
+    }
+
+    public void checkMusic() {
+        isMusicOn = readMusicFromSharedPrefs();
+        if (isMusicOn) {
+            playMusic();
+        }
+    }
+
+    public void checkSound() {
+        isSoundOn = readSoundFromSharedPrefs();
+        if (isSoundOn) {
+            playPositiveSound();
+            playNegativeSound();
+        }
+    }
+
+    public void playPositiveSound() {
+        positiveSound = MediaPlayer.create(this, R.raw.positive);
+    }
+
+    public void playNegativeSound() {
+        negativeSound = MediaPlayer.create(this, R.raw.negative);
+    }
+
+    public void stopPositiveSound() {
+        positiveSound = MediaPlayer.create(this, R.raw.positive);
+        positiveSound.stop();
+    }
+
+    public void stopNegativeSound() {
+        negativeSound = MediaPlayer.create(this, R.raw.negative);
+        negativeSound.stop();
     }
 }

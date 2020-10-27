@@ -36,9 +36,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
         if (getFirebaseUser() != null) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 

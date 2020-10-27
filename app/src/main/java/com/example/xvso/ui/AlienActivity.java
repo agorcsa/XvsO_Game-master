@@ -71,19 +71,6 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
         exitButton = findViewById(R.id.exit_button);
         chooseAlien = findViewById(R.id.choose_alien_text_view);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
-
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
-
         String alien1 = getResources().getString(R.string.alien1Text);
         String alien2 = getResources().getString(R.string.alien2Text);
         String alien3 = getResources().getString(R.string.alien3Text);

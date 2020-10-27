@@ -47,8 +47,6 @@ public class HomeActivity extends BaseActivity {
 
     private AudioManager audioManager;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
     private MediaPlayer mpSpaceship;
 
 
@@ -59,23 +57,21 @@ public class HomeActivity extends BaseActivity {
 
         audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
         mpSpaceship = MediaPlayer.create(this, R.raw.spaceship);
 
             configureActionBar();
 
-            isMusicOn = readMusicFromSharedPrefs();
-            if (isMusicOn) {
-                playMusic();
-            }
+        isMusicOn = readMusicFromSharedPrefs();
+        checkMusic();
 
-            isSoundOn = readSoundFromSharedPrefs();
+        isSoundOn = readSoundFromSharedPrefs();
+
         if (isSoundOn) {
-            playSound();
+            playPositiveSound();
+            playNegativeSound();
         } else {
-            mpButton.stop();
-            mpAlert.stop();
+            stopPositiveSound();
+            stopNegativeSound();
         }
 
             homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +80,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     hideViews();
                     createAlertDialogSingle();
-                    mpButton.start();
+                    positiveSound.start();
                 }
             });
 
@@ -94,7 +90,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
                     startActivity(intent);
-                    mpButton.start();
+                    positiveSound.start();
                 }
             });
 
@@ -103,7 +99,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
                     startActivity(intent);
-                    mpButton.start();
+                    positiveSound.start();
                 }
             });
 
@@ -112,7 +108,7 @@ public class HomeActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
                 startActivity(intent);
-                mpButton.start();
+                positiveSound.start();
             }
         });
 
@@ -121,7 +117,7 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
                     startActivity(intent);
-                    mpButton.start();
+                    positiveSound.start();
                 }
             });
         }
@@ -183,12 +179,12 @@ public class HomeActivity extends BaseActivity {
                         if (!namePlayer0.isEmpty()) {
                             Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
-                            mpButton.start();
+                            positiveSound.start();
                         } else {
                             showToast("Please introduce playerO's name!");
                             animateViews();
                             showViews();
-                            mpAlert.start();
+                            negativeSound.start();
                         }
                     }
                 });
@@ -200,7 +196,7 @@ public class HomeActivity extends BaseActivity {
                         dialog.cancel();
                         animateViews();
                         showViews();
-                        mpAlert.start();
+                        negativeSound.start();
                     }
                 });
 
@@ -315,16 +311,6 @@ public class HomeActivity extends BaseActivity {
         homeBinding.multiPlayerButton.startAnimation(animation);
         homeBinding.policyAttributionsButton.startAnimation(animation);
         homeBinding.aboutButton.startAnimation(animation);
-    }
-
-    //To increase media player volume
-    public void increaseVolume() {
-        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
-    }
-
-    //To decrease media player volume
-    public void decreaseVolume() {
-        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
     }
 }
 

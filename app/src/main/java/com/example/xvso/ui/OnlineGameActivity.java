@@ -99,8 +99,6 @@ public class OnlineGameActivity extends BaseActivity {
         widgetPreferences.resetData(this);
         widgetPreferences.updateWidgets(getApplicationContext());
 
-        mpButton = MediaPlayer.create(this, R.raw.alert);
-        mpAlert = MediaPlayer.create(this, R.raw.button);
 
         SharedPreferences sharedPref = getSharedPreferences("switch_status", Context.MODE_PRIVATE);
         boolean value = sharedPref.getBoolean("switch_value", false);
@@ -285,16 +283,6 @@ public class OnlineGameActivity extends BaseActivity {
 
             }
         });
-
-        isMusicOn = readMusicFromSharedPrefs();
-        if (isMusicOn) {
-            playMusic();
-        }
-
-        isSoundOn = readSoundFromSharedPrefs();
-        if (isSoundOn) {
-            playSound();
-        }
     }
 
     public void setEnableClick(boolean b) {
