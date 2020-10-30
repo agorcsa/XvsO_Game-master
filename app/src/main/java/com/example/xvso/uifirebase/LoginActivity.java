@@ -28,9 +28,6 @@ public class LoginActivity extends BaseActivity {
     ActivityLoginBinding loginBinding;
     private LoginViewModel loginViewModel;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +49,6 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-                mpButton.start();
             }
         });
 
@@ -60,15 +56,12 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
-                mpButton.start();
             }
         });
 
         loginBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mpButton.start();
 
                 loginViewModel.getEmail().setValue(loginBinding.loginEmail.getText().toString());
                 loginViewModel.getPassword().setValue(loginBinding.loginPassword.getText().toString());

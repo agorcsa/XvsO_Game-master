@@ -59,21 +59,17 @@ public class HomeActivity extends BaseActivity {
 
         mpSpaceship = MediaPlayer.create(this, R.raw.spaceship);
 
-            configureActionBar();
+        setupPositiveSound();
+        setupNegativeSound();
+
+        configureActionBar();
 
         isMusicOn = readMusicFromSharedPrefs();
         checkMusic();
 
         isSoundOn = readSoundFromSharedPrefs();
-
-        if (isSoundOn) {
-            playPositiveSound();
-            playNegativeSound();
-        } else {
-            stopPositiveSound();
-            stopNegativeSound();
-        }
-
+        checkSound();
+        
             homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override

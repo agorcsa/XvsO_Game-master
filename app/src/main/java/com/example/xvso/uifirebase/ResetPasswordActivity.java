@@ -20,8 +20,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
     ActivityResetPasswordBinding resetPasswordBinding;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,6 @@ public class ResetPasswordActivity extends BaseActivity {
         resetPasswordBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mpAlert.start();
                 finish();
             }
         });
@@ -46,7 +43,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
-                    mpButton.start();
                     return;
                 }
 

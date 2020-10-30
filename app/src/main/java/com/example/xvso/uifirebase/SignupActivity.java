@@ -48,9 +48,6 @@ public class SignupActivity extends BaseActivity {
 
     private DatabaseReference databaseReference;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +65,12 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
-                mpButton.start();
             }
         });
 
         signupBinding.signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mpButton.start();
                 finish();
             }
         });
@@ -83,7 +78,6 @@ public class SignupActivity extends BaseActivity {
         signupBinding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mpButton.start();
 
                 final String email = signupBinding.inputEmail.getText().toString().trim();
                 final String password = signupBinding.inputPassword.getText().toString().trim();

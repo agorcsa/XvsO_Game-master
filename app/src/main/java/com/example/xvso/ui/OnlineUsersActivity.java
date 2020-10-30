@@ -104,8 +104,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
     private EditText dialogEditText;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -168,8 +166,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
         startActivity(intent);
         finish();
-
-        mpButton.start();
     }
 
 
@@ -452,6 +448,5 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     public void onExitToHomeClick(View view) {
         Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
         startActivity(intent);
-        mpAlert.start();
     }
 }

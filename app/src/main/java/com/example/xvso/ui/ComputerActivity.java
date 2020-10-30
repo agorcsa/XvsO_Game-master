@@ -42,9 +42,6 @@ public class ComputerActivity extends BaseActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,7 +160,6 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.astronaut)
                         .into(computerBinding.winningImageView);
-                mpButton.start();
 
             } else if (game.getGameResult() == 2) {
                 stopTimer();
@@ -180,7 +176,6 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(getAlienImage())
                         .into(computerBinding.winningImageView);
-                mpAlert.start();
 
             } else if (game.getGameResult() == 3) {
                 stopTimer();
@@ -190,7 +185,7 @@ public class ComputerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.draw)
                         .into(computerBinding.winningImageView);
-                mpButton.start();
+
             }
             disableCellClick();
         });
@@ -217,7 +212,6 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-        mpButton.start();
     }
 
     public void onResetGameClick(View view) {
@@ -227,7 +221,6 @@ public class ComputerActivity extends BaseActivity {
         computerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-        mpButton.start();
     }
 
     public void initialiseScore() {
@@ -293,7 +286,6 @@ public class ComputerActivity extends BaseActivity {
         Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
-        mpAlert.start();
     }
 
     public void stopTimer() {

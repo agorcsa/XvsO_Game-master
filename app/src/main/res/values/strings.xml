@@ -142,19 +142,19 @@
     <string name="title_activity_settings2">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
     </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
     <string name="moon_image">moon image</string>
     <string name="new_round">New Round</string>
     <string name="exit_to_menu">Exit to menu</string>
@@ -314,7 +314,7 @@
         <br></br>
         <br><b>Height: </b>120 - 140cm (for adult of its species)</br>
         <br></br>
-        <br><b>Adulthood: </b>under 15 years</br>
+        <br><b>Edad adulta: </b>under 15 years</br>
         <br></br>
         <br><b>Planet: </b>Patarius</br>
         <br></br>

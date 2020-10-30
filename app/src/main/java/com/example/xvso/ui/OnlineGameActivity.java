@@ -87,9 +87,6 @@ public class OnlineGameActivity extends BaseActivity {
 
     private static final String USER_EXIT = "user_exit";
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,22 +155,17 @@ public class OnlineGameActivity extends BaseActivity {
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
-
-                                mpButton.start();
                                 break;
                             case 2:
                                 timer.cancel();
                                 widgetPreferences.saveData(OnlineGameActivity.this, game);
                                 widgetPreferences.updateWidgets(getApplicationContext());
-
-                                mpAlert.start();
                                 break;
                             case 3:
                                 timer.cancel();
-
-                                mpButton.start();
                                 break;
                         }
+
                         host = game.getHost();
                         guest = game.getGuest();
                         hostUID = host.getUID();
@@ -466,7 +458,6 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-        mpButton.start();
     }
 
     public void showBoard() {
@@ -488,7 +479,6 @@ public class OnlineGameActivity extends BaseActivity {
         intent.putExtra(KEY, true);
         startActivity(intent);
         onlineGameViewModel.onGameExitAbruptly();
-        mpAlert.start();
     }
 
     @Override

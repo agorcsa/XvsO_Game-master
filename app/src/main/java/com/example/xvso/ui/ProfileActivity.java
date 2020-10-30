@@ -1,13 +1,10 @@
 package com.example.xvso.ui;
 
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.muddzdev.styleabletoast.StyleableToast;
 
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
@@ -58,9 +54,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ProfileEditState profileEditState;
     private ProfileViewModel.NetworkState networkState;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,13 +68,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         // sets onClickListener on the submitButton in order to be clickable and run some code
         profileBinding.submitButton.setOnClickListener(this);
 
-        /*profileBinding.submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mpButton.start();
-            }
-        });
-        */
         // sets onClickListener on the profilePicture in order to be clickable and run some code
         profileBinding.profilePicture.setOnClickListener(this);
 
@@ -99,7 +85,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(intent);
-                mpAlert.start();
             }
         });
     }

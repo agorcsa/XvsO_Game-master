@@ -125,4 +125,148 @@
     <string name="exit_to_about">exit to about</string>
     <string name="privacy_policy_and_attributions">Privacy Policy and Attributions</string>
     <string name="press_moon">To get back to the privacy policy, please press the moon</string>
+
+    <string name="alien1Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Tasp</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b> Los humanos lo llaman Monoculus</b>
+        <br></br>
+        <br><b>Especies: </b>Amphibio</br>
+        <br></br>
+        <br><b>Altura: </b>60 - 80cm</br>
+        <br></br>
+        <br><b>Edad adulta: </b>menores de 14 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Pegasus 3</br>
+        <br></br>
+        <br><b>La historia de Tasp: </b></br>
+        <br>En su planeta natal, Pegasus 3, el clima es muy tormentoso la mayor parte del año, pero su naturaleza anfibia les ayudó a encontrar abundante comida durante todo el año. Su planeta alberga formas de vida generalmente más pequeñas, siendo Tasp la más grande.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien2Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Obgu</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b> Los humanos lo llaman Happy Eyed Face</b>
+        <br></br>
+        <br><b>Especies: </b>Alborian</br>
+        <br></br>
+        <br><b>Altura: </b>30 - 40cm</br>
+        <br></br>
+        <br><b>Edad adulta: </b>menores de 7 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Alborus</br>
+        <br></br>
+        <br><b>La historia de Obgu: </b></br>
+        <br>Los alborianos están formando una sociedad con apoyo común entre ellos, pero viven bajo reglas estrictas. Son muy amables y serviciales con los humanos. Tener un alboriano en una nave espacial puede ser muy beneficioso, ya que son grandes navegantes. Alborus es un planeta de clima moderado y plantas exuberantes, la comida de los alborianos es principalmente de base plana y comen varias especies de caracoles para obtener proteínas.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien3Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Eshu</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b> Caracol Amarillo</b>
+        <br></br>
+        <br><b>Especies: </b>Redolan</br>
+        <br></br>
+        <br><b>Altura: </b>20 - 40cm</br>
+        <br></br>
+        <br><b>Edad adulta: </b>menores de 8 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Redolus</br>
+        <br></br>
+        <br><b>La historia de Eshu: </b></br>
+        <br>Los Redolan se desarrollaron a partir de los mismos antepasados ​​que los Alborians. Millones de años antes, tanto Alborians como Redolans, vivían juntos en el mismo planeta, que era una supernova. Viven también en una sociedad desarrollada, son omnívoros, pero son capaces de mantenerse también solo con alimentos de origen vegetal. Son excelentes comerciantes y científicos.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien4Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Ushuqop</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b>Monstruo azul</b>
+        <br></br>
+        <br><b>Especies: </b>Atlasian</br>
+        <br></br>
+        <br><b>Altura: </b>90 - 110 cm</br>
+        <br></br>
+        <br><b>Edad adulta: </b>menores de 11 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Atlas 2</br>
+        <br></br>
+        <br><b>La historia de Ushuqop: </b></br>
+        <br>Ushuqop proviene del frío planeta Atlas 2, uno de los 6 planetas del cúmulo de planetas Atlas. Los atlasianos cazan animales en grupos. Crueles en la guerra, pero muy pacientes y educados con los invitados, se entregan a placeres hedonistas como el alcohol, la música y los juegos de azar. Su fuerte pensamiento estratégico y su naturaleza colérica se convierten en un enemigo terrible.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien5Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Yumay</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b>Ejecutando fresa</b>
+        <br></br>
+        <br><b>Especies: </b>Atlasian</br>
+        <br></br>
+        <br><b>Altura: </b>20 - 40cm</br>
+        <br></br>
+        <br><b>Edad adulta: </b>menores de 9 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Atlas 4</br>
+        <br></br>
+        <br><b>La historia de Yumay: </b></br>
+        <br>La criatura perdió su conexión con la naturaleza debido al desarrollo de su sociedad, ya que se les proporciona alimentos y bebidas artificiales. Como tienen pies rápidos, correr es un deporte tradicional y se están organizando muchas competiciones de carrera. Atlas 4 es un planeta con clima cálido, por lo que los alienígenas pasan la mayor parte del tiempo al aire libre. Su alimento principal es una especie de fresa gigante, que le da al extraterrestre el color rosado y el estado de ánimo feliz.</br>
+        <br></br>
+        <br></br>
+      ]]>
+    </string>
+
+    <string name="alien6Text" translatable="true">
+        <![CDATA[
+        <b>Nombre: Uzapoc</b>
+        <br></br>
+        <br></br>
+        <b>Caracteristicas</b>
+        <br></br>
+        <br><b>Nombre en la tierra:</b> Diablo Rojo</b>
+        <br></br>
+        <br><b>Especies: </b>Patarian</br>
+        <br></br>
+        <br><b>Altura: </b>120 - 140cm</br>
+        <br></br>
+        <br><b>Adulthood: </b>menores de 15 años</br>
+        <br></br>
+        <br><b>Planeta: </b>Patarius</br>
+        <br></br>
+        <br><b>La historia de Uzapoc: </b></br>
+        <br>Su planeta es volcánico, rocoso con altas temperaturas. Los patarianos son principalmente carnívoros y sienten la necesidad de cazar con frecuencia. Son individualistas, polígamos y con un gran apetito por la comida.</br>
+        <br></br>
+      ]]>
+    </string>
+
 </resources>

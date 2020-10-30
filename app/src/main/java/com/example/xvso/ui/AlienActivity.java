@@ -54,8 +54,6 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
     private String alienName5 = "Yumay";
     private String alienName6 = "Uzapoc";
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,7 +110,9 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
         intent.putExtra(ALIEN_KEY, image);
         intent.putExtra(ALIEN_NAME, item.getName());
         startActivity(intent);
-        mpButton.start();
+        //sound
+        setupPositiveSound();
+        playPositiveSound();
     }
 
     @Override
@@ -136,6 +136,5 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
     public void onExitAlienScreen(View view) {
         Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
         startActivity(intent);
-        mpAlert.start();
     }
 }

@@ -41,9 +41,6 @@ public class SinglePlayerActivity extends BaseActivity {
     private final int interval = 1000;
     private final int minute = 60000;
 
-    private MediaPlayer mpAlert;
-    private MediaPlayer mpButton;
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +113,6 @@ public class SinglePlayerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.astronaut)
                         .into(singleBinding.winningImageView);
-                mpButton.start();
 
             } else if (game.getGameResult() == 2) {
                 stopTimer();
@@ -126,7 +122,6 @@ public class SinglePlayerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.ufo_black)
                         .into(singleBinding.winningImageView);
-                mpAlert.start();
 
             } else if (game.getGameResult() == 3) {
                 stopTimer();
@@ -136,7 +131,6 @@ public class SinglePlayerActivity extends BaseActivity {
                 Picasso.get()
                         .load(R.drawable.draw)
                         .into(singleBinding.winningImageView);
-                mpButton.start();
             } else {
                 singleBinding.turnSwitcherTextViewSingle.setVisibility(View.VISIBLE);
             }
@@ -179,7 +173,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-        mpButton.start();
     }
 
     public void onResetGameClick(View view) {
@@ -188,7 +181,6 @@ public class SinglePlayerActivity extends BaseActivity {
         singlePlayerViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-        mpButton.start();
     }
 
     public void showBoard() {
@@ -223,7 +215,6 @@ public class SinglePlayerActivity extends BaseActivity {
         Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
         intent.putExtra(KEY, true);
         startActivity(intent);
-        mpAlert.start();
     }
 
     @Override

@@ -2,9 +2,7 @@ package com.example.xvso.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -135,12 +133,24 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void playPositiveSound() {
+    public void setupPositiveSound() {
         positiveSound = MediaPlayer.create(this, R.raw.positive);
     }
 
-    public void playNegativeSound() {
+    public void setupNegativeSound() {
         negativeSound = MediaPlayer.create(this, R.raw.negative);
+    }
+
+    public void playPositiveSound() {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
+    }
+
+    public void playNegativeSound() {
+        if (isSoundOn) {
+            negativeSound.start();
+        }
     }
 
     public void stopPositiveSound() {
