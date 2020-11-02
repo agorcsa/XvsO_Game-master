@@ -63,12 +63,6 @@ public class HomeActivity extends BaseActivity {
         setupNegativeSound();
 
         configureActionBar();
-
-        isMusicOn = readMusicFromSharedPrefs();
-        checkMusic();
-
-        isSoundOn = readSoundFromSharedPrefs();
-        checkSound();
         
             homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -76,7 +70,12 @@ public class HomeActivity extends BaseActivity {
                 public void onClick(View view) {
                     hideViews();
                     createAlertDialogSingle();
-                    positiveSound.start();
+                    // check
+                    if (isSoundOn) {
+                        positiveSound.start();
+                    } else {
+
+                    }
                 }
             });
 

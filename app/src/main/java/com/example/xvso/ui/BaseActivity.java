@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,9 +76,15 @@ public class BaseActivity extends AppCompatActivity {
     }*/
 
     public void playMusic() {
-        mediaPlayer = android.media.MediaPlayer.create(this, R.raw.orbitbeat);
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
+        Handler handler = new Handler();
+        Runnable myRunnable = new Runnable() {
+            public void run() {
+                mediaPlayer = android.media.MediaPlayer.create(BaseActivity.this, R.raw.orbitbeat);
+                mediaPlayer.start();
+                mediaPlayer.setLooping(true);
+            }
+        };
+        handler.postDelayed(myRunnable, 1000);
     }
 
     public void stopMusic() {
@@ -96,9 +103,17 @@ public class BaseActivity extends AppCompatActivity {
         return auth.getCurrentUser();
     }
 
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
+        checkMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
