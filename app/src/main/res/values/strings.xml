@@ -105,7 +105,7 @@
     <string name="hint_password">Password</string>
     <string name="btn_login">Login</string>
     <string name="btn_forgot_password">Forgot your password?</string>
-    <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+    <string name="btn_link_to_register">Not a member? Get registered now!</string>
 
     <!-- game_item.xml -->
     <!-- textview hints -->
@@ -348,7 +348,7 @@
     ]]>
 </string>
 
-    <string name="attributions_text">To see all the photo attributions, please click on the astronaut.</string>
+    <string name="attributions_text">To see all the photo attributions, please click on the blue moon.</string>
     <string name="moonclick">To get back to the game rules, please press the moon.</string>
     <string name="exit_to_home">exit to home</string>
     <string name="attributions_title">Attributions</string>
