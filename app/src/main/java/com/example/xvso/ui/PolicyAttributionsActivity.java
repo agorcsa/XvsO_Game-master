@@ -2,9 +2,12 @@ package com.example.xvso.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -15,7 +18,15 @@ import androidx.databinding.DataBindingUtil;
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityPolicyAttributionsBinding;
 import com.example.xvso.license.ReadFileAsyncTask;
+import com.yydcdut.markdown.MarkdownProcessor;
+import com.yydcdut.markdown.syntax.text.TextFactory;
+import com.yydcdut.rxmarkdown.RxMDConfiguration;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutionException;
 
@@ -65,6 +76,12 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
                 }
             }
         });
+
+        try {
+            displayMarkdown();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void hideViews() {
@@ -128,5 +145,50 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
         policyBinding.attributionsText.setVisibility(View.INVISIBLE);
         policyBinding.attributionsScrollView.setVisibility(View.INVISIBLE);
         policyBinding.moonClickTextView.setVisibility(View.INVISIBLE);
+    }
+
+    public void displayMarkdown() throws IOException {
+        MarkdownProcessor markdownProcessor = new MarkdownProcessor(this);
+        markdownProcessor.factory(TextFactory.create());
+        policyBinding.policyText.setText(markdownProcessor.parse(readFromFile(getApplicationContext(), "privacypolicy.txt")));
+    }
+
+    private String readFromFile(Context context, String fname) {
+
+        BufferedReader reader = null;
+        StringBuilder stringBuilder = new StringBuilder("");
+
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(context.getAssets().open(fname)));
+
+            // do reading, usually loop until end of file reading
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                //process line
+                stringBuilder.append(mLine + "\n");
+
+                RxMDConfiguration rxMDConfiguration = new RxMDConfiguration.Builder(context)
+                        .setLinkFontColor(Color.BLUE)//default color of link text
+                        .setUnOrderListColor(Color.BLUE)
+                        .build();
+
+                MarkdownProcessor markdownProcessor = new MarkdownProcessor(this);
+                markdownProcessor.config(rxMDConfiguration);
+                markdownProcessor.factory(TextFactory.create());
+            }
+        } catch (IOException e) {
+            //log the exception
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                    Log.v("LOG_TAG", "Text File couldn not be open");
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 }
