@@ -24,6 +24,9 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         aboutBinding = DataBindingUtil.setContentView(this, R.layout.activity_about);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         String aboutText0 = getResources().getString(R.string.welcome);
 
         String aboutText1 = getResources().getString(R.string.about_the_app)

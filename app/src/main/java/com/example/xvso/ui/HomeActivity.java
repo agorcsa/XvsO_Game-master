@@ -73,46 +73,72 @@ public class HomeActivity extends BaseActivity {
                     // check
                     if (isSoundOn) {
                         positiveSound.start();
-                    } else {
-
                     }
                 }
             });
 
             homeBinding.computerPlayerButton.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
-                    startActivity(intent);
-                    positiveSound.start();
+                    if (isSoundOn) {
+                        positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        positiveSound.start();
+                    }
                 }
             });
 
             homeBinding.multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
-                    startActivity(intent);
-                    positiveSound.start();
+                    if (isSoundOn) {
+                        positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        positiveSound.start();
+                    }
                 }
             });
 
         homeBinding.policyAttributionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
-                startActivity(intent);
-                positiveSound.start();
+                if (isSoundOn) {
+                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    positiveSound.start();
+                }
             }
         });
 
             homeBinding.aboutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
-                    startActivity(intent);
-                    positiveSound.start();
+
+                    if (isSoundOn) {
+                        positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        positiveSound.start();
+                    }
                 }
             });
         }
@@ -174,12 +200,16 @@ public class HomeActivity extends BaseActivity {
                         if (!namePlayer0.isEmpty()) {
                             Intent intent = new Intent(HomeActivity.this, SinglePlayerActivity.class);
                             startActivity(intent);
-                            positiveSound.start();
+                            if (isSoundOn) {
+                                positiveSound.start();
+                            }
                         } else {
                             showToast("Please introduce playerO's name!");
                             animateViews();
                             showViews();
-                            negativeSound.start();
+                            if (isSoundOn) {
+                                negativeSound.start();
+                            }
                         }
                     }
                 });
@@ -191,7 +221,9 @@ public class HomeActivity extends BaseActivity {
                         dialog.cancel();
                         animateViews();
                         showViews();
-                        negativeSound.start();
+                        if (isSoundOn) {
+                            negativeSound.start();
+                        }
                     }
                 });
 

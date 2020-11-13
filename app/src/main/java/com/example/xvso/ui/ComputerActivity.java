@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
@@ -45,6 +46,8 @@ public class ComputerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i("LOG_TAG", "Activity AI was launched");
 
         computerBinding = DataBindingUtil.setContentView(this, R.layout.activity_computer);
         computerViewModel = ViewModelProviders.of(this).get(ComputerViewModel.class);

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +90,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void stopMusic() {
         mediaPlayer.stop();
+        Log.v("LOG_TAG", "Media player is stopped");
     }
 
     // Firebase
@@ -131,6 +133,7 @@ public class BaseActivity extends AppCompatActivity {
             negativeSound.release();
             negativeSound = null;
         }
+        Log.i("LOG_TAG", "onPause is called");
     }
 
     public void checkMusic() {
@@ -150,10 +153,12 @@ public class BaseActivity extends AppCompatActivity {
 
     public void setupPositiveSound() {
         positiveSound = MediaPlayer.create(this, R.raw.positive);
+        Log.i("LOG_TAG", "Positive sound");
     }
 
     public void setupNegativeSound() {
         negativeSound = MediaPlayer.create(this, R.raw.negative);
+        Log.i("LOG_TAG", "Negative sound");
     }
 
     public void playPositiveSound() {

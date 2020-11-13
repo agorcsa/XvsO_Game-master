@@ -2,8 +2,8 @@ package com.example.xvso.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +13,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.xvso.R;
@@ -23,9 +24,7 @@ import com.yydcdut.markdown.syntax.text.TextFactory;
 import com.yydcdut.rxmarkdown.RxMDConfiguration;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.ExecutionException;
@@ -147,9 +146,15 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
         policyBinding.moonClickTextView.setVisibility(View.INVISIBLE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void displayMarkdown() throws IOException {
+        RxMDConfiguration rxMDConfiguration = new RxMDConfiguration.Builder(this)
+                .setLinkFontColor(getColor(R.color.light_blue))//default color of link text
+                .setUnOrderListColor(getColor(R.color.light_blue))
+                .build();
         MarkdownProcessor markdownProcessor = new MarkdownProcessor(this);
         markdownProcessor.factory(TextFactory.create());
+        markdownProcessor.config(rxMDConfiguration);
         policyBinding.policyText.setText(markdownProcessor.parse(readFromFile(getApplicationContext(), "privacypolicy.txt")));
     }
 
