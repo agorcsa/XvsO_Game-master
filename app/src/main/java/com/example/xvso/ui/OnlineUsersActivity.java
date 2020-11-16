@@ -112,6 +112,9 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         usersBinding = DataBindingUtil.setContentView(this, R.layout.activity_online_users);
         onlineUsersViewModel = ViewModelProviders.of(this).get(OnlineUsersViewModel.class);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         joinButton = findViewById(R.id.join_game_text_view);
 
         usersBinding.setViewModel(onlineUsersViewModel);
@@ -446,7 +449,16 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
     }
 
     public void onExitToHomeClick(View view) {
-        Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
-        startActivity(intent);
+
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 }

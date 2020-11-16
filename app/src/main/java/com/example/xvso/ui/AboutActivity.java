@@ -1,13 +1,9 @@
 package com.example.xvso.ui;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -49,7 +45,16 @@ public class AboutActivity extends BaseActivity {
     }
 
     public void onExitButtonClick(View view) {
-        Intent intent = new Intent(AboutActivity.this, HomeActivity.class);
-        startActivity(intent);
+
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(AboutActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 }

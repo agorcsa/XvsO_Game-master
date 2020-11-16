@@ -3,6 +3,7 @@ package com.example.xvso.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -35,10 +36,14 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
 
     private boolean isImageClicked = true;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         policyBinding = DataBindingUtil.setContentView(this, R.layout.activity_policy_attributions);
+
+        setupPositiveSound();
+        setupNegativeSound();
 
         try {
             String text = new ReadFileAsyncTask(new WeakReference<Context>(this), this).execute().get();
@@ -106,8 +111,16 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
     }
 
     public void onExitToHome(View view) {
-        Intent intent = new Intent(PolicyAttributionsActivity.this, HomeActivity.class);
-        startActivity(intent);
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(PolicyAttributionsActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 
     @Override

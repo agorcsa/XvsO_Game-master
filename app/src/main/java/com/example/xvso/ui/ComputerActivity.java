@@ -54,6 +54,9 @@ public class ComputerActivity extends BaseActivity {
         computerBinding.setViewModel(computerViewModel);
         computerBinding.setLifecycleOwner(this);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         // starts the round timer
         startTimer();
 
@@ -286,9 +289,18 @@ public class ComputerActivity extends BaseActivity {
     }
 
     public void onExitClicked(View view) {
-        Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
-        intent.putExtra(KEY, true);
-        startActivity(intent);
+
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
+                    intent.putExtra(KEY, true);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 
     public void stopTimer() {
