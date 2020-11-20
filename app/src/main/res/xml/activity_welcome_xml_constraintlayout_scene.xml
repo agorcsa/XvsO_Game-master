@@ -5,40 +5,40 @@
     <Transition
         app:constraintSetEnd="@+id/end"
         app:constraintSetStart="@+id/start"
-        app:duration="4000">
+        app:duration="3000">
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="110"
+                app:framePosition="90"
                 app:motionTarget="@+id/single_player_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="90"
+                app:framePosition="70"
                 app:motionTarget="@+id/computer_player_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="70"
+                app:framePosition="50"
                 app:motionTarget="@+id/multi_player_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="50"
+                app:framePosition="30"
                 app:motionTarget="@+id/policy_attributions_button" />
         </KeyFrameSet>
 
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
-                app:framePosition="30"
+                app:framePosition="10"
                 app:motionTarget="@+id/about_button" />
         </KeyFrameSet>
     </Transition>

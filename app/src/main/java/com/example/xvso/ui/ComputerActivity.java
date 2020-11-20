@@ -213,6 +213,9 @@ public class ComputerActivity extends BaseActivity {
     }
 
     public void onPlayAgainClick(View view) {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
         startTimer();
         computerViewModel.newRound();
         computerViewModel.togglePlayer();
@@ -221,6 +224,9 @@ public class ComputerActivity extends BaseActivity {
     }
 
     public void onResetGameClick(View view) {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
         startTimer();
         computerViewModel.resetGame();
         initialiseScore();

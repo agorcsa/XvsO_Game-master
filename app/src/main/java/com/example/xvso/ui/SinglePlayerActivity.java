@@ -51,6 +51,9 @@ public class SinglePlayerActivity extends BaseActivity {
         singleBinding.setViewModel(singlePlayerViewModel);
         singleBinding.setLifecycleOwner(this);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         startTimer();
 
         winnerIsInvisible();
@@ -168,6 +171,9 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onPlayAgainClick(View view) {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
         startTimer();
         singlePlayerViewModel.newRound();
         singlePlayerViewModel.togglePlayer();
@@ -176,6 +182,9 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onResetGameClick(View view) {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
         startTimer();
         singlePlayerViewModel.resetGame();
         singlePlayerViewModel.togglePlayer();
@@ -212,9 +221,18 @@ public class SinglePlayerActivity extends BaseActivity {
     }
 
     public void onExitClicked(View view) {
-        Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
-        intent.putExtra(KEY, true);
-        startActivity(intent);
+
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
+                    intent.putExtra(KEY, true);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 
     @Override

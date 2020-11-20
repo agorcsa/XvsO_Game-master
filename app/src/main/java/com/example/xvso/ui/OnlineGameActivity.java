@@ -93,6 +93,9 @@ public class OnlineGameActivity extends BaseActivity {
 
         startTimer();
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         widgetPreferences.resetData(this);
         widgetPreferences.updateWidgets(getApplicationContext());
 
@@ -408,17 +411,29 @@ public class OnlineGameActivity extends BaseActivity {
                 Handler handler = new Handler();
                 final Runnable r = new Runnable() {
                     public void run() {
-                        // Shows the Toast
-                        showToast("Your counterpart has left the game!");
-                        Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
-                        intent.putExtra(KEY, true);
-                        startActivity(intent);
+
+                        if (isSoundOn) {
+                            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+                                    showToast("Your counterpart has left the game!");
+                                    Intent intent = new Intent(OnlineGameActivity.this, OnlineUsersActivity.class);
+                                    intent.putExtra(KEY, true);
+                                    startActivity(intent);
+                                }
+                            });
+                            negativeSound.start();
+                        }
                     }
                 };
                 handler.postDelayed(r, 2000);
             }
 
             if (game.getStatus() == Game.STATUS_PLAY_AGAIN) {
+
+                if (isSoundOn) {
+                    positiveSound.start();
+                }
                 showToast("A new round will start!");
                 onlineGameViewModel.newRound();
                 onlineGameViewModel.togglePlayer();
@@ -475,10 +490,18 @@ public class OnlineGameActivity extends BaseActivity {
     }
 
     public void onExitClicked(View view) {
-        Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
-        intent.putExtra(KEY, true);
-        startActivity(intent);
-        onlineGameViewModel.onGameExitAbruptly();
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(OnlineGameActivity.this, HomeActivity.class);
+                    intent.putExtra(KEY, true);
+                    startActivity(intent);
+                    onlineGameViewModel.onGameExitAbruptly();
+                }
+            });
+            negativeSound.start();
+        }
     }
 
     @Override

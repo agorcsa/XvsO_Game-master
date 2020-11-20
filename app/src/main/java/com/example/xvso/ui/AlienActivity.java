@@ -60,6 +60,9 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alien);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
         alienDescription = findViewById(R.id.alien_description_text_view);
         scroll = findViewById(R.id.scroll_text);
@@ -105,15 +108,22 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
 
     @Override
     public void onAlienClick(SliderItem item) {
-        Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
-        int image = item.getImage();
-        intent.putExtra(ALIEN_KEY, image);
-        intent.putExtra(ALIEN_NAME, item.getName());
-        startActivity(intent);
-        //sound
-        setupPositiveSound();
-        playPositiveSound();
+
+        if (isSoundOn) {
+            positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
+                    int image = item.getImage();
+                    intent.putExtra(ALIEN_KEY, image);
+                    intent.putExtra(ALIEN_NAME, item.getName());
+                    startActivity(intent);
+                }
+            });
+            positiveSound.start();
+        }
     }
+
 
     @Override
     public void onImageHover(String description) {
@@ -134,7 +144,17 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
     }
 
     public void onExitAlienScreen(View view) {
-        Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
-        startActivity(intent);
+
+        if (isSoundOn) {
+            negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+
+                    Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+            negativeSound.start();
+        }
     }
 }
