@@ -434,8 +434,22 @@ public class OnlineGameActivity extends BaseActivity {
                 if (isSoundOn) {
                     positiveSound.start();
                 }
+
                 showToast("A new round will start!");
                 onlineGameViewModel.newRound();
+                onlineGameViewModel.togglePlayer();
+                winnerIsInvisible();
+                showBoard();
+            }
+
+            if (game.getStatus() == Game.STATUS_GAME_RESET) {
+
+                if (isSoundOn) {
+                    positiveSound.start();
+                }
+
+                showToast("A new game will start!");
+                onlineGameViewModel.resetGame();
                 onlineGameViewModel.togglePlayer();
                 winnerIsInvisible();
                 showBoard();
@@ -468,12 +482,27 @@ public class OnlineGameActivity extends BaseActivity {
         onlineGameBinding.showWinnerLayout.setVisibility(View.INVISIBLE);
     }
 
-    public void onPlayAgainClick(View view) {
+    // not needed
+
+  /*  public void onPlayAgainClick(View view) {
         onlineGameViewModel.newRound();
         onlineGameViewModel.togglePlayer();
         winnerIsInvisible();
         showBoard();
-    }
+    }*/
+
+   /* public void onResetGameClick(View view) {
+        if (isSoundOn) {
+            positiveSound.start();
+        }
+        startTimer();
+        onlineGameViewModel.resetGame();
+        onlineGameViewModel.togglePlayer();
+        // change game status
+        winnerIsInvisible();
+        showBoard();
+    }*/
+
 
     public void showBoard() {
         onlineGameBinding.gridLayout.setVisibility(View.VISIBLE);

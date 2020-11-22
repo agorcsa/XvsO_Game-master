@@ -211,6 +211,28 @@ public class OnlineGameViewModel extends BaseViewModel {
         query.setValue(game);
     }
 
+    public void resetGame() {
+
+        game = gameLiveData.getValue();
+        if (game != null) {
+            game.setBoard(new Board());
+            game.setWinningLines(new WinningLines());
+            game.setGameResult(0);
+            game.setRoundCount(0);
+            resetScore();
+            // a new game will start, so status will be put back to "playing"
+            game.setStatus(Game.STATUS_GAME_RESET);
+            gameLiveData.setValue(game);
+        }
+    }
+
+    public void resetScore() {
+        if (game != null) {
+            game.setHostScore(0);
+            game.setGuestScore(0);
+        }
+    }
+
     public void timeUp() {
         game = gameLiveData.getValue();
         game.setGameResult(3);
@@ -220,6 +242,13 @@ public class OnlineGameViewModel extends BaseViewModel {
     public void playGame() {
         game = gameLiveData.getValue();
         game.setStatus(Game.STATUS_PLAY_AGAIN);
+        game.setWinningLines(new WinningLines());
+        query.setValue(game);
+    }
+
+    public void playNewGame() {
+        game = gameLiveData.getValue();
+        game.setStatus(Game.STATUS_GAME_RESET);
         game.setWinningLines(new WinningLines());
         query.setValue(game);
     }

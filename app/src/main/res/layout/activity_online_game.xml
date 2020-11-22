@@ -451,10 +451,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:onClick="onResetGameClick"
                 android:text="@string/new_game"
                 android:textColor="@color/white"
                 android:layout_gravity="bottom"
+                android:onClick="@{() -> viewModel.playNewGame()}"
                 android:background="@drawable/button_purple_transparent" />
         </RelativeLayout>
 

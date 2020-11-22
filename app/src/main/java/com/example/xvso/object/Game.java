@@ -7,8 +7,9 @@ public class Game {
     public static final int STATUS_PLAYING = 1;
     public static final int STATUS_GAME_FINISHED = 2;
     public static final int STATUS_ROUND_FINISHED = 3;
-    public static final int STATUS_USER_EXIT = 4;
-    public static final int STATUS_PLAY_AGAIN = 5;
+    public static final int STATUS_GAME_RESET = 4;
+    public static final int STATUS_USER_EXIT = 5;
+    public static final int STATUS_PLAY_AGAIN = 6;
 
     private Board board;
     private WinningLines winningLines = new WinningLines(0, 0, 0, 0, 0, 0, 0, 0);
