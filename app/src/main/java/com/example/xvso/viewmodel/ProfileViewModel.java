@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.xvso.object.User;
 import com.example.xvso.progressdialog.ProfileEditState;
 import com.example.xvso.eventobserver.Event;
+import com.example.xvso.ui.BaseActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

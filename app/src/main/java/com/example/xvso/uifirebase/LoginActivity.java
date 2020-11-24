@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityLoginBinding;
+import com.example.xvso.ui.AboutActivity;
 import com.example.xvso.ui.HomeActivity;
 import com.example.xvso.viewmodel.LoginViewModel;
 import com.google.android.gms.common.ConnectionResult;
@@ -41,8 +42,11 @@ public class LoginActivity extends BaseActivity {
 
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
+        setupPositiveSound();
+        setupNegativeSound();
+
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Google Play Services are not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.services_not_available, Toast.LENGTH_LONG).show();
         }
 
         loginBinding.btnSignup.setOnClickListener(new View.OnClickListener() {
@@ -67,12 +71,12 @@ public class LoginActivity extends BaseActivity {
                 loginViewModel.getPassword().setValue(loginBinding.loginPassword.getText().toString());
 
                 if (TextUtils.isEmpty(( loginViewModel.getEmail().toString()))) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty((loginViewModel.getPassword().toString()))) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -103,7 +107,7 @@ public class LoginActivity extends BaseActivity {
                                 }
                             });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please enter yur email address and password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_email_and_password, Toast.LENGTH_SHORT).show();
                 }
             }
         });

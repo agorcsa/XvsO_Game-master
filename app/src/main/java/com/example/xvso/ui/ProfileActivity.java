@@ -2,6 +2,7 @@ package com.example.xvso.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -63,10 +64,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         // the profileViewModel instance uses the ProfileViewModel.class
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
+        setupPositiveSound();
+        setupNegativeSound();
 
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
         profileBinding.submitButton.setOnClickListener(this);
+        if (isSoundOn) {
+            positiveSound.start();
+        }
 
         // sets onClickListener on the profilePicture in order to be clickable and run some code
         profileBinding.profilePicture.setOnClickListener(this);
@@ -83,8 +89,17 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         profileBinding.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-                startActivity(intent);
+
+                if (isSoundOn) {
+                    negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    negativeSound.start();
+                }
             }
         });
     }

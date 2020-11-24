@@ -266,9 +266,17 @@ public class HomeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_log_out_home) {
-            FirebaseAuth.getInstance().signOut();
-            Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(loginIntent);
+            if (isSoundOn) {
+                negativeSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
+                        startActivity(loginIntent);
+                    }
+                });
+                negativeSound.start();
+            }
         } else if (item.getItemId() == R.id.action_profile_home) {
             Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
             startActivity(settingsIntent);

@@ -248,7 +248,9 @@ public class OnlineGameViewModel extends BaseViewModel {
 
     public void playNewGame() {
         game = gameLiveData.getValue();
-        game.setStatus(Game.STATUS_GAME_RESET);
+        game.setStatus(Game.STATUS_PLAY_AGAIN);
+        game.setGuestScore(0);
+        game.setHostScore(0);
         game.setWinningLines(new WinningLines());
         query.setValue(game);
     }

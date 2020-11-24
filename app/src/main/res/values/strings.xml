@@ -368,4 +368,12 @@
     <string name="exit_to_about">exit to about</string>
     <string name="privacy_policy_and_attributions">Policy and Attributions</string>
     <string name="press_moon">To get back to the privacy policy, please press the moon.</string>
+    <string name="services_not_available">Google Play Services are not available</string>
+    <string name="enter_email_address">Enter email address!</string>
+    <string name="enter_password">Enter password!</string>
+    <string name="enter_email_and_password">Please enter your email address and password</string>
+    <string name="enter_email_id">Enter your registered email id</string>
+    <string name="instructions_sent">We have sent you instructions to reset your password!</string>
+    <string name="email_send_failed">Failed to send reset email!</string>
+    <string name="enter_valid_email">Please enter a valid e-mail address</string>
 </resources>

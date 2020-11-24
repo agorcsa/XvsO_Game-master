@@ -268,5 +268,13 @@
         <br></br>
       ]]>
     </string>
+    <string name="services_not_available">" Los servicios de Google Play no están disponibles"</string>
+    <string name="enter_email_address">" ¡Introducir la dirección de correo electrónico!"</string>
+    <string name="enter_password">" ¡Introducir la contraseña!"</string>
+    <string name="enter_email_and_password">" Introduce tu dirección de correo electrónico y contraseña"</string>
+    <string name="enter_email_id">" Ingrese su identificación de correo electrónico registrada"</string>
+    <string name="instructions_sent">¡Le hemos enviado instrucciones para restablecer su contraseña!</string>
+    <string name="email_send_failed">¡No se pudo enviar el correo electrónico de restablecimiento!</string>
+    <string name="enter_valid_email">" Por favor, introduce una dirección de correo electrónico válida"</string>
 
 </resources>

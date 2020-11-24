@@ -24,8 +24,6 @@ public class BaseActivity extends AppCompatActivity {
     public boolean isMusicOn = true;
     public boolean isSoundOn = true;
 
-    public static final String STATUS = "status";
-
     // used for music
     public android.media.MediaPlayer mediaPlayer;
 
@@ -62,19 +60,6 @@ public class BaseActivity extends AppCompatActivity {
         isSoundOn = value;
         return isSoundOn;
     }
-
-   /* // MediaPlayer
-    public void playSound() {
-        SharedPreferences sharedPref = getSharedPreferences(STATUS, Context.MODE_PRIVATE);
-        boolean value = sharedPref.getBoolean(KEY, false);
-        if (value) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mediaPlayer = android.media.MediaPlayer.create(this, R.raw.orbit);
-                mediaPlayer.setLooping(true);
-                mediaPlayer.start();
-            }
-        }
-    }*/
 
     public void playMusic() {
         Handler handler = new Handler();

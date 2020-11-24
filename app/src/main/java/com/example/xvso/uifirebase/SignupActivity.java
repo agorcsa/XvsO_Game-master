@@ -58,7 +58,7 @@ public class SignupActivity extends BaseActivity {
 
 
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), "Google Play Services are not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.services_not_available, Toast.LENGTH_LONG).show();
         }
 
         signupBinding.resetPasswordButton.setOnClickListener(new View.OnClickListener() {
@@ -83,20 +83,20 @@ public class SignupActivity extends BaseActivity {
                 final String password = signupBinding.inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
                     return;
 
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    signupBinding.inputEmail.setError("Please enter a valid e-mail address");
+                    signupBinding.inputEmail.setError(getString(R.string.enter_valid_email));
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.minimum_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -106,21 +106,17 @@ public class SignupActivity extends BaseActivity {
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 signupBinding.progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.makeText(SignupActivity.this, "Authentication failed because of " + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-
-
                                     String id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                                     String name = convertEmailToString(Objects.requireNonNull(getFirebaseUser().getEmail()));
-                                    String firstName = "";
-                                    String lastName = "";
 
                                     User user = new User(id, name, email, password);
 

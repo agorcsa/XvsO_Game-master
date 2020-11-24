@@ -435,7 +435,7 @@ public class OnlineGameActivity extends BaseActivity {
                     positiveSound.start();
                 }
 
-                showToast("A new round will start!");
+                //showToast("A new round will start!");
                 onlineGameViewModel.newRound();
                 onlineGameViewModel.togglePlayer();
                 winnerIsInvisible();
@@ -443,13 +443,13 @@ public class OnlineGameActivity extends BaseActivity {
             }
 
             if (game.getStatus() == Game.STATUS_GAME_RESET) {
-
                 if (isSoundOn) {
                     positiveSound.start();
                 }
-
-                showToast("A new game will start!");
-                onlineGameViewModel.resetGame();
+                //showToast("A new game will start!");
+                // This will cause an infinite loop as will cause the observer to be called again and again
+                //onlineGameViewModel.resetGame();
+                onlineGameViewModel.resetScore();
                 onlineGameViewModel.togglePlayer();
                 winnerIsInvisible();
                 showBoard();
