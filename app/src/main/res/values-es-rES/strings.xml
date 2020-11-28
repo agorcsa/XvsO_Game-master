@@ -27,7 +27,7 @@
     <string name="hint_password">Contraseña</string>
     <string name="please_wait">Por favor espera...</string>
     <string name="btn_remove">Eliminar</string>
-    <string name="btn_link_to_register">¿No es un miembro? ¡Regístrese en Firebase ahora!</string>
+    <string name="btn_link_to_register">¿No es un miembro? ¡Regístrese ahora!</string>
     <string name="remove_user">Eliminar usuario</string>
     <string name="btn_reset_password">Restablecer la contraseña</string>
     <string name="title_activity_reset_password">RestablecerContraseñaActividad</string>
@@ -40,9 +40,9 @@
     <string name="forgot_password_msg">" Solo necesitamos su ID de correo electrónico registrada para enviarle instrucciones para restablecer la contraseña."</string>
     <string name="app_label">X vs. O en el Espacio</string>
     <string name="multi_player">Multijugador</string>
-    <string name="first_name">El primer nombre</string>
-    <string name="last_name">El nombre de familia</string>
-    <string name="e_mail">Correo electrónico</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="e_mail">e-Mail</string>
     <string name="password">Contraseña</string>
     <string name="submit_button">Enviar</string>
     <string name="profile_label">Tu perfil</string>
@@ -96,12 +96,12 @@
     <string name="btn_single_player_human">Solo Jugador (Humano)</string>
     <string name="btn_single_player_computer">Solo Jugador (Computadora)</string>
     <string name="preferences_menu">Configuraciones</string>
-    <string name="settings_label">Configuraciones</string>
-    <string name="exit_to_home">salir a casa</string>
+    <string name="settings_label">Ajustes</string>
+    <string name="exit_to_home">volver</string>
     <string name="attributions_title">Atribuciones</string>
-    <string name="choose_alien">¡Elige el EXTRANJERO contra el que quieres jugar!</string>
+    <string name="choose_alien">¡Elige el ALIEN contra el que quieres jugar!</string>
     <string name="slide_next"><![CDATA[->>]]></string>
-    <string name="alien_click">Mantenga un clic largo en el alienígena para obtener más información sobre él.</string>
+    <string name="alien_click">Mantenga presionado en el alien para obtener más información sobre él.</string>
     <string name="time_left_text">Tiempo restante</string>
     <string name="single_player_button">un jugador (extranjero)</string>
     <string name="player_ai_button">Un jugador (ai)</string>
@@ -122,7 +122,7 @@
     <string name="see_license">see license</string>
     <string name="privacy_policy">Para leer la política de privacidad, haga clic aquí.</string>
     <string name="privacy_policy_button">Política de privacidad</string>
-    <string name="exit_to_about">salir a aproximadamente</string>
+    <string name="exit_to_about">volver</string>
     <string name="privacy_policy_and_attributions">Política de privacidad y atribuciones</string>
     <string name="press_moon">Para volver a la política de privacidad, presione la luna</string>
 
@@ -268,13 +268,12 @@
         <br></br>
       ]]>
     </string>
-    <string name="services_not_available">" Los servicios de Google Play no están disponibles"</string>
-    <string name="enter_email_address">" ¡Introducir la dirección de correo electrónico!"</string>
-    <string name="enter_password">" ¡Introducir la contraseña!"</string>
+    <string name="services_not_available">"Google Play Service no está disponible"</string>
+    <string name="enter_email_address">"Tu e-mail"</string>
+    <string name="enter_password">"Contraseña"</string>
     <string name="enter_email_and_password">" Introduce tu dirección de correo electrónico y contraseña"</string>
     <string name="enter_email_id">" Ingrese su identificación de correo electrónico registrada"</string>
     <string name="instructions_sent">¡Le hemos enviado instrucciones para restablecer su contraseña!</string>
     <string name="email_send_failed">¡No se pudo enviar el correo electrónico de restablecimiento!</string>
     <string name="enter_valid_email">" Por favor, introduce una dirección de correo electrónico válida"</string>
-
 </resources>

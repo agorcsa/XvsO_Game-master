@@ -345,6 +345,20 @@
      <p><a href="https://pngtree.com/so/starlight">starlight png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/distorted-alien">distorted-alien png from pngtree.com</a> </p>
      <p><a href="https://pngtree.com/so/planet">planet png from pngtree.com</a> </p>
+     <br></br>
+     <p style="color:#19b3e7"><b>Your tones license: </b>SFX Standard</p>
+     <br></br>
+     <p style="color:#19b3e7"><b>License number: </b>TTSFX16033810032120782</p>
+     <p style="color:#19b3e7"><b>For SFX: Future Click 2 </b></p>
+     <br></br>
+     <p style="color:#19b3e7"><b>License number: </b>"TTSFX160338100333760096"</p>
+     <p style="color:#19b3e7"><b>For SFX: Future Click 4</b></p>
+     <br></br>
+     <p style="color:#19b3e7"><b>License number: </b>"TTSFX160338979336826195"</p>
+     <p style="color:#19b3e7"><b>For SFX: SciFi Dark Wind Transition</b></p>
+     <br></br>
+     <p style="color:#19b3e7"><b>All the rights to the music are reserved to TakeTones.com</b></p>
+     <br></br>
     ]]>
 </string>
 
@@ -376,4 +390,5 @@
     <string name="instructions_sent">We have sent you instructions to reset your password!</string>
     <string name="email_send_failed">Failed to send reset email!</string>
     <string name="enter_valid_email">Please enter a valid e-mail address</string>
+    <string name="license">license</string>
 </resources>

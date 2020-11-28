@@ -1,8 +1,8 @@
 package com.example.xvso.uifirebase;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.xvso.R;
 import com.example.xvso.databinding.ActivityLoginBinding;
-import com.example.xvso.ui.AboutActivity;
 import com.example.xvso.ui.HomeActivity;
 import com.example.xvso.viewmodel.LoginViewModel;
 import com.google.android.gms.common.ConnectionResult;
@@ -45,8 +44,15 @@ public class LoginActivity extends BaseActivity {
         setupPositiveSound();
         setupNegativeSound();
 
+
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(), R.string.services_not_available, Toast.LENGTH_LONG).show();
+            GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+            int status = googleApiAvailability.isGooglePlayServicesAvailable(this);
+            if (status != ConnectionResult.SUCCESS) {
+                if (googleApiAvailability.isUserResolvableError(status)) {
+                    googleApiAvailability.getErrorDialog(this, status, 1000).show();
+                }
+            }
         }
 
         loginBinding.btnSignup.setOnClickListener(new View.OnClickListener() {

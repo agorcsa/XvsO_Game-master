@@ -144,18 +144,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void stopPositiveSound() {
-        if (positiveSound != null) {
-            positiveSound.stop();
-        }
-    }
-
-    public void stopNegativeSound() {
-        if (negativeSound != null) {
-            negativeSound.stop();
-        }
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
