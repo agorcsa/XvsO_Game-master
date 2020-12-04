@@ -1,8 +1,8 @@
 package com.example.xvso.uifirebase;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -58,14 +58,35 @@ public class LoginActivity extends BaseActivity {
         loginBinding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+
+                if (isSoundOn) {
+                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    positiveSound.start();
+                }
             }
         });
 
         loginBinding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+                if (isSoundOn) {
+                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    positiveSound.start();
+                }
             }
         });
 
@@ -106,9 +127,17 @@ public class LoginActivity extends BaseActivity {
                                             Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                         }
                                     } else {
-                                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                        if (isSoundOn) {
+                                            positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                                @Override
+                                                public void onCompletion(MediaPlayer mediaPlayer) {
+                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
+                                            positiveSound.start();
+                                        }
                                     }
                                 }
                             });

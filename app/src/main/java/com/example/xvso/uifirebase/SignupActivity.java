@@ -56,6 +56,8 @@ public class SignupActivity extends BaseActivity {
         signupBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         auth = FirebaseAuth.getInstance();
 
+        setupPositiveSound();
+        setupNegativeSound();
 
         if (!isGooglePlayServicesAvailable(getApplicationContext())) {
             Toast.makeText(getApplicationContext(), R.string.services_not_available, Toast.LENGTH_LONG).show();
@@ -64,20 +66,45 @@ public class SignupActivity extends BaseActivity {
         signupBinding.resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
+
+                if (isSoundOn) {
+                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
+                            finish();
+                        }
+                    });
+                    positiveSound.start();
+                }
             }
         });
 
         signupBinding.signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                if (isSoundOn) {
+                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    positiveSound.start();
+                }
             }
         });
 
         signupBinding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (isSoundOn) {
+                    positiveSound.start();
+                }
 
                 final String email = signupBinding.inputEmail.getText().toString().trim();
                 final String password = signupBinding.inputPassword.getText().toString().trim();
