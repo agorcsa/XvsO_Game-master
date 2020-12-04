@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
 
+import static com.example.xvso.ui.BaseActivity.isValidEmail;
+
 public class ResetPasswordActivity extends BaseActivity {
 
     ActivityResetPasswordBinding resetPasswordBinding;
@@ -83,19 +85,11 @@ public class ResetPasswordActivity extends BaseActivity {
                                 }
                             });
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "The introduced e-mail address is not valid", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "The introduced e-mail is not valid", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
                     toast.show();
                 }
             }
         });
-    }
-
-    public static boolean isValidEmail(CharSequence target) {
-        if (target == null) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
     }
 }
