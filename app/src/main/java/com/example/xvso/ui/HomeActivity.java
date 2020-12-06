@@ -89,6 +89,9 @@ public class HomeActivity extends BaseActivity {
                             }
                         });
                         positiveSound.start();
+                    } else {
+                        Intent intent = new Intent(HomeActivity.this, AlienActivity.class);
+                        startActivity(intent);
                     }
                 }
             });
@@ -105,6 +108,9 @@ public class HomeActivity extends BaseActivity {
                             }
                         });
                         positiveSound.start();
+                    } else {
+                        Intent intent = new Intent(HomeActivity.this, OnlineUsersActivity.class);
+                        startActivity(intent);
                     }
                 }
             });
@@ -121,6 +127,9 @@ public class HomeActivity extends BaseActivity {
                         }
                     });
                     positiveSound.start();
+                } else {
+                    Intent intent = new Intent(HomeActivity.this, PolicyAttributionsActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -138,6 +147,9 @@ public class HomeActivity extends BaseActivity {
                             }
                         });
                         positiveSound.start();
+                    } else {
+                        Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+                        startActivity(intent);
                     }
                 }
             });
@@ -276,10 +288,25 @@ public class HomeActivity extends BaseActivity {
                     }
                 });
                 negativeSound.start();
+            } else {
+                FirebaseAuth.getInstance().signOut();
+                Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
             }
         } else if (item.getItemId() == R.id.action_profile_home) {
-            Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
-            startActivity(settingsIntent);
+            if (isSoundOn) {
+                positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
+                        startActivity(settingsIntent);
+                    }
+                });
+                positiveSound.start();
+            } else {
+                Intent settingsIntent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(settingsIntent);
+            }
         } else if (item.getItemId() == R.id.action_music_home) {
             // toggle button (stop music)
             if (isMusicOn) {
