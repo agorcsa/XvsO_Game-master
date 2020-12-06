@@ -122,7 +122,7 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     //authenticate user
                     if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-
+                        // adds a Toast message in case of Internet connection
                         if (isNetworkConnected()) {
                             auth.signInWithEmailAndPassword(loginBinding.loginEmail.getText().toString(), loginBinding.loginPassword.getText().toString())
                                     .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
