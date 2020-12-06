@@ -3,6 +3,7 @@ package com.example.xvso.uifirebase;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -98,66 +99,71 @@ public class LoginActivity extends BaseActivity {
 
                 loginViewModel.getEmail().setValue(loginBinding.loginEmail.getText().toString());
                 loginViewModel.getPassword().setValue(loginBinding.loginPassword.getText().toString());
-
-               /* // check if email is empty
-                if (TextUtils.isEmpty((loginViewModel.getEmail().toString()))) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // check if email is valid
-                if (!isValidEmail(loginViewModel.getEmail().toString()))  {
-                    Toast toast = Toast.makeText(getApplicationContext(), "The introduced e-mail is not valid", Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }*/
-
                 loginBinding.progressBar.setVisibility(View.VISIBLE);
 
                 // if empty - Toast empty
                 // else if not empty AND invalid - Toast invalid
                 // else - Login
 
-                if (TextUtils.isEmpty((loginViewModel.getEmail().toString()))) {
+                String email = loginBinding.loginEmail.getText().toString();
+                String password = loginBinding.loginPassword.getText().toString();
+
+                if (TextUtils.isEmpty((email))) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
                     Toast.makeText(getApplicationContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
-                } else if (!TextUtils.isEmpty((loginViewModel.getEmail().toString())) && (!isValidEmail(loginViewModel.getEmail().toString()))) {
+                } else if (!TextUtils.isEmpty((email)) && (!isValidEmail(email))) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
                     Toast toast = Toast.makeText(getApplicationContext(), "The introduced e-mail is not valid", Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
                     //authenticate user
-                    if (!TextUtils.isEmpty(loginBinding.loginEmail.getText()) && !TextUtils.isEmpty(loginBinding.loginPassword.getText())) {
-                        auth.signInWithEmailAndPassword(loginBinding.loginEmail.getText().toString(), loginBinding.loginPassword.getText().toString())
-                                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        // If sign in fails, display a message to the user. If sign in succeeds
-                                        // the auth state listener will be notified and logic to handle the
-                                        // signed in user can be handled in the listener.
-                                        loginBinding.progressBar.setVisibility(View.GONE);
-                                        if (!task.isSuccessful()) {
-                                            // there was an error
-                                            if (loginViewModel.getPassword().toString().length() < 6) {
-                                                loginBinding.loginPassword.setError(getString(R.string.minimum_password));
+                    if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+
+                        if (isNetworkConnected()) {
+                            auth.signInWithEmailAndPassword(loginBinding.loginEmail.getText().toString(), loginBinding.loginPassword.getText().toString())
+                                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            // If sign in fails, display a message to the user. If sign in succeeds
+                                            // the auth state listener will be notified and logic to handle the
+                                            // signed in user can be handled in the listener.
+                                            loginBinding.progressBar.setVisibility(View.GONE);
+                                            if (!task.isSuccessful()) {
+                                                // there was an error
+                                                if (loginViewModel.getPassword().toString().length() < 6) {
+                                                    loginBinding.loginPassword.setError(getString(R.string.minimum_password));
+                                                } else {
+                                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                                }
                                             } else {
-                                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                            }
-                                        } else {
-                                            if (isSoundOn) {
-                                                positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                                    @Override
-                                                    public void onCompletion(MediaPlayer mediaPlayer) {
-                                                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                                        startActivity(intent);
-                                                        finish();
+                                                if (isSoundOn) {
+                                                    positiveSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                                        @Override
+                                                        public void onCompletion(MediaPlayer mediaPlayer) {
+                                                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    });
+                                                    if (isSoundOn) {
+                                                        positiveSound.start();
                                                     }
-                                                });
-                                                positiveSound.start();
+                                                }
                                             }
                                         }
-                                    }
-                                });
+                                    });
+                        } else {
+                            Toast.makeText(LoginActivity.this, "No Internet connectivity!", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), R.string.enter_email_and_password, Toast.LENGTH_SHORT).show();
+                        if (isSoundOn) {
+                            negativeSound.start();
+                        }
                     }
                 }
             }
@@ -165,7 +171,7 @@ public class LoginActivity extends BaseActivity {
 
         if (TextUtils.isEmpty((loginViewModel.getPassword().toString()))) {
             Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
-            return;
+            negativeSound.start();
         }
     }
 
@@ -173,5 +179,10 @@ public class LoginActivity extends BaseActivity {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context);
         return resultCode == ConnectionResult.SUCCESS;
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }

@@ -28,10 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class SignupActivity extends BaseActivity {
+import static com.example.xvso.ui.BaseActivity.isValidEmail;
 
-    private ActivitySignupBinding signupBinding;
-    //private SignUpViewModel signUpViewModel;
+public class SignupActivity extends BaseActivity {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +           // beginning of the String
@@ -43,7 +42,8 @@ public class SignupActivity extends BaseActivity {
                     //"(?=\\S+$)" +           // no white spaces
                     //".{6,}" +             // at least 6 characters
                     "$");                   // end of the String
-
+    //private SignUpViewModel signUpViewModel;
+    private ActivitySignupBinding signupBinding;
     private FirebaseAuth auth;
 
     private DatabaseReference databaseReference;
@@ -102,59 +102,66 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                if (isSoundOn) {
-                    positiveSound.start();
-                }
-
                 final String email = signupBinding.inputEmail.getText().toString().trim();
                 final String password = signupBinding.inputPassword.getText().toString().trim();
 
+                // if empty - Toast empty
+                // else if not empty AND invalid - Toast invalid
+                // else - Login
+
                 if (TextUtils.isEmpty(email)) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
                     Toast.makeText(getApplicationContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
-                    return;
 
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    signupBinding.inputEmail.setError(getString(R.string.enter_valid_email));
-                }
-
-                if (TextUtils.isEmpty(password)) {
+                } else if (!TextUtils.isEmpty((email)) && (!isValidEmail(email))) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
+                    //signupBinding.inputEmail.setError(getString(R.string.enter_valid_email));
+                    Toast toast = Toast.makeText(getApplicationContext(), "The introduced e-mail is not valid", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (TextUtils.isEmpty(password)) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
                     Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
+                } else if (password.length() < 6) {
+                    if (isSoundOn) {
+                        negativeSound.start();
+                    }
                     Toast.makeText(getApplicationContext(), R.string.minimum_password, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                } else {
+                    signupBinding.progressBar.setVisibility(View.VISIBLE);
+                    //create user
+                    auth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    //Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                    signupBinding.progressBar.setVisibility(View.GONE);
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(SignupActivity.this, R.string.email_already_used,
+                                                Toast.LENGTH_LONG).show();
+                                    } else {
+                                        String id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                                        String name = convertEmailToString(Objects.requireNonNull(getFirebaseUser().getEmail()));
 
-                signupBinding.progressBar.setVisibility(View.VISIBLE);
-                //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                //Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                signupBinding.progressBar.setVisibility(View.GONE);
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication failed because of " + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    String id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                                    String name = convertEmailToString(Objects.requireNonNull(getFirebaseUser().getEmail()));
+                                        User user = new User(id, name, email, password);
 
-                                    User user = new User(id, name, email, password);
+                                        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                                        databaseReference.child(getFirebaseUser().getUid()).setValue(user);
 
-                                    databaseReference = FirebaseDatabase.getInstance().getReference("users");
-                                    databaseReference.child(getFirebaseUser().getUid()).setValue(user);
-
-                                    startActivity(new Intent(SignupActivity.this, HomeActivity.class));
-                                    finish();
+                                        startActivity(new Intent(SignupActivity.this, HomeActivity.class));
+                                        finish();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
     }
@@ -165,7 +172,7 @@ public class SignupActivity extends BaseActivity {
         signupBinding.progressBar.setVisibility(View.GONE);
     }
 
-    public boolean isGooglePlayServicesAvailable(Context context){
+    public boolean isGooglePlayServicesAvailable(Context context) {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context);
         return resultCode == ConnectionResult.SUCCESS;
