@@ -23,6 +23,8 @@ public class AboutActivity extends BaseActivity {
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         String aboutText0 = getResources().getString(R.string.welcome);
 
         String aboutText1 = getResources().getString(R.string.about_the_app)
@@ -55,6 +57,9 @@ public class AboutActivity extends BaseActivity {
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(AboutActivity.this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 }

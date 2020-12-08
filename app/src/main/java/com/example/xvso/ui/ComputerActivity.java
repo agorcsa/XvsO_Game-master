@@ -57,6 +57,8 @@ public class ComputerActivity extends BaseActivity {
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         // starts the round timer
         startTimer();
 
@@ -306,6 +308,10 @@ public class ComputerActivity extends BaseActivity {
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(ComputerActivity.this, HomeActivity.class);
+            intent.putExtra(KEY, true);
+            startActivity(intent);
         }
     }
 

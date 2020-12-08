@@ -54,6 +54,8 @@ public class SinglePlayerActivity extends BaseActivity {
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         startTimer();
 
         winnerIsInvisible();
@@ -232,6 +234,10 @@ public class SinglePlayerActivity extends BaseActivity {
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(SinglePlayerActivity.this, HomeActivity.class);
+            intent.putExtra(KEY, true);
+            startActivity(intent);
         }
     }
 

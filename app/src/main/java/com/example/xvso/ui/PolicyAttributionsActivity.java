@@ -45,6 +45,8 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         try {
             String text = new ReadFileAsyncTask(new WeakReference<Context>(this), this).execute().get();
             policyBinding.policyText.setText(text);
@@ -120,6 +122,9 @@ public class PolicyAttributionsActivity extends BaseActivity implements ReadFile
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(PolicyAttributionsActivity.this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 

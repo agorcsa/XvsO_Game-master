@@ -47,6 +47,10 @@ public class ResetPasswordActivity extends BaseActivity {
                         }
                     });
                     negativeSound.start();
+                } else {
+                    Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

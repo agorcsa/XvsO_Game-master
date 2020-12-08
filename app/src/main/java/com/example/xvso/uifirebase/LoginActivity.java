@@ -72,6 +72,10 @@ public class LoginActivity extends BaseActivity {
                         }
                     });
                     positiveSound.start();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -89,6 +93,10 @@ public class LoginActivity extends BaseActivity {
                         }
                     });
                     positiveSound.start();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -104,7 +112,6 @@ public class LoginActivity extends BaseActivity {
                 // if empty - Toast empty
                 // else if not empty AND invalid - Toast invalid
                 // else - Login
-
                 String email = loginBinding.loginEmail.getText().toString();
                 String password = loginBinding.loginPassword.getText().toString();
 
@@ -157,7 +164,7 @@ public class LoginActivity extends BaseActivity {
                                         }
                                     });
                         } else {
-                            Toast.makeText(LoginActivity.this, "No Internet connectivity!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "No Internet connection!", Toast.LENGTH_LONG).show();
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), R.string.enter_email_and_password, Toast.LENGTH_SHORT).show();

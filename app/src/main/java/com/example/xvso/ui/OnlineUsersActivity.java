@@ -115,6 +115,8 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         joinButton = findViewById(R.id.join_game_text_view);
 
         usersBinding.setViewModel(onlineUsersViewModel);
@@ -308,7 +310,6 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
     public boolean opponentJoinedGame(String key) {
 
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("multiplayer").child(key).child("guest");
 
@@ -348,6 +349,7 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
 
     @Override
     public void onJoinGameClick(String key, View view) {
+
 
         database.getReference("multiplayer").child(key).child("guest").setValue(myUser);
 
@@ -459,6 +461,9 @@ public class OnlineUsersActivity extends BaseActivity implements GameAdapter.Joi
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(OnlineUsersActivity.this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 }

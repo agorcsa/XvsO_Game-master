@@ -63,6 +63,8 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         viewPager2 = findViewById(R.id.alien_view_pager_slider);
         alienDescription = findViewById(R.id.alien_description_text_view);
         scroll = findViewById(R.id.scroll_text);
@@ -155,6 +157,9 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
                 }
             });
             negativeSound.start();
+        } else {
+            Intent intent = new Intent(AlienActivity.this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 }

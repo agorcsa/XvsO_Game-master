@@ -87,7 +87,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public FirebaseUser getFirebaseUser() {
-
         return auth.getCurrentUser();
     }
 

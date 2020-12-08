@@ -62,6 +62,9 @@ public class HomeActivity extends BaseActivity {
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+        readMusicFromSharedPrefs();
+
         configureActionBar();
         
             homeBinding.singlePlayerButton.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +265,9 @@ public class HomeActivity extends BaseActivity {
 
     public void animateRocket() {
         homeBinding.motionLayout.transitionToEnd();
-        mpSpaceship.start();
+        if (isSoundOn) {
+            mpSpaceship.start();
+        }
     }
 
     public void showToast(String message) {

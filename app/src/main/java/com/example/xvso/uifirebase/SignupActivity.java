@@ -3,6 +3,7 @@ package com.example.xvso.uifirebase;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -94,6 +95,10 @@ public class SignupActivity extends BaseActivity {
                         }
                     });
                     positiveSound.start();
+                } else {
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -134,33 +139,39 @@ public class SignupActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), R.string.minimum_password, Toast.LENGTH_SHORT).show();
                 } else {
                     signupBinding.progressBar.setVisibility(View.VISIBLE);
-                    //create user
-                    auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    //Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                    signupBinding.progressBar.setVisibility(View.GONE);
-                                    // If sign in fails, display a message to the user. If sign in succeeds
-                                    // the auth state listener will be notified and logic to handle the
-                                    // signed in user can be handled in the listener.
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(SignupActivity.this, R.string.email_already_used,
-                                                Toast.LENGTH_LONG).show();
-                                    } else {
-                                        String id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                                        String name = convertEmailToString(Objects.requireNonNull(getFirebaseUser().getEmail()));
 
-                                        User user = new User(id, name, email, password);
+                    if (isNetworkConnected()) {
+                        //create user
+                        auth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        //Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                        signupBinding.progressBar.setVisibility(View.GONE);
+                                        // If sign in fails, display a message to the user. If sign in succeeds
+                                        // the auth state listener will be notified and logic to handle the
+                                        // signed in user can be handled in the listener.
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(SignupActivity.this, R.string.email_already_used,
+                                                    Toast.LENGTH_LONG).show();
+                                        } else {
+                                            String id = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                                            String name = convertEmailToString(Objects.requireNonNull(getFirebaseUser().getEmail()));
 
-                                        databaseReference = FirebaseDatabase.getInstance().getReference("users");
-                                        databaseReference.child(getFirebaseUser().getUid()).setValue(user);
+                                            User user = new User(id, name, email, password);
 
-                                        startActivity(new Intent(SignupActivity.this, HomeActivity.class));
-                                        finish();
+                                            databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                                            databaseReference.child(getFirebaseUser().getUid()).setValue(user);
+
+                                            startActivity(new Intent(SignupActivity.this, HomeActivity.class));
+                                            finish();
+                                        }
                                     }
-                                }
-                            });
+                                });
+                    } else {
+                        Toast.makeText(SignupActivity.this, "No Internet connection!", Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
         });
@@ -178,8 +189,12 @@ public class SignupActivity extends BaseActivity {
         return resultCode == ConnectionResult.SUCCESS;
     }
 
-    private String convertEmailToString(String email) {
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
+    private String convertEmailToString(String email) {
         return email.substring(0, Objects.requireNonNull(getFirebaseUser().getEmail()).indexOf("@"));
     }
 }
