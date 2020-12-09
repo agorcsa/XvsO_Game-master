@@ -21,18 +21,20 @@
         <ScrollView
             android:id="@+id/scroll_view_description"
             android:layout_width="wrap_content"
-            android:layout_height="500dp">
+            android:layout_height="360dp"
+            android:layout_marginBottom="14dp">
 
-        <TextView
-            android:id="@+id/alien_description_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/alien_description_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
         </ScrollView>
 
         <Button
             android:id="@+id/x_button"
-            style="@style/MatchWrap"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_purple_solid"
             android:fontFamily="@font/futuristic_font"

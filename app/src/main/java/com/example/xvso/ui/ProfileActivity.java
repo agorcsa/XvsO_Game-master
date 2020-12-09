@@ -67,6 +67,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         setupPositiveSound();
         setupNegativeSound();
 
+        readSoundFromSharedPrefs();
+
         observeStatus();
         // sets onClickListener on the submitButton in order to be clickable and run some code
         profileBinding.submitButton.setOnClickListener(this);
@@ -99,6 +101,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         }
                     });
                     negativeSound.start();
+                } else {
+                    Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                    startActivity(intent);
                 }
             }
         });

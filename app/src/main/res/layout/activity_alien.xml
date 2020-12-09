@@ -34,9 +34,8 @@
         android:layout_marginBottom="16dp"
         android:textColor="@color/white"
         android:layout_marginStart="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="10dp"
+        android:textSize="10sp"
         android:gravity="center_horizontal"
         android:text="@string/alien_click" />
 
@@ -46,7 +45,6 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true" />
-
     <include layout="@layout/alien_description_dialog" />
 
     <Button

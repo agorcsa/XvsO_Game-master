@@ -123,6 +123,12 @@ public class AlienActivity extends BaseActivity implements SlideAdapter.ShowDesc
                 }
             });
             positiveSound.start();
+        } else {
+            Intent intent = new Intent(AlienActivity.this, ComputerActivity.class);
+            int image = item.getImage();
+            intent.putExtra(ALIEN_KEY, image);
+            intent.putExtra(ALIEN_NAME, item.getName());
+            startActivity(intent);
         }
     }
 

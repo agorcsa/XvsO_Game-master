@@ -63,7 +63,6 @@ public class HomeActivity extends BaseActivity {
         setupNegativeSound();
 
         readSoundFromSharedPrefs();
-        readMusicFromSharedPrefs();
 
         configureActionBar();
         
