@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.xvso.viewmodel.OnlineGameViewModel" />
+            type="com.game.xvso.viewmodel.OnlineGameViewModel" />
     </data>
 
     <FrameLayout

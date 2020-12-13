@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.xvso">
+    package="com.game.xvso">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,7 +17,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="com.game.xvso.ui.SplashActivity"
             android:label="XvsO in Space"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -30,13 +30,13 @@
         </activity>
 
         <activity
-            android:name=".uifirebase.LoginActivity"
+            android:name="com.game.xvso.uifirebase.LoginActivity"
             android:label="LogIn"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".uifirebase.SignupActivity"
+            android:name="com.game.xvso.uifirebase.SignupActivity"
             android:label="@string/sign_up_activity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -44,14 +44,14 @@
         </activity>
 
         <activity
-            android:name=".ui.HomeActivity"
+            android:name="com.game.xvso.ui.HomeActivity"
             android:label="@string/home_menu"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:screenOrientation="portrait">
         </activity>
 
         <activity
-            android:name=".ui.SinglePlayerActivity"
+            android:name="com.game.xvso.ui.SinglePlayerActivity"
             android:label="Single Player"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -59,7 +59,7 @@
         </activity>
 
         <activity
-            android:name=".ui.AlienActivity"
+            android:name="com.game.xvso.ui.AlienActivity"
             android:label="Aliens"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -67,21 +67,21 @@
         </activity>
 
         <activity
-            android:name=".ui.ComputerActivity"
+            android:name="com.game.xvso.ui.ComputerActivity"
             android:label="Single Player (Computer)"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.PolicyAttributionsActivity"
+            android:name="com.game.xvso.ui.PolicyAttributionsActivity"
             android:label="Policy &amp; Attributions"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.AboutActivity"
+            android:name="com.game.xvso.ui.AboutActivity"
             android:label="@string/about"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
@@ -89,7 +89,7 @@
         </activity>
 
         <activity
-            android:name=".ui.OnlineUsersActivity"
+            android:name="com.game.xvso.ui.OnlineUsersActivity"
             android:label="@string/online_users_activity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -97,14 +97,14 @@
         </activity>
 
         <activity
-            android:name=".ui.OnlineGameActivity"
+            android:name="com.game.xvso.ui.OnlineGameActivity"
             android:label="XvsO in Space - Online"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.ProfileActivity"
+            android:name="com.game.xvso.ui.ProfileActivity"
             android:label="@string/profile_label"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"
@@ -112,7 +112,7 @@
         </activity>
 
         <activity
-            android:name=".uifirebase.ResetPasswordActivity"
+            android:name="com.game.xvso.uifirebase.ResetPasswordActivity"
             android:label="@string/reset_password_activity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme"

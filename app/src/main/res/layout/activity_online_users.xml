@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.xvso.viewmodel.OnlineUsersViewModel" />
+            type="com.game.xvso.viewmodel.OnlineUsersViewModel" />
     </data>
 
     <LinearLayout

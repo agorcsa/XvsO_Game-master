@@ -7,7 +7,7 @@
         style="@style/MatchParent"
         android:background="@android:color/black"
         android:fitsSystemWindows="@bool/value_true"
-        tools:context="com.example.xvso.uifirebase.SignupActivity">
+        tools:context="com.game.xvso.uifirebase.SignupActivity">
 
         <LinearLayout
             style="@style/MatchParent"
